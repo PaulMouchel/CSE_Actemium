@@ -1,4 +1,7 @@
-import './App.css';
+import './style/App.css';
+import './style/Sidebar.css';
+import './style/News.css';
+import './style/Quotation.css';
 
 import Sidebar from './components/Sidebar'
 import Content from './components/Content'
