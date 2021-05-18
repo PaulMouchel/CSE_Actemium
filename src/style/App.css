@@ -61,16 +61,14 @@ img {
   .mb-5 {
     margin-bottom: 3rem !important; }
   
-  .p-4 {
-    padding: 1.5rem !important; }
+
   
   
   .py-4 {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important; }
   
-  .pt-5 {
-    padding-top: 3rem !important; }
+
   
   
   .text-center {
@@ -91,23 +89,12 @@ img {
   
   
   ol,
-  ul,
-  dl {
+  ul {
     margin-top: 0;
     margin-bottom: 1rem; }
   
-  ol ol,
-  ul ul,
-  ol ul,
-  ul ol {
-    margin-bottom: 0; }
   
-  dt {
-    font-weight: 700; }
-  
-  dd {
-    margin-bottom: .5rem;
-    margin-left: 0; }
+
   
   blockquote {
     margin: 0 0 1rem; }
@@ -119,20 +106,7 @@ img {
   small {
     font-size: 80%; }
   
-  sub,
-  sup {
-    position: relative;
-    font-size: 75%;
-    line-height: 0;
-    vertical-align: baseline; }
-  
-  sub {
-    bottom: -.25em; }
-  
-  sup {
-    top: -.5em; }
-  
-  
+
       
   
   
@@ -141,7 +115,7 @@ img {
     line-height: 1.5;
     font-weight: 400;
     font-family: "Poppins", Arial, sans-serif;
-    color: #000; }
+     }
   
   .img {
     background-size: cover;
@@ -149,19 +123,8 @@ img {
     background-position: center center; }
   
 
-  
-  .wrapper {
-    width: 100%;
-     }
-  
-  
+
     
-  
-  
-  
-  
-      
-  
   
   
   
@@ -173,9 +136,29 @@ img {
     padding: 0;
     min-height: 110vh;
     transition: all 0.3s;
-    background: linear-gradient(2deg, rgba(0,66,137,1) 0%,rgba(0,66,137,0.7) 100%) }
+  }
   
-  
+  .bg-blue {
+    background: linear-gradient(2deg, rgba(0,66,137,1) 0%,rgba(0,66,137,0.7) 100%);
+    padding: 1.5rem;
+    padding-top: 3rem;
+    min-height: 100vh;
+  }
+
+  .bg-blue h1 {
+    color: whitesmoke;
+  }
+
+  .bg-white {
+    background:linear-gradient(to bottom, #ebebeb 0%, #dddddd 100%);
+    padding: 1.5rem;
+    padding-top: 3rem;
+    min-height: 100vh;
+  }
+
+  .bg-white h1 {
+    color: rgb(37, 37, 37);
+  }
     
       
   
@@ -184,39 +167,10 @@ img {
   h1 {
     text-align: center;
     font-size: 50px;
-    color: whitesmoke;
+    
   }
   
   
-
-  
-  
-
-    
-
-    
-    .wb-overview-post-meta{margin-top:-48px;}
-    
-    
-    .news-article-content > div + div{margin-top:30px;}
-    .wb-overview-post-meta{position:relative;z-index:2;}
-    .wb-overview-post-title{color:#004087;font-size:24px;font-size:1.5rem;line-height:1.2;font-weight:600;}
-    .wb-overview-post-footer{
-      display:flex;
-      align-items:center;}
-    .wb-overview-post-footer-right{margin-left:auto;}
-  
-    .wb-overview-post-description{color:#787878;}
-    .wb-overview-post-readmore{color:#787878;font-size:16px;font-size:1rem;font-weight:600;}
-    
-    .wb-overview-post-date{
-      display:inline-block;
-      padding:10px 15px;
-      border-radius:99px;
-      background:#c6d200;
-      color:#fff;
-      font-size:14px;
-      font-size:.875rem;}
     
   
       .relative {
@@ -297,3 +251,5 @@ img {
     button{
       border:none;
     }
+
+

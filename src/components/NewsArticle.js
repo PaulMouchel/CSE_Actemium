@@ -14,21 +14,19 @@ const NewsArticle = ({image, date, title, subTitle}) => {
         <div className="news-article-inner">
           <div className="news-article-image" style={{backgroundImage: `url(${image})`}}></div>
           <div className="news-article-content">
-            <div className="wb-overview-post-meta">
-              <div className="wb-overview-post-date"><FontAwesomeIcon icon={faClock} /><span> {date}</span></div>
+            <div className="news-article-meta">
+              <div className="news-article-date"><FontAwesomeIcon icon={faClock} /><span> {date}</span></div>
             </div>
-            <div className="wb-overview-post-title">
+            <div className="news-article-title">
               {title}
             </div>
-
-                                <div className="wb-overview-post-description">
-                                {subTitle}</div>
-            <div className="wb-overview-post-footer">
-              <div className="wb-overview-post-footer-left">
-                <div className="wb-overview-post-readmore">
-                  En savoir plus											</div>
+            <div className="news-article-description">
+              {subTitle}</div>
+            <div className="news-article-footer">
+              <div className="news-article-readmore">
+                En savoir plus
               </div>
-              <div className="wb-overview-post-footer-right">
+              <div className="news-article-footer-right">
                 <button className="news-article-arrow"><FontAwesomeIcon icon={faArrowRight} /></button>
               </div>
             </div>
