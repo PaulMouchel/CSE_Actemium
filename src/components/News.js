@@ -1,14 +1,30 @@
 import React from 'react';
+import useFirestore from '../hooks/useFirestore';
+
+//Components
 import NewsArticle from './NewsArticle'
+// import UploadForm from './UploadForm'
+
+// Icons
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+// Images
 import ski from "../images/ski.jpg";
 import hollidays from "../images/hollidays.jpg";
 import gifts from "../images/gifts.jpg";
 
 const News = () => {
+  const { docs } = useFirestore('images');
+  //const ski = docs[0].url;
   return (
       <>
+        {/* <UploadForm />
+        {docs && docs.map(doc => ( 
+          <div className="img-wrap" key={doc.id}>
+            <img src={doc.url} alt="uploaded pic"/>
+          </div>
+        ))} */}
         <h1>Actualités</h1>
           <div id="news">
             <NewsArticle image={ski} date="29.01.2021" title="Envie de montagne ?" subTitle="Plus que quelques jours pour louer nos appartements à Meribel (encore 2 disponibles)"/>

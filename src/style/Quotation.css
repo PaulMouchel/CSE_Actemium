@@ -1,44 +1,43 @@
 #quote {
-    background-color: white;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 15px;
-    color: darkslategrey;
-    border-color: rgb(198, 210, 0);
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .fa-quote-left {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  .fa-quote-right {
-    padding-left: 20px;
-    padding-right: 20px;
-    position: relative;
-    bottom: 0px;
-  }
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  color: darkslategrey;
+  border-color: rgb(198, 210, 0);
+  display: flex;
+  justify-content: space-between;
+}
 
-  .quotemark {
-    font-size: 40px;
-   }
-  
-  blockquote {
-    text-align: justify;
-    text-align-last: center;
-    font-size: 16px;
-    margin: 0px
-  } 
-  
-  .quote-start {
-    display: flex;
-    align-items: flex-start;
-  }
-  .quote-end {
-    display: flex;
-    align-items: flex-end;
-  }
-  
-  
+.fa-quote-left {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.fa-quote-right {
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+  bottom: 0px;
+}
+
+.quotemark {
+  font-size: 40px;
+ }
+
+blockquote {
+  text-align: justify;
+  text-align-last: center;
+  font-size: 16px;
+  margin: 0px
+} 
+
+.quote-start {
+  display: flex;
+  align-items: flex-start;
+}
+.quote-end {
+  display: flex;
+  align-items: flex-end;
+}
+
