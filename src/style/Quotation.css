@@ -32,12 +32,6 @@ blockquote {
   margin: 0px
 } 
 
-.quote-start {
-  display: flex;
-  align-items: flex-start;
-}
-.quote-end {
-  display: flex;
-  align-items: flex-end;
-}
+
+
 
