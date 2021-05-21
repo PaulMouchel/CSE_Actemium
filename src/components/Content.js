@@ -1,8 +1,7 @@
 import React from 'react';
-import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import News from './News'
+import Home from './Home'
+import News2 from './News'
 import Benefits from './Benefits'
 import Cssct from './Cssct'
 import Team from './Team'
@@ -13,7 +12,7 @@ const Content = () => {
   return (
     <div id="content">
         <div className="bg-blue">
-          <News />
+          <News2 />
           <Quotation/>
         </div>
         <div className="bg-white">

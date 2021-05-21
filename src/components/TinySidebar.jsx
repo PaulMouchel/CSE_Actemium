@@ -2,7 +2,7 @@ import React from 'react';
 import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Sidebar = () => {
+const TinySidebar = () => {
     const sidebarData = [
         {
             href: "localhost:3000",
@@ -33,30 +33,27 @@ const Sidebar = () => {
             href: "localhost:3000",
             icon: faEnvelope,
             text: "Nous contacter"
-        },
-        {
-            href: "localhost:3000",
-            icon: faSignOutAlt,
-            text: "Déconnexion"
         }
     ]
 
     return (
-        <nav id="sidebar">
-            <div className="img bg-wrap py-4 img-bg">
-                <div className="user-logo">
-                    <div className="img pic"></div>    
-                </div>
-            </div>
-            <ul className="list-unstyled components mb-5">
+        <nav className="fixed h-screen left-5 top-0 z-50">
+            <ul className="m-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item) =>
-                    <li>
-                        <a href={item.href}><FontAwesomeIcon icon={item.icon} className="mr-3"/> {item.text} </a>
-                    </li>
+                    <li className="flex items-center">
+                        <div className="flex justify-center w-8 h-8 tiny-menu-item bg-gray-50 rounded-full my-2 place-content-center hover:bg-green-400 transition duration-300 ease-in-out">
+                            <a href={item.href}>
+                                <FontAwesomeIcon icon={item.icon} className="text-gray-600 hover:text-gray-50 box-content  p-1.5 m-0"/>
+                                
+                            </a>
+                            
+                        </div>
+                        <div className="ml-2 h-8 inline-flex justify-center align-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 rounded-md font-bold">{item.text}</div>
+                    </li>   
                 )}
             </ul>
         </nav>
     );
 }
 
-export default Sidebar;
+export default TinySidebar;

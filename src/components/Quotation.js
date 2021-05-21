@@ -8,8 +8,8 @@ const quoteStart = {
     alignItems: "flex-start"
 }
 const quoteEnd = {
-        display: "flex",
-        alignItems: "flex-end"
+    display: "flex",
+    alignItems: "flex-end"
 }
 
 const Quotation = () => {
@@ -25,6 +25,7 @@ const Quotation = () => {
             <FontAwesomeIcon icon={faQuoteRight} className="quotemark" />
         </div>
     </div>
+
   );
 }
 

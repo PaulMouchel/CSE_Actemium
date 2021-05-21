@@ -14,7 +14,7 @@ import ski from "../images/ski.jpg";
 import hollidays from "../images/hollidays.jpg";
 import gifts from "../images/gifts.jpg";
 
-const News = () => {
+const News2 = () => {
   //const { docs } = useFirestore('images');
   //const ski = docs[0].url;
   return (
@@ -46,4 +46,4 @@ const News = () => {
   );
 }
 
-export default News;
+export default News2;
