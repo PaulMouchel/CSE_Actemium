@@ -1,19 +1,17 @@
 import React from 'react';
 
-import Home from './Home'
-import News2 from './News'
+import News from './News.jsx'
 import Benefits from './Benefits'
 import Cssct from './Cssct'
 import Team from './Team'
 import Contact from './Contact'
-import Quotation from './Quotation'
 
 const Content = () => {
   return (
     <div id="content">
-        <div className="bg-gray-50 px-64">
+        <div className="bg-gray-50 px-12 md:px-28 lg:px-48">
 
-          <News2 />
+          <News />
           
         </div>
         <div className="bg-white">

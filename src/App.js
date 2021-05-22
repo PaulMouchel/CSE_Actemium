@@ -5,9 +5,8 @@
 // import './style/Team.css';
 import Login from './components/Login'
 
-import Home from './components/Home.js'
+import Home from './components/Home.jsx'
 
-import Sidebar from './components/Sidebar'
 import Content from './components/Content'
 import Navbar from './components/Navbar.jsx';
 import TinySidebar from './components/TinySidebar.jsx';

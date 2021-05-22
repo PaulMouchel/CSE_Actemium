@@ -2,7 +2,8 @@ import React from 'react';
 //import useFirestore from '../hooks/useFirestore';
 
 //Components
-import NewsArticle from './NewsArticle'
+import NewsArticle from './NewsArticle.jsx'
+import Title from './Title'
 // import UploadForm from './UploadForm'
 
 // Icons
@@ -25,8 +26,8 @@ const News = () => {
             <img src={doc.url} alt="uploaded pic"/>
           </div>
         ))} */}
-        <h1>Actualités</h1>
-          <div id="news">
+        <Title>Actualités</Title>
+          <div id="news" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <NewsArticle image={ski} date="29.01.2021" title="Envie de montagne ?" subTitle="Plus que quelques jours pour louer nos appartements à Meribel (encore 2 disponibles)"/>
             <NewsArticle image={gifts} date="20.11.2020" title="Repas de noël" subTitle="Il ne reste plus beaucoup de temps pour voter pour la date qui vous convient le mieux pour le repas de noël"/>
             <NewsArticle image={hollidays} date="10.05.2020" title="Les chèques vacances sont là !" subTitle="Passez au bureau pour les récupérer"/>

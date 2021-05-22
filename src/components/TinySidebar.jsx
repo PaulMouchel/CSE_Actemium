@@ -17,7 +17,7 @@ const TinySidebar = () => {
         {
             href: "localhost:3000",
             icon: faThumbsUp,
-            text: "Nos avantages"
+            text: "Avantages"
         },
         {
             href: "localhost:3000",
@@ -27,17 +27,17 @@ const TinySidebar = () => {
         {
             href: "localhost:3000",
             icon: faUsers,
-            text: "Qui sommes nous ?"
+            text: "L' équipe"
         },
         {
             href: "localhost:3000",
             icon: faEnvelope,
-            text: "Nous contacter"
+            text: "Contact"
         }
     ]
 
     return (
-        <nav className="fixed h-screen left-5 top-0 z-50">
+        <nav className="fixed h-screen left-5 top-0 z-50 invisible md:visible">
             <ul className="m-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item) =>
                     <li className="flex items-center">
