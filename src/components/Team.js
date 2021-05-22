@@ -1,4 +1,5 @@
 import React from 'react';
+import Title from './Title'
 import TeamMember from './TeamMember'
 
 import imageThomas from '../images/thomas.jpg'
@@ -6,6 +7,7 @@ import imageThomas from '../images/thomas.jpg'
 const Team = () => {
     return (
         <div id="team">
+            <Title>L' équipe du CSE</Title>
             <h1>Qui sommes-nous ?</h1>
             <div className="text-center">
                 <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>

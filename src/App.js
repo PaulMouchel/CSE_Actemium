@@ -1,8 +1,3 @@
-// import './style/App.css';
-// import './style/Sidebar.css';
-// import './style/News.css';
-// import './style/Quotation.css';
-// import './style/Team.css';
 import Login from './components/Login'
 
 import Home from './components/Home.jsx'
