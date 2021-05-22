@@ -41,9 +41,9 @@ const TinySidebar = () => {
             <ul className="m-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item) =>
                     <li className="flex items-center">
-                        <div className="flex justify-center w-8 h-8 tiny-menu-item bg-gray-50 rounded-full my-2 place-content-center hover:bg-green-400 transition duration-300 ease-in-out">
+                        <div className="hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
                             <a href={item.href}>
-                                <FontAwesomeIcon icon={item.icon} className="text-gray-600 hover:text-gray-50 box-content  p-1.5 m-0"/>
+                                <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
                                 
                             </a>
                             

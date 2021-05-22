@@ -11,9 +11,10 @@ import Quotation from './Quotation'
 const Content = () => {
   return (
     <div id="content">
-        <div className="bg-blue">
+        <div className="bg-gray-50 px-64">
+
           <News2 />
-          <Quotation/>
+          
         </div>
         <div className="bg-white">
           <Benefits />

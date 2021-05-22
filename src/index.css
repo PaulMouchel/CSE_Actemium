@@ -10,6 +10,7 @@
 
 .tiny-menu-item:hover + .hide {
   display: block;
+  
 }
 
 /* body {
