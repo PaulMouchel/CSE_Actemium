@@ -20,7 +20,7 @@ const Content = () => {
         <div className="bg-gray-800 px-12 md:px-28 lg:px-48">
           <Cssct />
         </div>
-        <div className="bg-gray-50 px-12 md:px-28 lg:px-48">
+        <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <Team />
         </div>
         <div className="bg-gray-200 px-12 md:px-28 lg:px-48">

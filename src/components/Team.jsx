@@ -9,7 +9,7 @@ const Team = () => {
     const members = [
         {
             image: imageThomas,
-            fullName: "thomas Le-Gal",
+            fullName: "Thomas Le-Gal",
             role: "Trésorier",
             holder: true
         },
@@ -18,6 +18,18 @@ const Team = () => {
             fullName: "Sandrine Lemarié",
             role: "Trésorier",
             holder: true
+        },
+        {
+            image: imageThomas,
+            fullName: "Norman Jan-Le-Cloirec",
+            role: "Secrétaire",
+            holder: false
+        },
+        {
+            image: imageThomas,
+            fullName: "Norman Jean-Le-Cloirec",
+            role: "Secrétaire",
+            holder: false
         },
         {
             image: imageThomas,
@@ -32,12 +44,10 @@ const Team = () => {
             <div className="text-center">
                 <h3 className="">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <div className="grid grid-cols-3 py-6">
-
-            {members.map((member, index) =>
-                <TeamMember key={index} image={member.image} fullName={member.fullName} role={member.role} last={index === members.length - 1} even={index%2 === 0} holder={member.holder}/>
-            )}
-
+            <div className="flex flex-col py-6">
+                {members.map((member, index) =>
+                    <TeamMember key={index} image={member.image} fullName={member.fullName} role={member.role} last={index === members.length - 1} even={index%2 === 0} holder={member.holder}/>
+                )}
             </div>
         </>
   );
