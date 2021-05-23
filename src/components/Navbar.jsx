@@ -48,8 +48,8 @@ const Navbar = () => {
     <div className="w-screen flex justify-center items-center bg-gray-100 absolute top-0 shadow-md">
         
         <ul className="w-screen p-5 text-center flex justify-center items-center flex-row  pr-10 pl-10 md:ml-52">
-            {navbarData.map((item) =>
-                    <li className="flex-auto font-poppins font-bold flex flex-col">
+            {navbarData.map((item, index) =>
+                    <li key={index} className="flex-auto font-poppins font-bold flex flex-col">
                         <a href={item.href} className="hover:underline"><FontAwesomeIcon icon={item.icon} className="text-gray-600"/> {item.text} </a>
                     </li>
                 )}

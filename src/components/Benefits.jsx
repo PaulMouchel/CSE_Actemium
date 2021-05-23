@@ -1,15 +1,15 @@
 import React from 'react';
 import Title from './Title'
 
-const Cssct = () => {
+const Benefits = () => {
   return (
       <>
-        <Title addClass="text-gray-50">CSSCT</Title>
-          <div id="cssct">
+        <Title>Nos avantages</Title>
+          <div id="benefits">
             
           </div>
         </>
   );
 }
 
-export default Cssct;
+export default Benefits;
