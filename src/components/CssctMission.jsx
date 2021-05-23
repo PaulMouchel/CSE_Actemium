@@ -12,7 +12,7 @@ const CssctMission = ({text, image, even}) => {
 
            
             <div className="w-1/2 px-4 flex justify-center mx-4">
-                <div className="h-80 w-full bg-cover bg-center" style={{backgroundImage: `url(${image})`}}></div>
+                <div className="h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${image})`}}></div>
             </div>
            
 

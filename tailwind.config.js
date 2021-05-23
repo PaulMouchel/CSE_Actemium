@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'poppins': ['Raleway', 'Poppins', 'Arial', 'sans-serif'],
+      'poppins': ['Arial', 'Raleway', 'Poppins', 'Arial', 'sans-serif'],
      },
     extend: {
       backgroundImage: theme => ({
