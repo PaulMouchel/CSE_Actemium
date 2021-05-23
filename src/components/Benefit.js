@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Benefit = () => {
-  return ( 
+  return (
+ 
     <div id="benefit">
         
     </div> 
