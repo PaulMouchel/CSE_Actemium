@@ -4,8 +4,8 @@ import Title from './Title'
 const Contact = () => {
   return (
       <>
-        <Title>Contact</Title>
-          <div id="contact">
+        <Title id="contact">Contact</Title>
+          <div>
             
           </div>
         </>

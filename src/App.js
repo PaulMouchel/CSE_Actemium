@@ -3,16 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from  "react-router-dom";
 
 import PrivateRoute from './PrivateRoute'
 
-import Home from './components/Home.jsx'
+
 
 import Content from './components/Content.jsx'
-import Navbar from './components/Navbar.jsx';
-import TinySidebar from './components/TinySidebar.jsx';
-import Dashboard from './pages/Dashboard'
+
 import UpdateProfile from './pages/UpdateProfile'
-import Signup from './pages/Signup'
-import Login from './pages/Login'
-import ForgotPassword from './pages/ForgotPassword'
+import Login from './pages/Login.jsx'
+import ForgotPassword from './pages/ForgotPassword.jsx'
 
 function App() {
   return (
@@ -22,9 +19,8 @@ function App() {
           <AuthProvider>
 
             <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/" component={Content} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
-              <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
             </Switch>

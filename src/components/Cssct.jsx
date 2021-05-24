@@ -39,7 +39,7 @@ const Cssct = () => {
   return (
       <>
         <div className="min-h-screen">
-        <Title addClass="text-gray-50">CSSCT</Title>
+        <Title id="cssct" addClass="text-gray-50">CSSCT</Title>
           <div className="">
             <p className="text-gray-50">Les missions de la CSSCT</p>
             <div>

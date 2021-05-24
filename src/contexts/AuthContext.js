@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
     }
 
     function login(email, password) {
-        return projectAuth.signInrWithEmailAndPassword(email, password)
+        return projectAuth.signInWithEmailAndPassword(email, password)
     }
 
     function logout() {

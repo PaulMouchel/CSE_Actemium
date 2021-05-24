@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Quotation from './Quotation'
+import Quotation from './Quotation.jsx'
 
 const Home = () => {
   return ( 

@@ -39,7 +39,7 @@ const Team = () => {
     ]
     return (
         <>
-            <Title>L' équipe du CSE</Title>
+            <Title id="team">L' équipe du CSE</Title>
             <div className="text-center">
                 <h3 className="">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>

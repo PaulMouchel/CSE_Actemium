@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Home from './Home.jsx'
+import Navbar from './Navbar.jsx';
+import TinySidebar from './TinySidebar.jsx';
 import News from './News.jsx'
 import Benefits from './Benefits.jsx'
 import Cssct from './Cssct.jsx'
@@ -8,7 +11,10 @@ import Contact from './Contact.jsx'
 
 const Content = () => {
   return (
-    <div id="content">
+    <div id="home">
+        <Navbar/>
+        <Home/>
+        <TinySidebar/>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <News />
         </div>

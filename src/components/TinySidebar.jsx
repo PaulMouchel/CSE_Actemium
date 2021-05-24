@@ -1,36 +1,36 @@
 import React from 'react';
-import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faSignOutAlt, faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TinySidebar = () => {
     const sidebarData = [
         {
-            href: "localhost:3000",
+            href: "home",
             icon: faHome,
             text: "Accueil"
         },
         {
-            href: "localhost:3000",
+            href: "news",
             icon: faNewspaper,
             text: "Actualités"
         },
         {
-            href: "localhost:3000",
+            href: "benefits",
             icon: faThumbsUp,
             text: "Avantages"
         },
         {
-            href: "localhost:3000",
+            href: "cssct",
             icon: faUserShield,
             text: "CSSCT"
         },
         {
-            href: "localhost:3000",
+            href: "team",
             icon: faUsers,
             text: "L' équipe"
         },
         {
-            href: "localhost:3000",
+            href: "contact",
             icon: faEnvelope,
             text: "Contact"
         }
@@ -42,7 +42,7 @@ const TinySidebar = () => {
                 {sidebarData.map((item, index) =>
                     <li key={index} className="flex items-center">
                         <div className="hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
-                            <a href={item.href}>
+                            <a href={"#" + item.href}>
                                 <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
                                 
                             </a>
