@@ -6,11 +6,10 @@ import { Link, useHistory } from 'react-router-dom'
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Signup = () => {
+const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
-    const { signup } = useAuth()
+    const { login } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -18,17 +17,13 @@ const Signup = () => {
     async function handleSubmit(e) {
         e.preventDefault()
     
-        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setError("Les mots de passe sont différents")
-        }
-    
         try {
             setError("")
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
+            await login(emailRef.current.value, passwordRef.current.value)
             history.push('/')
         } catch {
-            setError("Création de compte échouée")
+            setError("Connexion échouée")
         }
         setLoading(false)
     }
@@ -38,19 +33,21 @@ const Signup = () => {
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
                     <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
-                    <p className="mb-5 text-3xl  text-gray-600">Créer un compte</p>
+                    <p className="mb-5 text-3xl  text-gray-600">Connexion</p>
                     {error && <span variant="danger">{error}</span>}
                     <input type="email" name="email" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autocomplete="off" placeholder="Email" ref={emailRef} required/>
                     <input type="password" name="password" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autocomplete="off" placeholder="Mot de passe" ref={passwordRef} required/>
-                    <input type="password" name="password-confirm" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autocomplete="off" placeholder="Confirmer le mot de passe" ref={passwordConfirmRef} required/>
                     <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><span>Se connecter</span></button>
                 </form>
-                <div className="text-gray-600 mt-1 mb-2">
-                    Vous avez déjà un compte ? <Link className="hover:text-gray-800 hover:underline" to="/login">Connexion</Link>
+                <div className="text-gray-600 my-1 hover:text-gray-800 hover:underline">
+                    <Link to="/forgot-password">Mot de passe oublié ?</Link>
+                </div>
+                <div className="text-gray-600 mt-1 mb-2 hover:text-gray-800 hover:underline">
+                    <Link to="/signup">Créer un compte</Link>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Signup;
+export default Login;
