@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 
-import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faLockOpen, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logo from '../images/logo_min.png'
@@ -75,15 +75,7 @@ const Navbar = () => {
                 <span className=""> {item.text}</span>
               </a>
             </li>
-          )}
-          <li className="flex-auto font-poppins font-bold flex flex-col">
-            <Link to="/update-profile" className="hover:underline">
-              <FontAwesomeIcon icon={faCog} className="text-gray-600"/>
-              {window.innerWidth < 1024 ? <br /> : ""}
-              <span className=""> Changer MDP</span>
-            </Link>
-          </li>
-          
+          )}   
 
           <button variant="link" onClick={handleLogout} className="w-0 md:w-80 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded" id="login" type="submit">
             <span>

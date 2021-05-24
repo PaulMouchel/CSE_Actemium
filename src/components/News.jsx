@@ -1,5 +1,5 @@
 import React from 'react';
-//import useFirestore from '../hooks/useFirestore';
+import useFirestore from '../hooks/useFirestore';
 
 //Components
 import NewsArticle from './NewsArticle.jsx'
@@ -14,9 +14,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ski from "../images/ski.jpg";
 import hollidays from "../images/hollidays.jpg";
 import gifts from "../images/gifts.jpg";
+import { timestamp } from '../firebase/config';
 
 const News = () => {
   //const { docs } = useFirestore('images');
+  const { docs } = useFirestore('News');
+  console.log(docs[0])
   //const ski = docs[0].url;
   return (
       <>
@@ -28,9 +31,12 @@ const News = () => {
         ))} */}
         <Title id="news">Actualités</Title>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <NewsArticle image={ski} date="29.01.2021" title="Envie de montagne ?" subTitle="Plus que quelques jours pour louer nos appartements à Meribel (encore 2 disponibles)"/>
+          {docs.map((article, index) =>
+            <NewsArticle key={index} id={article.id} image={article.image} date={article.date} title={article.title} subTitle={article.subTitle}/>
+          )}
+          {/* <NewsArticle image={ski} date="29.01.2021" title="Envie de montagne ?" subTitle="Plus que quelques jours pour louer nos appartements à Meribel (encore 2 disponibles)"/>
           <NewsArticle image={gifts} date="20.11.2020" title="Repas de noël" subTitle="Il ne reste plus beaucoup de temps pour voter pour la date qui vous convient le mieux pour le repas de noël"/>
-          <NewsArticle image={hollidays} date="10.05.2020" title="Les chèques vacances sont là !" subTitle="Passez au bureau pour les récupérer"/>
+          <NewsArticle image={hollidays} date="10.05.2020" title="Les chèques vacances sont là !" subTitle="Passez au bureau pour les récupérer"/> */}
           
           <div className="w-100 d-flex justify-center mt-10px">
             <a href="https://www.actemium.fr/actualites/" className="wb-button relative wb-button-green-stroke-blue" role="button">

@@ -1,31 +1,38 @@
 import React from 'react';
 import { faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from 'react-router-dom'
 
-const NewsArticle = (article) => {
+import { useLocation } from 'react-router-dom' 
+
+
+const NewsArticleDetail = ({id, image, date, title, subTitle}) => {
+    const location = useLocation();
+    console.log(location.pathname);
+
 
   return (
+      
     <article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1">
-      <Link to={`/news-article/${article.id}`}>
+        <span>Path : {location.pathname}</span>
+      <a href="" title={title}>
         <div className="flex flex-col justify-between h-full">
           <div>
-            <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${article.image})`}}></div>
+            <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${image})`}}></div>
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-green-500 p-2 text-gray-50 rounded-full px-3 inline-block">
                 <div>
                   <FontAwesomeIcon icon={faClock} />
-                  <span className="ml-1">{article.date}</span>
+                  <span className="ml-1">{date}</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="p-4 pt-0">
             <h3 className="relative bottom-3 text-xl text-blue-800 font-bold">
-              {article.title}
+              {title}
             </h3>
             <div className="text-justify text-gray-600 mb-2">
-              {article.subTitle}
+              {subTitle}
             </div>
           </div>
           
@@ -38,9 +45,9 @@ const NewsArticle = (article) => {
               </div>
             </div>
         </div>
-      </Link>
+      </a>
     </article>     
   );
 }
 
-export default NewsArticle;
+export default NewsArticleDetail;

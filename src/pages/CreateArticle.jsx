@@ -4,12 +4,12 @@ import UploadForm from '../components/UploadForm';
 import ImageGrid from '../components/ImageGrid';
 import Modal from '../components/Modal';
 
-const NewArticle = () => {
+const CreateArticle = () => {
   const [selectedImg, setSelectedImg] = useState(null);
 
   return (
     <div>
-      <Title/>
+      <Title>Créer un nouvel article</Title>
       <UploadForm />
       <ImageGrid setSelectedImg={setSelectedImg} />
       { selectedImg && (
@@ -19,4 +19,4 @@ const NewArticle = () => {
   );
 }
 
-export default NewArticle;
+export default CreateArticle;
