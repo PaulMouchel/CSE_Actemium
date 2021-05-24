@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import React, { useContext, useEffect, useState } from 'react';
 import { projectAuth } from "../firebase/config";
 

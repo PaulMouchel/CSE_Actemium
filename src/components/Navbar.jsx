@@ -45,7 +45,7 @@ import fullLogo2 from '../images/full_logo2.png'
 
 const Navbar = () => {
   const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth()
+    const { logout } = useAuth()
     const history = useHistory()
 
     async function handleLogout() {
@@ -61,10 +61,8 @@ const Navbar = () => {
 
   return (
     <>
-      {error && <span variant="danger">{error}</span>}
-      <strong>Email:</strong> {currentUser.email}
-                    <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update Profile</Link>
-       <div className="w-40 lg:w-60 h-40 lg:h-60 bg-opacity-100 absolute top-0 left-0 z-50 invisible md:visible">
+      {error && <span className="block text-center text-gray-50 bg-red-500 py-1 px-2">{error}</span>}
+      <div className="w-40 lg:w-60 h-40 lg:h-60 bg-opacity-100 absolute top-0 left-0 z-50 invisible md:visible">
         <img src={fullLogo2} className="bg-opacity-100 float-left"/>
       </div>
       <div className="flex justify-center items-center bg-gray-100  shadow-md">
@@ -78,6 +76,15 @@ const Navbar = () => {
               </a>
             </li>
           )}
+          <li className="flex-auto font-poppins font-bold flex flex-col">
+            <Link to="/update-profile" className="hover:underline">
+              <FontAwesomeIcon icon={faCog} className="text-gray-600"/>
+              {window.innerWidth < 1024 ? <br /> : ""}
+              <span className=""> Changer MDP</span>
+            </Link>
+          </li>
+          
+
           <button variant="link" onClick={handleLogout} className="w-0 md:w-80 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded" id="login" type="submit">
             <span>
               {window.innerWidth < 1024 ? <FontAwesomeIcon icon={faLockOpen}/> : "Déconnection"}

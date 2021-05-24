@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Home from './Home.jsx'
-import Navbar from './Navbar.jsx';
-import TinySidebar from './TinySidebar.jsx';
-import News from './News.jsx'
-import Benefits from './Benefits.jsx'
-import Cssct from './Cssct.jsx'
-import Team from './Team.jsx'
-import Contact from './Contact.jsx'
+import Home from '../components/Home.jsx'
+import Navbar from '../components/Navbar.jsx';
+import TinySidebar from '../components/TinySidebar.jsx';
+import News from '../components/News.jsx'
+import Benefits from '../components/Benefits.jsx'
+import Cssct from '../components/Cssct.jsx'
+import Team from '../components/Team.jsx'
+import Contact from '../components/Contact.jsx'
 
 const Content = () => {
   return (

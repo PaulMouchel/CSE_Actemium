@@ -1,5 +1,5 @@
 import React from 'react';
-import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faSignOutAlt, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TinySidebar = () => {

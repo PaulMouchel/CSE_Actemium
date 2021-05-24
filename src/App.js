@@ -5,11 +5,12 @@ import PrivateRoute from './PrivateRoute'
 
 
 
-import Content from './components/Content.jsx'
+import Content from './pages/Content.jsx'
 
-import UpdateProfile from './pages/UpdateProfile'
+import UpdateProfile from './pages/UpdatePassword.jsx'
 import Login from './pages/Login.jsx'
 import ForgotPassword from './pages/ForgotPassword.jsx'
+import NewArticle from './pages/NewArticle.jsx'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/new-article" component={NewArticle} />
             </Switch>
 
 
