@@ -20,13 +20,13 @@ const UploadForm = () => {
   };
 
   return (
-    <form>
-      <label>
-        <input type="file" onChange={handleChange} />
+    <form className="mb-10 text-center">
+      <label className="block w-10 h-10 m-auto text-xl bg-red-200 rounded-full font-bold hover:text-white">
+        <input className="w-0 h-0" type="file" onChange={handleChange} />
         <span>+</span>
       </label>
       <div className="output">
-        { error && <div className="error">{ error }</div>}
+        { error && <div className="text-red-500">{ error }</div>}
         { file && <div>{ file.name }</div> }
         { file && <ProgressBar file={file} setFile={setFile} /> }
       </div>

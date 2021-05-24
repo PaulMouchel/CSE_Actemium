@@ -11,7 +11,7 @@ const ProgressBar = ({ file, setFile }) => {
   }, [url, setFile]);
 
   return (
-    <div className="progress-bar"
+    <div className="h-3 bg-red-500 mt-8"
     ></div>
   );
 } 
