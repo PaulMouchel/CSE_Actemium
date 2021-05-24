@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import React, { useContext, useEffect, useState } from 'react';
-import { auth } from "../firebase";
+import { projectAuth } from "../firebase/config";
 
 const AuthContext = React.createContext();
 
@@ -13,19 +13,19 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true)
   
     function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password)
+        return projectAuth.createUserWithEmailAndPassword(email, password)
     }
 
     function login(email, password) {
-        return auth.signInrWithEmailAndPassword(email, password)
+        return projectAuth.signInrWithEmailAndPassword(email, password)
     }
 
     function logout() {
-        return auth.signOut()
+        return projectAuth.signOut()
     }
 
     function resetPassword(email) {
-        return auth.sendPasswordResetEmail(email)
+        return projectAuth.sendPasswordResetEmail(email)
     }
 
     function updateEmail(email) {
@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
     }
 
     useEffect(() => {
-        const unsuscribe = auth.onAuthStateChanged(user => {
+        const unsuscribe = projectAuth.onAuthStateChanged(user => {
             setLoading(false)
             setCurrentUser(user);
         })

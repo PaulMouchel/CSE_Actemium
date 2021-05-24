@@ -1,7 +1,6 @@
 import React from 'react';
 import Title from './Title'
 import TeamMember from './TeamMember.jsx'
-import VerticalLine from './VerticalLine.jsx'
 
 import imageThomas from '../images/thomas.jpg'
 
