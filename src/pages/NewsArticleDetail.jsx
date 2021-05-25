@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom' 
 
-import Modal from '../components/Modal'
+import Modal from '../components/Modal.jsx'
 
 
 const NewsArticleDetail = () => {

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Quotation = () => {
 
   return (
-    <div className="max-h-96 bg-gray-900 bg-opacity-70 text-gray-50 p-4 md:p-6 lg:p-10 mx-10 md:mx-48 lg:mx-64 font-poppins flex justify-between rounded-lg text-2xl text-justify">
+    <div className="max-h-96 bg-gray-900 bg-opacity-70 text-gray-50 p-4 md:p-6 lg:p-10 mx-10 md:mx-48 lg:mx-64 font-poppins italic flex justify-between rounded-lg text-2xl text-justify">
     
 
         <div className="flex items-start">
