@@ -19,7 +19,7 @@ import { timestamp } from '../firebase/config';
 const News = () => {
   //const { docs } = useFirestore('images');
   const { docs } = useFirestore('News');
-  console.log(docs[0])
+
   //const ski = docs[0].url;
   return (
       <>
@@ -30,9 +30,9 @@ const News = () => {
           </div>
         ))} */}
         <Title id="news">Actualités</Title>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {docs.map((article, index) =>
-            <NewsArticle key={index} id={article.id} image={article.image} date={article.date} title={article.title} subTitle={article.subTitle}/>
+            <NewsArticle key={index} {...article}/>
           )}
           {/* <NewsArticle image={ski} date="29.01.2021" title="Envie de montagne ?" subTitle="Plus que quelques jours pour louer nos appartements à Meribel (encore 2 disponibles)"/>
           <NewsArticle image={gifts} date="20.11.2020" title="Repas de noël" subTitle="Il ne reste plus beaucoup de temps pour voter pour la date qui vous convient le mieux pour le repas de noël"/>

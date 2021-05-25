@@ -7,7 +7,9 @@ const NewsArticle = (article) => {
 
   return (
     <article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1">
-      <Link to={`/news-article/${article.id}`}>
+      <Link to={{
+        pathname:`/news-article/${article.id}`, 
+        state: {articles: article}}}>
         <div className="flex flex-col justify-between h-full">
           <div>
             <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${article.image})`}}></div>
