@@ -21,7 +21,8 @@ const UploadImageForm = ({file, setFile, multiple}) => {
 
       // Si au moins un fichier image a été sélectionné
       if (selected) {
-        setFile(files.map(file => URL.createObjectURL(file)));
+        // setFile(files.map(file => URL.createObjectURL(file)));
+        setFile(files)
         setError('');
       } else {
         setFile(null);
