@@ -1,82 +1,83 @@
-import React, { useState } from 'react';
-import { faClock, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import React, { useRef, useState } from 'react';
+import { faSpinner, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom' 
+import { Link } from 'react-router-dom' 
 
 import Title from '../components/Title';
-import UploadForm from '../components/UploadForm';
-import ImageGrid from '../components/ImageGrid';
+import UploadImageForm from '../components/UploadImageForm.jsx';
+import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
 
 const CreateArticle = () => {
-  const { state } = useLocation();
   const [selectedImg, setSelectedImg] = useState(null);
+
+  const [mainImage, setMainImage] = useState(null); 
+  const [gallery, setGallery] = useState([]);
+  const [loading, setLoading] = useState(false)
+
+  const titleRef = useRef()
+  const subTitleRef = useRef()
+  const textRef = useRef()
+
+  const setarticleImage = (image) => {
+    if (image) {
+      setMainImage(image[0])
+    }
+  }
+
+  const addImageToGallery = (images) => {
+    if (images) {
+      setGallery([...gallery, ...images])
+     }
+  }
+
+  async function handleSubmit(e) {
+    
+}
 
   return (
     <>
-    <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
-        <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
-            <FontAwesomeIcon icon={faArrowLeft} />
-        </Link>
-        <div className="flex flex-col justify-between h-full -mt-10">
-            <div>
-                {/* <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.articles.image})`}}></div> */}
-                <div className="p-4 pb-0">
-                    <div className="relative bottom-9 left-3 bg-green-500 p-2 text-gray-50 rounded-full px-3 inline-block">
-                        <FontAwesomeIcon icon={faClock} />
-                        {/* <span className="ml-1">{state.articles.date}</span>                    */}
-                    </div>
-                </div>
-            </div>
-            <div className="p-4 pt-0">
-                <h3 className="max-w-4xl m-auto relative lg:mt-6 bottom-3 text-xl text-blue-800 font-bold">
-                    {/* {state.articles.title} */}
-                </h3>
-                <div className="max-w-4xl m-auto text-justify text-gray-600 mb-5">
-                    {/* {state.articles.subTitle} */}
-                </div>
-                <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10">
-                    {/* {state.articles.text} */}
-                </div>
-                <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
-                    {/* {state.articles.gallery && "Galerie"} */}
-                </h3>
-                <div className="max-w-screen-lg m-auto">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 ">
-                        {/* {state.articles.gallery && state.articles.gallery.map((doc, index) => (
-                            <motion.div 
-                                className="relative overflow-hidden opacity-80 bg-cover bg-center" 
-                                style={
-                                    {
-                                        padding: "50% 0", 
-                                        backgroundImage: `url(${doc})`
-                                    }
-                                } 
-                                key={index} 
-                                layout
-                                whileHover={{ opacity: 1 }}s
-                                onClick={() => setSelectedImg(doc)}
-                            />
-                        ))} */}
-                    </div>
-                </div>
-            </div>
-        </div>
-        { selectedImg && (
-            <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-        )}
-    </article>     
-
-
-    <div>
       <Title>Créer un nouvel article</Title>
-      <UploadForm />
-      <ImageGrid setSelectedImg={setSelectedImg} />
-      { selectedImg && (
-        <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-      )}
-    </div>
+      <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
+        <form className="p-10 flex  flex-col" onSubmit={handleSubmit}>
+          <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+              <FontAwesomeIcon icon={faArrowLeft} />
+          </Link>
+          <div className="flex flex-col justify-between h-full -mt-10">
+            <div className="pt-8">
+              <UploadImageForm file={mainImage} setFile={setarticleImage}/>
+              {mainImage && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${mainImage})`}}></div>}
+            </div> 
+            <div className="p-4 pt-0">
+              <h3 className="w-full relative lg:mt-6 bottom-3 text-xl text-blue-800 font-bold">
+                <input type="text" name="title" className="block w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Titre" ref={titleRef} required/>
+              </h3>
+              <div className="w-full text-gray-600 mb-5">
+                <input type="text" name="subTitle" className="block w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Sous titre" ref={subTitleRef} required/>
+              </div>
+              <div className="w-full h-80 text-gray-600 mb-10">
+                <textarea type="text" name="text" className="resize-none block h-80 w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
+              </div>
+              <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
+                  Galerie
+              </h3>
+              <div className="pt-8">
+                <UploadImageForm file={gallery} setFile={addImageToGallery} multiple={true}/>
+              </div> 
+              <ImageGrid gallery={gallery} setSelectedImg={setSelectedImg} />
+            </div>
+          </div>
+          { selectedImg && (
+              <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+          )}
+          { !loading ?
+            <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><span>Publier</span></button>
+            :
+            <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
+          }
+        </form>
+      </article>     
     </>
   );
 }

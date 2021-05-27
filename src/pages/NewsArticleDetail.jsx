@@ -4,12 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom' 
 
+import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 
 
 const NewsArticleDetail = () => {
     const { state } = useLocation();
     const [selectedImg, setSelectedImg] = useState(null);
+
+
 
   return (
       
@@ -40,25 +43,7 @@ const NewsArticleDetail = () => {
                 <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
                     {state.articles.gallery && "Galerie"}
                 </h3>
-                <div className="max-w-screen-lg m-auto">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 ">
-                        {state.articles.gallery && state.articles.gallery.map((doc, index) => (
-                            <motion.div 
-                                className="relative overflow-hidden opacity-80 bg-cover bg-center" 
-                                style={
-                                    {
-                                        padding: "50% 0", 
-                                        backgroundImage: `url(${doc})`
-                                    }
-                                } 
-                                key={index} 
-                                layout
-                                whileHover={{ opacity: 1 }}s
-                                onClick={() => setSelectedImg(doc)}
-                            />
-                        ))}
-                    </div>
-                </div>
+                <ImageGrid gallery={state.articles.gallery} setSelectedImg={setSelectedImg} />
             </div>
         </div>
         { selectedImg && (
