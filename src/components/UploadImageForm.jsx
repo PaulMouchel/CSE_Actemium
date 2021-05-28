@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { projectStorage } from '../firebase/config';
 
 const UploadImageForm = ({file, setFile, multiple}) => {
+
+
+  
+
+
 
   const [error, setError] = useState(null);
 
@@ -18,11 +24,24 @@ const UploadImageForm = ({file, setFile, multiple}) => {
       // files est le tableau contenant les fichier image
       files = files.filter(file => types.includes(file.type))
       selected = files[0]
-
       // Si au moins un fichier image a été sélectionné
       if (selected) {
         // setFile(files.map(file => URL.createObjectURL(file)));
-        setFile(files)
+
+        const newFiles = Array.from(files).map((file) => {
+          return {
+             file: file,
+             fileName: file.name,
+             status: "CREATED",
+             storageRef: projectStorage.ref().child(file.name),
+             url: URL.createObjectURL(file),
+             downloadURL: "",
+             description: "",
+          };
+       });
+
+
+        setFile(newFiles)
         setError('');
       } else {
         setFile(null);

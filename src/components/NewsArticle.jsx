@@ -9,10 +9,11 @@ const NewsArticle = (article) => {
     <article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1">
       <Link to={{
         pathname:`/news-article/${article.id}`, 
-        state: {articles: article}}}>
+        state: {articles: article}
+        }}>
         <div className="flex flex-col justify-between h-full">
           <div>
-            <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${article.image})`}}></div>
+            {article.gallery && <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${article.gallery[0]})`}}></div>}
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-green-500 p-2 text-gray-50 rounded-full px-3 inline-block">
                 <div>

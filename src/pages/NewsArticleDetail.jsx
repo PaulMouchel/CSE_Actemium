@@ -12,8 +12,6 @@ const NewsArticleDetail = () => {
     const { state } = useLocation();
     const [selectedImg, setSelectedImg] = useState(null);
 
-
-
   return (
       
     <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
@@ -22,7 +20,7 @@ const NewsArticleDetail = () => {
         </Link>
         <div className="flex flex-col justify-between h-full -mt-10">
             <div>
-                <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.articles.image})`}}></div>
+                {state.articles.gallery && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.articles.gallery[0]})`}}></div>}
                 <div className="p-4 pb-0">
                     <div className="relative bottom-9 left-3 bg-green-500 p-2 text-gray-50 rounded-full px-3 inline-block">
                         <FontAwesomeIcon icon={faClock} />
@@ -40,10 +38,11 @@ const NewsArticleDetail = () => {
                 <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10">
                     {state.articles.text}
                 </div>
+                {state.articles.gallery && <>
                 <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
-                    {state.articles.gallery && "Galerie"}
+                    "Galerie"
                 </h3>
-                <ImageGrid gallery={state.articles.gallery} setSelectedImg={setSelectedImg} />
+                <ImageGrid gallery={state.articles.gallery} setSelectedImg={setSelectedImg} /></>}
             </div>
         </div>
         { selectedImg && (

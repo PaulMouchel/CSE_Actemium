@@ -2,9 +2,25 @@ import React, { useEffect } from 'react';
 import useNewsStorage from '../hooks/useNewsStorage';
 import { useHistory } from 'react-router-dom'
 
-const NewsProgressBar = ({ mainImage, title, subTitle, text, gallery }) => {
-  const { progress, url } = useNewsStorage(mainImage, title, subTitle, text, gallery);
+const NewsProgressBar = ({ title, subTitle, text, gallery, setLoading }) => {
+  const { progress, url } = useNewsStorage(title, subTitle, text, gallery, setLoading);
   const history = useHistory()
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     if (url) {
