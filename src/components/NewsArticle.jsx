@@ -13,7 +13,7 @@ const NewsArticle = (article) => {
         }}>
         <div className="flex flex-col justify-between h-full">
           <div>
-            {article.gallery && <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${article.gallery[0]})`}}></div>}
+            {article.galleryUrl && <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${article.galleryUrl[0]})`}}></div>}
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-green-500 p-2 text-gray-50 rounded-full px-3 inline-block">
                 <div>

@@ -1,16 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { faSpinner, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom' 
+import { Link, useHistory } from 'react-router-dom' 
 import { projectStorage, projectFirestore, timestamp } from '../firebase/config';
 
 import Title from '../components/Title';
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
-import NewsProgressBar from '../components/NewsProgressBar.jsx'
-import { useHistory } from 'react-router-dom'
 
 const CreateArticle = () => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -37,69 +34,53 @@ const CreateArticle = () => {
  };
 
  const uploadToDatabase = async () => {
-  console.log("UPLOAD")
-      const collectionRef = projectFirestore.collection('News');
-      const createdAt = timestamp();
-      
-      const currentTime = new Date()
-      // returns the month (from 0 to 11)
-      const month = ('0' + currentTime.getMonth()).slice(-2)
-      // returns the day of the month (from 1 to 31)
-      const day = ('0' + currentTime.getDate()).slice(-2)
-      // returns the year (four digits)
-      const year = currentTime.getFullYear()
-      const date = day + "." + month + "." + year
-      const galleryUrl = gallery.map(x => x.downloadURL)
+   if(loading) {
+    const collectionRef = projectFirestore.collection('News');
+    const createdAt = timestamp();
+    
+    const currentTime = new Date()
+    // returns the month (from 0 to 11)
+    const month = ('0' + currentTime.getMonth()).slice(-2)
+    // returns the day of the month (from 1 to 31)
+    const day = ('0' + currentTime.getDate()).slice(-2)
+    // returns the year (four digits)
+    const year = currentTime.getFullYear()
+    const date = day + "." + month + "." + year
+    const galleryUrl = gallery.map(x => x.downloadURL)
 
-      console.log("Mise en bdd")
-      await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt });
-      // setUrl(image);
-      setLoading(false)
-      history.push('/')
+    await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt });
+    history.push('/')
+   }
  }
 
  useEffect(() => {
    if (loading) {
-     if(gallery.every(x => (x.status === "FINISH"))) {
+    gallery.forEach(x => console.log(x))
+    if(gallery.every(x => (x.status === "FINISH"))) {
+      setLoading(false)
       uploadToDatabase()
       return
-     }
-    gallery.forEach((image, index) => {
-       if (image.status === "FINISH" || image.status === "UPLOADING") return;
-       changeImageField(index, "status", "UPLOADING");
-       const uploadTask = image.storageRef.put(image.file);
-       uploadTask.on(
-          "state_changed",
-          null,
-          function error(err) {
-             console.log("Error Image Upload:", err);
-          },
-          async function complete() {
-             const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-             changeImageField(index, "downloadURL", downloadURL);
-             changeImageField(index, "status", "FINISH");
-          }
-       );
-    });
+    } else {
+      gallery.forEach((image, index) => {
+        if (image.status === "FINISH" || image.status === "UPLOADING") return;
+        changeImageField(index, "status", "UPLOADING");
+        const uploadTask = image.storageRef.put(image.file);
+        uploadTask.on(
+            "state_changed",
+            null,
+            function error(err) {
+              console.log("Error Image Upload:", err);
+            },
+            async function complete() {
+              const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+              changeImageField(index, "downloadURL", downloadURL);
+              changeImageField(index, "status", "FINISH");
+            }
+        );
+      })};
  }});
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   const setarticleImage = (image) => {
     if (image) {
       let galleryClone = gallery
@@ -110,7 +91,7 @@ const CreateArticle = () => {
 
   const addImageToGallery = (images) => {
     if (images) {
-      setGallery([...gallery, ...images])
+      setGallery((prevState) => [...prevState, ...images])
      }
   }
 
@@ -131,18 +112,7 @@ const CreateArticle = () => {
       setText(textValue)
       setLoading(true)
     }
-    
-
-        // try {
-        //     setError("")
-        //     setLoading(true)
-        //     await login(emailRef.current.value, passwordRef.current.value)
-        //     history.push('/')
-        // } catch(e) {
-        //     setError("Connexion échouée " + e)
-        // }
-        // setLoading(false)
-}
+  }
 
   return (
     <>
@@ -185,7 +155,6 @@ const CreateArticle = () => {
           :
           <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
         }
-        {/* { loading && <NewsProgressBar title={title} subTitle={subTitle} text={text} gallery={gallery} setLoading={setLoading} /> } */}
       </article>     
     </>
   );
