@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from './Title'
-import CssctMission from './CssctMission'
+import CssctMission from './CssctMission.jsx'
 
 import risquesPro from '../images/Risques_Pro.jpg'
 import maladiesPro from '../images/Maladies_Pro.jpg'

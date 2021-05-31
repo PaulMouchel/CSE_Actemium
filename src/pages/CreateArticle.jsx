@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { faSpinner, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
-import { projectStorage, projectFirestore, timestamp } from '../firebase/config';
+import { projectFirestore, timestamp } from '../firebase/config';
 
 import Title from '../components/Title';
 import UploadImageForm from '../components/UploadImageForm.jsx';
@@ -11,21 +11,15 @@ import Modal from '../components/Modal.jsx';
 
 const CreateArticle = () => {
   const [selectedImg, setSelectedImg] = useState(null);
-
   const [title, setTitle] = useState(""); 
   const [subTitle, setSubTitle] = useState(""); 
   const [text, setText] = useState(""); 
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
-
   const titleRef = useRef()
   const subTitleRef = useRef()
   const textRef = useRef()
-
-
   const history = useHistory()
-
-
 
   const changeImageField = (index, parameter, value) => {
     const newArray = [...gallery];
@@ -55,7 +49,6 @@ const CreateArticle = () => {
 
  useEffect(() => {
    if (loading) {
-    gallery.forEach(x => console.log(x))
     if(gallery.every(x => (x.status === "FINISH"))) {
       setLoading(false)
       uploadToDatabase()
@@ -79,7 +72,6 @@ const CreateArticle = () => {
         );
       })};
  }});
-
 
   const setarticleImage = (image) => {
     if (image) {
