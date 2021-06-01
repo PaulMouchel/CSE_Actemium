@@ -98,7 +98,7 @@ const CreateArticle = () => {
     let subTitleValue = subTitleRef.current.value
     let textValue = textRef.current.value
 
-    if (gallery[0] && titleValue != "" && subTitleValue !== "" && textValue !== "") {
+    if (gallery[0] && titleValue !== "" && subTitleValue !== "" && textValue !== "") {
       setTitle(titleValue)
       setSubTitle(subTitleValue)
       setText(textValue)

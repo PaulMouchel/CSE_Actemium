@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useFirestore from '../hooks/useFirestore';
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom' 
 
 //Components
 import NewsArticle from './NewsArticle.jsx'
 import Title from './Title'
 
 // Icons
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const News = () => {
+const News = ({admin}) => {
   const { docs } = useFirestore('News');
+  const [showArticles, setShowArticles] = useState(false)
+
+  const handleClick = () => {
+    setShowArticles(!showArticles)
+  }
 
   return (
       <>
@@ -21,15 +28,33 @@ const News = () => {
           )} 
         </div>
 
-        <div className="w-100 d-flex justify-center py-6">
-          <a href="https://www.actemium.fr/actualites/" className="wb-button relative wb-button-green-stroke-blue rounded-full p-2 bg-green-500 text-white" role="button">
-            <span className="d-flex button-content-wrapper">
-              <span className="wb-button-icon wb-align-icon-right">
-                <FontAwesomeIcon icon={faArrowRight} />
-              </span>
-              <span className="pl-2">Voir tous les articles</span>
-            </span>
-          </a>
+        <div className="w-100 flex flex-col sm:flex-row items-center justify-evenly py-6">
+          <motion.button onClick={handleClick} 
+            className="focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span>
+              {!showArticles && <FontAwesomeIcon icon={faArrowRight} />}
+              {showArticles && <FontAwesomeIcon icon={faArrowLeft} />}
+              <span className="pl-4">{!showArticles ? "Voir tous les articles" : "Masquer les articles"}</span>
+            </span>  
+          </motion.button>
+
+          { admin &&
+          <Link to="/create-article"
+            className="mt-2 sm:mt-0">
+            <motion.button 
+              className="focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>
+                <FontAwesomeIcon icon={faPlus} />
+                <span className="pl-4">Créer un nouvel article</span>
+              </span>  
+            </motion.button>
+          </Link> }
         </div>
       </>
   );

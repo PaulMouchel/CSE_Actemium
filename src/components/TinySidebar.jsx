@@ -1,6 +1,7 @@
 import React from 'react';
 import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from 'framer-motion'
 
 const TinySidebar = () => {
     const sidebarData = [
@@ -41,11 +42,12 @@ const TinySidebar = () => {
             <ul className="m-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item, index) =>
                     <li key={index} className="flex items-center">
-                        <div className="hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
+                        <motion.div className="z-10 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out"
+                        whileHover={{ scale: 1.1, x: -3 }}>
                             <a href={"#" + item.href}>
                                 <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
                             </a>
-                        </div>
+                        </motion.div>
                         <div className="ml-2 h-8 inline-flex justify-center align-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 rounded-md">
                             {item.text}
                         </div>

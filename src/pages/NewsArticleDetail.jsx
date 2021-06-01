@@ -40,7 +40,7 @@ const NewsArticleDetail = () => {
                 </div>
                 {state.articles.galleryUrl && <>
                 <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
-                    "Galerie"
+                    Galerie
                 </h3>
                 <ImageGrid gallery={state.articles.galleryUrl} setSelectedImg={setSelectedImg} /></>}
             </div>

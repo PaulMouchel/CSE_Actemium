@@ -14,6 +14,7 @@ import NewsArticleDetail from './pages/NewsArticleDetail'
 
 
 function App() {
+
   return (
     <>
       <div className="App">
@@ -23,6 +24,7 @@ function App() {
             <Switch>
               {/* <PrivateRoute exact path="/" component={Content} /> */}
               <Route exact path="/" component={Content} />
+              <Route path="/admin" render={() => <Content admin={true} />}/>
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/create-article" component={CreateArticle} />
