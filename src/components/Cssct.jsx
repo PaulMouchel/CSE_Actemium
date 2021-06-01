@@ -19,32 +19,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Cssct = ({admin}) => {
   const { docs } = useFirestore('Cssct');
-  const missions = [
-    {
-      text: "Les risques professionnels",
-      image: risquesPro
-    },
-    {
-      text: "les maladies professionnelles",
-      image: maladiesPro
-    },
-    {
-      text: "les conditions de travail des employés, et l'impact sur celles-ci de tout projet qui lui est soumis",
-      image: conditionsTravail
-    },
-    {
-      text: "les actions préventives contre le harcèlement sexuel et moral",
-      image: harcelement
-    },
-    {
-      text: "la prévention des RPS (risques psycho-sociaux)",
-      image: violence
-    },
-    {
-      text: "l'hygiène",
-      image: hygiene
-    }
-  ]
+  // const missions = [
+  //   {
+  //     text: "Les risques professionnels",
+  //     image: risquesPro
+  //   },
+  //   {
+  //     text: "les maladies professionnelles",
+  //     image: maladiesPro
+  //   },
+  //   {
+  //     text: "les conditions de travail des employés, et l'impact sur celles-ci de tout projet qui lui est soumis",
+  //     image: conditionsTravail
+  //   },
+  //   {
+  //     text: "les actions préventives contre le harcèlement sexuel et moral",
+  //     image: harcelement
+  //   },
+  //   {
+  //     text: "la prévention des RPS (risques psycho-sociaux)",
+  //     image: violence
+  //   },
+  //   {
+  //     text: "l'hygiène",
+  //     image: hygiene
+  //   }
+  // ]
   return (
       <>
         <div className="min-h-screen">
