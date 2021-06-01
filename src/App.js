@@ -23,12 +23,13 @@ function App() {
 
             <Switch>
               {/* <PrivateRoute exact path="/" component={Content} /> */}
-              <Route exact path="/" component={Content} />
-              <Route path="/admin" render={() => <Content admin={true} />}/>
+              <Route exact path="/" render={() => <Content admin={false} />} />
+              <Route exact path="/admin" render={() => <Content admin={true} />}/>
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/create-article" component={CreateArticle} />
-              <Route path="/news-article/:id" component={NewsArticleDetail} />
+              <Route path="/news-article/:id" render={() => <NewsArticleDetail admin={false} />} />
+              <Route path="/admin/news-article/:id" render={() => <NewsArticleDetail admin={true} />} />
             </Switch>
 
 

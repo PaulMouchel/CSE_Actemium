@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { faClock, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faArrowLeft, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom' 
@@ -8,7 +8,7 @@ import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 
 
-const NewsArticleDetail = () => {
+const NewsArticleDetail = ({admin}) => {
     const { state } = useLocation();
     const [selectedImg, setSelectedImg] = useState(null);
 
@@ -16,11 +16,13 @@ const NewsArticleDetail = () => {
       
     <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
         <div>
-        {state.admin ? "kjhvsijdhbfzkjd" : "Pas admin"}
-        </div>
+        <button className=" transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+            {admin && <FontAwesomeIcon icon={faTrashAlt} />}
+        </button>
         <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
             <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
+        </div>
         <div className="flex flex-col justify-between h-full -mt-10">
             <div>
                 {state.articles.galleryUrl && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.articles.galleryUrl[0]})`}}></div>}
