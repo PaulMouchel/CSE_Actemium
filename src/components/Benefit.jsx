@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Benefit = ({text, image, even}) => {
+const Benefit = ({text, imageUrl, even}) => {
   return (
  
-    <div id="benefit">
+    <div>
         
         <div className={`py-4 flex justify-between ${!even ? "flex-row-reverse" : ""}`}>
             <div className="w-1/2 px-32 text-center flex flex-col justify-center">
@@ -12,7 +12,7 @@ const Benefit = ({text, image, even}) => {
 
            
             <div className="w-1/2 px-4 flex justify-center mx-4">
-                <div className="h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${image})`}}></div>
+                <div className="h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${imageUrl})`}}></div>
             </div>
            
 

@@ -22,13 +22,11 @@ const News = ({admin}) => {
   return (
       <>
         <Title id="news">Actualités</Title>
-        <div>{"admin = " + admin}</div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {docs && docs.map((article, index) =>
             <NewsArticle key={index} {...article} admin={admin} />
           )} 
         </div>
-
         <div className="w-100 flex flex-col sm:flex-row items-center justify-evenly py-6">
           <motion.button onClick={handleClick} 
             className="focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"

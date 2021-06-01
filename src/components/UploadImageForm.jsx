@@ -33,7 +33,7 @@ const UploadImageForm = ({file, setFile, multiple}) => {
              file: file,
              fileName: file.name,
              status: "CREATED",
-             storageRef: projectStorage.ref().child(file.name),
+             storageRef: "",//projectStorage.ref().child(file.name),
              url: URL.createObjectURL(file),
              downloadURL: "",
              description: "",

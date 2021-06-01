@@ -18,16 +18,15 @@ const Content = ({admin}) => {
         
         <Navbar/>
         <Home  admin={admin}/>
-        <TinySidebar/>
-        <div>{"admin = " + admin}</div>
+        <TinySidebar admin={admin}/>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <News admin={admin} />
         </div>
         <div className="bg-gray-200 px-12 md:px-28 lg:px-48">
-          <Benefits />
+          <Benefits admin={admin}/>
         </div>
         <div className="bg-gray-800 px-12 md:px-28 lg:px-48">
-          <Cssct />
+          <Cssct admin={admin} />
         </div>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <Team />

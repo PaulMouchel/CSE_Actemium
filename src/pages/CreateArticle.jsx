@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { faSpinner, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
-import { projectFirestore, timestamp } from '../firebase/config';
+import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 
 import Title from '../components/Title';
 import UploadImageForm from '../components/UploadImageForm.jsx';
@@ -43,7 +43,7 @@ const CreateArticle = () => {
     const galleryUrl = gallery.map(x => x.downloadURL)
 
     await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt });
-    history.push('/')
+    history.push('/admin')
    }
  }
 
@@ -55,6 +55,9 @@ const CreateArticle = () => {
       return
     } else {
       gallery.forEach((image, index) => {
+        if (image.storageRef === "") {
+          changeImageField(index, "storageRef", projectStorage.ref().child("News/" + title + "/" + image.fileName));
+        }
         if (image.status === "FINISH" || image.status === "UPLOADING") return;
         changeImageField(index, "status", "UPLOADING");
         const uploadTask = image.storageRef.put(image.file);
@@ -110,7 +113,7 @@ const CreateArticle = () => {
     <>
       <Title>Créer un nouvel article</Title>
       <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
-        <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+        <Link to="/admin" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
             <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
         <div className="flex flex-col justify-between h-full -mt-10">

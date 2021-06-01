@@ -7,7 +7,6 @@ const NewsArticle = (article) => {
 
   return (
     <article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1">
-      <div>{"admin : " + article.admin}</div>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
         state: {articles: article}
