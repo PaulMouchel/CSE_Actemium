@@ -16,7 +16,7 @@ const Content = ({admin}) => {
   return (
     <div id="home">
         <Navbar/>
-        <Home/>
+        <Home  admin={admin}/>
         <TinySidebar/>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <News admin={admin} />

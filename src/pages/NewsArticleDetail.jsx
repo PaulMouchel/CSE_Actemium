@@ -15,6 +15,9 @@ const NewsArticleDetail = () => {
   return (
       
     <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
+        <div>
+        {state.admin ? "kjhvsijdhbfzkjd" : "Pas admin"}
+        </div>
         <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
             <FontAwesomeIcon icon={faArrowLeft} />
         </Link>

@@ -3,13 +3,13 @@ import { faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom'
 
-const NewsArticle = (article) => {
+const NewsArticle = (article, admin) => {
 
   return (
     <article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1">
       <Link to={{
         pathname:`/news-article/${article.id}`, 
-        state: {articles: article}
+        state: {articles: article, admin:admin}
         }}>
         <div className="flex flex-col justify-between h-full">
           <div>
