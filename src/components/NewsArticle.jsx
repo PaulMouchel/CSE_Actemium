@@ -37,7 +37,9 @@ const NewsArticle = (article) => {
                 En savoir plus
               </div>
               <div>
-                <button className="text-blue-800 group-hover:text-green-300 transform duration-300 ease-in-out group-hover:translate-x-1"><FontAwesomeIcon icon={faArrowRight} /></button>
+                <button className="text-blue-800 group-hover:text-green-300 transform duration-300 ease-in-out group-hover:translate-x-1">
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </button>
               </div>
             </div>
         </div>

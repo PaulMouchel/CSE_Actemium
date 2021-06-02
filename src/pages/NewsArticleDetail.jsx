@@ -3,8 +3,8 @@ import { faClock, faArrowLeft, faTrashAlt } from "@fortawesome/free-solid-svg-ic
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
 import { Link, useLocation, useHistory } from 'react-router-dom' 
-import { projectFirestore, projectStorage } from '../firebase/config';
 import useFirestore from '../hooks/useFirestore';
+import deleteDocument from '../hooks/deleteDocument'
 
 import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
@@ -16,47 +16,9 @@ const NewsArticleDetail = ({admin}) => {
     const history = useHistory()
     const { docs } = useFirestore('News');
 
-    const deleteFolderContents = (path) => {
-        const ref = projectStorage.ref(path);
-        ref.listAll()
-          .then(dir => {
-            dir.items.forEach(fileRef => {
-              deleteFile(ref.fullPath, fileRef.name);
-            });
-            dir.prefixes.forEach(folderRef => {
-              deleteFolderContents(folderRef.fullPath);
-            })
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-
-      const deleteFile = (pathToFile, fileName) => {
-        const ref = projectStorage.ref(pathToFile);
-        const childRef = ref.child(fileName);
-        childRef.delete()
-      }
-
-
-
-
     const handleDelete = () => {
         let id = state.articles.id;
-        const currentDoc = docs.find(doc => doc.id === id)
-        // const currentGallery = currentDoc.galleryUrl
-        deleteFolderContents("News/" + currentDoc.title)
-        
-        // console.log(currentGallery)
-
-        const collectionRef = projectFirestore.collection('News');
-        // const images = collectionRef.doc(id)
-        // const gal = images.title
-        // console.log(gal)
-        // const photoRef = mFirebaseStorage.getReferenceFromUrl(mImageUrl);
-        
-
-        collectionRef.doc(id).delete();
+        deleteDocument({docs, id, collection:"News"})
         history.push('/admin')
     }
 
@@ -98,9 +60,10 @@ const NewsArticleDetail = ({admin}) => {
                 {state.articles.galleryUrl && <>
                 <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
                     Galerie
-                </h3>
-                <ImageGrid gallery={state.articles.galleryUrl} setSelectedImg={setSelectedImg} /></>}
+                </h3></>}
+                {state.articles.galleryUrl && <ImageGrid gallery={state.articles.galleryUrl} setSelectedImg={setSelectedImg} />}
             </div>
+            
         </div>
         { selectedImg && (
             <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />

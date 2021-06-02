@@ -9,12 +9,10 @@ const ImageGrid = ({ gallery, setSelectedImg }) => {
             {gallery && gallery.map((doc, index) => (
                 <motion.div 
                     className="relative overflow-hidden opacity-80 bg-cover bg-center" 
-                    style={
-                        {
-                            padding: "50% 0", 
-                            backgroundImage: `url(${doc})`
-                        }
-                    } 
+                    style={{
+                        padding: "50% 0", 
+                        backgroundImage: `url(${doc})`
+                    }} 
                     key={index} 
                     layout
                     whileHover={{ opacity: 1 }}s

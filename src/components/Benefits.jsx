@@ -6,44 +6,23 @@ import Benefit from './Benefit.jsx'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom' 
 
-import chequesVacances from '../images/chequesVacances.jpg'
-import gifts from '../images/gifts.jpg'
-import cezam from '../images/cezam.png'
-
 // Icons
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Benefits = ({admin}) => {
   const { docs } = useFirestore('Benefits');
-  console.log("benefits : " + docs)
-  // const benefitsList = [
-  //   {
-  //     text: "Des chèques vacances",
-  //     image: chequesVacances
-  //   },
-  //   {
-  //     text: "L'arbre de Noël",
-  //     image: gifts
-  //   },
-  //   {
-  //   text: "La carte CEZAM",
-  //     image: cezam
-  //   }
-  // ]
-
+ 
   return (
-      <>
-        <Title id="benefits">Nos avantages</Title>
-          <div >
-            <div>
-              {docs && docs.map((benefit, index) =>
-                    <Benefit key={index} {...benefit} even={index%2 === 0}/>
-                )}
-              
-            </div>
-
-            { admin &&
+    <>
+      <Title id="benefits">Nos avantages</Title>
+      <div >
+        <div>
+          { docs && docs.map((benefit, index) =>
+            <Benefit key={index} {...benefit} admin={admin} even={index%2 === 0}/>
+          )}
+        </div>
+        { admin &&
           <Link to="/create-benefit"
             className="mt-2 sm:mt-0">
             <motion.button 
@@ -57,9 +36,8 @@ const Benefits = ({admin}) => {
               </span>  
             </motion.button>
           </Link> }
-
-          </div>
-        </>
+      </div>
+    </>
   );
 }
 
