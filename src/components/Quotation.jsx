@@ -1,62 +1,47 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import useFirestore from '../hooks/useFirestore';
 
 const Quotation = ({admin}) => {
 
-    const quotationTextRef = useRef();
-    const authorRef = useRef();
+    const { docs } = useFirestore('Quotation');
 
-    const quatationData = {
-        text: "La beauté est dans les yeux de celui qui regarde.",
-        author: "Oscar Wilde"
-    }
+    return (
+        <>
+            {docs[0] && docs[0].text !== "" &&
+                <div className="max-h-96 bg-gray-900 bg-opacity-70 text-gray-50 p-4 md:p-6 lg:p-10 mx-10 md:mx-48 lg:mx-64 font-poppins italic flex justify-between rounded-lg text-2xl text-justify">
+                    <div className="flex items-start">
+                        <FontAwesomeIcon icon={faQuoteLeft}/>
+                    </div>
+                
+                    <div className="overflow-hidden">
+                        <blockquote className="pb-2 px-4 md-px-6 lg:px-10">{docs[0].text}</blockquote> 
+                        <blockquote className="text-xl text-right px-10">- {docs[0].author}</blockquote> 
+                    </div>
+                        
+                    <div className="flex items-end">
+                        <FontAwesomeIcon icon={faQuoteRight}/>
+                    </div>
+                </div>
+            }
 
-  return (
-    <div className="max-h-96 bg-gray-900 bg-opacity-70 text-gray-50 p-4 md:p-6 lg:p-10 mx-10 md:mx-48 lg:mx-64 font-poppins italic flex justify-between rounded-lg text-2xl text-justify">
-    
-
-        <div className="flex items-start">
-            <FontAwesomeIcon icon={faQuoteLeft}/>
-        </div>
-        { !admin &&
-            <div className="overflow-hidden">
-                <blockquote className="px-4 md-px-6 lg:px-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</blockquote> 
-                <blockquote className="text-xl text-right px-10">- Thomas Le-Gal</blockquote> 
-            </div>
-        }       
-        { admin && 
-            <div className="flex flex-col justify-between">
-                <form className="text-gray-600 p-4 w-96">
-                    <textarea 
-                        type="text" 
-                        name="quotationText" 
-                        className="italic block resize-none block w-full border-2 focus:border-green-400 p-2 outline-none" 
-                        autoComplete="off" 
-                        placeholder="Ecrivez votre message" 
-                        ref={quotationTextRef} 
-                        value={quatationData.text} 
-                        required/>
-                    <input 
-                        type="text" 
-                        name="quotationAuthor"
-                        className="italic block resize-none block w-full border-2 focus:border-green-400 p-2 mt-2 outline-none" 
-                        autoComplete="off" 
-                        placeholder="Auteur" 
-                        ref={authorRef} 
-                        value={quatationData.author}/>
-                    <button className="block w-full mt-2 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white p-2 rounded w-80" type="submit"><span>Mettre à jour</span></button>
-                </form>
-            </div>
-        }
-        <div className="flex items-end">
-            <FontAwesomeIcon icon={faQuoteRight}/>
-        </div>
-   
- 
-  </div>
-
-  );
+            { admin &&
+                <Link to="/update-quotation"
+                    className="mt-2 sm:mt-0">
+                    <motion.button 
+                        className="m-auto focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                    <span className="pl-4">{docs[0] ? "Modifier" : "Ajouter"} la phrase du jour</span>
+                    </motion.button>
+                </Link> 
+            }
+        </>
+    );
 }
 
 export default Quotation;
