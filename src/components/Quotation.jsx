@@ -19,7 +19,7 @@ const Quotation = ({admin}) => {
                 
                     <div className="overflow-hidden">
                         <blockquote className="pb-2 px-4 md-px-6 lg:px-10">{docs[0].text}</blockquote> 
-                        <blockquote className="text-xl text-right px-10">- {docs[0].author}</blockquote> 
+                        {docs[0].author && <blockquote className="text-xl text-right px-10">- {docs[0].author}</blockquote>}
                     </div>
                         
                     <div className="flex items-end">
