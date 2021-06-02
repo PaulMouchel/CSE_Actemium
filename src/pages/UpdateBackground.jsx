@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 
 import { Link, useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
-import { projectFirestore, timestamp } from '../firebase/config';
+import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 
 import { faArrowLeft, faSpinner, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,48 +13,73 @@ const UpdateBackground = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
-    const { docs } = useFirestore('Quotation');
+    const { docs } = useFirestore('Background');
 
-    const textRef = useRef();
-    const authorRef = useRef();
+    const [image, setImage] = useState(null);
 
-    const [gallery, setGallery] = useState([]);
-
-    const setarticleImage = (image) => {
-        if (image) {
-          let galleryClone = gallery
-          galleryClone[0] = image[0]
-          setGallery([...galleryClone])
+    const setBackground = (images) => {
+        if (images[0]) {
+          setImage(images[0])
         }
       }
 
-    const uploadToDatabase = async (author, text) => {
-        const collectionRef = projectFirestore.collection('Quotation');
+      const changeImageField = (parameter, value) => {
+        const newImage = image;
+        newImage[parameter] = value;
+        setImage(newImage);
+     };
+
+    const uploadToDatabase = async () => {
+        
+        const collectionRef = projectFirestore.collection('Background');
         const createdAt = timestamp();
+        const imageUrl = image.downloadURL
+        
         if (docs[0]) {
-            await collectionRef.doc(docs[0].id).update({ text, author, createdAt })
+            await collectionRef.doc(docs[0].id).update({ imageUrl, createdAt })
         } else {
-            await collectionRef.add({ text, author, createdAt });
+            await collectionRef.add({ imageUrl, createdAt });
         }
         setLoading(false)
         history.push('/admin')
      }
     
+     const UploadImage = () => {
+        changeImageField("storageRef", projectStorage.ref().child("Background/" + image.fileName));
+        const uploadTask = image.storageRef.put(image.file);
+        uploadTask.on(
+            "state_changed",
+            null,
+            function error(err) {
+              console.log("Error Image Upload:", err);
+            },
+            async function complete() {
+              const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+              changeImageField("downloadURL", downloadURL);
+              uploadToDatabase()
+    
+            }
+        );
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let text = textRef.current.value
-        let author = authorRef.current.value
-
-        if (text !== "") {
+        if (image) {
             setLoading(true)
-            uploadToDatabase(author, text)
+            UploadImage()
         }
     }
 
     return (
         <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-t from-yellow-200 to-yellow-500 bg-cover bg-center"
-        style={gallery[0] && {backgroundImage: `url(${gallery[0].url})`}}>
+       
+        style={image ? 
+                {backgroundImage: `url(${image.url})`}
+                : 
+                (docs[0] && {backgroundImage: `url(${docs[0].imageUrl})`})
+        }>
+
             <div className="p-4 bg-white bg-opacity-20 rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3 pb-10">
                 <Link to="/admin" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
@@ -67,18 +92,18 @@ const UpdateBackground = () => {
 
                     
                    
-                    <UploadImageForm file={gallery} setFile={setarticleImage}/>
+                    <UploadImageForm file={image} setFile={setBackground}/>
                     { !loading ?
                         <button 
                             disabled={loading} 
-                            className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center" 
+                            className="focus:outline-none transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center" 
                             onClick={handleSubmit}>
                                 <FontAwesomeIcon icon={faCheck} />
                         </button>
                         :
                         <button 
                             disabled={loading} 
-                            className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
+                            className="focus:outline-none transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
                                 <FontAwesomeIcon className="animate-spin" icon={faSpinner}/>
                         </button>
                         
