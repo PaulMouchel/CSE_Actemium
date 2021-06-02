@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument';
 
-const CssctMission = ({text, imageUrl, even, admin, id}) => {
+const CssctMission = ({title, text, imageUrl, even, admin, id}) => {
   
   const { docs } = useFirestore('Cssct');
 
@@ -15,6 +15,7 @@ const CssctMission = ({text, imageUrl, even, admin, id}) => {
   return (
     <div className={`py-4 flex justify-between ${!even ? "flex-row-reverse" : ""}`}>
       <div className="w-1/2 px-32 text-center flex flex-col justify-center">
+          <p className="text-gray-50 text-2xl font-bold">{title}</p>
           <p className="text-gray-50 text-xl">{text}</p>
       </div>
 

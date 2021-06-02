@@ -16,7 +16,7 @@ const Benefits = ({admin}) => {
   return (
     <>
       <Title id="benefits">Nos avantages</Title>
-      <div >
+      <div className="pb-4" >
         <div>
           { docs && docs.map((benefit, index) =>
             <Benefit key={index} {...benefit} admin={admin} even={index%2 === 0}/>
@@ -26,7 +26,7 @@ const Benefits = ({admin}) => {
           <Link to="/create-benefit"
             className="mt-2 sm:mt-0">
             <motion.button 
-              className="mb-2 m-auto focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
+              className="m-auto focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

@@ -12,7 +12,8 @@ const Quotation = ({admin}) => {
     return (
         <>
             {docs[0] && docs[0].text !== "" &&
-                <div className="max-h-96 bg-gray-900 bg-opacity-70 text-gray-50 p-4 md:p-6 lg:p-10 mx-10 md:mx-48 lg:mx-64 font-poppins italic flex justify-between rounded-lg text-2xl text-justify">
+            <div className="bg-gray-900 bg-opacity-70 max-h-96 mx-10 md:mx-48 lg:mx-64">
+                <div className="text-gray-50 p-4 md:p-6 lg:p-10 font-poppins italic flex justify-between rounded-lg text-2xl text-justify">
                     <div className="flex items-start">
                         <FontAwesomeIcon icon={faQuoteLeft}/>
                     </div>
@@ -26,20 +27,21 @@ const Quotation = ({admin}) => {
                         <FontAwesomeIcon icon={faQuoteRight}/>
                     </div>
                 </div>
+                { admin &&
+                    <Link to="/update-quotation"
+                        className="mt-2 sm:mt-0">
+                        <motion.button 
+                            className="my-2 m-auto focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                        <span>{docs[0] ? "Modifier" : "Ajouter"} la phrase du jour</span>
+                        </motion.button>
+                    </Link> 
+                }
+                </div>
             }
 
-            { admin &&
-                <Link to="/update-quotation"
-                    className="mt-2 sm:mt-0">
-                    <motion.button 
-                        className="m-auto focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                    <span className="pl-4">{docs[0] ? "Modifier" : "Ajouter"} la phrase du jour</span>
-                    </motion.button>
-                </Link> 
-            }
         </>
     );
 }
