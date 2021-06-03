@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { projectStorage } from '../firebase/config';
 
 const UploadImageForm = ({file, setFile, multiple}) => {
-
-
-  
-
-
 
   const [error, setError] = useState(null);
 

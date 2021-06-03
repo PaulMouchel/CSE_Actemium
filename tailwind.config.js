@@ -5,11 +5,6 @@ module.exports = {
     fontFamily: {
       'poppins': ['Arial', 'Raleway', 'Poppins', 'Arial', 'sans-serif'],
      },
-    extend: {
-      backgroundImage: theme => ({
-        'beach': "url('/src/images/beach.jpg')",
-       })
-    },
   },
   variants: {
     extend: {

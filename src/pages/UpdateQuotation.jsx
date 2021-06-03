@@ -7,6 +7,8 @@ import { projectFirestore, timestamp } from '../firebase/config';
 import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import Background from '../components/Background.jsx'
+
 const UpdateQuotation = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -42,7 +44,8 @@ const UpdateQuotation = () => {
     }
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-t from-yellow-200 to-yellow-500 bg-beach">
+        <Background>
+        {/* <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-t from-yellow-200 to-yellow-500 bg-beach"> */}
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3">
                 <Link to="/admin" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
@@ -77,7 +80,8 @@ const UpdateQuotation = () => {
                     }
                 </form>
             </div>
-        </div>
+        {/* </div> */}
+        </Background>
     )
 }
 

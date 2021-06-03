@@ -74,7 +74,7 @@ const CreateArticle = () => {
             }
         );
       })};
- }});
+ }},[loading, gallery]);
 
   const setarticleImage = (image) => {
     if (image) {

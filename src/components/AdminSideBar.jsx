@@ -1,8 +1,9 @@
 import React from 'react';
 import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from 'react-router-dom' 
 
-const AdminSidebar = ({admin}) => {
+const AdminSidebar = () => {
     const sidebarData = [
         {
             href: "update-background",
@@ -37,17 +38,16 @@ const AdminSidebar = ({admin}) => {
     ]
 
     return (
-        <nav className="fixed h-screen right-5 top-0 z-50 invisible md:visible">
+        <nav className="fixed h-screen right-5 top-0 z-40 invisible md:visible">
             <ul className="m-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item, index) =>
-                    <li key={index} className="group flex flex-row-reverse items-center">
-                        
-                        <div className="z-10 transform group-hover:translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
-                            <a href={"/" + item.href}>
+                    <li key={index} className="group flex flex-row-reverse items-center">          
+                        <div className="z-10 transform group-hover:translate-x-1 group-hover:scale-125 text-gray-50 flex justify-center w-10 h-10 tiny-menu-item rounded my-2 place-content-center bg-blue-900 transition duration-300 ease-in-out">
+                            <Link className="flex justify-center items-center" to={"/" + item.href}>
                                 <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
-                            </a>
+                            </Link>
                         </div>
-                        <div className="mr-2 h-8 inline-flex justify-center align-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 rounded-md">
+                        <div className="mr-2 h-10 inline-flex justify-center items-center hide font-poppins py-1 px-2 text-blue-900 bg-gray-50 font-bold bg-opacity-50 rounded">
                             {item.text}
                         </div>
                         

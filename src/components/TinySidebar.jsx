@@ -1,8 +1,8 @@
 import React from 'react';
-import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faUserPlus, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const TinySidebar = ({admin}) => {
+const TinySidebar = () => {
     const sidebarData = [
         {
             href: "home",
@@ -42,38 +42,15 @@ const TinySidebar = ({admin}) => {
                 {sidebarData.map((item, index) =>
                     <li key={index} className="group flex items-center">
                         <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
-                            <a href={"#" + item.href}>
+                            <a className="flex justify-center items-center" href={"#" + item.href}>
                                 <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
                             </a>
                         </div>
-                        <div className="ml-2 h-8 inline-flex justify-center align-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 rounded-md">
+                        <div className="ml-2 h-8 inline-flex justify-center items-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 bg-opacity-50 font-bold rounded-md">
                             {item.text}
                         </div>
                     </li>   
                 )}
-                {!admin ?
-                <li className="group flex items-center">
-                    <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
-                        <a href="/admin">
-                            <FontAwesomeIcon icon={faUserPlus} className="box-content  p-1.5 m-0"/>
-                        </a>
-                    </div>
-                    <div className="ml-2 h-8 inline-flex justify-center align-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 rounded-md">
-                        Mode admin
-                    </div>
-                </li>
-                :
-                <li className="group flex items-center">
-                    <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
-                        <a href="/">
-                            <FontAwesomeIcon icon={faUserAlt} className="box-content  p-1.5 m-0"/>
-                        </a>
-                    </div>
-                    <div className="ml-2 h-8 inline-flex justify-center align-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 rounded-md">
-                        Mode normal
-                    </div>
-                </li>
-                }
             </ul>
         </nav>
     );

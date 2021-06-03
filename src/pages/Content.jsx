@@ -5,6 +5,7 @@ import Home from '../components/Home.jsx'
 import Navbar from '../components/Navbar.jsx';
 import TinySidebar from '../components/TinySidebar.jsx';
 import AdminSideBar from '../components/AdminSideBar.jsx'
+import SwitchToAdmin from '../components/SwithToAdmin.jsx'
 import News from '../components/News.jsx'
 import Benefits from '../components/Benefits.jsx'
 import Cssct from '../components/Cssct.jsx'
@@ -19,7 +20,8 @@ const Content = ({admin}) => {
         
         <Navbar/>
         <Home/>
-        <TinySidebar admin={admin}/>
+        <TinySidebar/>
+        <SwitchToAdmin admin={admin}/>
         { admin && <AdminSideBar />}
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <News admin={admin} />

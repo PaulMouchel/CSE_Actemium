@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 .hide {
@@ -13,13 +14,5 @@ html {
 }
 
 .tiny-menu-item:hover + .hide {
-  display: block;
-}
-
-.tiny-menu-item:hover ~ .hide {
-  display: block;
-}
-
-.tiny-menu-item:hover .hide {
-  display: block;
+  display: inline-flex;
 }

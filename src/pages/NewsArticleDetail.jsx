@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { faClock, faArrowLeft, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from 'framer-motion';
 import { Link, useLocation, useHistory } from 'react-router-dom' 
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument'
@@ -27,7 +26,7 @@ const NewsArticleDetail = ({admin}) => {
     <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
         <div className="flex justify-between">
         
-        <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+        <Link to={!admin ? "/" : "/admin"} className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
             <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
         {admin && 

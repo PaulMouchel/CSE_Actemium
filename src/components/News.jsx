@@ -7,7 +7,7 @@ import NewsArticle from './NewsArticle.jsx'
 import Title from './Title'
 
 // Icons
-import { faArrowRight, faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const News = ({admin}) => {
