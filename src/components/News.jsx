@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import useFirestore from '../hooks/useFirestore';
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom' 
 
 //Components
 import NewsArticle from './NewsArticle.jsx'
@@ -39,21 +38,6 @@ const News = ({admin}) => {
               <span className="pl-4">{!showArticles ? "Voir tous les articles" : "Masquer les articles"}</span>
             </span>  
           </motion.button>
-
-          { admin &&
-          <Link to="/create-article"
-            className="mt-2 sm:mt-0">
-            <motion.button 
-              className="focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>
-                <FontAwesomeIcon icon={faPlus} />
-                <span className="pl-4">Créer un nouvel article</span>
-              </span>  
-            </motion.button>
-          </Link> }
         </div>
       </>
   );

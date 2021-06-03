@@ -4,6 +4,7 @@ import React from 'react';
 import Home from '../components/Home.jsx'
 import Navbar from '../components/Navbar.jsx';
 import TinySidebar from '../components/TinySidebar.jsx';
+import AdminSideBar from '../components/AdminSideBar.jsx'
 import News from '../components/News.jsx'
 import Benefits from '../components/Benefits.jsx'
 import Cssct from '../components/Cssct.jsx'
@@ -17,8 +18,9 @@ const Content = ({admin}) => {
     <div id="home">
         
         <Navbar/>
-        <Home  admin={admin}/>
+        <Home/>
         <TinySidebar admin={admin}/>
+        { admin && <AdminSideBar />}
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <News admin={admin} />
         </div>
