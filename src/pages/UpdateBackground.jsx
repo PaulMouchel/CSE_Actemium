@@ -72,7 +72,7 @@ const UpdateBackground = () => {
     }
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-t from-yellow-200 to-yellow-500 bg-cover bg-center"
+        <div className="w-screen h-screen flex justify-center items-center bg-gray-50 bg-cover bg-center"
        
         style={image ? 
                 {backgroundImage: `url(${image.url})`}

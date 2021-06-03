@@ -16,8 +16,8 @@ const ImageGrid = ({ gallery, setSelectedImg }) => {
                     key={index} 
                     layout
                     initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0 }}
                     whileHover={{ opacity: 1 }}s
                     onClick={() => setSelectedImg(doc)}
                 />

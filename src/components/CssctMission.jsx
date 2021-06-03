@@ -3,7 +3,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument';
-
+import { motion } from 'framer-motion'
 const CssctMission = ({title, text, imageUrl, even, admin, id}) => {
   
   const { docs } = useFirestore('Cssct');
@@ -22,10 +22,14 @@ const CssctMission = ({title, text, imageUrl, even, admin, id}) => {
       <div className="w-1/2 px-4 flex justify-center mx-4">
           <div className="h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${imageUrl})`}}>
             {admin && 
-              <button className=" transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2"
-                onClick={handleDelete}>
+              <motion.button className=" transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2"
+                onClick={handleDelete}
+                layout
+                initial={{ x:100 }}
+                animate={{ x:0 }}
+                transition={{ delay: 0 }}>
                   <FontAwesomeIcon icon={faTrashAlt} />
-              </button>
+              </motion.button>
             }
           </div>
       </div>

@@ -38,7 +38,7 @@ const TinySidebar = () => {
 
     return (
         <nav className="fixed h-screen left-5 top-0 z-50 invisible md:visible">
-            <ul className="m-5 mb-5 h-screen flex flex-col justify-center">
+            <ul className="mx-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item, index) =>
                     <li key={index} className="group flex items-center">
                         <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">

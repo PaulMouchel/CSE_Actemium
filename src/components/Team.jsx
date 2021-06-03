@@ -2,39 +2,89 @@ import React from 'react';
 import Title from './Title'
 import TeamMember from './TeamMember.jsx'
 
-import imageThomas from '../images/thomas.jpg'
+import thomas from '../images/thomas.jpg'
+import vincent from '../images/Vincent.JPG'
+import maxime from '../images/Maxime.JPG'
+import sandrine from '../images/Sandrine.JPG'
+import norman from '../images/Norman.JPG'
+import guillaume from '../images/Guillaume.JPG'
+import catherine from '../images/Catherine.JPG'
+import jeremie from '../images/Jeremie.JPG'
+import mathieu from '../images/Mathieu.JPG'
 
 const Team = () => {
     const members = [
         {
-            image: imageThomas,
+            image: vincent,
+            fullName: "Vincent Chaintreau",
+            role: "Président du CSE",
+            executive: false,
+            holder: true,
+            president: true
+        },
+        {
+            image: sandrine,
+            fullName: "Sandrine Lemarié",
+            role: "Vice-secrétaire et référent contre les harcèlements et agissements sexistes",
+            executive: false,
+            holder: true,
+            president: false
+        },
+        {
+            image: maxime,
+            fullName: "Maxime Thetiot",
+            role: "Vice-trésorier",
+            executive: false,
+            holder: true,
+            president: false
+        },
+        {
+            image: guillaume,
+            fullName: "Guillaume Louvel",
+            role: "Membre de la CSSCT",
+            executive: false,
+            holder: true,
+            president: false
+        },
+        {
+            image: thomas,
             fullName: "Thomas Le-Gal",
             role: "Trésorier",
-            holder: true
+            executive: true,
+            holder: true,
+            president: false
         },
         {
-            image: imageThomas,
-            fullName: "Sandrine Lemarié",
-            role: "Trésorier",
-            holder: true
-        },
-        {
-            image: imageThomas,
+            image: norman,
             fullName: "Norman Jan-Le-Cloirec",
             role: "Secrétaire",
-            holder: false
+            executive: true,
+            holder: true,
+            president: false
         },
         {
-            image: imageThomas,
-            fullName: "Norman Jean-Le-Cloirec",
-            role: "Secrétaire",
-            holder: false
+            image: catherine,
+            fullName: "Catherine Bastard",
+            role: "Membre de la CSSCT (secrétaire)",
+            executive: false,
+            holder: false,
+            president: false
         },
         {
-            image: imageThomas,
-            fullName: "Norman Jean-Le-Cloirec",
-            role: "Secrétaire",
-            holder: false
+            image: jeremie,
+            fullName: "Jérémie Chaperon",
+            role: "Membre de la CSSCT",
+            executive: true,
+            holder: false,
+            president: false
+        },
+        {
+            image: mathieu,
+            fullName: "Mathieu Buan",
+            role: "",
+            executive: true,
+            holder: false,
+            president: false
         }
     ]
     return (
@@ -45,7 +95,7 @@ const Team = () => {
             </div>
             <div className="flex flex-col py-6">
                 {members.map((member, index) =>
-                    <TeamMember key={index} image={member.image} fullName={member.fullName} role={member.role} last={index === members.length - 1} even={index%2 === 0} holder={member.holder}/>
+                    <TeamMember key={index} {...member} last={index === members.length - 1} even={index%2 === 0}/>
                 )}
             </div>
         </>

@@ -14,7 +14,6 @@ import Contact from '../components/Contact.jsx'
 
 const Content = ({admin}) => {
 
-
   return (
     <div id="home">
         
