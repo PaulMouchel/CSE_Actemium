@@ -12,30 +12,51 @@ import Cssct from '../components/Cssct.jsx'
 import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 
+import { useScrollData } from "scroll-data-hook";
+
 const Content = ({admin}) => {
+
+  const {
+    scrolling,
+    time,
+    speed,
+    direction,
+    position,
+    relativeDistance,
+    totalDistance
+  } = useScrollData({
+    onScrollStart: () => {
+      console.log('Started scrolling');
+      console.log("position" + position.y)
+    },
+    onScrollEnd: () => {
+      console.log('Finished scrolling');
+      console.log("position" + position.y)
+    }
+  });
 
   return (
     <div id="home">
         
         <Navbar/>
         <Home/>
-        <TinySidebar/>
+        { position.y>100 && <TinySidebar/>}
         <SwitchToAdmin admin={admin}/>
         { admin && <AdminSideBar />}
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
-          <News admin={admin} />
+          <News admin={admin} textColor="gray-800"/>
         </div>
-        <div className="bg-gray-200 px-12 md:px-28 lg:px-48">
-          <Benefits admin={admin}/>
+        <div className="bg-gray-200 px-4 md:px-28 lg:px-48">
+          <Benefits admin={admin} textColor="gray-800"/>
         </div>
-        <div className="bg-gray-800 px-12 md:px-28 lg:px-48">
-          <Cssct admin={admin} />
+        <div className="bg-gray-800 px-4 md:px-28 lg:px-48">
+          <Cssct admin={admin} textColor="gray-50"/>
         </div>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
-          <Team />
+          <Team textColor="gray-800"/>
         </div>
         <div className="bg-gray-200 px-12 md:px-28 lg:px-48">
-          <Contact />
+          <Contact textColor="gray-800"/>
         </div>
     </div>
   );

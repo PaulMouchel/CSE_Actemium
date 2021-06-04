@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import Title from './Title'
 
-const Contact = () => {
+const Contact = ({textColor}) => {
   const textRef = useRef()
 
   const handleSubmit = () => {
@@ -10,7 +10,7 @@ const Contact = () => {
   
   return (
       <>
-        <Title id="contact">Contact</Title>
+        <Title id="contact" textColor={textColor}>Contact</Title>
           <div>
             <form onSubmit={handleSubmit} className="mx-80 pb-6">
               <textarea type="text" name="contactText" className="resize-none block h-80 w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Ecrivez votre message" ref={textRef} required/>

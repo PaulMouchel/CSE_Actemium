@@ -3,16 +3,16 @@ import useFirestore from '../hooks/useFirestore';
 import Title from './Title'
 import Benefit from './Benefit.jsx'
 
-const Benefits = ({admin}) => {
+const Benefits = ({admin, textColor}) => {
   const { docs } = useFirestore('Benefits');
  
   return (
     <>
-      <Title id="benefits">Nos avantages</Title>
+      <Title id="benefits" textColor={textColor}>Nos avantages</Title>
       <div className="pb-4" >
         <div>
           { docs && docs.map((benefit, index) =>
-            <Benefit key={index} {...benefit} admin={admin} even={index%2 === 0}/>
+            <Benefit key={index} {...benefit} admin={admin} even={index%2 === 0} last={index===docs.length - 1} textColor={textColor}/>
           )}
         </div>
       </div>

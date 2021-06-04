@@ -32,7 +32,6 @@ const Login = () => {
 
     return (
         <Background>
-        {/* <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-t from-yellow-200 to-yellow-500 bg-beach"> */}
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
                     <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
@@ -50,7 +49,6 @@ const Login = () => {
                     <Link to="/forgot-password">Mot de passe oublié ?</Link>
                 </div>
             </div>
-        {/* </div> */}
         </Background>
     )
 }

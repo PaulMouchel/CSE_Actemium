@@ -12,7 +12,7 @@ import catherine from '../images/Catherine.JPG'
 import jeremie from '../images/Jeremie.JPG'
 import mathieu from '../images/Mathieu.JPG'
 
-const Team = () => {
+const Team = ({textColor}) => {
     const members = [
         {
             image: vincent,
@@ -89,7 +89,7 @@ const Team = () => {
     ]
     return (
         <>
-            <Title id="team">L' équipe du CSE</Title>
+            <Title id="team" textColor={textColor}>L' équipe du CSE</Title>
             <div className="text-center">
                 <h3 className="">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>

@@ -10,7 +10,7 @@ import Title from './Title'
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const News = ({admin}) => {
+const News = ({admin, textColor}) => {
   const { docs } = useFirestore('News');
   const [showArticles, setShowArticles] = useState(false)
 
@@ -20,7 +20,7 @@ const News = ({admin}) => {
 
   return (
       <>
-        <Title id="news">Actualités</Title>
+        <Title id="news" textColor={textColor}>Actualités</Title>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {docs && docs.map((article, index) =>
             <NewsArticle key={index} {...article} admin={admin} />

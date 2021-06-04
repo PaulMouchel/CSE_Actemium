@@ -6,6 +6,8 @@ import { useAuth } from '../contexts/AuthContext'
 import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useScrollData } from "scroll-data-hook";
+
 import logo from '../images/full_logo2.png'
 
   const navbarData = [
@@ -42,6 +44,24 @@ import logo from '../images/full_logo2.png'
   ]
 
 const Navbar = () => {
+
+  const {
+    scrolling,
+    time,
+    speed,
+    direction,
+    position,
+    relativeDistance,
+    totalDistance
+  } = useScrollData({
+    onScrollStart: () => {
+      console.log('Started scrolling');
+    },
+    onScrollEnd: () => {
+      console.log('Finished scrolling');
+    }
+  });
+
   const [error, setError] = useState("")
     const { logout } = useAuth()
     const history = useHistory()
@@ -60,6 +80,7 @@ const Navbar = () => {
   return (
     <>
       {error && <span className="block text-center text-gray-50 bg-red-500 py-1 px-2">{error}</span>}
+      {/* <div className="w-40 lg:w-60 h-40 lg:h-60 bg-opacity-100 absolute top-0 left-0 z-50 invisible md:visible"> */}
       <div className="w-40 lg:w-60 h-40 lg:h-60 bg-opacity-100 absolute top-0 left-0 z-50 invisible md:visible">
         <img src={logo} className="bg-opacity-100 float-left" alt="logo"/>
       </div>
