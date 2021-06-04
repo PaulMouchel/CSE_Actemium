@@ -14,6 +14,7 @@ import CreateBenefit from './pages/CreateBenefit.jsx'
 import NewsArticleDetail from './pages/NewsArticleDetail.jsx'
 import UpdateQuotation from './pages/UpdateQuotation.jsx'
 import UpdateBackground from './pages/UpdateBackground.jsx'
+import CreateMember from './pages/CreateMember.jsx'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/create-article" component={CreateArticle} />
+              <Route path="/create-member" component={CreateMember} />
               <Route path="/update-quotation" component={UpdateQuotation} />
               <Route path="/update-background" component={UpdateBackground} />
               <Route path="/create-benefit" render={() => <CreateBenefit collection={"Benefits"} />} />

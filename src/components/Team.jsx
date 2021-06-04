@@ -93,7 +93,7 @@ const Team = ({textColor}) => {
             <div className="text-center">
                 <h3 className="">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <div className="flex flex-col py-6">
+            <div className="flex flex-col pt-6 pb-32">
                 {members.map((member, index) =>
                     <TeamMember key={index} {...member} last={index === members.length - 1} even={index%2 === 0}/>
                 )}

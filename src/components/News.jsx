@@ -26,7 +26,7 @@ const News = ({admin, textColor}) => {
             <NewsArticle key={index} {...article} admin={admin} />
           )} 
         </div>
-        <div className="w-100 flex flex-col sm:flex-row items-center justify-evenly py-6">
+        <div className="w-100 flex flex-col sm:flex-row items-center justify-evenly pt-6 pb-10">
           <motion.button onClick={handleClick} 
             className="focus:outline-none w-64 rounded-full p-2 px-5 bg-green-500 text-white flex justify-center"
             whileHover={{ scale: 1.05 }}
