@@ -36,8 +36,7 @@ const NavButton = (item) => {
                 smooth to={`/#${item.href}`}
                 >
                 <FontAwesomeIcon icon={item.icon} className="text-gray-600 xl:mr-1"/>
-                {/* {window.innerWidth < 1024 ? <br /> : ""} */}
-                <span className=""> {item.text}</span>
+                <span>{item.text}</span>
             </NavHashLink> 
             { isHovering &&
             <motion.div className="h-1 w-full border-b-2 border-green-500 "

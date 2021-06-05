@@ -95,9 +95,7 @@ const Navbar = () => {
           </div>
           <div>
             <button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded" id="login" type="submit">
-              <span>Déconnection
-                {/* {window.innerWidth < 1024 ? <FontAwesomeIcon icon={faLockOpen}/> : "Déconnection"} */}
-              </span>
+              <span>Déconnection</span>
             </button>
           </div>
         </ul>

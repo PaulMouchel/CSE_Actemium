@@ -9,13 +9,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
-const UpdateBackground = () => {
+const UpdateBackground = ({image, setImage}) => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
     const { docs } = useFirestore('Background');
 
-    const [image, setImage] = useState(null);
+    // const [image, setImage] = useState(null);
 
     const setBackground = (images) => {
         if (images[0]) {

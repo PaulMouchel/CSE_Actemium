@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Switch, Route } from  "react-router-dom";
 import { AnimatePresence } from 'framer-motion'
@@ -19,7 +20,7 @@ import CreateMember from './pages/CreateMember.jsx'
 
 
 function App() {
-
+  const [background, setBackground] = useState(null)
   return (
     <>
       <div className="App">
@@ -36,7 +37,7 @@ function App() {
                 <Route path="/create-article" component={CreateArticle} />
                 <Route path="/create-member" component={CreateMember} />
                 <Route path="/update-quotation" component={UpdateQuotation} />
-                <Route path="/update-background" component={UpdateBackground} />
+                <Route path="/update-background" render={() => <UpdateBackground image={background} setImage={setBackground} />} />
                 <Route path="/create-benefit" render={() => <CreateBenefit collection={"Benefits"} />} />
                 <Route path="/create-cssct" render={() => <CreateBenefit collection={"Cssct"} />} />
                 <Route path="/news-article/:id" render={() => <NewsArticleDetail admin={false} />} />
