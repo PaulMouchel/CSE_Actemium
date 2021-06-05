@@ -1,4 +1,5 @@
 import React from 'react';
+import { AnimatePresence } from  'framer-motion'
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
@@ -20,7 +21,9 @@ const Benefit = ({title, text, imageUrl, even, admin, id, last, textColor}) => {
 
       <div className="md:w-1/2 md:px-4 flex justify-center md:mx-4">
         <div className="h-80 md:h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${imageUrl})`}}>
-          {admin && <DeleteButton onClick={handleDelete}/>}
+          <AnimatePresence>
+            {admin && <DeleteButton onClick={handleDelete}/>}
+          </AnimatePresence>
         </div>
       </div>
     </div>

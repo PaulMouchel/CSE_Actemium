@@ -1,5 +1,6 @@
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Switch, Route } from  "react-router-dom";
+import { AnimatePresence } from 'framer-motion'
 
 import PrivateRoute from './PrivateRoute'
 
@@ -24,23 +25,24 @@ function App() {
       <div className="App">
         <Router>
           <AuthProvider>
-
-            <Switch>
-              {/* <PrivateRoute exact path="/" component={Content} /> */}
-              <Route exact path="/" render={() => <Content admin={false} />} />
-              <Route exact path="/admin" render={() => <Content admin={true} />}/>
-              <Route path="/login" component={Login} />
-              <Route path="/forgot-password" component={ForgotPassword} />
-              <Route path="/create-article" component={CreateArticle} />
-              <Route path="/create-member" component={CreateMember} />
-              <Route path="/update-quotation" component={UpdateQuotation} />
-              <Route path="/update-background" component={UpdateBackground} />
-              <Route path="/create-benefit" render={() => <CreateBenefit collection={"Benefits"} />} />
-              <Route path="/create-cssct" render={() => <CreateBenefit collection={"Cssct"} />} />
-              <Route path="/news-article/:id" render={() => <NewsArticleDetail admin={false} />} />
-              <Route path="/admin/news-article/:id" render={() => <NewsArticleDetail admin={true} />} />
-            </Switch>
-
+            <AnimatePresence>
+              <Switch >
+              {/* <Switch location={location} key={location.key}> */}
+                {/* <PrivateRoute exact path="/" component={Content} /> */}
+                <Route exact path="/" render={() => <Content admin={false} />} />
+                <Route exact path="/admin" render={() => <Content admin={true} />}/>
+                <Route path="/login" component={Login} />
+                <Route path="/forgot-password" component={ForgotPassword} />
+                <Route path="/create-article" component={CreateArticle} />
+                <Route path="/create-member" component={CreateMember} />
+                <Route path="/update-quotation" component={UpdateQuotation} />
+                <Route path="/update-background" component={UpdateBackground} />
+                <Route path="/create-benefit" render={() => <CreateBenefit collection={"Benefits"} />} />
+                <Route path="/create-cssct" render={() => <CreateBenefit collection={"Cssct"} />} />
+                <Route path="/news-article/:id" render={() => <NewsArticleDetail admin={false} />} />
+                <Route path="/admin/news-article/:id" render={() => <NewsArticleDetail admin={true} />} />
+              </Switch>
+            </AnimatePresence>
 
           </AuthProvider>
         </Router>

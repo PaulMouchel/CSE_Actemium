@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { motion, AnimatePresence } from 'framer-motion'
 
 import Home from '../components/Home.jsx'
 import Navbar from '../components/Navbar.jsx';
@@ -13,6 +13,19 @@ import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 
 import { useScrollData } from "scroll-data-hook";
+
+const containerVariant = {
+  hidden:{
+    x: '-100vh'
+  },
+  visible:{
+    x: 0
+  },
+  exit: {
+    x: '-100vh',
+    transition: {ease: 'easeInOut'}
+  }
+}
 
 const Content = ({admin}) => {
 
@@ -36,13 +49,19 @@ const Content = ({admin}) => {
   });
 
   return (
-    <div id="home">
+    <div id="home"
+        variants={containerVariant}
+        initial="hidden"
+        animate="visible"
+        exit="exit">
         
         <Navbar/>
         <Home/>
         { position.y>100 && <TinySidebar/>}
         <SwitchToAdmin admin={admin}/>
+        <AnimatePresence>
         { admin && <AdminSideBar />}
+        </AnimatePresence>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <News admin={admin} textColor="gray-800"/>
         </div>
