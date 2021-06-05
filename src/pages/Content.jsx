@@ -57,10 +57,12 @@ const Content = ({admin}) => {
         
         <Navbar/>
         <Home/>
-        { position.y>100 && <TinySidebar/>}
+        <AnimatePresence>
+          { position.y>100 && <TinySidebar/>}
+        </AnimatePresence>
         <SwitchToAdmin admin={admin}/>
         <AnimatePresence>
-        { admin && <AdminSideBar />}
+          { admin && <AdminSideBar />}
         </AnimatePresence>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <News admin={admin} textColor="gray-800"/>

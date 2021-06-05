@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from 'react-router-dom' 
+import { NavHashLink } from 'react-router-hash-link';
 import { motion } from 'framer-motion';
 
 const buttonsVariant = {
     hidden: {
-        x:100
+        x:-100
     },
     visible: {
         x:0,
     },
     exit : {
-        x:100
+        x:-100
     }
 }
 
@@ -28,7 +28,7 @@ const textVariant = {
     }
 }
 
-const AdminButton = (item) => {
+const SideButton = (item) => {
     const [isHovering, setIsHovering] = useState(false)
 
     const handleMouseEnter = () => {
@@ -40,20 +40,23 @@ const AdminButton = (item) => {
     }
 
     return (
-        <motion.li className="group flex flex-row-reverse items-center"
+        <motion.li className="group flex flex-row items-center"
             variants={buttonsVariant}
             initial="hidden"
             animate="visible"
             exit="exit">          
-            <div className="z-10 transform group-hover:translate-x-1 group-hover:scale-125 text-gray-50 flex justify-center w-10 h-10 rounded my-2 place-content-center bg-blue-900 transition duration-300 ease-in-out">
-                <Link className="flex justify-center items-center" to={"/" + item.href}
+            <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
+                <NavHashLink
+                    className="flex justify-center items-center"
                     onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}>
-                    <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
-                </Link>
+                    onMouseLeave={handleMouseLeave}
+                    smooth to={`/#${item.href}`}
+                    >
+                    <FontAwesomeIcon icon={item.icon} className="box-content p-1.5 m-0"/>
+                </NavHashLink>
             </div>
             { isHovering &&
-            <motion.div className="mr-2 h-10 inline-flex justify-center items-center py-1 px-2 text-blue-900 bg-gray-50 font-bold bg-opacity-50 rounded"
+            <motion.div className="ml-2 h-8 inline-flex justify-center items-center hide py-1 px-2 text-gray-900 bg-gray-50 bg-opacity-50 font-bold rounded-md"
                 variants={textVariant}>     
                 {item.text}
             </motion.div>}
@@ -61,4 +64,4 @@ const AdminButton = (item) => {
     );
 }
 
-export default AdminButton;
+export default SideButton;

@@ -2,6 +2,8 @@ import React from 'react';
 import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import SideButton from './SideButton.jsx'
+
 const TinySidebar = () => {
     const sidebarData = [
         {
@@ -40,16 +42,7 @@ const TinySidebar = () => {
         <nav className="fixed h-screen left-5 top-0 z-50 invisible md:visible">
             <ul className="mx-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item, index) =>
-                    <li key={index} className="group flex items-center">
-                        <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 tiny-menu-item rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
-                            <a className="flex justify-center items-center" href={"#" + item.href}>
-                                <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
-                            </a>
-                        </div>
-                        <div className="ml-2 h-8 inline-flex justify-center items-center hide font-poppins py-1 px-2 text-gray-900 bg-gray-50 bg-opacity-50 font-bold rounded-md">
-                            {item.text}
-                        </div>
-                    </li>   
+                    <SideButton {...item} key={index}/>
                 )}
             </ul>
         </nav>

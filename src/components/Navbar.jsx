@@ -10,6 +10,8 @@ import { useScrollData } from "scroll-data-hook";
 
 import logo from '../images/full_logo2.png'
 
+import NavButton from './NavButton.jsx'
+
   const navbarData = [
     {
       href: "home",
@@ -34,7 +36,7 @@ import logo from '../images/full_logo2.png'
     {
         href: "team",
         icon: faUsers,
-        text: "L' équipe"
+        text: "L'équipe"
     },
     {
         href: "contact",
@@ -84,23 +86,20 @@ const Navbar = () => {
       <div className="w-40 lg:w-60 h-40 lg:h-60 bg-opacity-100 absolute top-0 left-0 z-50 invisible md:visible">
         <img src={logo} className="bg-opacity-100 float-left" alt="logo"/>
       </div>
-      <div className="flex justify-center items-center bg-gray-100  shadow-md">
-        <ul className="w-full text-center flex justify-center items-center flex-row py-5 pr-2 md:pr-5 md:pl-5 md:pl-0 md:ml-40 lg:ml-60">
-          {navbarData.map((item, index) =>
-            <li key={index} className="flex-auto font-poppins flex flex-col">
-              <a href={"#" + item.href} className="hover:underline">
-                <FontAwesomeIcon icon={item.icon} className="text-gray-600"/>
-                {window.innerWidth < 1024 ? <br /> : ""}
-                <span className=""> {item.text}</span>
-              </a>
-            </li>
-          )}   
-
-          <button variant="link" onClick={handleLogout} className="w-0 md:w-80 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded" id="login" type="submit">
-            <span>
-              {window.innerWidth < 1024 ? <FontAwesomeIcon icon={faLockOpen}/> : "Déconnection"}
-            </span>
-          </button>
+      <div className="flex bg-gray-100 shadow-md">
+        <ul className="w-full text-center flex justify-between items-center flex-row py-5 pr-2 md:pr-5 md:pl-5 md:pl-0 md:ml-40 lg:ml-60">
+          <div className="flex flex-row">
+            {navbarData.map((item, index) =>
+              <NavButton key={index} {...item}/>
+            )}   
+          </div>
+          <div>
+            <button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded" id="login" type="submit">
+              <span>Déconnection
+                {/* {window.innerWidth < 1024 ? <FontAwesomeIcon icon={faLockOpen}/> : "Déconnection"} */}
+              </span>
+            </button>
+          </div>
         </ul>
       </div>
     </>
