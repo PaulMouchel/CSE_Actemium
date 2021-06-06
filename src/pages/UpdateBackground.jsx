@@ -21,9 +21,9 @@ const UpdateBackground = ({image, setImage}) => {
         if (images[0]) {
           setImage(images[0])
         }
-      }
+    }
 
-      const changeImageField = (parameter, value) => {
+    const changeImageField = (parameter, value) => {
         const newImage = image;
         newImage[parameter] = value;
         setImage(newImage);

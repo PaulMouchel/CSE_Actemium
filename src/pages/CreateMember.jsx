@@ -1,17 +1,21 @@
 import React, { useRef, useState } from 'react';
-import { faSpinner, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faArrowLeft, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 
 import Title from '../components/Title.jsx';
 import UploadImageForm from '../components/UploadImageForm.jsx';
+import Background from '../components/Background.jsx'
+
+import userImage from '../images/user.jpg'
 
 const CreateMember = () => {
   const [executive, setExecutive] = useState("executive");
   const [holder, setHolder] = useState("holder");
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
   const nameRef = useRef()
   const roleRef = useRef()
   const presidentRef = useRef()
@@ -23,17 +27,20 @@ const CreateMember = () => {
     setImage(newImage);
  };
 
- const uploadToDatabase = async (title, text) => {
+ const uploadToDatabase = async (name) => {
+    let role = roleRef.current.value
+    let president = presidentRef.current.value
+
     const collectionRef = projectFirestore.collection("Team");
     const createdAt = timestamp();
     const imageUrl = image.downloadURL
-    await collectionRef.add({ imageUrl, title:title, text:text, createdAt });
+    await collectionRef.add({ imageUrl, name, role, holder:(holder==="holder"), executive:(executive==="executive"), createdAt });
     setLoading(false)
     history.push('/admin')
  }
 
-const UploadImage = (title, text) => {
-    changeImageField("storageRef", projectStorage.ref().child("Team/" + title + "/" + image.fileName));
+const UploadImage = (name) => {
+    changeImageField("storageRef", projectStorage.ref().child("Team/" + name + "/" + image.fileName));
     const uploadTask = image.storageRef.put(image.file);
     uploadTask.on(
         "state_changed",
@@ -44,13 +51,12 @@ const UploadImage = (title, text) => {
         async function complete() {
           const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
           changeImageField("downloadURL", downloadURL);
-          uploadToDatabase(title, text)
-
+          uploadToDatabase(name)
         }
     );
 }
 
-  const setBenefitImage = (images) => {
+  const setMemberImage = (images) => {
     if (images[0]) {
       setImage(images[0])
     }
@@ -59,74 +65,66 @@ const UploadImage = (title, text) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let title = nameRef.current.value
-    let text = roleRef.current.value
-
-    if (image && title !== "" && text !== "") {
+    let name = nameRef.current.value
+    
+    if (image && name !== "") {
       setLoading(true)
-      UploadImage(title, text)
+      UploadImage(name)
     }
   }
 
   const onChangeExecutive = (e) => {
-    console.log(e.target.value);
     setExecutive(e.target.value);
-    console.log(executive)
   }
 
   const onChangeHolder = (e) => {
-    console.log(e.target.value);
     setHolder(e.target.value);
-    console.log(holder)
   }
 
   return (
-    <>
-      <Title>Ajouter un membre du CSE</Title>
-      <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
-        <Link to="/admin" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
-            <FontAwesomeIcon icon={faArrowLeft} />
+    <Background>
+      <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
+        <Link to="/admin" className="self-start transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+          <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
-        <div className="flex flex-col justify-between h-full -mt-10">
-          <div className="pt-8">
-            <UploadImageForm file={[image]} setFile={setBenefitImage}/>
-            {image && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${image.url})`}}></div>}
-          </div> 
-          <div className="p-4 pt-0">
-            <h3 className="w-full relative lg:mt-6 bottom-3 text-xl text-blue-800 font-bold">
-              <input type="text" name="fullName" className="block w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Prénom et Nom" ref={nameRef} required/>
-            </h3>
-            <div className="w-full h-80 text-gray-600 mb-10">
-              <input type="text" name="role" className="block w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Role" ref={roleRef} required/>
+        <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
+          <p className="relative bottom-6 mb-5 text-3xl text-gray-600">Ajouter un membre du CSE</p>
+          {!true && <FontAwesomeIcon icon={faUserCircle} className="rounded-full border-8 text-gray-600 mb-2 text-9xl"/>}
+          <div className="w-40 md:w-56 flex justify-center mx-4">
+            <div className="relative bottom-6 h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-8" style={image ? {backgroundImage: `url(${image.url})`} : {backgroundImage: `url(${userImage})`}}></div>
+          </div>
+          <UploadImageForm file={image} setFile={setMemberImage}/>
+          {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
+          <input type="text" name="fullName" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="off" placeholder="Prénom et Nom" ref={nameRef} required/>
+          <input type="text" name="role" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="off" placeholder="Fonction" ref={roleRef}/>
+          <div className="w-80 flex justify-between mb-4">
+            <div>
+              <input onChange={onChangeExecutive} type="radio" id="executive" name="executive" checked={executive==="executive"} value="executive"></input>
+              <label className="pl-1" htmlFor="executive">Cadre</label>
+              <br></br>
+              <input onChange={onChangeExecutive} type="radio" id="notExecutive" name="executive" checked={executive==="notExecutive"} value="notExecutive"></input>
+              <label className="pl-1" htmlFor="notExecutive">Non cadre</label>
             </div>
-            
             <div >
-                <input onChange={onChangeExecutive} type="radio" id="executive" name="executive" checked={holder==="executive"} value="executive"></input>
-                <label className="pl-1" htmlFor="executive">Cadre</label>
-                <br></br>
-                <input onChange={onChangeExecutive} type="radio" id="notExecutive" name="executive" checked={holder==="notExecutive"} value="notExecutive"></input>
-                <label className="pl-1" htmlFor="notExecutive">Non cadre</label>
-            </div>
-
-            <div >
-              <input onChange={onChangeHolder} type="radio" id="holder" name="holder" checked={executive==="holder"} value="holder"></input>
+              <input onChange={onChangeHolder} type="radio" id="holder" name="holder" checked={holder==="holder"} value="holder"></input>
               <label className="pl-1" htmlFor="holder">Titulaire</label>
               <br></br>
-              <input onChange={onChangeHolder} type="radio" id="alternate" name="holder" checked={executive==="alternate"} value="alternate"></input>
+              <input onChange={onChangeHolder} type="radio" id="alternate" name="holder" checked={holder==="alternate"} value="alternate"></input>
               <label className="pl-1" htmlFor="alternate">Suppléant</label>
             </div>
-            <div>
-              <input type="checkbox" name="president" ref={presidentRef}></input><span className="pl-1">Président du CSE</span>
-            </div>
           </div>
-        </div>
-        { !loading ?
-          <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit" onClick={handleSubmit}><span>Publier</span></button>
-          :
-          <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
-        }
-      </article>     
-    </>
+
+          <div className="w-80 flex justify-start items-center mb-4">
+            <input type="checkbox" name="president" ref={presidentRef}></input><span className="pl-1">Président du CSE</span>
+          </div>
+          { !loading ?
+              <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><span>Créer un membre</span></button>
+              :
+              <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
+          }
+        </form>
+      </div>
+    </Background>
   );
 }
 
