@@ -13,12 +13,12 @@ import userImage from '../images/user.jpg'
 const CreateMember = () => {
   const [executive, setExecutive] = useState("executive");
   const [holder, setHolder] = useState("holder");
+  const [president, setPresident] = useState(false);
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const nameRef = useRef()
   const roleRef = useRef()
-  const presidentRef = useRef()
   const history = useHistory()
 
   const changeImageField = (parameter, value) => {
@@ -29,12 +29,11 @@ const CreateMember = () => {
 
  const uploadToDatabase = async (name) => {
     let role = roleRef.current.value
-    let president = presidentRef.current.value
 
     const collectionRef = projectFirestore.collection("Team");
     const createdAt = timestamp();
     const imageUrl = image.downloadURL
-    await collectionRef.add({ imageUrl, name, role, holder:(holder==="holder"), executive:(executive==="executive"), createdAt });
+    await collectionRef.add({ imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, createdAt });
     setLoading(false)
     history.push('/admin')
  }
@@ -81,6 +80,10 @@ const UploadImage = (name) => {
     setHolder(e.target.value);
   }
 
+  const onChangePresident = (e) => {
+    setPresident(!president)
+  }
+
   return (
     <Background>
       <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
@@ -115,7 +118,7 @@ const UploadImage = (name) => {
           </div>
 
           <div className="w-80 flex justify-start items-center mb-4">
-            <input type="checkbox" name="president" ref={presidentRef}></input><span className="pl-1">Président du CSE</span>
+            <input type="checkbox" name="president" onChange={onChangePresident} checked={president}></input><span className="pl-1">Président du CSE</span>
           </div>
           { !loading ?
               <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><span>Créer un membre</span></button>

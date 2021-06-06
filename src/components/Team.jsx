@@ -1,4 +1,5 @@
 import React from 'react';
+import useFirestore from '../hooks/useFirestore';
 import Title from './Title'
 import TeamMember from './TeamMember.jsx'
 
@@ -13,6 +14,7 @@ import jeremie from '../images/Jeremie.JPG'
 import mathieu from '../images/Mathieu.JPG'
 
 const Team = ({textColor}) => {
+    const { docs } = useFirestore('Team');
     const members = [
         {
             image: vincent,
@@ -94,7 +96,10 @@ const Team = ({textColor}) => {
                 <h3 className="">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <div className="flex flex-col pt-6 pb-32">
-                {members.map((member, index) =>
+                {/* {members.map((member, index) =>
+                    <TeamMember key={index} {...member} last={index === members.length - 1} even={index%2 === 0}/>
+                )} */}
+                {docs && docs.map((member, index) =>
                     <TeamMember key={index} {...member} last={index === members.length - 1} even={index%2 === 0}/>
                 )}
             </div>
