@@ -1,5 +1,4 @@
 import React from 'react';
-import { AnimatePresence } from 'framer-motion'
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'

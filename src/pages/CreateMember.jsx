@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 
-import Title from '../components/Title.jsx';
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import Background from '../components/Background.jsx'
 

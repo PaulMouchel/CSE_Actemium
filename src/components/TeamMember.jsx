@@ -2,7 +2,6 @@ import React from 'react';
 
 import VerticalLine from './VerticalLine.jsx'
 import MemberDescription from './MemberDescription'
-import { AnimatePresence } from 'framer-motion'
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'

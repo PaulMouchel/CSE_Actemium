@@ -45,13 +45,12 @@ const SideButton = (item) => {
             initial="hidden"
             animate="visible"
             exit="exit">          
-            <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out">
+            <div className="z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 text-gray-600 flex justify-center w-8 h-8 rounded-full my-2 place-content-center hover:bg-gray-600 bg-gray-50 transition duration-300 ease-in-out"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
                 <NavHashLink
                     className="flex justify-center items-center"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    smooth to={`/#${item.href}`}
-                    >
+                    smooth to={`/#${item.href}`}>
                     <FontAwesomeIcon icon={item.icon} className="box-content p-1.5 m-0"/>
                 </NavHashLink>
             </div>

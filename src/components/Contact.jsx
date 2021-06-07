@@ -7,7 +7,7 @@ const Contact = ({textColor}) => {
   const textRef = useRef()
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
-  const { currentUser, logout } = useAuth()
+  const { currentUser } = useAuth()
 
   function sendEmail(e) {
     let emailData = {

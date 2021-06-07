@@ -17,15 +17,8 @@ const Team = ({textColor, admin}) => {
 
             if (a.executive > b.executive) return -1;
             if (a.executive < b.executive) return 1;
+            return 0
         });
-    }
-
-    const onlyPresident = (team) => {
-        return team.filter(member => member.president)
-    }
-
-    const noPresident = (team) => {
-        return team.filter(member => !member.president)
     }
 
     return (

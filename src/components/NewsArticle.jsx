@@ -2,11 +2,14 @@ import React from 'react';
 import { faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const NewsArticle = (article) => {
 
   return (
-    <article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1">
+    <motion.article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
         state: {articles: article}
@@ -44,7 +47,7 @@ const NewsArticle = (article) => {
             </div>
         </div>
       </Link>
-    </article>     
+    </motion.article>     
   );
 }
 

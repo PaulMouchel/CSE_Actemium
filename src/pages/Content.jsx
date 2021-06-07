@@ -27,16 +27,16 @@ const containerVariant = {
   }
 }
 
-const Content = ({admin}) => {
+const Content = ({admin, isAdmin}) => {
 
   const {
-    scrolling,
-    time,
-    speed,
-    direction,
+    // scrolling,
+    // time,
+    // speed,
+    // direction,
     position,
-    relativeDistance,
-    totalDistance
+    // relativeDistance,
+    // totalDistance
   } = useScrollData({
     onScrollStart: () => {
       console.log('Started scrolling');
@@ -60,7 +60,9 @@ const Content = ({admin}) => {
         <AnimatePresence>
           { position.y>100 && <TinySidebar/>}
         </AnimatePresence>
-        <SwitchToAdmin admin={admin}/>
+        { isAdmin &&
+          <SwitchToAdmin admin={admin}/>
+        }
         <AnimatePresence>
           { admin && <AdminSideBar />}
         </AnimatePresence>
