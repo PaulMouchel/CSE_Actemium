@@ -17,10 +17,12 @@ import NewsArticleDetail from './pages/NewsArticleDetail.jsx'
 import UpdateQuotation from './pages/UpdateQuotation.jsx'
 import UpdateBackground from './pages/UpdateBackground.jsx'
 import CreateMember from './pages/CreateMember.jsx'
-
+import{ init } from 'emailjs-com';
+init(process.env.REACT_APP_EMAILJS_USER_ID);
 
 function App() {
   const [background, setBackground] = useState(null)
+  
   return (
     <>
       <div className="App">

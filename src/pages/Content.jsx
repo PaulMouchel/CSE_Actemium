@@ -74,7 +74,7 @@ const Content = ({admin}) => {
           <Cssct admin={admin} textColor="gray-50"/>
         </div>
         <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
-          <Team textColor="gray-800"/>
+          <Team admin={admin} textColor="gray-800"/>
         </div>
         <div className="bg-gray-200 px-12 md:px-28 lg:px-48">
           <Contact textColor="gray-800"/>
