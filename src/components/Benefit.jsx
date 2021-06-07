@@ -21,9 +21,7 @@ const Benefit = ({title, text, imageUrl, even, admin, id, last, textColor}) => {
 
       <div className="md:w-1/2 md:px-4 flex justify-center md:mx-4">
         <div className="h-80 md:h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${imageUrl})`}}>
-          <AnimatePresence>
-            {admin && <DeleteButton onClick={handleDelete}/>}
-          </AnimatePresence>
+            <DeleteButton admin={admin} onClick={handleDelete}/>
         </div>
       </div>
     </div>

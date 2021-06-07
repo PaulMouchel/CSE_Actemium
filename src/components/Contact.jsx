@@ -2,8 +2,6 @@ import React, {useRef, useState} from 'react';
 import emailjs from 'emailjs-com';
 import Title from './Title'
 import { useAuth } from '../contexts/AuthContext'
-// import{ init } from 'emailjs-com';
-// init("user_osflwqf3MmzvC6jPC0LdQ");
 
 const Contact = ({textColor}) => {
   const textRef = useRef()

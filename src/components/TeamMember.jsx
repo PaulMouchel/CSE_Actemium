@@ -23,9 +23,7 @@ const TeamMember = ({imageUrl, fullName, role, holder, executive, president, las
                 </div>
                 <div className="w-40 md:w-56 flex justify-center mx-4">
                     <div className="h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-8" style={{backgroundImage: `url(${imageUrl})`}}>
-                    <AnimatePresence>
-                        {admin && <DeleteButton onClick={handleDelete}/>}
-                    </AnimatePresence>
+                        <DeleteButton admin={admin} onClick={handleDelete}/>
                     </div>
                 </div>
                 <div className="md:w-1/4"></div>
