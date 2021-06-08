@@ -8,3 +8,27 @@ html {
   overflow-x: hidden; /* Hide horizontal scrollbar */
   font-family: 'Montserrat', sans-serif;
 }
+  
+.bar1, .bar2, .bar3 
+{
+    transition: 0.4s;
+}
+  
+/* Rotate first bar */
+.change .bar1 
+{
+    transform: rotate(-45deg) translate(-8px, 7px) ;
+}
+  
+/* Fade out the second bar */
+.change .bar2 
+{
+    opacity: 0;
+}
+  
+/* Rotate last bar */
+.change .bar3 
+{
+    transform: rotate(45deg) translate(-8px, -7px) ;
+}
+
