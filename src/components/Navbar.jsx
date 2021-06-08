@@ -2,13 +2,13 @@ import React, { useState } from "react"
 
 import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
-import { motion } from 'framer-motion'
 
 import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import logo from '../images/full_logo2.png'
 
 import NavButton from './NavButton.jsx'
+import BurgerMenu from './BurgerMenu.jsx'
 
   const navbarData = [
     {
@@ -86,20 +86,7 @@ const Navbar = () => {
           </div>
         </ul>
       </div>
-
-
-      <nav className="p-2 md:hidden fixed">
-          <div className={`w-12 h-12 bg-gray-50 rounded-lg p-1 m-1 flex flex-col justify-between px-2 py-3 ${hamburgerMenuVisible && "change"}`} onClick={toggleHamburgerMenu}>
-              <div className={`h-0.5 transform bg-gray-500 bar1`}></div>
-              <div className={`h-0.5 bg-gray-500 bar2`}></div>
-              <div className={`h-0.5 transform bg-gray-500 bar3`}></div>
-          </div>
-          <ul className={`flex flex-col justify-between ${!hamburgerMenuVisible && "hidden"}`}>
-            {navbarData.map((item, index) =>
-                <li className="mx-3 d-block"><a href="#accueil">{item.text}</a></li>
-            )}
-          </ul>
-      </nav>
+      <BurgerMenu />
     </>
   );
 }

@@ -26,11 +26,10 @@ const CssctMission = ({title, text, imageUrl, admin, id}) => {
   }
 
   return (
-    <>
       <div 
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave} 
-        className="slide relative flex-auto hover:flex-5 bg-cover bg-center transition-all duration-500 ease-in-out hover:flex-grow" 
+        className="relative flex-auto hover:flex-5 bg-cover bg-center transition-all duration-500 ease-in-out hover:flex-grow" 
         style={{backgroundImage:`url(${imageUrl})`, flex: size}}>
         { showText && 
           <motion.div className="bg-gradient-to-t from-gray-900 h-full px-4 text-start flex flex-col justify-between items-start py-4"
@@ -46,7 +45,6 @@ const CssctMission = ({title, text, imageUrl, admin, id}) => {
           </motion.div>
         }
       </div>
-    </>
   );
 }
 
