@@ -27,7 +27,7 @@ const containerVariant = {
   }
 }
 
-const Content = ({admin, isAdmin}) => {
+const Content = ({admin, isAdmin, image, setImage}) => {
 
   const {
     // scrolling,
@@ -56,7 +56,7 @@ const Content = ({admin, isAdmin}) => {
         exit="exit">
         
         <Navbar admin={isAdmin}/>
-        <Home/>
+        <Home image={image} setImage={setImage}/>
         <AnimatePresence>
           { position.y>100 && <TinySidebar/>}
         </AnimatePresence>

@@ -9,7 +9,7 @@ import Background from '../components/Background.jsx'
 
 import userImage from '../images/user.jpg'
 
-const CreateMember = () => {
+const CreateMember = ({background, setBackGround}) => {
   const [executive, setExecutive] = useState("executive");
   const [holder, setHolder] = useState("holder");
   const [president, setPresident] = useState(false);
@@ -84,7 +84,7 @@ const UploadImage = (name) => {
   }
 
   return (
-    <Background>
+    <Background image={background} setImage={setBackGround}>
       <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
         <Link to="/admin" className="self-start transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
           <FontAwesomeIcon icon={faArrowLeft} />

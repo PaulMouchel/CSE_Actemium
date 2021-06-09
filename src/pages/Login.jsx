@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Background from '../components/Background.jsx'
 
-const Login = () => {
+const Login = ({image, setImage}) => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const { login } = useAuth()
@@ -31,7 +31,7 @@ const Login = () => {
     }
 
     return (
-        <Background>
+        <Background image={image} setImage={setImage}>
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
                     <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>

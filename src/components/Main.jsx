@@ -49,15 +49,15 @@ const Main = () => {
         {/* <AnimatePresence> */}
             <Switch >
                 {/* Public routes */}
-                <Route path="/login" component={Login} />
-                <Route path="/forgot-password" component={ForgotPassword} />
+                <Route path="/login" render={() => <Login image={background} setImage={setBackground}/>} />
+                <Route path="/forgot-password" render={() => <ForgotPassword image={background} setImage={setBackground} />}/>
                 {/* Private routes */}
-                <Route exact path="/" render={() => privateRoute(Content, {isAdmin:isAdmin()})} />
+                <Route exact path="/" render={() => privateRoute(Content, {isAdmin:isAdmin(), image:background, setImage:setBackground})} />
                 <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail)} />
                 {/* Admin routes */}
-                <Route exact path="/admin" render={() => adminRoute(Content)} />
+                <Route exact path="/admin" render={() => adminRoute(Content, {image:background, setImage:setBackground})} />
                 <Route path="/create-article" render={() => adminRoute(CreateArticle)} />
-                <Route path="/create-member" render={() => adminRoute(CreateMember)} />
+                <Route path="/create-member" render={() => adminRoute(CreateMember, {background:background, setBackground:setBackground})} />
                 <Route path="/update-quotation" render={() => adminRoute(UpdateQuotation)} />
                 <Route path="/update-background" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
                 <Route path="/create-benefit" render={() => adminRoute(CreateBenefit, {collection:"Benefits"})} /> 
