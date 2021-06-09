@@ -80,7 +80,7 @@ const Navbar = ({admin}) => {
             )}   
           </div>
           <div>
-            <button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded" id="login" type="submit">
+            <button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded mr-4" id="logout" type="submit">
               <span>Déconnection</span>
             </button>
           </div>

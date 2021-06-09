@@ -9,7 +9,8 @@ const NewsArticle = (article) => {
   return (
     <motion.article className={`flex-none w-full md:w-72 h-full mb-4 mr-4 border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}>
+      animate={{ opacity: 1 }}
+      whileHover={{scale:1.01}}>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
         state: {articles: article}
@@ -32,6 +33,9 @@ const NewsArticle = (article) => {
             </h3>
             <div className="text-justify text-gray-600 mb-2">
               {article.subTitle}
+            </div>
+            <div className="overflow-clip text-justify text-gray-600 mb-2">
+              {article.text}
             </div>
           </div>
           

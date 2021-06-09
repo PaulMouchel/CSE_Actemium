@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom'
 import { faUserCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Background from '../components/Background.jsx'
-
-const ForgotPassword = ({image, setImage}) => {
+const ForgotPassword = () => {
     const emailRef = useRef()
     const { resetPassword } = useAuth()
     const [error, setError] = useState("")
@@ -32,7 +30,7 @@ const ForgotPassword = ({image, setImage}) => {
     }
 
     return (
-        <Background image={image} setImage={setImage}>
+        <div className="w-screen h-screen flex justify-center items-center">
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
                     <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
@@ -51,9 +49,8 @@ const ForgotPassword = ({image, setImage}) => {
                     <Link to="/login">Se connecter</Link>
                 </div>
             </div>
-        </Background>
+        </div>
     )
-    
 }
 
 export default ForgotPassword;

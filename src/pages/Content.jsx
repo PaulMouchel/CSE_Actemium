@@ -5,7 +5,7 @@ import Home from '../components/Home.jsx'
 import Navbar from '../components/Navbar.jsx';
 import TinySidebar from '../components/TinySidebar.jsx';
 import AdminSideBar from '../components/AdminSideBar.jsx'
-import SwitchToAdmin from '../components/SwithToAdmin.jsx'
+import ToggleAdmin from '../components/ToggleAdmin.jsx'
 import News from '../components/News.jsx'
 import Benefits from '../components/Benefits.jsx'
 import Cssct from '../components/Cssct.jsx'
@@ -27,7 +27,7 @@ const containerVariant = {
   }
 }
 
-const Content = ({admin, isAdmin, image, setImage}) => {
+const Content = ({admin, setAdmin, isAdmin}) => {
 
   const {
     // scrolling,
@@ -56,12 +56,12 @@ const Content = ({admin, isAdmin, image, setImage}) => {
         exit="exit">
         
         <Navbar admin={isAdmin}/>
-        <Home image={image} setImage={setImage}/>
+        <Home />
         <AnimatePresence>
           { position.y>100 && <TinySidebar/>}
         </AnimatePresence>
         { isAdmin &&
-          <SwitchToAdmin admin={admin}/>
+          <ToggleAdmin admin={admin} setAdmin={setAdmin}/>
         }
         <AnimatePresence>
           { admin && <AdminSideBar />}

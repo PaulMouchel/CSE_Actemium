@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavHashLink } from 'react-router-hash-link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const buttonsVariant = {
     hidden: {
@@ -17,14 +17,17 @@ const buttonsVariant = {
 
 const textVariant = {
     hidden: {
-        opacity:0
+        opacity:0,
+        x:-50
     },
     visible: {
-        opacity:100,
-        transition: {duration: 3}
+        opacity:1,
+        x:0,
+        transition: {duration: 0.3}
     },
     exit: {
         opacity:0,
+        x:-50
     }
 }
 
@@ -54,11 +57,13 @@ const SideButton = (item) => {
                     <FontAwesomeIcon icon={item.icon} className="box-content p-1.5 m-0"/>
                 </NavHashLink>
             </div>
+            <AnimatePresence>
             { isHovering &&
             <motion.div className="ml-2 h-8 inline-flex justify-center items-center hide py-1 px-2 text-gray-900 bg-gray-50 bg-opacity-50 font-bold rounded-md"
                 variants={textVariant}>     
                 {item.text}
             </motion.div>}
+            </AnimatePresence>
         </motion.li>   
     );
 }

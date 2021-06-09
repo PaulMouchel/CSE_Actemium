@@ -41,7 +41,7 @@ const UpdateBackground = ({image, setImage}) => {
             await collectionRef.add({ imageUrl, createdAt });
         }
         setLoading(false)
-        history.push('/admin')
+        history.push('/')
      }
     
      const UploadImage = () => {
@@ -82,7 +82,7 @@ const UpdateBackground = ({image, setImage}) => {
 
             <div className="p-4 bg-white bg-opacity-20 rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3 pb-10">
-                <Link to="/admin" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
+                <Link to="/" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
                 </div>

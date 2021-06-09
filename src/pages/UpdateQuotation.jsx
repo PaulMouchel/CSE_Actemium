@@ -7,8 +7,6 @@ import { projectFirestore, timestamp } from '../firebase/config';
 import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Background from '../components/Background.jsx'
-
 const UpdateQuotation = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -17,7 +15,6 @@ const UpdateQuotation = () => {
 
     const textRef = useRef();
     const authorRef = useRef();
-
 
     const uploadToDatabase = async (author, text) => {
         const collectionRef = projectFirestore.collection('Quotation');
@@ -28,7 +25,7 @@ const UpdateQuotation = () => {
             await collectionRef.add({ text, author, createdAt });
         }
         setLoading(false)
-        history.push('/admin')
+        history.push('/')
      }
     
     const handleSubmit = (e) => {
@@ -44,17 +41,14 @@ const UpdateQuotation = () => {
     }
 
     return (
-        <Background>
-        {/* <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-t from-yellow-200 to-yellow-500 bg-beach"> */}
+        <div className="w-screen h-screen flex justify-center items-center">
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3">
-                <Link to="/admin" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
+                <Link to="/" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
                 </div>
                 <form className="p-10 pt-0 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
-
-                    
                     <p className="mb-5 text-3xl  text-gray-600">Phrase du jour</p>
                     <textarea 
                         type="text" 
@@ -80,8 +74,7 @@ const UpdateQuotation = () => {
                     }
                 </form>
             </div>
-        {/* </div> */}
-        </Background>
+        </div>
     )
 }
 
