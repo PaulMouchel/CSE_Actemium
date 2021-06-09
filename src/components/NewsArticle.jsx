@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 const NewsArticle = (article) => {
 
   return (
-    <motion.article className="border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1"
+    <motion.article className={`flex-none w-full md:w-72 h-full mb-4 mr-4 border-2 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}>
       <Link to={{

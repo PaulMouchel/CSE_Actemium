@@ -32,3 +32,18 @@ html {
     transform: rotate(45deg) translate(-8px, -7px) ;
 }
 
+::-webkit-scrollbar-track {
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3d4852;
+  border-radius: 3px;
+}
+
+
