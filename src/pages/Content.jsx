@@ -55,7 +55,7 @@ const Content = ({admin, isAdmin}) => {
         animate="visible"
         exit="exit">
         
-        <Navbar/>
+        <Navbar admin={isAdmin}/>
         <Home/>
         <AnimatePresence>
           { position.y>100 && <TinySidebar/>}
