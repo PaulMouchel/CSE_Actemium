@@ -11,29 +11,28 @@ import UploadImageForm from '../components/UploadImageForm.jsx';
 
 const UpdateBackground = ({image, setImage}) => {
     const [loading, setLoading] = useState(false)
+    const [selectedImage, setSelectedImage] = useState()
     const history = useHistory()
 
     const { docs } = useFirestore('Background');
 
-    // const [image, setImage] = useState(null);
-
     const setBackground = (images) => {
         if (images[0]) {
-          setImage(images[0])
+            setSelectedImage(images[0])
         }
     }
 
     const changeImageField = (parameter, value) => {
-        const newImage = image;
+        const newImage = selectedImage;
         newImage[parameter] = value;
-        setImage(newImage);
+        setSelectedImage(newImage);
      };
 
     const uploadToDatabase = async () => {
         
         const collectionRef = projectFirestore.collection('Background');
         const createdAt = timestamp();
-        const imageUrl = image.downloadURL
+        const imageUrl = selectedImage.downloadURL
         
         if (docs[0]) {
             await collectionRef.doc(docs[0].id).update({ imageUrl, createdAt })
@@ -41,12 +40,13 @@ const UpdateBackground = ({image, setImage}) => {
             await collectionRef.add({ imageUrl, createdAt });
         }
         setLoading(false)
+        setImage(imageUrl)
         history.push('/')
      }
     
      const UploadImage = () => {
-        changeImageField("storageRef", projectStorage.ref().child("Background/" + image.fileName));
-        const uploadTask = image.storageRef.put(image.file);
+        changeImageField("storageRef", projectStorage.ref().child("Background/" + selectedImage.fileName));
+        const uploadTask = selectedImage.storageRef.put(selectedImage.file);
         uploadTask.on(
             "state_changed",
             null,
@@ -65,33 +65,21 @@ const UpdateBackground = ({image, setImage}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if (image) {
+        if (selectedImage) {
             setLoading(true)
             UploadImage()
         }
     }
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center bg-gray-50 bg-cover bg-center"
-       
-        style={image ? 
-                {backgroundImage: `url(${image.url})`}
-                : 
-                (docs[0] && {backgroundImage: `url(${docs[0].imageUrl})`})
-        }>
-
+        <div className="w-screen h-screen flex justify-center items-center bg-cover bg-center"
+            style={selectedImage ? {backgroundImage: `url(${selectedImage.url})`} : {}}>
             <div className="p-4 bg-white bg-opacity-20 rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3 pb-10">
-                <Link to="/" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </Link>
+                    <Link to="/" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </Link>
                 </div>
-                
-
-                
-
-                    
-                   
                     <UploadImageForm file={image} setFile={setBackground}/>
                     { !loading ?
                         <button 

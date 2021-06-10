@@ -4,14 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 
-import Title from '../components/Title';
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
 
-import SimpleBackground from '../components/SimpleBackground.jsx'
-
-const CreateArticle = ({background, setBackground}) => {
+const CreateArticle = () => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [title, setTitle] = useState(""); 
   const [subTitle, setSubTitle] = useState(""); 
@@ -113,7 +110,7 @@ const CreateArticle = ({background, setBackground}) => {
 
   return (
     <>
-      <SimpleBackground image={background} setImage={setBackground} className="w-full md:py-2" >
+      <div className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-6 pb-5 bg-gray-50">
           <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full w-10 h-10 flex items-center justify-center relative top-2 left-2">
               <FontAwesomeIcon icon={faArrowLeft} />
@@ -137,13 +134,15 @@ const CreateArticle = ({background, setBackground}) => {
               <div className="w-full text-gray-600 mb-3">
                 <input type="text" name="subTitle" className="block w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Sous titre" ref={subTitleRef} required/>
               </div>
-              <div className="w-full h-80 text-gray-600 mb-10">
+              <div className="w-full h-80 text-gray-600 mb-6">
                 <textarea type="text" name="text" className="resize-none block h-80 w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
               </div>
               {gallery.length > 0 && <>
-                <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
-                    Galerie
-                </h3>
+                <div className="w-full border-b">
+                  <h3 className="max-w-4xl text-center m-auto pb-3 text-xl text-blue-800 font-bold">
+                      Galerie
+                  </h3>
+                </div>
                 <div className="pt-8">
                   <UploadImageForm file={gallery} setFile={addImageToGallery} multiple={true}/>
                 </div> 
@@ -162,7 +161,7 @@ const CreateArticle = ({background, setBackground}) => {
           }
           </div>
         </article>  
-      </SimpleBackground>
+      </div>
     </>
   );
 }

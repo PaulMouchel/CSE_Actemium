@@ -5,11 +5,10 @@ import { Link, useHistory } from 'react-router-dom'
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
-import Background from '../components/Background.jsx'
 
 import userImage from '../images/user.jpg'
 
-const CreateMember = ({background, setBackGround}) => {
+const CreateMember = () => {
   const [executive, setExecutive] = useState("executive");
   const [holder, setHolder] = useState("holder");
   const [president, setPresident] = useState(false);
@@ -34,7 +33,7 @@ const CreateMember = ({background, setBackGround}) => {
     const imageUrl = image.downloadURL
     await collectionRef.add({ imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, createdAt });
     setLoading(false)
-    history.push('/admin')
+    history.push('/')
  }
 
 const UploadImage = (name) => {
@@ -84,9 +83,9 @@ const UploadImage = (name) => {
   }
 
   return (
-    <Background image={background} setImage={setBackGround}>
+    <div className="w-screen h-screen flex justify-center items-center">
       <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
-        <Link to="/admin" className="self-start transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+        <Link to="/" className="self-start transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
           <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
         <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
@@ -126,7 +125,7 @@ const UploadImage = (name) => {
           }
         </form>
       </div>
-    </Background>
+    </div>
   );
 }
 

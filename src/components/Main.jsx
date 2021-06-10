@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { BrowserRouter as Switch, Route, Redirect } from  "react-router-dom";
+import { BrowserRouter as Switch, Route, Redirect, useLocation } from  "react-router-dom";
 // import { AnimatePresence } from 'framer-motion'
 
 import Content from '../pages/Content.jsx'
@@ -15,8 +15,6 @@ import CreateMember from '../pages/CreateMember.jsx'
 import { init } from 'emailjs-com';
 import useFirestore from '../hooks/useFirestore';
 import { useAuth } from '../contexts/AuthContext'
-
-import SimpleBackground from './SimpleBackground.jsx'
 
 import Background from './Background.jsx'
 
@@ -50,27 +48,24 @@ const Main = () => {
 
   return (
     <>
-       <SimpleBackground image={background} setImage={setBackground} >
-        {/* <AnimatePresence> */}
+       <Background image={background} setImage={setBackground} >
             <Switch >
-                
                 {/* Public routes */}
-                <Route path="/login" render={() => <Login image={background} setImage={setBackground} />} />
-                <Route path="/forgot-password" render={() => <ForgotPassword image={background} setImage={setBackground} />} />
+                <Route path="/login" component={Login}/>
+                <Route path="/forgot-password" component={ForgotPassword}/>
                 {/* Private routes */}
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin()})} />
                 <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:false})} />
                 {/* Admin routes */}
-                <Route path="/create-article" render={() => adminRoute(CreateArticle, {background:background, setBackground:setBackground})} />
-                <Route path="/create-member" render={() => adminRoute(CreateMember, {background:background, setBackground:setBackground})} />
+                <Route path="/create-article" render={() => adminRoute(CreateArticle)} />
+                <Route path="/create-member" render={() => adminRoute(CreateMember)} />
                 <Route path="/update-quotation" render={() => adminRoute(UpdateQuotation)} />
                 <Route path="/update-background" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
                 <Route path="/create-benefit" render={() => adminRoute(CreateBenefit, {collection:"Benefits"})} /> 
                 <Route path="/create-cssct" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
                 <Route path="/admin/news-article/:id" render={() => adminRoute(NewsArticleDetail)} />
             </Switch>
-        {/* </AnimatePresence> */}
-        </SimpleBackground>
+        </Background>
   </>
 
 
