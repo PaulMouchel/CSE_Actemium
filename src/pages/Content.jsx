@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 import Home from '../components/Home.jsx'
 import Navbar from '../components/Navbar.jsx';
@@ -14,46 +14,12 @@ import Contact from '../components/Contact.jsx'
 
 import { useScrollData } from "scroll-data-hook";
 
-const containerVariant = {
-  hidden:{
-    x: '-100vh'
-  },
-  visible:{
-    x: 0
-  },
-  exit: {
-    x: '-100vh',
-    transition: {ease: 'easeInOut'}
-  }
-}
-
 const Content = ({admin, setAdmin, isAdmin}) => {
 
-  const {
-    // scrolling,
-    // time,
-    // speed,
-    // direction,
-    position,
-    // relativeDistance,
-    // totalDistance
-  } = useScrollData({
-    onScrollStart: () => {
-      console.log('Started scrolling');
-      console.log("position" + position.y)
-    },
-    onScrollEnd: () => {
-      console.log('Finished scrolling');
-      console.log("position" + position.y)
-    }
-  });
+  const { position } = useScrollData();
 
   return (
-    <div id="home"
-        variants={containerVariant}
-        initial="hidden"
-        animate="visible"
-        exit="exit">
+    <div id="home">
         
         <Navbar admin={isAdmin}/>
         <Home />

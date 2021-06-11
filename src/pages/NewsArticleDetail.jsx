@@ -22,11 +22,11 @@ const NewsArticleDetail = ({admin}) => {
     }
 
   return (
-      
-    <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5">
+    <div className="w-full md:py-2" >
+    <article className="group max-w-6xl m-auto lg:border-2 lg:my-10 lg:pb-5 bg-gray-50">
         <div className="flex justify-between">
         
-        <Link to={!admin ? "/" : "/admin"} className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+        <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
             <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
         {admin && 
@@ -67,7 +67,8 @@ const NewsArticleDetail = ({admin}) => {
         { selectedImg && (
             <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
         )}
-    </article>     
+    </article>  
+    </div>   
   );
 }
 

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import { BrowserRouter as Switch, Route, Redirect, useLocation } from  "react-router-dom";
-// import { AnimatePresence } from 'framer-motion'
+import { BrowserRouter as Switch, Route, Redirect } from  "react-router-dom";
 
 import Content from '../pages/Content.jsx'
 

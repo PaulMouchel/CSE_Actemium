@@ -20,8 +20,6 @@ const UploadImageForm = ({file, setFile, multiple}) => {
       selected = files[0]
       // Si au moins un fichier image a été sélectionné
       if (selected) {
-        // setFile(files.map(file => URL.createObjectURL(file)));
-
         const newFiles = Array.from(files).map((file) => {
           return {
              file: file,
@@ -45,7 +43,7 @@ const UploadImageForm = ({file, setFile, multiple}) => {
   };
 
   return (
-    <form className="mb-10 text-center">
+    <div className="mb-10 text-center">
       <label className="block w-10 h-10 m-auto text-xl bg-red-200 hover:bg-white rounded-full font-bold text-white hover:text-red-200 border-2 border-red-200">
         <input className="w-0 h-0" type="file" accept="image/png, image/jpeg" multiple={multiple} onChange={handleChange} />
           <FontAwesomeIcon className="w-full h-full text-xl" icon={faPlus} />
@@ -53,7 +51,7 @@ const UploadImageForm = ({file, setFile, multiple}) => {
       <div className="output">
         { error && <div className="text-red-500">{ error }</div>}
       </div>
-    </form>
+    </div>
   );
 }
 

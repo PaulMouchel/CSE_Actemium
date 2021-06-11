@@ -11,9 +11,9 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
   
-    function signup(email, password) {
-        return projectAuth.createUserWithEmailAndPassword(email, password)
-    }
+    // function signup(email, password) {
+    //     return projectAuth.createUserWithEmailAndPassword(email, password)
+    // }
 
     function login(email, password) {
         return projectAuth.signInWithEmailAndPassword(email, password)
@@ -27,20 +27,20 @@ export function AuthProvider({ children }) {
         return projectAuth.sendPasswordResetEmail(email)
     }
 
-    function updateEmail(email) {
-        return currentUser.updateEmail(email)
-    }
+    // function updateEmail(email) {
+    //     return currentUser.updateEmail(email)
+    // }
 
-    function updatePassword(password) {
-        return currentUser.updatePassword(password)
-    }
+    // function updatePassword(password) {
+    //     return currentUser.updatePassword(password)
+    // }
 
     useEffect(() => {
         const unsuscribe = projectAuth.onAuthStateChanged(user => {
-            setLoading(false)
             setCurrentUser(user);
+            setLoading(false)
         })
-        return unsuscribe;
+        return () => unsuscribe();
     }, [])
 
     
@@ -48,11 +48,11 @@ export function AuthProvider({ children }) {
     const value = {
         currentUser,
         login,
-        signup,
+        // signup,
         logout,
         resetPassword,
-        updateEmail,
-        updatePassword
+        // updateEmail,
+        // updatePassword
       }
 
     return (

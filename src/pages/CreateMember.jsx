@@ -43,7 +43,7 @@ const UploadImage = (name) => {
         "state_changed",
         null,
         function error(err) {
-          console.log("Error Image Upload:", err);
+          setError("Error Image Upload:" + err)
         },
         async function complete() {
           const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
@@ -85,6 +85,7 @@ const UploadImage = (name) => {
   return (
     <div className="w-screen h-screen flex justify-center items-center">
       <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
+        {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
         <Link to="/" className="self-start transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
           <FontAwesomeIcon icon={faArrowLeft} />
         </Link>

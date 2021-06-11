@@ -48,11 +48,6 @@ const Navbar = ({admin}) => {
   const [error, setError] = useState("")
     const { logout } = useAuth()
     const history = useHistory()
-    const [hamburgerMenuVisible, setHamburgerMenuVisible] = useState(false)
-
-    const toggleHamburgerMenu = () => {
-      setHamburgerMenuVisible(!hamburgerMenuVisible);
-    }
 
     async function handleLogout() {
         setError('')

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login } = useAuth()
+    const { login, currentUser } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -35,7 +35,7 @@ const Login = () => {
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
                     <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
-                    <p className="mb-5 text-3xl  text-gray-600">Connexion</p>
+                    <p className="mb-5 text-3xl  text-gray-600">{currentUser && currentUser.email} Connexion</p>
                     {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
                     <input type="email" name="email" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="on" placeholder="Email" ref={emailRef} required/>
                     <input type="password" name="password" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="off" placeholder="Mot de passe" ref={passwordRef} required/>
