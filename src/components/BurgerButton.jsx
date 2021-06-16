@@ -3,19 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavHashLink } from 'react-router-hash-link';
 import { motion } from 'framer-motion';
 
-const itemVariant = {
-    hidden: {
-        y:50,
-        opacity:0
-    },
-    visible: {
-        y:0,
-        opacity:1,
-        transition: {duration: 0.7, delay: 0.3}
-    }
-}
+
 
 const BurgerButton = (item) => {
+
+    const itemVariant = {
+        hidden: {
+            x:-50,
+            opacity:0
+        },
+        visible: {
+            x:0,
+            opacity:1,
+            transition: {duration: 0.3, delay: (0.3 + item.index/15)}
+        }
+    }
 
     return (
         <motion.li

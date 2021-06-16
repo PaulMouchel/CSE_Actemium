@@ -11,7 +11,7 @@ const Quotation = () => {
     return (
         <>
             {docs[0] && docs[0].text !== "" ?
-                <motion.div className="bg-gray-900 bg-opacity-70 max-h-96 mx-10 md:mx-48 lg:mx-64"
+                <motion.div className="bg-gray-900 bg-opacity-70 max-h-96 mx-8 md:mx-48 lg:mx-64"
                     initial={{opacity:0}}
                     animate={{opacity:1}}
                     transition={{delay:0.6}}>
