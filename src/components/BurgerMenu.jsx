@@ -64,15 +64,24 @@ const BurgerMenu = ({admin}) => {
         }
     }
 
+    const handleClick = (e) => {
+        console.log(e.target.classList)
+        if (e.target.classList.contains('menu-closer')) {
+          toggleHamburgerMenu()
+        }
+      }
+
   return (
     <>
         <AnimatePresence>
         { hamburgerMenuVisible && 
-            <motion.div className="z-50 backdrop fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center" 
+            <motion.div className="z-50 fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center" 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            exit={{opacity:0}}
+            onClick={handleClick}
             >    
-            <motion.nav className="p-3 md:hidden fixed h-screen w-screen"
+            <motion.nav className="p-3 menu-closer md:hidden fixed h-screen w-screen"
             initial={{opacity:0}}
             animate={{opacity:1}}
             exit={{opacity:0}}>
