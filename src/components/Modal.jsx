@@ -14,7 +14,7 @@ const Modal = ({ setSelectedImg, selectedImg }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <motion.img src={selectedImg} alt="enlarged pic block"
+      <motion.img src={selectedImg} alt="enlarged pic block"  
         style={{
           maxWidth: "90%", 
           maxHeight: "90%", 

@@ -18,7 +18,7 @@ const NewsArticleDetail = ({admin}) => {
     const handleDelete = () => {
         let id = state.articles.id;
         deleteDocument({docs, id, collection:"News"})
-        history.push('/admin')
+        history.push('/')
     }
 
   return (

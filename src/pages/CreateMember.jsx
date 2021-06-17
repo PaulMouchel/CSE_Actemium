@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { faSpinner, faArrowLeft, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
-import {motion} from 'framer-motion'
+import ActionButton from '../components/ActionButton.jsx'
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
@@ -120,13 +120,7 @@ const UploadImage = (name) => {
           <div className="w-80 flex justify-start items-center mb-4">
             <input type="checkbox" name="president" onChange={onChangePresident} checked={president}></input><span className="pl-1">Président du CSE</span>
           </div>
-          { !loading ?
-              <motion.button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}><span>Créer un membre</span></motion.button>
-              :
-              <button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
-          }
+          <ActionButton loading={loading} className="w-80" type="submit">Créer un membre</ActionButton>
         </form>
       </div>
     </div>

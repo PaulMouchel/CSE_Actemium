@@ -3,10 +3,11 @@ import React, { useRef, useState } from "react"
 import { Link, useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, timestamp } from '../firebase/config';
-import { motion } from 'framer-motion'
 
-import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import ActionButton from '../components/ActionButton.jsx'
 
 const UpdateQuotation = () => {
     const [loading, setLoading] = useState(false)
@@ -54,7 +55,7 @@ const UpdateQuotation = () => {
                     <textarea 
                         type="text" 
                         name="quotationText" 
-                        className="italic resize-none mb-5 p-3 w-full h-64 focus:border-green-400 rounded border-2 outline-none" 
+                        className="italic resize-none mb-5 p-3 w-full h-64 focus:border-secondary rounded border-2 outline-none" 
                         autoComplete="off" 
                         placeholder="Phrase du jour" 
                         ref={textRef} 
@@ -63,18 +64,12 @@ const UpdateQuotation = () => {
                     <input 
                         type="text" 
                         name="quotationAuthor"
-                        className="italic resize-none  mb-5 p-3 w-full focus:border-green-400 rounded border-2 outline-none" 
+                        className="italic resize-none  mb-5 p-3 w-full focus:border-secondary rounded border-2 outline-none" 
                         autoComplete="off" 
                         placeholder="Auteur" 
                         ref={authorRef} 
                         defaultValue={docs[0] ? docs[0].author : ""} />
-                    { !loading ?
-                        <motion.button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}><span>Mettre à jour</span></motion.button>
-                        :
-                        <button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
-                    }
+                    <ActionButton loading={loading} className="w-80" id="login" type="submit">Mettre à jour</ActionButton>
                 </form>
             </div>
         </div>

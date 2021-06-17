@@ -1,7 +1,6 @@
 import React from 'react';
 import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import BurgerAdminButton from './BurgerAdminButton.jsx'
-import { AnimatePresence } from 'framer-motion'
 
 const BurgerAdmin = () => {
     const sidebarData = [

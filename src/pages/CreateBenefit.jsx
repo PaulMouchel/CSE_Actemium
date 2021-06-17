@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { faSpinner, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
-import { motion } from 'framer-motion'
+import ActionButton from '../components/ActionButton.jsx'
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
@@ -88,21 +88,15 @@ const UploadImage = (title, text) => {
             </div> 
             <div className="p-4 pt-0">
               <h3 className="w-full my-3 text-xl text-blue-800 font-bold">
-                <input type="text" name="title" className="block w-full border-2 focus:border-primary p-2 outline-none" autoComplete="off" placeholder="Titre" ref={titleRef} required/>
+                <input type="text" name="title" className="block w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Titre" ref={titleRef} required/>
               </h3>
               <div className="w-full h-60 text-gray-600">
-                <textarea type="text" name="text" className="resize-none block h-full w-full border-2 focus:border-primary p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
+                <textarea type="text" name="text" className="resize-none block h-full w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
               </div>
             </div>
           </div>
           <div className="w-full flex justify-end px-4 mt-1">
-            { !loading ?
-              <motion.button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit" onClick={handleSubmit}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}><span>Publier</span></motion.button>
-              :
-              <button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
-            }
+            <ActionButton loading={loading} className="w-80" type="submit" onClick={handleSubmit}>Publier</ActionButton>
           </div>
         </article>
       </div>     

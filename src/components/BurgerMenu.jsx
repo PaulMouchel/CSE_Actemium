@@ -45,7 +45,7 @@ import BurgerToggleAdmin from './BurgerToggleAdmin.jsx'
 
 const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
 
-  const [error, setError] = useState("")
+    const [error, setError] = useState("")
     const { logout } = useAuth()
     const history = useHistory()
     const [hamburgerMenuVisible, setHamburgerMenuVisible] = useState(false)
@@ -119,7 +119,8 @@ const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
                 </motion.nav>
             </motion.div>}
         </AnimatePresence>
-        <div className={`md:hidden z-50 top-3 left-3 fixed w-12 h-12 rounded-lg p-1 flex flex-col justify-between px-2 py-3 ${hamburgerMenuVisible && "change"}`} onClick={toggleHamburgerMenu}>
+        <div className={`md:hidden z-50 top-3 left-3 fixed bg-gray-50 bg-opacity-50 w-12 h-12 rounded-lg p-1 flex flex-col justify-between px-2 py-3 ${hamburgerMenuVisible && "change"}`} 
+        onClick={toggleHamburgerMenu}>
             <div className={`h-0.5 transform bg-gray-500 bar1`}></div>
             <div className={`h-0.5 bg-gray-500 bar2`}></div>
             <div className={`h-0.5 transform bg-gray-500 bar3`}></div>
