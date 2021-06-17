@@ -12,7 +12,7 @@ const Benefit = ({title, text, imageUrl, even, admin, id, last, textColor}) => {
   }
 
   return (
-    <div className={`py-4 md:flex justify-between md:flex-row${!even && "-reverse"} border-gray-500 ${!last && "border-b"}`}>
+    <div className={`py-4 md:flex justify-between flex-row${!even ? "-reverse" : ""} border-gray-500 ${!last && "border-b"}`}>
       <div className="md:w-1/2 md:px-20 text-center flex flex-col justify-center pb-4 md:pb-0">
         <p className={`text-${textColor} text-2xl font-bold pb-2`}>{title}</p>
         <p className={`text-${textColor} text-xl`}>{text}</p>
