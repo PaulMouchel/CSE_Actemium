@@ -21,7 +21,7 @@ const TeamMember = ({imageUrl, fullName, role, holder, executive, president, las
                     <MemberDescription even={even} fullName={fullName} role={role} holder={holder} executive={executive} president={president} />
                 </div>
                 <div className="w-40 md:w-56 flex items-center justify-center mx-4">
-                    <div className="h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-8" style={{backgroundImage: `url(${imageUrl})`}}>
+                    <div className="h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-4 md:border-8" style={{backgroundImage: `url(${imageUrl})`}}>
                         <DeleteButton admin={admin} onClick={handleDelete}/>
                     </div>
                 </div>
