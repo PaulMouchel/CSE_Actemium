@@ -7,6 +7,13 @@
 html {
   overflow-x: hidden; /* Hide horizontal scrollbar */
   font-family: 'Montserrat', sans-serif;
+  font-size: 75%;
+}
+
+@media (min-width: 768px) {
+  html{
+    font-size: 100%;
+  }
 }
   
 .bar1, .bar2, .bar3 
