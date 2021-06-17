@@ -32,7 +32,7 @@ const Content = ({admin, setAdmin, isAdmin}) => {
         <AnimatePresence>
           { admin && <AdminSideBar />}
         </AnimatePresence>
-        <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
+        <div className="bg-gray-50 px-6 md:px-28 lg:px-48">
           <News admin={admin} textColor="gray-800"/>
         </div>
         <div className="bg-gray-200 px-4 md:px-28 lg:px-48">
