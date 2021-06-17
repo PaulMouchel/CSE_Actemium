@@ -102,7 +102,7 @@ const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
                         <motion.button 
                         variant="link" 
                         onClick={handleLogout} 
-                        className="fixed top-5 right-5 w-30 md:w-40 xl:w-48 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded" 
+                        className="fixed top-5 right-5 w-30 md:w-40 xl:w-48 flex-1 bg-secondary text-white font-bold p-2 rounded" 
                         id="login" 
                         type="submit"
                         initial={{opacity:0}}
@@ -110,10 +110,11 @@ const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
                         transition={{delay:0.7}}>
                             <span>Déconnection</span>
                         </motion.button>
-                        
+                        <AnimatePresence>
                         { admin && hamburgerMenuVisible &&
                             <BurgerAdmin/>
                         }
+                        </AnimatePresence>
                     </motion.div> 
                 </motion.nav>
             </motion.div>}

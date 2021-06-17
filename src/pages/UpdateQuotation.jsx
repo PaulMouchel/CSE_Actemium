@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react"
 import { Link, useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, timestamp } from '../firebase/config';
+import { motion } from 'framer-motion'
 
 import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,12 +45,12 @@ const UpdateQuotation = () => {
         <div className="w-screen h-screen flex justify-center items-center">
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3">
-                <Link to="/" className="transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center">
+                <Link to="/" className="transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full block w-10 h-10 flex items-center justify-center">
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
                 </div>
                 <form className="p-10 pt-0 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
-                    <p className="mb-5 text-3xl  text-gray-600">Phrase du jour</p>
+                    <p className="mb-5 text-3xl text-gray-600">Phrase du moment</p>
                     <textarea 
                         type="text" 
                         name="quotationText" 
@@ -68,9 +69,11 @@ const UpdateQuotation = () => {
                         ref={authorRef} 
                         defaultValue={docs[0] ? docs[0].author : ""} />
                     { !loading ?
-                        <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><span>Mettre à jour</span></button>
+                        <motion.button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}><span>Mettre à jour</span></motion.button>
                         :
-                        <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
+                        <button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
                     }
                 </form>
             </div>

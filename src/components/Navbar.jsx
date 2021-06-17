@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
-
+import { motion } from 'framer-motion'
 import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import logo from '../images/full_logo2.png'
@@ -75,9 +75,11 @@ const Navbar = ({isAdmin, admin, setAdmin}) => {
             )}   
           </div>
           <div>
-            <button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded mr-4" id="logout" type="submit">
+            <motion.button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 bg-secondary text-white font-bold p-2 rounded mr-4" id="logout" type="submit"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}>
               <span>Déconnection</span>
-            </button>
+            </motion.button>
           </div>
         </ul>
       </div>

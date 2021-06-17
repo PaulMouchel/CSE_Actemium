@@ -39,7 +39,7 @@ const NavButton = (item) => {
                 <span>{item.text}</span>
             </NavHashLink> 
             { isHovering &&
-            <motion.div className="h-1 w-full border-b-2 border-green-500 "
+            <motion.div className="h-1 w-full border-b-2 border-secondary "
                 variants={underlineVariant}
                 initial="hidden"
                 animate="visible"

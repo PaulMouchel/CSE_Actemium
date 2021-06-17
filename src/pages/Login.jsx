@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from 'react-router-dom'
+import {motion} from 'framer-motion'
 
 import { faUserCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,12 +38,14 @@ const Login = () => {
                     <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
                     <p className="mb-5 text-3xl  text-gray-600">{currentUser && currentUser.email} Connexion</p>
                     {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
-                    <input type="email" name="email" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="on" placeholder="Email" ref={emailRef} required/>
-                    <input type="password" name="password" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="off" placeholder="Mot de passe" ref={passwordRef} required/>
+                    <input type="email" name="email" className="mb-5 p-3 w-80 focus:border-primary rounded border-2 outline-none" autoComplete="on" placeholder="Email" ref={emailRef} required/>
+                    <input type="password" name="password" className="mb-5 p-3 w-80 focus:border-primary rounded border-2 outline-none" autoComplete="off" placeholder="Mot de passe" ref={passwordRef} required/>
                     { !loading ?
-                        <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><span>Se connecter</span></button>
+                        <motion.button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}><span>Se connecter</span></motion.button>
                         :
-                        <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
+                        <button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
                     }
                 </form>
                 <div className="text-gray-600 mt-1 mb-2 hover:text-gray-800 hover:underline">

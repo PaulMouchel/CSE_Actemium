@@ -27,10 +27,10 @@ const doScrollRight = () =>
 }
 
   return (
-      <div className="min-h-screen">
+      <div className="min-h-screen flex flex-col justify-between">
         <Title id="news" textColor={textColor}>Actualités</Title>
         <div className="relative flex flex-row">
-          <div className="mt-10 mb-10 w-full flex flex-row flex-nowrap overflow-y-hidden overflow-x-scroll jusify-start items-center" 
+          <div className="my-10 w-full flex flex-row flex-nowrap overflow-y-hidden overflow-x-scroll jusify-start items-center" 
           id="news-carousel"
           style={{scrollBehavior: "smooth"}}>
             {docs && docs.map((article, index) =>
@@ -50,6 +50,7 @@ const doScrollRight = () =>
             </div>
           </div>
         </div>
+        <Title />
       </div>
   );
 }

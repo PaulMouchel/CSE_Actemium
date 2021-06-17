@@ -3,6 +3,7 @@ import { faSpinner, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
+import {motion} from 'framer-motion'
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import ImageGrid from '../components/ImageGrid.jsx';
@@ -111,8 +112,8 @@ const CreateArticle = () => {
   return (
     <>
       <div className="w-full md:py-2" >
-        <article className="group max-w-6xl m-auto lg:border-2 lg:my-6 pb-5 bg-gray-50">
-          <Link to="/" className=" transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full w-10 h-10 flex items-center justify-center relative top-2 left-2">
+        <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 pb-5 bg-gray-50">
+          <Link to="/" className=" transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full w-10 h-10 flex items-center justify-center relative top-2 left-2">
               <FontAwesomeIcon icon={faArrowLeft} />
           </Link>
           <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer un nouvel article</p>
@@ -129,13 +130,13 @@ const CreateArticle = () => {
             </div> 
             <div className="px-4">
               <h3 className="w-full relative my-3 text-xl text-blue-800 font-bold">
-                <input type="text" name="title" className="block w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Titre" ref={titleRef} required/>
+                <input type="text" name="title" className="block w-full border-2 focus:border-primary p-2 outline-none" autoComplete="off" placeholder="Titre" ref={titleRef} required/>
               </h3>
               <div className="w-full text-gray-600 mb-3">
-                <input type="text" name="subTitle" className="block w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Sous titre" ref={subTitleRef} required/>
+                <input type="text" name="subTitle" className="block w-full border-2 focus:border-primary p-2 outline-none" autoComplete="off" placeholder="Sous titre" ref={subTitleRef} required/>
               </div>
-              <div className="w-full h-80 text-gray-600 mb-6">
-                <textarea type="text" name="text" className="resize-none block h-80 w-full border-2 focus:border-green-400 p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
+              <div className="w-full h-60 text-gray-600 mb-2">
+                <textarea type="text" name="text" className="resize-none block h-full w-full border-2 focus:border-primary p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
               </div>
               {gallery.length > 0 && <>
                 <div className="w-full border-b">
@@ -153,11 +154,13 @@ const CreateArticle = () => {
           { selectedImg && (
               <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
           )}
-          <div className="w-full flex justify-end px-4 md:px-16 mt-4">
+          <div className="w-full flex justify-end px-4 mt-4">
           { !loading ?
-            <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-full md:w-80" id="login" type="submit" onClick={handleSubmit}><span>Publier</span></button>
+            <motion.button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-full md:w-80" id="login" type="submit" onClick={handleSubmit}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}><span>Publier</span></motion.button>
             :
-            <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-full md:w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
+            <button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-full md:w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
           }
           </div>
         </article>  

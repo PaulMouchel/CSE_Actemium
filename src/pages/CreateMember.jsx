@@ -3,6 +3,7 @@ import { faSpinner, faArrowLeft, faUserCircle } from "@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
+import {motion} from 'framer-motion'
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
@@ -86,7 +87,7 @@ const UploadImage = (name) => {
     <div className="w-screen h-screen flex justify-center items-center">
       <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
         {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
-        <Link to="/" className="self-start transform duration-300 ease-in-out bg-green-500 hover:bg-white text-white hover:text-green-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
+        <Link to="/" className="self-start transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
           <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
         <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
@@ -120,9 +121,11 @@ const UploadImage = (name) => {
             <input type="checkbox" name="president" onChange={onChangePresident} checked={president}></input><span className="pl-1">Président du CSE</span>
           </div>
           { !loading ?
-              <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><span>Créer un membre</span></button>
+              <motion.button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}><span>Créer un membre</span></motion.button>
               :
-              <button disabled={loading} className="transition duration-500 ease-in-out bg-green-400 hover:bg-green-500 text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
+              <button disabled={loading} className="bg-primary text-white font-bold p-2 rounded w-80" id="login" type="submit"><FontAwesomeIcon className="animate-spin" icon={faSpinner}/></button>
           }
         </form>
       </div>
