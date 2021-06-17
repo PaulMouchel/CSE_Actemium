@@ -44,9 +44,9 @@ const UploadImageForm = ({file, setFile, multiple}) => {
 
   return (
     <div className="mb-10 text-center">
-      <label className="block w-10 h-10 m-auto text-xl bg-red-200 hover:bg-white rounded-full font-bold text-white hover:text-red-200 border-2 border-red-200">
+      <label className="transform duration-300 ease-in-out block w-10 h-10 m-auto bg-gray-700 hover:bg-white rounded-full text-white hover:text-gray-700">
         <input className="w-0 h-0" type="file" accept="image/png, image/jpeg" multiple={multiple} onChange={handleChange} />
-          <FontAwesomeIcon className="w-full h-full text-xl" icon={faPlus} />
+        <FontAwesomeIcon className="w-full h-full" icon={faPlus} />
       </label>
       <div className="output">
         { error && <div className="text-red-500">{ error }</div>}
