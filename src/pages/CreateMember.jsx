@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { faArrowLeft, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useHistory } from 'react-router-dom' 
+import { useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
+import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
@@ -87,9 +88,7 @@ const UploadImage = (name) => {
     <div className="w-screen h-screen flex justify-center items-center">
       <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
         {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
-        <Link to="/" className="self-start transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
-          <FontAwesomeIcon icon={faArrowLeft} />
-        </Link>
+        <PreviousButton to="/" className="self-start relative top-2 left-2"/>
         <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
           <p className="relative bottom-6 mb-5 text-3xl text-gray-600">Ajouter un membre du CSE</p>
           {!true && <FontAwesomeIcon icon={faUserCircle} className="rounded-full border-8 text-gray-600 mb-2 text-9xl"/>}
@@ -98,8 +97,8 @@ const UploadImage = (name) => {
           </div>
           <UploadImageForm file={image} setFile={setMemberImage}/>
           {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
-          <input type="text" name="fullName" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="off" placeholder="Prénom et Nom" ref={nameRef} required/>
-          <input type="text" name="role" className="mb-5 p-3 w-80 focus:border-green-400 rounded border-2 outline-none" autoComplete="off" placeholder="Fonction" ref={roleRef}/>
+          <input type="text" name="fullName" className="mb-5 p-3 w-80 focus:border-secondary rounded border-2 outline-none" autoComplete="off" placeholder="Prénom et Nom" ref={nameRef} required/>
+          <input type="text" name="role" className="mb-5 p-3 w-80 focus:border-secondary rounded border-2 outline-none" autoComplete="off" placeholder="Fonction" ref={roleRef}/>
           <div className="w-80 flex justify-between mb-4">
             <div>
               <input onChange={onChangeExecutive} type="radio" id="executive" name="executive" checked={executive==="executive"} value="executive"></input>

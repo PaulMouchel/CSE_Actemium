@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useHistory } from 'react-router-dom' 
+import { useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
+import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
@@ -69,9 +68,7 @@ const UploadImage = (title, text) => {
     <>
       <div className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-6 pb-5 bg-gray-50">
-          <Link to="/" className=" transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
-              <FontAwesomeIcon icon={faArrowLeft} />
-          </Link>
+          <PreviousButton to="/" className="relative top-2 left-2"/>
           <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer {collection === "Benefits" ? "un nouvel avantage" : "une nouvelle mission CSSCT" }</p>
           <div className="flex flex-col justify-between h-full -mt-10">
             <div className="pt-8">

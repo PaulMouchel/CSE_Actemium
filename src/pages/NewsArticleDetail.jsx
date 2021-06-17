@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { faClock, faArrowLeft, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useLocation, useHistory } from 'react-router-dom' 
+import { useLocation, useHistory } from 'react-router-dom' 
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument'
 
 import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
-
+import PreviousButton from '../components/PreviousButton.jsx'
 
 const NewsArticleDetail = ({admin}) => {
     const { state } = useLocation();
@@ -25,10 +25,7 @@ const NewsArticleDetail = ({admin}) => {
     <div className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 lg:pb-5 bg-gray-50">
             <div className="flex justify-between">
-            
-            <Link to="/" className=" transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full block w-10 h-10 flex items-center justify-center relative top-2 left-2">
-                <FontAwesomeIcon icon={faArrowLeft} />
-            </Link>
+            <PreviousButton to="/#news" className="relative top-2 left-2"/>
             {admin && 
                 <button className=" transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 right-2"
                 onClick={handleDelete}>

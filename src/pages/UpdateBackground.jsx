@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 
-import { faArrowLeft, faSpinner, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import PreviousButton from '../components/PreviousButton.jsx'
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
 const UpdateBackground = ({image, setImage}) => {
@@ -76,9 +77,7 @@ const UpdateBackground = ({image, setImage}) => {
             style={selectedImage ? {backgroundImage: `url(${selectedImage.url})`} : {}}>
             <div className="p-4 bg-white bg-opacity-20 rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3 pb-10">
-                    <Link to="/" className="transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full block w-10 h-10 flex items-center justify-center">
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                    </Link>
+                    <PreviousButton to="/"/>
                 </div>
                     <UploadImageForm file={image} setFile={setBackground}/>
                     { !loading ?

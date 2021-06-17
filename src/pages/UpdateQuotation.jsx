@@ -1,12 +1,10 @@
 import React, { useRef, useState } from "react"
 
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, timestamp } from '../firebase/config';
 
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 
 const UpdateQuotation = () => {
@@ -46,9 +44,7 @@ const UpdateQuotation = () => {
         <div className="w-screen h-screen flex justify-center items-center">
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3">
-                <Link to="/" className="transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full block w-10 h-10 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </Link>
+                    <PreviousButton to="/"/>
                 </div>
                 <form className="p-10 pt-0 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
                     <p className="mb-5 text-3xl text-gray-600">Phrase du moment</p>

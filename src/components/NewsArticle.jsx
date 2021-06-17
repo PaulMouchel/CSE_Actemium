@@ -8,8 +8,6 @@ const NewsArticle = (article) => {
 
   return (
     <motion.article className={`news-article flex-none w-full md:w-72 h-full mb-4 mr-4 bg-gray-50 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
       whileHover={{scale:1.02}}>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
