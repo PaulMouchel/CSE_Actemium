@@ -15,7 +15,7 @@ const ToggleAdmin = ({admin, setAdmin}) => {
     }
 
     return (
-        <nav className="z-50 fixed right-5 bottom-0 z-50 invisible md:visible">
+        <nav className="z-50 fixed right-5 bottom-0 invisible md:visible">
             <ul className="mx-5 py-3 mb-5 flex flex-col justify-end">
                 {!admin ?
                     <ToggleAdminButton admin={admin} setAdmin={setAdmin} {...toAdmin} />

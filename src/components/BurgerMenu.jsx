@@ -8,6 +8,8 @@ import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } fr
 
 import BurgerButton from './BurgerButton.jsx'
 import BurgerAdmin from './BurgerAdmin.jsx'
+import BurgerToggleAdmin from './BurgerToggleAdmin.jsx'
+import AdminSideBar from './AdminSideBar.jsx'
 
   const navbarData = [
     {
@@ -42,7 +44,7 @@ import BurgerAdmin from './BurgerAdmin.jsx'
     }
   ]
 
-const BurgerMenu = ({admin}) => {
+const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
 
   const [error, setError] = useState("")
     const { logout } = useAuth()
@@ -89,11 +91,14 @@ const BurgerMenu = ({admin}) => {
                     {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
                     <motion.div layout
                     transition={{ type:"spring", ease: "easeOut", duration: 0.5 }} 
-                    className={`z-50 rounded-b-lg bg-gray-50 w-full ${admin ? "h-3/4" : "h-2/3"}`}>
+                    className={`z-50 rounded-b-lg bg-gray-50 w-full pb-4`}>
                         <motion.ul className="pt-16 flex flex-col justify-between">
                             {navbarData.map((item, index) =>
                                 <BurgerButton key={index} index={index} {...item}/>
                             )}
+                            {isAdmin &&
+                                <BurgerToggleAdmin admin={admin} setAdmin={setAdmin}/>
+                            }
                         </motion.ul>
                         <motion.button 
                         variant="link" 
@@ -106,7 +111,8 @@ const BurgerMenu = ({admin}) => {
                         transition={{delay:0.7}}>
                             <span>Déconnection</span>
                         </motion.button>
-                        { admin && 
+                        
+                        { admin && hamburgerMenuVisible &&
                             <BurgerAdmin/>
                         }
                     </motion.div> 

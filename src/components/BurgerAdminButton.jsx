@@ -5,17 +5,14 @@ import { motion } from 'framer-motion';
 
 const buttonsVariant = {
     hidden: {
-        opacity:0,
-        y:50
+        x:100
     },
     visible: {
-        opacity:1,
-        y:0,
-        transition: {duration: 0.7, delay: 0.3}
+        x:0,
+        transition:{delay:0.2}
     },
     exit : {
-        opacity:0,
-        y:50
+        x:100
     }
 }
 

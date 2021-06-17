@@ -56,7 +56,7 @@ const ToggleAdminButton = ({admin, setAdmin, icon, text}) => {
                 </div>
             </div>
             { isHovering &&
-            <motion.div className="mr-2 h-10 inline-flex justify-center items-center py-1 px-2 text-blue-900 bg-gray-50 font-bold bg-opacity-50 rounded"
+            <motion.div className="mr-2 h-10 hidden md:inline-flex justify-center items-center py-1 px-2 text-blue-900 bg-gray-50 font-bold bg-opacity-50 rounded"
                 variants={textVariant}>     
                 {text}
             </motion.div>}

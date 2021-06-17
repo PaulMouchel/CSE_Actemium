@@ -43,7 +43,7 @@ import BurgerMenu from './BurgerMenu.jsx'
     }
   ]
 
-const Navbar = ({admin}) => {
+const Navbar = ({isAdmin, admin, setAdmin}) => {
 
   const [error, setError] = useState("")
     const { logout } = useAuth()
@@ -81,7 +81,7 @@ const Navbar = ({admin}) => {
           </div>
         </ul>
       </div>
-      <BurgerMenu admin={admin}/>
+      <BurgerMenu isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
     </>
   );
 }

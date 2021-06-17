@@ -37,11 +37,13 @@ const BurgerAdmin = () => {
     ]
 
     return (
-        <ul className="m-5 mb-5 flex justify-between">
-            {sidebarData.map((item, index) =>
-                <BurgerAdminButton {...item} key={index} />  
-            )}
-        </ul>
+        <nav className="fixed h-screen right-0 top-0 z-40">
+            <ul className="m-5 mb-5 h-screen flex flex-col justify-center">
+                {sidebarData.map((item, index) =>
+                    <BurgerAdminButton {...item} key={index} />  
+                )}
+            </ul>
+        </nav>
     );
 }
 

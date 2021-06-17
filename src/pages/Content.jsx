@@ -21,7 +21,7 @@ const Content = ({admin, setAdmin, isAdmin}) => {
   return (
     <div id="home">
         
-        <Navbar admin={isAdmin}/>
+        <Navbar isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
         <Home />
         <AnimatePresence>
           { position.y>100 && <TinySidebar/>}
