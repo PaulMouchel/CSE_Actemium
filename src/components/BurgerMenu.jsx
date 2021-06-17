@@ -9,7 +9,6 @@ import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } fr
 import BurgerButton from './BurgerButton.jsx'
 import BurgerAdmin from './BurgerAdmin.jsx'
 import BurgerToggleAdmin from './BurgerToggleAdmin.jsx'
-import AdminSideBar from './AdminSideBar.jsx'
 
   const navbarData = [
     {

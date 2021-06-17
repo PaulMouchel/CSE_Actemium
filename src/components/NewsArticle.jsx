@@ -34,9 +34,9 @@ const NewsArticle = (article) => {
             <div className="text-justify text-gray-600 mb-2">
               {article.subTitle}
             </div>
-            <div className="overflow-clip text-justify text-gray-600 mb-2">
+            {/* <div className="overflow-clip text-justify text-gray-600 mb-2">
               {article.text}
-            </div>
+            </div> */}
           </div>
           
           <div className="p-4 pt-0 flex justify-between">

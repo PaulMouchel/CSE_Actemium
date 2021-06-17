@@ -40,16 +40,13 @@ const doScrollRight = () =>
           <div className="absolute top-0 -left-5 h-full flex items-center">
             <div className="w-10 h-10 rounded-full bg-gray-200 opacity-70 flex items-center justify-center"
               onClick={doScrollLeft}>
-              <FontAwesomeIcon icon={faArrowLeft} className="text-sm box-content p-1.5 m-0"
-              onClick={doScrollLeft}/>
+              <FontAwesomeIcon icon={faArrowLeft} className="text-sm box-content p-1.5 m-0"/>
             </div>
           </div>
           <div className="absolute top-0 -right-5 h-full flex items-center">
             <div className="w-10 h-10 rounded-full bg-gray-200 opacity-70 flex items-center justify-center"
                onClick={doScrollRight}>
-              <FontAwesomeIcon icon={faArrowRight} className="text-sm box-content p-1.5 m-0"
-              onc
-              Click={doScrollRight}/>
+              <FontAwesomeIcon icon={faArrowRight} className="text-sm box-content p-1.5 m-0"/>
             </div>
           </div>
         </div>
