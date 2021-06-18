@@ -50,7 +50,7 @@ const NewsArticleDetail = ({admin}) => {
                     <div className="max-w-4xl m-auto text-justify text-gray-600 mb-5">
                         {state.articles.subTitle}
                     </div>
-                    <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10">
+                    <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10" style={{whiteSpace: "pre-line"}}>
                         {state.articles.text}
                     </div>
                     {state.articles.galleryUrl && <>

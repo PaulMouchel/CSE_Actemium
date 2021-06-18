@@ -14,9 +14,6 @@ module.exports = {
       black: colors.black,
       red: colors.red
     },
-    fontFamily: {
-      'poppins': ['Arial', 'Raleway', 'Poppins', 'Arial', 'sans-serif'],
-     },
   },
   variants: {
     extend: {
