@@ -27,7 +27,7 @@ const doScrollRight = () =>
 }
 
   return (
-      <div className="min-h-screen flex flex-col justify-between">
+      <div className="min-h-screen relative">
         <Title id="news" textColor={textColor}>Actualités</Title>
         <div className="relative flex flex-row">
           <div className="my-10 w-full flex flex-row flex-nowrap overflow-y-hidden overflow-x-scroll jusify-start items-center" 
@@ -50,7 +50,6 @@ const doScrollRight = () =>
             </div>
           </div>
         </div>
-        <Title />
       </div>
   );
 }

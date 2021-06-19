@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 const NewsArticle = (article) => {
 
   return (
-    <motion.article className={`news-article flex-none w-full md:w-72 h-full mb-4 mr-4 bg-gray-50 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
+    <motion.article className={`news-article flex-none w-4/5 md:w-72 h-full mb-4 mr-4 bg-gray-50 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
       whileHover={{scale:1.02}}>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
@@ -15,7 +15,7 @@ const NewsArticle = (article) => {
         }}>
         <div className="flex flex-col justify-between h-full">
           <div>
-            {article.galleryUrl && <div className="h-60 bg-cover bg-center" style={{backgroundImage: `url(${article.galleryUrl[0]})`}}></div>}
+            {article.galleryUrl && <div className="h-80 bg-cover bg-center" style={{backgroundImage: `url(${article.galleryUrl[0]})`}}></div>}
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
                 <div>

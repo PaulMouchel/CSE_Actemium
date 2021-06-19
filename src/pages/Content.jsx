@@ -12,20 +12,14 @@ import Cssct from '../components/Cssct.jsx'
 import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 
-import { useScrollData } from "scroll-data-hook";
-
 const Content = ({admin, setAdmin, isAdmin}) => {
-
-  const { position } = useScrollData();
 
   return (
     <div id="home">
         
         <Navbar isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
         <Home />
-        <AnimatePresence>
-          { position.y>100 && <TinySidebar/>}
-        </AnimatePresence>
+        <TinySidebar/>
         { isAdmin &&
           <ToggleAdmin admin={admin} setAdmin={setAdmin}/>
         }

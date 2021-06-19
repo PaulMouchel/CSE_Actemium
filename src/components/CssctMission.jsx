@@ -16,7 +16,7 @@ const CssctMission = ({title, text, imageUrl, admin, id}) => {
 
   const handleMouseEnter = () => {
     let elements = docs.length
-    setSize(elements+1)
+    setSize(elements+1) 
     setShowText(true)
   }
 
@@ -46,17 +46,17 @@ const CssctMission = ({title, text, imageUrl, admin, id}) => {
         style={{backgroundImage:`url(${imageUrl})`, flex: size}}>
         <AnimatePresence>
           { showText && 
-            <motion.div className="bg-gradient-to-t from-gray-900 h-full px-4 text-start flex flex-col justify-between items-start py-4"
+            <motion.div className="relative bg-gradient-to-t from-gray-900 h-full text-start flex flex-col justify-between items-start"
             variants={missionVariant}
             initial="hidden"
             animate="visible"
             exit="exit">
               <DeleteButton admin={admin} onClick={handleDelete}/>
               {!admin && <div/>}
-              <div>
-              <p className={`text-gray-50 text-2xl font-bold mt-8 pb-2`}>{title}</p>
-              <p className={`text-gray-50 text-lg`}>{text}</p>
-              </div>  
+              <div className="absolute box-border px-4 bottom-4 w-full">
+                <p className={`text-gray-50 text-2xl font-bold mt-8 pb-2`}>{title}</p>
+                <p className={`text-gray-50 text-lg`}>{text}</p>
+              </div>
             </motion.div>
           }
         </AnimatePresence>
