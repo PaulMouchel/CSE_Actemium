@@ -1,4 +1,4 @@
-# Applicatio web pour le CSE d'Actemium Rennes
+# Application web pour le CSE d'Actemium Rennes
 
 Ce projet est une application web pour Actemium Rennes afin de communiquer avec le personnel.
 La version de développement est consultable à l'adresse suivante : https://cse-actemium.web.app/
