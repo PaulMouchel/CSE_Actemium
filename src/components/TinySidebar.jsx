@@ -2,9 +2,8 @@ import React from 'react';
 import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import SideButton from './SideButton.jsx'
 
-const TinySidebar = () => {
+const TinySidebar = ({visibleSection}) => {
 
-    // const { position } = useScrollData();
     const sidebarData = [
         {
             href: "home",
@@ -42,7 +41,7 @@ const TinySidebar = () => {
         <nav className="hidden md:block fixed h-screen left-5 top-0 z-50">
             <ul className="mx-5 mb-5 h-screen flex flex-col justify-center">
                 {sidebarData.map((item, index) =>
-                    <SideButton {...item} key={index}/>
+                    <SideButton {...item} key={index} focus={visibleSection === item.href}/>
                 )}
             </ul>
         </nav>

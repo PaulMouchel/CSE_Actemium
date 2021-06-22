@@ -8,7 +8,7 @@ const Cssct = ({admin, textColor}) => {
   
   return (
     <div className="min-h-screen pb-10">
-      <Title id="cssct" textColor={textColor}>CSSCT</Title>
+      <Title textColor={textColor}>CSSCT</Title>
       <div className="pb-4 h-screen">
         <p className="text-xl text-center text-gray-50">Les missions de la CSSCT</p>
         <p className="h-0 md:invisible text-center text-gray-50">(Cliquer sur une image pour afficher le détail)</p>

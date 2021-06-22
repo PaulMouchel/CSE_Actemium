@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { AnimatePresence } from 'framer-motion'
 
 import Home from '../components/Home.jsx'
@@ -11,36 +11,93 @@ import Benefits from '../components/Benefits.jsx'
 import Cssct from '../components/Cssct.jsx'
 import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
+import Footer from '../components/Footer.jsx'
 
 const Content = ({admin, setAdmin, isAdmin}) => {
 
+  const homeRef = useRef(null);
+  const newsRef = useRef(null);
+  const benefitsRef = useRef(null);
+  const cssctRef = useRef(null)
+  const teamRef = useRef(null)
+  const contactRef = useRef(null)
+  const [visibleSection, setVisibleSection] = useState();
+
+  const sectionRefs = [
+    { section: "home", ref: homeRef },
+    { section: "news", ref: newsRef },
+    { section: "benefits", ref: benefitsRef },
+    { section: "cssct", ref: cssctRef },
+    { section: "team", ref: teamRef },
+    { section: "contact", ref: contactRef },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      const selected = sectionRefs.find(({ section, ref }) => {
+        const ele = ref.current;
+        if (ele) {
+          const { offsetBottom, offsetTop } = getDimensions(ele);
+          return scrollPosition > offsetTop && scrollPosition < offsetBottom;
+        }
+      });
+      
+      if (selected && selected.section !== visibleSection) {
+        setVisibleSection(selected.section);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [visibleSection]);
+
+  const getDimensions = (ele) => {
+    const { height } = ele.getBoundingClientRect();
+    const offsetTop = ele.offsetTop;
+    const offsetBottom = offsetTop + height;
+  
+    return {
+      height,
+      offsetTop,
+      offsetBottom,
+    };
+  };
+
+
   return (
-    <div id="home">
-        
-        <Navbar isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
-        <Home />
-        <TinySidebar/>
+    <div>
+        <section id="home" ref={homeRef}>
+          <Navbar isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
+          <Home />
+        </section>
+        <TinySidebar visibleSection={visibleSection}/>
         { isAdmin &&
           <ToggleAdmin admin={admin} setAdmin={setAdmin}/>
         }
         <AnimatePresence>
           { admin && <AdminSideBar />}
         </AnimatePresence>
-        <div className="bg-gradient-to-t from-gray-400 to-gray-200  px-6 md:px-28 lg:px-48">
+        <section id="news" ref={newsRef} className="bg-gradient-to-t from-gray-400 to-gray-200  px-6 md:px-28 lg:px-48">
           <News admin={admin} textColor="gray-800"/>
-        </div>
-        <div className="bg-gray-200 px-4 md:px-28 lg:px-48">
+        </section>
+        <section id="benefits" ref={benefitsRef} className="bg-gray-200 px-4 md:px-28 lg:px-48">
           <Benefits admin={admin} textColor="gray-800"/>
-        </div>
-        <div className="bg-gray-800 px-4 md:px-28 lg:px-48">
+        </section>
+        <section id="cssct" ref={cssctRef} className="bg-gray-800 px-4 md:px-28 lg:px-48">
           <Cssct admin={admin} textColor="gray-50"/>
-        </div>
-        <div className="bg-gray-50 px-4 md:px-28 lg:px-48">
+        </section>
+        <section id="team" ref={teamRef} className="bg-gray-50 px-4 md:px-28 lg:px-48">
           <Team admin={admin} textColor="gray-800"/>
-        </div>
-        <div className="bg-gray-200 px-12 md:px-28 lg:px-48">
+        </section>
+        <section id="contact" ref={contactRef} className="bg-gray-200 px-12 md:px-28 lg:px-48">
           <Contact textColor="gray-800"/>
-        </div>
+        </section>
+        <section id="footer" className="bg-gray-500 px-12 md:px-28 lg:px-48">
+          <Footer />
+        </section>
     </div>
   );
 }

@@ -23,7 +23,7 @@ const Team = ({textColor, admin}) => {
 
     return (
         <>
-            <Title id="team" textColor={textColor}>L'équipe du CSE</Title>
+            <Title textColor={textColor}>L'équipe du CSE</Title>
             <div className="text-center">
                 <h3 className="">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>

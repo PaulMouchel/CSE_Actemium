@@ -36,7 +36,7 @@ const Contact = ({textColor}) => {
   
   return (
       <div className="">
-        <Title id="contact" textColor={textColor}>Nous contacter</Title>
+        <Title textColor={textColor}>Nous contacter</Title>
         <div>
           <form onSubmit={sendEmail} className="xl:mx-80 pb-6 flex flex-col items-center">
           { error && 

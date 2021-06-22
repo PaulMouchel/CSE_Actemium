@@ -8,7 +8,7 @@ const Benefits = ({admin, textColor}) => {
  
   return (
       <div className="min-h-screen pb-10">
-        <Title id="benefits" textColor={textColor}>Nos avantages</Title>
+        <Title textColor={textColor}>Nos avantages</Title>
         <div className="pb-4" >
           <div>
             { docs && docs.map((benefit, index) =>

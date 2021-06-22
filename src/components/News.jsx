@@ -27,8 +27,8 @@ const doScrollRight = () =>
 }
 
   return (
-      <div className="min-h-screen relative">
-        <Title id="news" textColor={textColor}>Actualités</Title>
+      <div className="min-h-screen">
+        <Title textColor={textColor}>Actualités</Title>
         <div className="relative flex flex-row">
           <div className="my-10 w-full flex flex-row flex-nowrap overflow-y-hidden overflow-x-scroll jusify-start items-center" 
           id="news-carousel"
