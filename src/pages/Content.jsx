@@ -34,13 +34,13 @@ const Content = ({admin, setAdmin, isAdmin}) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
+      const scrollPosition = window.scrollY + window.innerHeight/2;
 
       const selected = sectionRefs.find(({ section, ref }) => {
         const ele = ref.current;
         if (ele) {
           const { offsetBottom, offsetTop } = getDimensions(ele);
-          return scrollPosition > offsetTop-1 && scrollPosition < offsetBottom-1;
+          return scrollPosition > offsetTop && scrollPosition < offsetBottom;
         }
       });
       
