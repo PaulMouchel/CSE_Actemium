@@ -40,7 +40,7 @@ const Content = ({admin, setAdmin, isAdmin}) => {
         const ele = ref.current;
         if (ele) {
           const { offsetBottom, offsetTop } = getDimensions(ele);
-          return scrollPosition > offsetTop && scrollPosition < offsetBottom;
+          return scrollPosition > offsetTop-1 && scrollPosition < offsetBottom-1;
         }
       });
       
