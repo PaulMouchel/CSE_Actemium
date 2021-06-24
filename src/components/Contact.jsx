@@ -35,7 +35,7 @@ const Contact = ({textColor}) => {
   }
   
   return (
-      <div className="">
+      <div className="pb-10">
         <Title textColor={textColor}>Nous contacter</Title>
         <div>
           <form onSubmit={sendEmail} className="xl:mx-80 pb-6 flex flex-col items-center">

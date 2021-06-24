@@ -94,10 +94,8 @@ const Content = ({admin, setAdmin, isAdmin}) => {
         </section>
         <section id="contact" ref={contactRef} className="bg-gray-200 px-12 md:px-28 lg:px-48">
           <Contact textColor="gray-800"/>
-        </section>
-        <section id="footer" className="bg-gray-500 px-12 md:px-28 lg:px-48">
-          <Footer />
-        </section>
+        </section> 
+        <Footer />
     </div>
   );
 }

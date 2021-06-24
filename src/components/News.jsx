@@ -30,7 +30,7 @@ const doScrollRight = () =>
       <div className="min-h-screen">
         <Title textColor={textColor}>Actualités</Title>
         <div className="relative flex flex-row">
-          <div className="my-10 w-full flex flex-row flex-nowrap overflow-y-hidden overflow-x-scroll jusify-start items-center" 
+          <div className="my-10 w-full flex flex-row flex-nowrap overflow-y-hidden overflow-x-scroll jusify-start items-center pl-4 pt-4" 
           id="news-carousel"
           style={{scrollBehavior: "smooth"}}>
             {docs && docs.map((article, index) =>
