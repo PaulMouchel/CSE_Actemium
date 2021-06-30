@@ -12,8 +12,6 @@ const OldArticle = (article) => {
         state: {articles: article}
         }}>
         <div className="flex flex-row">
-          
-
           <div className="p-2 text-gray-800 inline-block">
               <span className="text-xs">{article.date}</span>           
           </div>
@@ -22,8 +20,6 @@ const OldArticle = (article) => {
               {article.title}
             </h3>
           </div>
-          
-
         </div>
       </Link>
     </motion.article>     
