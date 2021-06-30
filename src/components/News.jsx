@@ -11,7 +11,9 @@ const News = ({admin, textColor}) => {
 
   return (
       <div className="min-h-screen">
+        <div className="px-4 md:px-28 lg:px-48">
         <Title textColor={textColor}>Actualités</Title>
+        </div>
         <div className="flex flex-col md:flex-row justify-center m-auto pb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 md:w-3/5 xl:w-1/2 ">
             {docs && docs.slice(0, 6).map((article, index) =>
