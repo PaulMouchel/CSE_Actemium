@@ -80,7 +80,7 @@ const Content = ({admin, setAdmin, isAdmin}) => {
         <AnimatePresence>
           { admin && <AdminSideBar />}
         </AnimatePresence>
-        <section id="news" ref={newsRef} className="bg-gradient-to-t from-gray-400 to-gray-200  px-6 md:px-28 lg:px-48">
+        <section id="news" ref={newsRef} className="bg-gradient-to-t from-gray-400 to-gray-200  px-0 md:px-0 lg:px-0">
           <News admin={admin} textColor="gray-800"/>
         </section>
         <section id="benefits" ref={benefitsRef} className="bg-gray-200 px-4 md:px-28 lg:px-48">

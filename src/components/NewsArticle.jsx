@@ -7,15 +7,15 @@ import { motion } from 'framer-motion'
 const NewsArticle = (article) => {
 
   return (
-    <motion.article className={`news-article flex-none w-4/5 md:w-72 h-full mb-4 mr-4 bg-gray-50 rounded-2xl hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
-      whileHover={{scale:1.02}}>
+    <motion.article className={`flex-none w-4/5 md:w-full h-full m-auto bg-gray-50 hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
+    whileHover={{scale:1.02}}>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
         state: {articles: article}
         }}>
         <div className="flex flex-col justify-between h-full">
           <div>
-            {article.galleryUrl && <div className="h-80 bg-cover bg-center" style={{backgroundImage: `url(${article.galleryUrl[0]})`}}></div>}
+            {article.galleryUrl && <div className={`h-40 ${article.current && "md:h-80"} bg-cover bg-center`} style={{backgroundImage: `url(${article.galleryUrl[0]})`}}></div>}
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
                 <div>
@@ -26,15 +26,17 @@ const NewsArticle = (article) => {
             </div>
           </div>
           <div className="p-4 pt-0">
-            <h3 className="relative bottom-3 text-lg text-blue-800 font-bold">
+            <h3 className={` ${article.current ? "text-2xl relative bottom-3" : "text-lg"} md:relative md:bottom-3 text-blue-800 font-bold`}>
               {article.title}
             </h3>
+            {article.current &&
             <div className="text-justify text-gray-600 mb-2">
               {article.subTitle}
             </div>
+}
           </div>
           
-          <div className="p-4 pt-0 flex justify-between">
+          <div className={`${article.current ? "flex" : "hidden"} md:flex p-4 pt-0 justify-between`}>
               <div className="text-gray-400 font-bold">
                 En savoir plus
               </div>

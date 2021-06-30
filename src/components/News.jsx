@@ -1,52 +1,33 @@
 import React from 'react';
 import useFirestore from '../hooks/useFirestore';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 //Components
 import NewsArticle from './NewsArticle.jsx'
+import OldArticle from './OldArticle.jsx'
 import Title from './Title'
 
 const News = ({admin, textColor}) => {
   const { docs } = useFirestore('News');
 
-  const doScrollLeft = () =>
-{
-  let articles = document.getElementsByClassName('news-article')
-  if (articles) {
-    document.getElementById('news-carousel').scrollLeft -= articles[0].clientWidth + 20
-  }
-}
-
-const doScrollRight = () =>
-{
-  let articles = document.getElementsByClassName('news-article')
-  if (articles) {
-    document.getElementById('news-carousel').scrollLeft += articles[0].clientWidth + 20
-  }
-}
-
   return (
       <div className="min-h-screen">
         <Title textColor={textColor}>Actualités</Title>
-        <div className="relative flex flex-row">
-          <div className="my-10 w-full flex flex-row flex-nowrap overflow-y-hidden overflow-x-scroll jusify-start items-center pl-4 pt-4" 
-          id="news-carousel"
-          style={{scrollBehavior: "smooth"}}>
-            {docs && docs.map((article, index) =>
-              <NewsArticle key={index} {...article} admin={admin} />
+        <div className="flex flex-col md:flex-row justify-center m-auto pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 md:w-3/5 xl:w-1/2 ">
+            {docs && docs.slice(0, 6).map((article, index) =>
+              <div className={`h-full ${(index === 0) && "md:col-span-2 md:row-span-2"}`} key={index}>
+                <NewsArticle {...article} admin={admin} current={index === 0}/>
+              </div>
             )}
           </div>
-          <div className="absolute top-0 -left-5 h-full flex items-center">
-            <div className="w-10 h-10 rounded-full bg-gray-200 opacity-70 flex items-center justify-center"
-              onClick={doScrollLeft}>
-              <FontAwesomeIcon icon={faArrowLeft} className="text-sm box-content p-1.5 m-0"/>
-            </div>
-          </div>
-          <div className="absolute top-0 -right-5 h-full flex items-center">
-            <div className="w-10 h-10 rounded-full bg-gray-200 opacity-70 flex items-center justify-center"
-               onClick={doScrollRight}>
-              <FontAwesomeIcon icon={faArrowRight} className="text-sm box-content p-1.5 m-0"/>
+          <div className="m-auto mt-6 md:mt-0 p-4 md:ml-6 md:mr-0 md:mb-0 w-4/5 md:w-60 text-center bg-gray-50">
+            <h2 className="text-gray-50 p-2 bg-gray-700 font-bold">Archives</h2>
+            <div className="overflow-auto">
+              {docs && docs.slice(6, -1).map((article, index) =>
+                <div className="" key={index}>
+                  <OldArticle {...article} admin={admin}/>
+                </div>
+              )}
             </div>
           </div>
         </div>

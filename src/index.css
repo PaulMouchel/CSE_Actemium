@@ -38,7 +38,3 @@ html {
 {
     transform: rotate(45deg) translate(-7px, -5px) ;
 }
-
-#news-carousel::-webkit-scrollbar {
-  display: none;
-}
