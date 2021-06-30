@@ -20,7 +20,7 @@ const News = ({admin, textColor}) => {
               </div>
             )}
           </div>
-          <div className="m-auto mt-6 md:mt-0 p-4 md:ml-6 md:mr-0 md:mb-0 w-4/5 md:w-60 text-center bg-gray-50">
+          <div className="m-auto mt-6 md:mt-0 p-4 md:ml-6 md:mr-0 md:mb-0 w-4/5 md:w-60 text-center bg-gray-200">
             <h2 className="text-gray-50 p-2 bg-gray-700 font-bold">Archives</h2>
             <div className="overflow-auto">
               {docs && docs.slice(6, -1).map((article, index) =>

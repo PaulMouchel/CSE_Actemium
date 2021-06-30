@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300&family=Source+Sans+Pro&display=swap');
 
 html {
   overflow-x: hidden; /* Hide horizontal scrollbar */
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 75%;
 }
 

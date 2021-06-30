@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 const NewsArticle = (article) => {
 
   return (
-    <motion.article className={`flex-none w-4/5 md:w-full h-full m-auto bg-gray-50 hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
+    <motion.article className={`flex-none w-4/5 md:w-full h-full m-auto bg-gray-200 hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
     whileHover={{scale:1.02}}>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
