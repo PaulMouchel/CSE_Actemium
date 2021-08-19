@@ -8,6 +8,7 @@ import ForgotPassword from '../pages/ForgotPassword.jsx'
 import CreateArticle from '../pages/CreateArticle.jsx'
 import CreateBenefit from '../pages/CreateBenefit.jsx'
 import NewsArticleDetail from '../pages/NewsArticleDetail.jsx'
+import BenefitDetail from '../pages/BenefitDetail.jsx';
 import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
 import CreateMember from '../pages/CreateMember.jsx'
@@ -55,6 +56,7 @@ const Main = () => {
                 {/* Private routes */}
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin()})} />
                 <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:false})} />
+                <Route path="/benefit/:id" render={() => privateRoute(BenefitDetail, {admin:false})} />
                 {/* Admin routes */}
                 <Route path="/create-article" render={() => adminRoute(CreateArticle)} />
                 <Route path="/create-member" render={() => adminRoute(CreateMember)} />
@@ -63,6 +65,7 @@ const Main = () => {
                 <Route path="/create-benefit" render={() => adminRoute(CreateBenefit, {collection:"Benefits"})} /> 
                 <Route path="/create-cssct" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
                 <Route path="/admin/news-article/:id" render={() => adminRoute(NewsArticleDetail)} />
+                <Route path="/admin/benefit/:id" render={() => adminRoute(BenefitDetail)} />
             </Switch>
         </Background>
   </>
