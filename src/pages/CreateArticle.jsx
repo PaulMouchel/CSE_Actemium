@@ -100,7 +100,7 @@ const CreateArticle = () => {
     let subTitleValue = subTitleRef.current.value
     let textValue = textRef.current.value
 
-    if (gallery[0] && titleValue !== "" && subTitleValue !== "" && textValue !== "") {
+    if (gallery[0] && titleValue !== "") {
       setTitle(titleValue)
       setSubTitle(subTitleValue)
       setText(textValue)
@@ -130,10 +130,10 @@ const CreateArticle = () => {
                 <input type="text" name="title" className="block w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Titre" ref={titleRef} required/>
               </h3>
               <div className="w-full text-gray-600 mb-3">
-                <input type="text" name="subTitle" className="block w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Sous titre" ref={subTitleRef} required/>
+                <input type="text" name="subTitle" className="block w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Sous titre" ref={subTitleRef} />
               </div>
               <div className="w-full h-60 text-gray-600 mb-2">
-                <textarea type="text" name="text" className="resize-none block h-full w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
+                <textarea type="text" name="text" className="resize-none block h-full w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef}/>
               </div>
               {gallery.length > 0 && <>
                 <div className="w-full border-b">
