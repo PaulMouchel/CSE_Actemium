@@ -78,7 +78,7 @@ const Navbar = ({isAdmin, admin, setAdmin}) => {
             <motion.button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 bg-secondary text-white font-bold p-2 rounded mr-4" id="logout" type="submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
-              <span>Déconnection</span>
+              <span>Déconnexion</span>
             </motion.button>
           </div>
         </ul>
