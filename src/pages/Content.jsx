@@ -13,7 +13,7 @@ import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
 
-const Content = ({admin, setAdmin, isAdmin}) => {
+const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits}) => {
 
   const homeRef = useRef(null);
   const newsRef = useRef(null);
@@ -84,7 +84,7 @@ const Content = ({admin, setAdmin, isAdmin}) => {
           <News admin={admin} textColor="gray-800"/>
         </section>
         <section id="benefits" ref={benefitsRef} className="bg-gray-200 px-4 md:px-28 lg:px-48">
-          <Benefits admin={admin} textColor="gray-800"/>
+          <Benefits admin={admin} textColor="gray-800" benefits={benefits} setBenefits={setBenefits}/>
         </section>
         <section id="cssct" ref={cssctRef} className="bg-gray-800 px-4 md:px-28 lg:px-48">
           <Cssct admin={admin} textColor="gray-50"/>

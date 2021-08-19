@@ -35,7 +35,7 @@ const BenefitDetail = ({admin}) => {
             </div>
             <div className="flex flex-col justify-between h-full -mt-10">
                 <div>
-                    {state.benefits.imageUrl && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.benefits.imageUrl})`}}></div>}
+                    {state.benefits.galleryUrl[0] && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.benefits.galleryUrl[0]})`}}></div>}
                 </div>
                 <div className="p-4">
                     <h3 className="max-w-4xl m-auto relative lg:mt-6 bottom-3 text-xl text-blue-800 font-bold">

@@ -30,7 +30,7 @@ const Benefit = (props) => {
       </div>
 
       <div className="md:w-1/2 md:px-4 flex justify-center md:mx-4">
-        <div className="h-80 md:h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${props.imageUrl})`}}>
+        <div className="h-80 md:h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${props.galleryUrl && props.galleryUrl[0]})`}}>
             <DeleteButton admin={props.admin} onClick={handleDelete}/>
         </div>
       </div>

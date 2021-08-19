@@ -25,6 +25,7 @@ const Main = () => {
     const { docs } = useFirestore('Admins');
     const { currentUser } = useAuth()
     const [admin, setAdmin] = useState(false)
+    const [benefits, setBenefits] = useState()
 
     const privateRoute = (Component, props) => {
         if (currentUser) {
@@ -54,15 +55,15 @@ const Main = () => {
                 <Route path="/login" component={Login}/>
                 <Route path="/forgot-password" component={ForgotPassword}/>
                 {/* Private routes */}
-                <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin()})} />
+                <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
                 <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:false})} />
                 <Route path="/benefit/:id" render={() => privateRoute(BenefitDetail, {admin:false})} />
                 {/* Admin routes */}
-                <Route path="/create-article" render={() => adminRoute(CreateArticle)} />
+                <Route path="/create-article" render={() => adminRoute(CreateArticle, {collection:"News"})} />
                 <Route path="/create-member" render={() => adminRoute(CreateMember)} />
                 <Route path="/update-quotation" render={() => adminRoute(UpdateQuotation)} />
                 <Route path="/update-background" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
-                <Route path="/create-benefit" render={() => adminRoute(CreateBenefit, {collection:"Benefits"})} /> 
+                <Route path="/create-benefit" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
                 <Route path="/create-cssct" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
                 <Route path="/admin/news-article/:id" render={() => adminRoute(NewsArticleDetail)} />
                 <Route path="/admin/benefit/:id" render={() => adminRoute(BenefitDetail)} />

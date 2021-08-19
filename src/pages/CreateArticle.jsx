@@ -8,7 +8,7 @@ import Modal from '../components/Modal.jsx';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 
-const CreateArticle = () => {
+const CreateArticle = ({collection}) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [title, setTitle] = useState(""); 
   const [subTitle, setSubTitle] = useState(""); 
@@ -28,7 +28,7 @@ const CreateArticle = () => {
 
  const uploadToDatabase = async () => {
    if(loading) {
-    const collectionRef = projectFirestore.collection('News');
+    const collectionRef = projectFirestore.collection(collection);
     const createdAt = timestamp();
     
     const currentTime = new Date()
@@ -55,7 +55,7 @@ const CreateArticle = () => {
     } else {
       gallery.forEach((image, index) => {
         if (image.storageRef === "") {
-          changeImageField(index, "storageRef", projectStorage.ref().child("News/" + title + "/" + image.fileName));
+          changeImageField(index, "storageRef", projectStorage.ref().child(collection + "/" + title + "/" + image.fileName));
         }
         if (image.status === "FINISH" || image.status === "UPLOADING") return;
         changeImageField(index, "status", "UPLOADING");
@@ -113,7 +113,7 @@ const CreateArticle = () => {
       <div className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 pb-5 bg-gray-50">
           <PreviousButton to="/" className="relative top-2 left-2"/>
-          <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer un nouvel article</p>
+          <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer un nouvel {collection === "News" ? "article" : "avantage"}</p>
           <div className="flex flex-col justify-between h-full -mt-10">
             <div className="pt-2">
               {gallery[0] ? 
