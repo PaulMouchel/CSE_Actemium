@@ -55,8 +55,8 @@ const Main = () => {
                 <Route path="/forgot-password" component={ForgotPassword}/>
                 {/* Private routes */}
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
-                <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:false, collection:"News"})} />
-                <Route path="/benefit/:id" render={() => privateRoute(NewsArticleDetail, {admin:false, collection:"Benefits"})} />
+                <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
+                <Route path="/benefit/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
                 {/* Admin routes */}
                 <Route path="/create-article" render={() => adminRoute(CreateArticle, {collection:"News"})} />
                 <Route path="/create-member" render={() => adminRoute(CreateMember)} />
@@ -64,8 +64,6 @@ const Main = () => {
                 <Route path="/update-background" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
                 <Route path="/create-benefit" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
                 <Route path="/create-cssct" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
-                <Route path="/admin/news-article/:id" render={() => adminRoute(NewsArticleDetail, {collection:"News"})} />
-                <Route path="/admin/benefit/:id" render={() => adminRoute(NewsArticleDetail, {collection:"Benefits"})} />
             </Switch>
         </Background>
   </>

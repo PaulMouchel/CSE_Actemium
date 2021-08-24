@@ -10,7 +10,7 @@ const Benefit = (props) => {
         <p className={`text-${props.textColor} text-2xl font-bold pb-2`}>{props.title}</p>
         <p className={`text-${props.textColor} text-xl`}>{props.subTitle}</p>
         <Link to={{
-        pathname:`/${props.admin ? "admin/" : ""}benefit/${props.id}`, 
+        pathname:`/benefit/${props.id}`, 
         state: {data: props}
         }}>
           <div className="my-2 flex justify-center items-center h-full">
