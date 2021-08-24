@@ -5,32 +5,32 @@ import AdminButton from './AdminButton.jsx'
 const AdminSidebar = () => {
     const sidebarData = [
         {
-            href: "update-background",
+            href: "background/edit",
             icon: faImage,
             text: "Image de fond"
         },
         {
-            href: "update-quotation",
+            href: "quotation/edit",
             icon: faQuoteLeft,
             text: "Phrase du moment"
         },
         {
-            href: "create-article",
+            href: "news/new",
             icon: faPen,
             text: "Nouvel article"
         },
         {
-            href: "create-benefit",
+            href: "benefits/new",
             icon: faThumbsUp,
             text: "Nouvel avantage"
         },
         {
-            href: "create-cssct",
+            href: "cssct/new",
             icon: faShieldAlt,
             text: "Nouvelle mission"
         },
         {
-            href: "create-member",
+            href: "members/new",
             icon: faUserPlus,
             text: "Nouveau membre"
         }

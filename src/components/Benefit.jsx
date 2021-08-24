@@ -9,16 +9,18 @@ const Benefit = (props) => {
       <div className="md:w-1/2 md:px-20 text-center flex flex-col justify-center pb-4 md:pb-0">
         <p className={`text-${props.textColor} text-2xl font-bold pb-2`}>{props.title}</p>
         <p className={`text-${props.textColor} text-xl`}>{props.subTitle}</p>
-        <Link to={{
-        pathname:`/benefit/${props.id}`, 
-        state: {data: props}
-        }}>
+        <div>
           <div className="my-2 flex justify-center items-center h-full">
-            <button className="bg-secondary rounded-full p-4 py-2 font-bold">
-              En savoir plus
-            </button>
+            <Link to={{
+          pathname:`/benefits/${props.id}`, 
+          state: {data: props}
+          }}>
+              <button className="bg-secondary rounded-full p-4 py-2 font-bold">
+                En savoir plus
+              </button>
+            </Link>
           </div>
-        </Link>
+        </div>
       </div>
 
       <div className="md:w-1/2 md:px-4 flex justify-center md:mx-4">

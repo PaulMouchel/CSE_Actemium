@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { BrowserRouter as Switch, Route, Redirect } from  "react-router-dom";
+import { Switch, Route, Redirect } from  "react-router-dom";
 
 import Content from '../pages/Content.jsx'
 
@@ -49,21 +49,23 @@ const Main = () => {
   return (
     <>
        <Background image={background} setImage={setBackground} >
-            <Switch >
+            <Switch>
                 {/* Public routes */}
                 <Route path="/login" component={Login}/>
                 <Route path="/forgot-password" component={ForgotPassword}/>
+                {/* Admin routes */}
+                <Route path="/news/new" render={() => adminRoute(CreateArticle, {collection:"News"})} />
+                <Route path="/members/new" render={() => adminRoute(CreateMember)} />
+                <Route path="/quotation/edit" render={() => adminRoute(UpdateQuotation)} />
+                <Route path="/background/edit" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
+                <Route path="/benefits/new" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
+                <Route path="/cssct/new" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
                 {/* Private routes */}
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
-                <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
-                <Route path="/benefit/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
-                {/* Admin routes */}
-                <Route path="/create-article" render={() => adminRoute(CreateArticle, {collection:"News"})} />
-                <Route path="/create-member" render={() => adminRoute(CreateMember)} />
-                <Route path="/update-quotation" render={() => adminRoute(UpdateQuotation)} />
-                <Route path="/update-background" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
-                <Route path="/create-benefit" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
-                <Route path="/create-cssct" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
+                <Route path="/news/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
+                <Route path="/benefits/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
+                
+                <Route>noMatch</Route>
             </Switch>
         </Background>
   </>
