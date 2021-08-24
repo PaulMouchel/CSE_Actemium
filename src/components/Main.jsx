@@ -11,6 +11,7 @@ import NewsArticleDetail from '../pages/NewsArticleDetail.jsx'
 import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
 import CreateMember from '../pages/CreateMember.jsx'
+import Error404 from '../pages/Error404.jsx';
 import { init } from 'emailjs-com';
 import useFirestore from '../hooks/useFirestore';
 import { useAuth } from '../contexts/AuthContext'
@@ -64,8 +65,7 @@ const Main = () => {
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
                 <Route path="/news/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
                 <Route path="/benefits/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
-                
-                <Route>noMatch</Route>
+                <Route component={Error404}/>
             </Switch>
         </Background>
   </>
