@@ -8,7 +8,6 @@ import ForgotPassword from '../pages/ForgotPassword.jsx'
 import CreateArticle from '../pages/CreateArticle.jsx'
 import CreateBenefit from '../pages/CreateBenefit.jsx'
 import NewsArticleDetail from '../pages/NewsArticleDetail.jsx'
-import BenefitDetail from '../pages/BenefitDetail.jsx';
 import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
 import CreateMember from '../pages/CreateMember.jsx'
@@ -56,8 +55,8 @@ const Main = () => {
                 <Route path="/forgot-password" component={ForgotPassword}/>
                 {/* Private routes */}
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
-                <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:false})} />
-                <Route path="/benefit/:id" render={() => privateRoute(BenefitDetail, {admin:false})} />
+                <Route path="/news-article/:id" render={() => privateRoute(NewsArticleDetail, {admin:false, collection:"News"})} />
+                <Route path="/benefit/:id" render={() => privateRoute(NewsArticleDetail, {admin:false, collection:"Benefits"})} />
                 {/* Admin routes */}
                 <Route path="/create-article" render={() => adminRoute(CreateArticle, {collection:"News"})} />
                 <Route path="/create-member" render={() => adminRoute(CreateMember)} />
@@ -65,8 +64,8 @@ const Main = () => {
                 <Route path="/update-background" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
                 <Route path="/create-benefit" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
                 <Route path="/create-cssct" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
-                <Route path="/admin/news-article/:id" render={() => adminRoute(NewsArticleDetail)} />
-                <Route path="/admin/benefit/:id" render={() => adminRoute(BenefitDetail)} />
+                <Route path="/admin/news-article/:id" render={() => adminRoute(NewsArticleDetail, {collection:"News"})} />
+                <Route path="/admin/benefit/:id" render={() => adminRoute(NewsArticleDetail, {collection:"Benefits"})} />
             </Switch>
         </Background>
   </>

@@ -11,7 +11,7 @@ const NewsArticle = (article) => {
     whileHover={{scale:1.02}}>
       <Link to={{
         pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
-        state: {articles: article}
+        state: {data: article}
         }}>
         <div className="flex flex-col justify-between h-full">
           <div>
