@@ -6,7 +6,7 @@ import ActionButton from '../components/ActionButton.jsx'
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
-const CreateBenefit = ({collection}) => {
+const CreateCssct = ({collection}) => {
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
   const titleRef = useRef()
@@ -101,4 +101,4 @@ const UploadImage = (title, text) => {
   );
 }
 
-export default CreateBenefit;
+export default CreateCssct;

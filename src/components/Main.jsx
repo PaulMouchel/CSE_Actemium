@@ -6,7 +6,7 @@ import Content from '../pages/Content.jsx'
 import Login from '../pages/Login.jsx'
 import ForgotPassword from '../pages/ForgotPassword.jsx'
 import CreateArticle from '../pages/CreateArticle.jsx'
-import CreateBenefit from '../pages/CreateBenefit.jsx'
+import CreateCssct from '../pages/CreateCssct.jsx'
 import NewsArticleDetail from '../pages/NewsArticleDetail.jsx'
 import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
@@ -55,11 +55,11 @@ const Main = () => {
                 <Route path="/forgot-password" component={ForgotPassword}/>
                 {/* Admin routes */}
                 <Route path="/news/new" render={() => adminRoute(CreateArticle, {collection:"News"})} />
+                <Route path="/benefits/new" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
+                <Route path="/cssct/new" render={() => adminRoute(CreateCssct, {collection:"Cssct"})} />
                 <Route path="/members/new" render={() => adminRoute(CreateMember)} />
                 <Route path="/quotation/edit" render={() => adminRoute(UpdateQuotation)} />
                 <Route path="/background/edit" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
-                <Route path="/benefits/new" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
-                <Route path="/cssct/new" render={() => adminRoute(CreateBenefit, {collection:"Cssct"})} />
                 {/* Private routes */}
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
                 <Route path="/news/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
