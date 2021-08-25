@@ -61,6 +61,7 @@ const Main = () => {
                     <Route path="/news/new" render={() => adminRoute(CreateArticle, {collection:"News"})} />
                     <Route path="/news/:id/edit" render={() => adminRoute(NewsArticleEdit, {collection:"News"})} />
                     <Route path="/benefits/new" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
+                    <Route path="/benefits/:id/edit" render={() => adminRoute(NewsArticleEdit, {collection:"Benefits"})} />
                     <Route path="/cssct/new" render={() => adminRoute(CreateCssct, {collection:"Cssct"})} />
                     <Route path="/members/new" render={() => adminRoute(CreateMember)} />
                     <Route path="/quotation/edit" render={() => adminRoute(UpdateQuotation)} />
