@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { faClock, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faTrashAlt, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useLocation, useHistory } from 'react-router-dom' 
+import { useLocation, useHistory, Link } from 'react-router-dom' 
 import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument'
 
@@ -27,10 +27,20 @@ const NewsArticleDetail = ({admin, collection}) => {
             <div className="flex justify-between">
             <PreviousButton to={`/#${collection.toLowerCase()}`} className="relative top-2 left-2"/>
             {admin && 
-                <button className=" transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 right-2"
-                onClick={handleDelete}>
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                </button>
+                <div className="flex">
+                    <Link to={{
+                    pathname:`/${collection.toLowerCase()}/${state.data.id}/edit`, 
+                    state: {data: state.data}
+                    }}>
+                        <button className="transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full block w-10 h-10 flex items-center justify-center relative top-2 right-2 mr-4">
+                            <FontAwesomeIcon icon={faPen} />
+                        </button>
+                    </Link>
+                    <button className="transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full block w-10 h-10 flex items-center justify-center relative top-2 right-2"
+                    onClick={handleDelete}>
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                </div>
             }
             </div>
             <div className="flex flex-col justify-between h-full -mt-10">

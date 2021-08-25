@@ -8,6 +8,7 @@ import ForgotPassword from '../pages/ForgotPassword.jsx'
 import CreateArticle from '../pages/CreateArticle.jsx'
 import CreateCssct from '../pages/CreateCssct.jsx'
 import NewsArticleDetail from '../pages/NewsArticleDetail.jsx'
+import NewsArticleEdit from '../pages/NewsArticleEdit.jsx'
 import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
 import CreateMember from '../pages/CreateMember.jsx'
@@ -56,6 +57,7 @@ const Main = () => {
                 <Route path="/forgot-password" component={ForgotPassword}/>
                 {/* Admin routes */}
                 <Route path="/news/new" render={() => adminRoute(CreateArticle, {collection:"News"})} />
+                <Route path="/news/:id/edit" render={() => adminRoute(NewsArticleEdit, {collection:"News"})} />
                 <Route path="/benefits/new" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
                 <Route path="/cssct/new" render={() => adminRoute(CreateCssct, {collection:"Cssct"})} />
                 <Route path="/members/new" render={() => adminRoute(CreateMember)} />
