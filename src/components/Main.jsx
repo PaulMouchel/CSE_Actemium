@@ -13,6 +13,7 @@ import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
 import CreateMember from '../pages/CreateMember.jsx'
 import Error404 from '../pages/Error404.jsx';
+import ScrollToTop from './ScrollToTop.jsx';
 import { init } from 'emailjs-com';
 import useFirestore from '../hooks/useFirestore';
 import { useAuth } from '../contexts/AuthContext'
@@ -51,26 +52,28 @@ const Main = () => {
   return (
     <>
        <Background image={background} setImage={setBackground} >
-            <Switch>
-                {/* Public routes */}
-                <Route path="/login" component={Login}/>
-                <Route path="/forgot-password" component={ForgotPassword}/>
-                {/* Admin routes */}
-                <Route path="/news/new" render={() => adminRoute(CreateArticle, {collection:"News"})} />
-                <Route path="/news/:id/edit" render={() => adminRoute(NewsArticleEdit, {collection:"News"})} />
-                <Route path="/benefits/new" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
-                <Route path="/cssct/new" render={() => adminRoute(CreateCssct, {collection:"Cssct"})} />
-                <Route path="/members/new" render={() => adminRoute(CreateMember)} />
-                <Route path="/quotation/edit" render={() => adminRoute(UpdateQuotation)} />
-                <Route path="/background/edit" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
-                {/* Private routes */}
-                <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
-                <Route exact path="/#news" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"news"})} />
-                <Route exact path="/#benefits" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"benefits"})} />
-                <Route path="/news/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
-                <Route path="/benefits/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
-                <Route component={Error404}/>
-            </Switch>
+            <ScrollToTop>
+                <Switch>
+                    {/* Public routes */}
+                    <Route path="/login" component={Login}/>
+                    <Route path="/forgot-password" component={ForgotPassword}/>
+                    {/* Admin routes */}
+                    <Route path="/news/new" render={() => adminRoute(CreateArticle, {collection:"News"})} />
+                    <Route path="/news/:id/edit" render={() => adminRoute(NewsArticleEdit, {collection:"News"})} />
+                    <Route path="/benefits/new" render={() => adminRoute(CreateArticle, {collection:"Benefits"})} /> 
+                    <Route path="/cssct/new" render={() => adminRoute(CreateCssct, {collection:"Cssct"})} />
+                    <Route path="/members/new" render={() => adminRoute(CreateMember)} />
+                    <Route path="/quotation/edit" render={() => adminRoute(UpdateQuotation)} />
+                    <Route path="/background/edit" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
+                    {/* Private routes */}
+                    <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
+                    <Route exact path="/#news" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"news"})} />
+                    <Route exact path="/#benefits" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"benefits"})} />
+                    <Route path="/news/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
+                    <Route path="/benefits/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
+                    <Route component={Error404}/>
+                </Switch>
+            </ScrollToTop>
         </Background>
   </>
 
