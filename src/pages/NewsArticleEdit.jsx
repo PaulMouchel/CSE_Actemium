@@ -42,7 +42,7 @@ const NewsArticleEdit = ({collection}) => {
     const date = day + "." + month + "." + year
     const galleryUrl = gallery.map(x => x.downloadURL)
 
-    await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt });
+    await collectionRef.doc(state.data.id).set({ galleryUrl, title, subTitle, text, date, createdAt, storageId:state.data.storageId });
     history.push('/')
    }
  }
@@ -54,7 +54,7 @@ const NewsArticleEdit = ({collection}) => {
   setGallery(state.data.galleryUrl.map(imageUrl => {
     const container = {};
     container["url"] = imageUrl;
-    container["downloadUrl"] = imageUrl;
+    container["downloadURL"] = imageUrl;
     container["status"] = "FINISH";
     return container;
   }))
@@ -69,7 +69,7 @@ const NewsArticleEdit = ({collection}) => {
     } else {
       gallery.forEach((image, index) => {
         if (image.storageRef === "") {
-          changeImageField(index, "storageRef", projectStorage.ref().child(collection + "/" + title + "/" + image.fileName));
+          changeImageField(index, "storageRef", projectStorage.ref().child(collection + "/" + state.data.storageId + "/" + image.fileName));
         }
         if (image.status === "FINISH" || image.status === "UPLOADING") return;
         changeImageField(index, "status", "UPLOADING");
@@ -124,10 +124,9 @@ const NewsArticleEdit = ({collection}) => {
 
   return (
     <>
-      {console.log(state.data)}
       <div className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 pb-5 bg-gray-50">
-          <PreviousButton to="/" className="relative top-2 left-2"/>
+          <PreviousButton to={`/${collection.toLowerCase()}/${state.data.id}`} state={state.data} className="relative top-2 left-2"/>
           <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Modifier un {collection === "News" ? "article" : "avantage"}</p>
           <div className="flex flex-col justify-between h-full -mt-10">
             <div className="pt-2">
@@ -167,7 +166,7 @@ const NewsArticleEdit = ({collection}) => {
             <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
           )}
           <div className="w-full flex justify-end px-4 mt-4">
-            <ActionButton loading={loading} className="w-full md:w-80" type="submit" onClick={handleSubmit}>Publier</ActionButton>
+            <ActionButton loading={loading} className="w-full md:w-80" type="submit" onClick={handleSubmit}>Mettre à jour</ActionButton>
           </div>
         </article>  
       </div>

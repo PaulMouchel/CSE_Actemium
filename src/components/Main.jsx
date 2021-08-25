@@ -65,6 +65,8 @@ const Main = () => {
                 <Route path="/background/edit" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
                 {/* Private routes */}
                 <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
+                <Route exact path="/#news" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"news"})} />
+                <Route exact path="/#benefits" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"benefits"})} />
                 <Route path="/news/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
                 <Route path="/benefits/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
                 <Route component={Error404}/>

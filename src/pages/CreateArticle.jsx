@@ -15,6 +15,7 @@ const CreateArticle = ({collection}) => {
   const [text, setText] = useState(""); 
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [storageId, setStorageId] = useState(""); 
   const titleRef = useRef()
   const subTitleRef = useRef()
   const textRef = useRef()
@@ -41,13 +42,13 @@ const CreateArticle = ({collection}) => {
     const date = day + "." + month + "." + year
     const galleryUrl = gallery.map(x => x.downloadURL)
 
-    await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt });
+    await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt, storageId });
     history.push('/')
    }
  }
 
  useEffect(() => {
-   if (loading) {
+   if (loading && storageId) {
     if(gallery.every(x => (x.status === "FINISH"))) {
       setLoading(false)
       uploadToDatabase()
@@ -55,7 +56,7 @@ const CreateArticle = ({collection}) => {
     } else {
       gallery.forEach((image, index) => {
         if (image.storageRef === "") {
-          changeImageField(index, "storageRef", projectStorage.ref().child(collection + "/" + title + "/" + image.fileName));
+          changeImageField(index, "storageRef", projectStorage.ref().child(collection + "/" + storageId + "/" + image.fileName));
         }
         if (image.status === "FINISH" || image.status === "UPLOADING") return;
         changeImageField(index, "status", "UPLOADING");
@@ -104,6 +105,7 @@ const CreateArticle = ({collection}) => {
       setTitle(titleValue)
       setSubTitle(subTitleValue)
       setText(textValue)
+      setStorageId(Math.random().toString(36).substr(2, 9))
       setLoading(true)
     }
   }

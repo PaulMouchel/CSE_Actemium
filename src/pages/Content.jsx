@@ -13,7 +13,7 @@ import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
 
-const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits}) => {
+const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, scrollTo}) => {
 
   const homeRef = useRef(null);
   const newsRef = useRef(null);
@@ -30,7 +30,15 @@ const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits}) => {
     { section: "cssct", ref: cssctRef },
     { section: "team", ref: teamRef },
     { section: "contact", ref: contactRef },
-  ];
+  ];  
+
+  useEffect(() => {
+    if (sectionRefs.map(x => x.section).includes(scrollTo))
+    {
+      let index = sectionRefs.findIndex(x => x.section == scrollTo);
+      sectionRefs[index].ref.current.scrollIntoView()    
+    }   
+  },[])
 
   useEffect(() => {
     const handleScroll = () => {

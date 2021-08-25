@@ -26,7 +26,7 @@ const NewsArticleDetail = ({admin, collection}) => {
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 lg:pb-5 bg-gray-50">
             <div className="flex justify-between">
             <PreviousButton to={`/#${collection.toLowerCase()}`} className="relative top-2 left-2"/>
-            {admin && 
+            {admin && state?.data &&
                 <div className="flex">
                     <Link to={{
                     pathname:`/${collection.toLowerCase()}/${state.data.id}/edit`, 
@@ -45,29 +45,29 @@ const NewsArticleDetail = ({admin, collection}) => {
             </div>
             <div className="flex flex-col justify-between h-full -mt-10">
                 <div>
-                    {state.data.galleryUrl && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.data.galleryUrl[0]})`}}></div>}
+                    {state?.data?.galleryUrl && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${state.data.galleryUrl[0]})`}}></div>}
                     <div className="p-4 pb-0">
                         <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
                             <FontAwesomeIcon icon={faClock} />
-                            <span className="text-sm ml-1">{state.data.date}</span>                   
+                            <span className="text-sm ml-1">{state?.data?.date}</span>                   
                         </div>
                     </div>
                 </div>
                 <div className="p-4 pt-0">
                     <h3 className="max-w-4xl m-auto relative lg:mt-6 bottom-3 text-xl text-blue-800 font-bold">
-                        {state.data.title}
+                        {state?.data?.title}
                     </h3>
                     <div className="max-w-4xl m-auto text-justify text-gray-600 mb-5">
-                        {state.data.subTitle}
+                        {state?.data?.subTitle}
                     </div>
                     <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10" style={{whiteSpace: "pre-line"}}>
-                        {state.data.text}
+                        {state?.data?.text}
                     </div>
-                    {state.data.galleryUrl && <>
+                    {state?.data?.galleryUrl && <>
                     <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
                         Galerie
                     </h3></>}
-                    {state.data.galleryUrl && <ImageGrid gallery={state.data.galleryUrl} setSelectedImg={setSelectedImg} />}
+                    {state?.data?.galleryUrl && <ImageGrid gallery={state.data.galleryUrl} setSelectedImg={setSelectedImg} />}
                 </div>
                 
             </div>
