@@ -6,12 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
 
   const keyCheck = (e) => {
-    switch (e.keyCode) {
+    console.log(e.keyCode)
+    switch (e.keyCode) {   
         case 37:
             navigate(e, -1)
             break;
         case 39:
             navigate(e, 1)
+            break;
+        case 27:
+            setSelectedImg(null)
             break;
         default:
             break;
