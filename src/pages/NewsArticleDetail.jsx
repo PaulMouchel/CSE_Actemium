@@ -72,7 +72,7 @@ const NewsArticleDetail = ({admin, collection}) => {
                 
             </div>
             { selectedImg && (
-                <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+                <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} galleryUrl={state.data.galleryUrl}/>
             )}
         </article>  
     </div>   

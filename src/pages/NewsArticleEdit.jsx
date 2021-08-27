@@ -163,7 +163,7 @@ const NewsArticleEdit = ({collection}) => {
             </div>
           </div>
           { selectedImg && (
-            <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+            <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} galleryUrl={getGalleryURL(gallery)}/>
           )}
           <div className="w-full flex justify-end px-4 mt-4">
             <ActionButton loading={loading} className="w-full md:w-80" type="submit" onClick={handleSubmit}>Mettre à jour</ActionButton>
