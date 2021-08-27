@@ -158,7 +158,7 @@ const NewsArticleEdit = ({collection}) => {
                 <div className="pt-8">
                   <UploadImageForm file={gallery} setFile={addImageToGallery} multiple={true}/>
                 </div> 
-                <ImageGrid gallery={getGalleryURL(gallery)} setSelectedImg={setSelectedImg} /></>
+                <ImageGrid galleryUrl={getGalleryURL(gallery)} setSelectedImg={setSelectedImg} imagesDeletable={true} gallery={gallery} setGallery={setGallery}/></>
               }
             </div>
           </div>

@@ -67,7 +67,7 @@ const NewsArticleDetail = ({admin, collection}) => {
                     <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
                         Galerie
                     </h3></>}
-                    {state?.data?.galleryUrl && <ImageGrid gallery={state.data.galleryUrl} setSelectedImg={setSelectedImg} />}
+                    {state?.data?.galleryUrl && <ImageGrid galleryUrl={state.data.galleryUrl} setSelectedImg={setSelectedImg}/>}
                 </div>
                 
             </div>
