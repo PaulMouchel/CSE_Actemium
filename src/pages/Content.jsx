@@ -13,7 +13,7 @@ import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
 
-const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, scrollTo}) => {
+const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, news, setNews, scrollTo}) => {
 
   const homeRef = useRef(null);
   const newsRef = useRef(null);
@@ -89,7 +89,7 @@ const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, scrollTo}) =>
           { admin && <AdminSideBar />}
         </AnimatePresence>
         <section id="news" ref={newsRef} className="bg-white">
-          <News admin={admin} textColor="gray-800"/>
+          <News admin={admin} textColor="gray-800" news={news} setNews={setNews}/>
         </section>
         <section id="benefits" ref={benefitsRef} className="bg-gray-200 px-4 md:px-28 lg:px-48">
           <Benefits admin={admin} textColor="gray-800" benefits={benefits} setBenefits={setBenefits}/>

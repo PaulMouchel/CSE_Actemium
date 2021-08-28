@@ -28,6 +28,7 @@ const Main = () => {
     const { currentUser } = useAuth()
     const [admin, setAdmin] = useState(false)
     const [benefits, setBenefits] = useState()
+    const [news, setNews] = useState()
 
     const privateRoute = (Component, props) => {
         if (currentUser) {
@@ -67,9 +68,9 @@ const Main = () => {
                     <Route path="/quotation/edit" render={() => adminRoute(UpdateQuotation)} />
                     <Route path="/background/edit" render={() => adminRoute(UpdateBackground, {image:background, setImage:setBackground})} />
                     {/* Private routes */}
-                    <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits})} />
-                    <Route exact path="/#news" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"news"})} />
-                    <Route exact path="/#benefits" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, scrollTo:"benefits"})} />
+                    <Route exact path="/" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, news, setNews})} />
+                    <Route exact path="/#news" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, news, setNews, scrollTo:"news"})} />
+                    <Route exact path="/#benefits" render={() => privateRoute(Content, {admin:admin, setAdmin:setAdmin, isAdmin:isAdmin(), benefits, setBenefits, news, setNews, scrollTo:"benefits"})} />
                     <Route path="/news/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"News"})} />
                     <Route path="/benefits/:id" render={() => privateRoute(NewsArticleDetail, {admin:isAdmin(), collection:"Benefits"})} />
                     <Route component={Error404}/>
