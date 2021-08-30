@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
 
   const keyCheck = (e) => {
-    console.log(e.keyCode)
     switch (e.keyCode) {   
         case 37:
             navigate(e, -1)
