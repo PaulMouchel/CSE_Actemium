@@ -24,9 +24,6 @@ const Team = ({textColor, admin}) => {
     return (
         <>
             <Title textColor={textColor}>L'équipe du CSE</Title>
-            <div className="text-center">
-                <h3 className="">Lorem ipsum dolor sit amet consectetur.</h3>
-            </div>
             <div className="flex flex-col pt-12 pb-32">
                 {docs && sortTeam(docs).map((member, index) =>
                     <TeamMember key={index} {...member} last={index === docs.length - 1} even={index%2 === 0} admin={admin}/>
