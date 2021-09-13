@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import emailjs from 'emailjs-com';
 import Title from './Title'
 import { useAuth } from '../contexts/AuthContext'
@@ -10,27 +10,40 @@ const Contact = ({textColor}) => {
   const [success, setSuccess] = useState(null)
   const { currentUser } = useAuth()
 
-  function sendEmail(e) {
+  const resetErrorAndSuccess = () => {
+    setError(null);
+    setSuccess(null);
+  }
+
+  useEffect(() => {
+      if (error || success) {
+          setTimeout(() => { resetErrorAndSuccess() }, 5000);
+      }
+  }, [error, success])
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
     let emailData = {
       from_name:currentUser.email, 
       message:textRef.current.value
     }
 
-    e.preventDefault();
-
-    emailjs.send(
-      process.env.REACT_APP_EMAILJS_SERVICE_ID, 
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID, 
-      emailData, 
-      process.env.REACT_APP_EMAILJS_USER_ID
-      )
-      .then((result) => {
-          console.log(result.text);
-          setSuccess("Message envoyé avec succès !")
-      }, (error) => {
-          console.log(error.text);
-          setError("Echec de l'envoi du message : " + error.text)
-      });
+    if(emailData.from_name && emailData.message) {
+      emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID, 
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID, 
+        emailData, 
+        process.env.REACT_APP_EMAILJS_USER_ID
+        )
+        .then((result) => {
+            console.log(result.text);
+            setSuccess("Message envoyé avec succès !")
+        }, (error) => {
+            console.log(error.text);
+            setError("Echec de l'envoi du message : " + error.text)
+        });
+      }
       e.target.reset()
   }
   
@@ -38,7 +51,7 @@ const Contact = ({textColor}) => {
       <div className="pb-10">
         <Title textColor={textColor}>Nous contacter</Title>
         <div>
-          <form onSubmit={sendEmail} className="xl:mx-80 pb-6 flex flex-col items-center">
+          <form onSubmit={sendEmail} className="max-w-2xl mx-auto pb-6 flex flex-col items-center">
           { error && 
             <div className="w-full text-center text-gray-50 bg-red-500 py-1 px-2 mb-2 rounded">{error}</div>
           }

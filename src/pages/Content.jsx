@@ -35,7 +35,7 @@ const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, news, setNews
   useEffect(() => {
     if (sectionRefs.map(x => x.section).includes(scrollTo))
     {
-      let index = sectionRefs.findIndex(x => x.section == scrollTo);
+      let index = sectionRefs.findIndex(x => x.section === scrollTo);
       sectionRefs[index].ref.current.scrollIntoView()    
     }   
   },[])
