@@ -68,7 +68,7 @@ const Navbar = ({isAdmin, admin, setAdmin}) => {
       </div>
 
       <div className="hidden md:flex bg-gray-100 shadow-md">
-        <ul className="w-full text-center flex justify-between items-center flex-row py-5 pr-2 md:pr-5 md:pl-5 md:pl-0 md:ml-40 lg:ml-60">
+        <ul className="w-full text-center flex justify-between items-center flex-row py-5 pr-2 md:pr-5 md:pl-0 md:ml-40 lg:ml-60">
           <div className="flex flex-row">
             {navbarData.map((item, index) =>
               <NavButton key={index} {...item}/>

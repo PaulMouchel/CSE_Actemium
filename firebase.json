@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "cse-actemium-rennes",
     "public": "build",
     "ignore": [
       "firebase.json",
