@@ -5,7 +5,6 @@ const useFirestore = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    console.log("requete pour : " + collection)
     const unsub = projectFirestore.collection(collection)
       .orderBy('createdAt', 'desc')
       .onSnapshot(snap => {
