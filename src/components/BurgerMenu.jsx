@@ -4,44 +4,10 @@ import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
 import BurgerButton from './BurgerButton.jsx'
 import BurgerAdmin from './BurgerAdmin.jsx'
 import BurgerToggleAdmin from './BurgerToggleAdmin.jsx'
-
-  const navbarData = [
-    {
-      href: "home",
-      icon: faHome,
-      text: "Accueil"
-    },
-    {
-        href: "news",
-        icon: faNewspaper,
-        text: "Actualités"
-    },
-    {
-        href: "benefits",
-        icon: faThumbsUp,
-        text: "Avantages"
-    },
-    {
-        href: "cssct",
-        icon: faUserShield,
-        text: "CSSCT"
-    },
-    {
-        href: "team",
-        icon: faUsers,
-        text: "L'équipe"
-    },
-    {
-        href: "contact",
-        icon: faEnvelope,
-        text: "Contact"
-    }
-  ]
+import { navbarData } from "../data/navbar";
 
 const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
 
