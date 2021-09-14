@@ -1,17 +1,14 @@
 import React, { useRef, useState } from "react"
 
 import { useHistory } from 'react-router-dom'
-import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, timestamp } from '../firebase/config';
 
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 
-const UpdateQuotation = () => {
+const UpdateQuotation = ({docs}) => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
-
-    const { docs } = useFirestore('Quotation');
 
     const textRef = useRef();
     const authorRef = useRef();

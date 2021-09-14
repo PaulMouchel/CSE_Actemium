@@ -2,13 +2,10 @@ import React from 'react';
 
 import VerticalLine from './VerticalLine.jsx'
 import MemberDescription from './MemberDescription'
-import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 
-const TeamMember = ({imageUrl, fullName, role, holder, executive, president, last, even, admin, id}) => {
-
-  const { docs } = useFirestore('Team');
+const TeamMember = ({imageUrl, fullName, role, holder, executive, president, last, even, admin, id, docs}) => {
 
   const handleDelete = () => {
     deleteDocument({docs, id, collection:'Team'})

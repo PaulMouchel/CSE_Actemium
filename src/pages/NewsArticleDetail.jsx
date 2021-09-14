@@ -9,11 +9,10 @@ import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 import PreviousButton from '../components/PreviousButton.jsx'
 
-const NewsArticleDetail = ({admin, collection}) => {
+const NewsArticleDetail = ({admin, collection, docs}) => {
     const { state } = useLocation();
     const [selectedImg, setSelectedImg] = useState(null);
     const history = useHistory()
-    const { docs } = useFirestore(collection);
 
     const handleDelete = () => {
         let id = state.data.id;

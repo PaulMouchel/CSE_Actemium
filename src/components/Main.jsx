@@ -20,6 +20,7 @@ import PrivateRoute from './PrivateRoute.jsx';
 import AdminRoute from './AdminRoute.jsx';
 
 import Background from './Background.jsx'
+import useFirestore from '../hooks/useFirestore'
 
 init(process.env.REACT_APP_EMAILJS_USER_ID);
 
@@ -27,8 +28,12 @@ const Main = () => {
     const [background, setBackground] = useState(null)
     const { isAdmin } = useAuth()
     const [admin, setAdmin] = useState(false)
-    const [benefits, setBenefits] = useState()
-    const [news, setNews] = useState()
+    
+    const quotation = useFirestore('Quotation');
+    const news = useFirestore('News');
+    const benefits = useFirestore('Benefits');
+    const cssct = useFirestore('Cssct');
+    const team = useFirestore('Team');
 
   return (
     <>
@@ -58,26 +63,26 @@ const Main = () => {
                         <CreateMember/>
                     </AdminRoute>
                     <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
-                        <UpdateQuotation/>
+                        <UpdateQuotation docs={quotation.docs}/>
                     </AdminRoute>
                     <AdminRoute path="/background/edit" isAdmin={isAdmin}>
                         <UpdateBackground image={background} setImage={setBackground}/>
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
-                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} />
+                        <Content {...{admin, setAdmin, isAdmin, quotation, news, benefits, cssct, team}} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/#news">
-                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} scrollTo={"news"} />
+                        <Content {...{admin, setAdmin, isAdmin, quotation, news, benefits, cssct, team}} scrollTo={"news"} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/#benefits">
-                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} scrollTo={"benefits"} />
+                        <Content {...{admin, setAdmin, isAdmin, quotation, news, benefits, cssct, team}} scrollTo={"benefits"} />
                     </PrivateRoute>
                     <PrivateRoute path="/news/:id">
-                        <NewsArticleDetail admin={isAdmin} collection={"News"}/>
+                        <NewsArticleDetail admin={isAdmin} docs={news.docs} collection={"News"}/>
                     </PrivateRoute>
                     <PrivateRoute path="/benefits/:id">
-                        <NewsArticleDetail admin={isAdmin} collection={"Benefits"}/>
+                        <NewsArticleDetail admin={isAdmin} docs={benefits.docs} collection={"Benefits"}/>
                     </PrivateRoute>
                     <Route component={Error404}/>
                 </Switch>

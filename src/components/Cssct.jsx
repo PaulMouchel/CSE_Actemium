@@ -1,10 +1,8 @@
 import React from 'react';
-import useFirestore from '../hooks/useFirestore';
 import Title from './Title'
 import CssctMission from './CssctMission.jsx'
 
-const Cssct = ({admin, textColor}) => {
-  const { docs } = useFirestore('Cssct');
+const Cssct = ({admin, textColor, cssct}) => {
   
   return (
     <div className="h-screen pb-10">
@@ -14,8 +12,8 @@ const Cssct = ({admin, textColor}) => {
         <p className="h-0 md:invisible text-center text-gray-50">(Cliquer sur une image pour afficher le détail)</p>
         <div className="flex w-full h-full my-8 items-center justify-center">
           <div className="flex w-5/6 h-full flex-col md:flex-row">
-          {docs && docs.map((mission, index) =>
-              <CssctMission key={index} {...mission} admin={admin}/>
+          {cssct?.docs?.map((mission, index) =>
+              <CssctMission key={index} {...mission} admin={admin} docs={cssct.docs}/>
           )}
           </div>
         </div>

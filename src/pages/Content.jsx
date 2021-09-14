@@ -13,7 +13,7 @@ import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
 
-const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, news, setNews, scrollTo}) => {
+const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation, cssct, team}) => {
 
   const homeRef = useRef(null);
   const newsRef = useRef(null);
@@ -79,7 +79,7 @@ const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, news, setNews
     <div>
         <section id="home" ref={homeRef}>
           <Navbar isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
-          <Home />
+          <Home quotation={quotation}/>
         </section>
         <TinySidebar visibleSection={visibleSection}/>
         { isAdmin &&
@@ -89,16 +89,16 @@ const Content = ({admin, setAdmin, isAdmin, benefits, setBenefits, news, setNews
           { admin && <AdminSideBar />}
         </AnimatePresence>
         <section id="news" ref={newsRef} className="bg-white">
-          <News admin={admin} textColor="gray-800" news={news} setNews={setNews}/>
+          <News admin={admin} textColor="gray-800" news={news}/>
         </section>
         <section id="benefits" ref={benefitsRef} className="bg-gray-200 px-4 md:px-28 lg:px-48">
-          <Benefits admin={admin} textColor="gray-800" benefits={benefits} setBenefits={setBenefits}/>
+          <Benefits admin={admin} textColor="gray-800" benefits={benefits}/>
         </section>
         <section id="cssct" ref={cssctRef} className="bg-gray-800 px-4 md:px-28 lg:px-48">
-          <Cssct admin={admin} textColor="gray-50"/>
+          <Cssct admin={admin} textColor="gray-50" cssct={cssct}/>
         </section>
         <section id="team" ref={teamRef} className="bg-gray-50 px-4 md:px-28 lg:px-48">
-          <Team admin={admin} textColor="gray-800"/>
+          <Team admin={admin} textColor="gray-800" team={team}/>
         </section>
         <section id="contact" ref={contactRef} className="bg-gray-200 px-12 md:px-28 lg:px-48">
           <Contact textColor="gray-800"/>

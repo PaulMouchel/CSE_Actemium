@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import useFirestore from '../hooks/useFirestore';
 import deleteDocument from '../hooks/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const CssctMission = ({title, text, imageUrl, admin, id}) => {
+const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
   
-  const { docs } = useFirestore('Cssct');
   const [size, setSize] = useState(1)
   const [showText, setShowText] = useState(false)
 
