@@ -3,47 +3,12 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 import { motion } from 'framer-motion'
-import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
 import logo from '../images/full_logo2.png'
-
 import NavButton from './NavButton.jsx'
 import BurgerMenu from './BurgerMenu.jsx'
+import { navbarData } from "../data/navbar";
 
-  const navbarData = [
-    {
-      href: "home",
-      icon: faHome,
-      text: "Accueil"
-    },
-    {
-        href: "news",
-        icon: faNewspaper,
-        text: "Actualités"
-    },
-    {
-        href: "benefits",
-        icon: faThumbsUp,
-        text: "Avantages"
-    },
-    {
-        href: "cssct",
-        icon: faUserShield,
-        text: "CSSCT"
-    },
-    {
-        href: "team",
-        icon: faUsers,
-        text: "L'équipe"
-    },
-    {
-        href: "contact",
-        icon: faEnvelope,
-        text: "Contact"
-    }
-  ]
-
-const Navbar = ({isAdmin, admin, setAdmin}) => {
+const Navbar = (props) => {
 
   const [error, setError] = useState("")
     const { logout } = useAuth()
@@ -83,7 +48,7 @@ const Navbar = ({isAdmin, admin, setAdmin}) => {
           </div>
         </ul>
       </div>
-      <BurgerMenu isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
+      <BurgerMenu {...props}/>
     </>
   );
 }
