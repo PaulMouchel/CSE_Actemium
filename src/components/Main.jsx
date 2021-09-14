@@ -15,7 +15,6 @@ import CreateMember from '../pages/CreateMember.jsx'
 import Error404 from '../pages/Error404.jsx';
 import ScrollToTop from './ScrollToTop.jsx';
 import { init } from 'emailjs-com';
-import useFirestore from '../hooks/useFirestore';
 import { useAuth } from '../contexts/AuthContext'
 import PrivateRoute from './PrivateRoute.jsx';
 import AdminRoute from './AdminRoute.jsx';
@@ -26,17 +25,10 @@ init(process.env.REACT_APP_EMAILJS_USER_ID);
 
 const Main = () => {
     const [background, setBackground] = useState(null)
-    const { docs } = useFirestore('Admins');
-    const { currentUser } = useAuth()
+    const { isAdmin } = useAuth()
     const [admin, setAdmin] = useState(false)
     const [benefits, setBenefits] = useState()
     const [news, setNews] = useState()
-
-    const isAdmin = () => {
-        if (currentUser && docs && docs[0]) {
-            return docs[0].list.includes(currentUser.email)
-        } return false
-    }
 
   return (
     <>
@@ -47,45 +39,45 @@ const Main = () => {
                     <Route path="/login" component={Login}/>
                     <Route path="/forgot-password" component={ForgotPassword}/>
                     {/* Admin routes */}
-                    <AdminRoute path="/news/new" isAdmin={isAdmin()}>
+                    <AdminRoute path="/news/new" isAdmin={isAdmin}>
                         <CreateArticle collection={"News"}/>
                     </AdminRoute>
-                    <AdminRoute path="/news/:id/edit" isAdmin={isAdmin()}>
+                    <AdminRoute path="/news/:id/edit" isAdmin={isAdmin}>
                         <NewsArticleEdit collection={"News"}/>
                     </AdminRoute>
-                    <AdminRoute path="/benefits/new" isAdmin={isAdmin()}>
+                    <AdminRoute path="/benefits/new" isAdmin={isAdmin}>
                         <CreateArticle collection={"Benefits"}/>
                     </AdminRoute>
-                    <AdminRoute path="/benefits/:id/edit" isAdmin={isAdmin()}>
+                    <AdminRoute path="/benefits/:id/edit" isAdmin={isAdmin}>
                         <NewsArticleEdit collection={"Benefits"}/>
                     </AdminRoute>
-                    <AdminRoute path="/cssct/new" isAdmin={isAdmin()}>
+                    <AdminRoute path="/cssct/new" isAdmin={isAdmin}>
                         <CreateCssct collection={"Cssct"}/>
                     </AdminRoute>
-                    <AdminRoute path="/members/new" isAdmin={isAdmin()}>
+                    <AdminRoute path="/members/new" isAdmin={isAdmin}>
                         <CreateMember/>
                     </AdminRoute>
-                    <AdminRoute path="/quotation/edit" isAdmin={isAdmin()}>
+                    <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
                         <UpdateQuotation/>
                     </AdminRoute>
-                    <AdminRoute path="/background/edit" isAdmin={isAdmin()}>
+                    <AdminRoute path="/background/edit" isAdmin={isAdmin}>
                         <UpdateBackground image={background} setImage={setBackground}/>
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
-                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin()} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} />
+                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/#news">
-                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin()} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} scrollTo={"news"} />
+                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} scrollTo={"news"} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/#benefits">
-                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin()} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} scrollTo={"benefits"} />
+                        <Content admin={admin} setAdmin={setAdmin} isAdmin={isAdmin} benefits={benefits} setBenefits={setBenefits} news={news} setNews={setNews} scrollTo={"benefits"} />
                     </PrivateRoute>
                     <PrivateRoute path="/news/:id">
-                        <NewsArticleDetail admin={isAdmin()} collection={"News"}/>
+                        <NewsArticleDetail admin={isAdmin} collection={"News"}/>
                     </PrivateRoute>
                     <PrivateRoute path="/benefits/:id">
-                        <NewsArticleDetail admin={isAdmin()} collection={"Benefits"}/>
+                        <NewsArticleDetail admin={isAdmin} collection={"Benefits"}/>
                     </PrivateRoute>
                     <Route component={Error404}/>
                 </Switch>
