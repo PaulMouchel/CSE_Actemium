@@ -7,6 +7,7 @@ import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
+import { motion } from 'framer-motion';
 
 const CreateArticle = ({collection}) => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -112,7 +113,11 @@ const CreateArticle = ({collection}) => {
 
   return (
     <>
-      <div className="w-full md:py-2" >
+      <motion.div
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+      className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 pb-5 bg-gray-50">
           <PreviousButton to="/" className="relative top-2 left-2"/>
           <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer un nouvel {collection === "News" ? "article" : "avantage"}</p>
@@ -157,7 +162,7 @@ const CreateArticle = ({collection}) => {
             <ActionButton loading={loading} className="w-full md:w-80" type="submit" onClick={handleSubmit}>Publier</ActionButton>
           </div>
         </article>  
-      </div>
+      </motion.div>
     </>
   );
 }

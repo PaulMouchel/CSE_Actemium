@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import Home from '../components/Home.jsx'
 import Navbar from '../components/Navbar.jsx';
@@ -76,7 +76,10 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
 
 
   return (
-    <div>
+    <motion.div
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}>
         <section id="home" ref={homeRef}>
           <Navbar isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
           <Home quotation={quotation}/>
@@ -104,7 +107,7 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
           <Contact textColor="gray-800"/>
         </section> 
         <Footer />
-    </div>
+    </motion.div>
   );
 }
 

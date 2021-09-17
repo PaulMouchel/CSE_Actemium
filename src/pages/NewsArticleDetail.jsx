@@ -7,7 +7,7 @@ import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 import PreviousButton from '../components/PreviousButton.jsx'
 import DeleteButton from '../components/DeleteButton';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const NewsArticleDetail = ({admin, collection, docs}) => {
     const { state } = useLocation();
@@ -21,7 +21,11 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
     }
 
   return (
-    <div className="w-full md:py-2" >
+    <motion.div 
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 lg:pb-5 bg-gray-50">
             <div className="flex justify-between">
             <PreviousButton to={`/#${collection.toLowerCase()}`} className="relative top-2 left-2"/>
@@ -74,7 +78,7 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
                 )}
             </AnimatePresence>
         </article>  
-    </div>   
+    </motion.div>   
   );
 }
 

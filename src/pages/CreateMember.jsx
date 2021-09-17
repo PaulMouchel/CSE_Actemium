@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
+import { motion } from 'framer-motion';
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
@@ -85,7 +86,11 @@ const UploadImage = (name) => {
   }
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <motion.div 
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    className="w-screen h-screen flex justify-center items-center">
       <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
         {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
         <PreviousButton to="/" className="self-start relative top-2 left-2"/>
@@ -122,7 +127,7 @@ const UploadImage = (name) => {
           <ActionButton loading={loading} className="w-80" type="submit">Créer un membre</ActionButton>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

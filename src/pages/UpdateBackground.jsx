@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PreviousButton from '../components/PreviousButton.jsx'
 import UploadImageForm from '../components/UploadImageForm.jsx';
+import { motion } from "framer-motion";
 
 const UpdateBackground = ({image, setImage}) => {
     const [loading, setLoading] = useState(false)
@@ -73,7 +74,11 @@ const UpdateBackground = ({image, setImage}) => {
     }
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center bg-cover bg-center"
+        <motion.div 
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        exit={{opacity:0}}
+        className="w-screen h-screen flex justify-center items-center bg-cover bg-center"
             style={selectedImage ? {backgroundImage: `url(${selectedImage.url})`} : {}}>
             <div className="p-4 bg-white bg-opacity-20 rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3 pb-10">
@@ -96,7 +101,7 @@ const UpdateBackground = ({image, setImage}) => {
                         
                     }
             </div>
-        </div>
+        </motion.div>
     )
 }
 

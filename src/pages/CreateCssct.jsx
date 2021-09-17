@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
+import { motion } from 'framer-motion';
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
@@ -66,7 +67,11 @@ const UploadImage = (title, text) => {
 
   return (
     <>
-      <div className="w-full md:py-2" >
+      <motion.div 
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+      className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-6 pb-5 bg-gray-50">
           <PreviousButton to="/" className="relative top-2 left-2"/>
           <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer {collection === "Benefits" ? "un nouvel avantage" : "une nouvelle mission CSSCT" }</p>
@@ -96,7 +101,7 @@ const UploadImage = (title, text) => {
             <ActionButton loading={loading} className="w-80" type="submit" onClick={handleSubmit}>Publier</ActionButton>
           </div>
         </article>
-      </div>     
+      </motion.div>     
     </>
   );
 }

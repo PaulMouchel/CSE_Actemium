@@ -21,6 +21,7 @@ import AdminRoute from './AdminRoute.jsx';
 
 import Background from './Background.jsx'
 import useFirestore from '../hooks/useFirestore'
+import { AnimatePresence } from 'framer-motion'
 
 init(process.env.REACT_APP_EMAILJS_USER_ID);
 
@@ -39,6 +40,7 @@ const Main = () => {
     <>
        <Background image={background} setImage={setBackground} >
             <ScrollToTop>
+                <AnimatePresence>
                 <Switch>
                     {/* Public routes */}
                     <Route path="/login" component={Login}/>
@@ -86,6 +88,7 @@ const Main = () => {
                     </PrivateRoute>
                     <Route component={Error404}/>
                 </Switch>
+                </AnimatePresence>
             </ScrollToTop>
         </Background>
   </>

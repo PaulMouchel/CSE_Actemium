@@ -5,6 +5,7 @@ import { projectFirestore, timestamp } from '../firebase/config';
 
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
+import { motion } from "framer-motion";
 
 const UpdateQuotation = ({docs}) => {
     const [loading, setLoading] = useState(false)
@@ -38,7 +39,11 @@ const UpdateQuotation = ({docs}) => {
     }
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center">
+        <motion.div 
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        exit={{opacity:0}}
+        className="w-screen h-screen flex justify-center items-center">
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <div className="w-full p-3">
                     <PreviousButton to="/"/>
@@ -65,7 +70,7 @@ const UpdateQuotation = ({docs}) => {
                     <ActionButton loading={loading} className="w-80" id="login" type="submit">Mettre à jour</ActionButton>
                 </form>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

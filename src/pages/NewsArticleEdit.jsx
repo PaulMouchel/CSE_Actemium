@@ -7,6 +7,7 @@ import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
+import { motion } from 'framer-motion';
 
 const NewsArticleEdit = ({collection}) => {
   const { state } = useLocation();
@@ -124,7 +125,11 @@ const NewsArticleEdit = ({collection}) => {
 
   return (
     <>
-      <div className="w-full md:py-2" >
+      <motion.div 
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+      className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 pb-5 bg-gray-50">
           <PreviousButton to={`/${collection.toLowerCase()}/${state.data.id}`} state={state.data} className="relative top-2 left-2"/>
           <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Modifier un {collection === "News" ? "article" : "avantage"}</p>
@@ -169,7 +174,7 @@ const NewsArticleEdit = ({collection}) => {
             <ActionButton loading={loading} className="w-full md:w-80" type="submit" onClick={handleSubmit}>Mettre à jour</ActionButton>
           </div>
         </article>  
-      </div>
+      </motion.div>
     </>
   );
 }
