@@ -44,6 +44,7 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
     <motion.div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center" onClick={handleClick}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{opacity: 0}}
     >
       <div className="fixed left-0 w-20 h-20 flex items-center justify-center z-50" onClick={e => navigate(e, -1)}> 
         <div className="bg-gray-300 w-10 h-2 rounded-full transform -rotate-45 absolute -translate-y-3"/>

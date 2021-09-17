@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { faClock, faTrashAlt, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, useHistory, Link } from 'react-router-dom' 
 import deleteDocument from '../hooks/deleteDocument'
-
 import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 import PreviousButton from '../components/PreviousButton.jsx'
 import DeleteButton from '../components/DeleteButton';
+import { AnimatePresence } from 'framer-motion';
 
 const NewsArticleDetail = ({admin, collection, docs}) => {
     const { state } = useLocation();
@@ -68,9 +68,11 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
                 </div>
                 
             </div>
-            { selectedImg && (
-                <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} galleryUrl={state.data.galleryUrl}/>
-            )}
+            <AnimatePresence>
+                { selectedImg && (
+                    <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} galleryUrl={state.data.galleryUrl}/>
+                )}
+            </AnimatePresence>
         </article>  
     </div>   
   );
