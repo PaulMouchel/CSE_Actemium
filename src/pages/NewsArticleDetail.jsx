@@ -7,6 +7,7 @@ import deleteDocument from '../hooks/deleteDocument'
 import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 import PreviousButton from '../components/PreviousButton.jsx'
+import DeleteButton from '../components/DeleteButton';
 
 const NewsArticleDetail = ({admin, collection, docs}) => {
     const { state } = useLocation();
@@ -35,11 +36,7 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
                             <FontAwesomeIcon icon={faPen} />
                         </button>
                     </Link>
-                    <button 
-                    className="transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full w-10 h-10 flex items-center justify-center relative top-2 right-2"
-                    onClick={handleDelete}>
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
+                    <DeleteButton admin={admin} onClick={handleDelete} info={state?.data?.title} alignRight={true} noAnimation={true}/>
                 </div>
             }
             </div>
