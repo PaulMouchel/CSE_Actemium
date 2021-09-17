@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "cse-actemium-rennes"
+    "default": "cse-actemium-rennes",
+    "dev": "cse-actemium-rennes-dev"
   }
 }
