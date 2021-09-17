@@ -34,9 +34,11 @@ const DeleteButton = ({onClick, admin, info, alignRight, noAnimation}) => {
                 <FontAwesomeIcon icon={faTrashAlt} />
             </motion.button>}
         </AnimatePresence>
-        { showDeleteConfirmation && (
-            <DeleteConfirmation setShowDeleteConfirmation={setShowDeleteConfirmation} handleDelete={onClick} info={info}/>
-        )}
+        <AnimatePresence>
+            { showDeleteConfirmation && (
+                <DeleteConfirmation setShowDeleteConfirmation={setShowDeleteConfirmation} handleDelete={onClick} info={info}/>
+            )}
+        </AnimatePresence>
         </>
     );
 }
