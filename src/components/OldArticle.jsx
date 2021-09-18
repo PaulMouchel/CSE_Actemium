@@ -8,8 +8,8 @@ const OldArticle = (article) => {
     <motion.article className={`border-b w-full border-gray-400 m-auto mt-2 bg-gray-200 hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
     >
       <Link to={{
-        pathname:`/${article.admin ? "admin/" : ""}news-article/${article.id}`, 
-        state: {articles: article}
+        pathname:`/news/${article.id}`, 
+        state: {data: article}
         }}>
         <div className="flex flex-row">
           <div className="px-2 py-4 text-gray-800 flex items-center">
