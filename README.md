@@ -20,6 +20,6 @@ Ce projet a été réalisé avec :
 ## Features
 
 L'application n'est accessible qu'aux membres du personnel (via autentification)  
-Les membre du CSE peuvent modifier la plupart des éléments de l'application web  
-Les membre de l'entreprise peuvent consulter les informations du site et contacter le CSE via un formulaire de contact
+Les membres du CSE peuvent modifier la plupart des éléments de l'application web  
+Les membres de l'entreprise peuvent consulter les informations du site et contacter le CSE via un formulaire de contact
 

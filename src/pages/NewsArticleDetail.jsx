@@ -21,7 +21,6 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
             console.log(splitPath)
 
             const getData = async () => {
-                console.log("requete DB")
                 const newsRef = projectFirestore.collection(collection).doc(splitPath[1]);
                 const doc = await newsRef.get();
                 if (!doc.exists) {
@@ -33,7 +32,6 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
             }
             getData()
         } else {
-            console.log(state.data)
             setData(state.data)
         }
     }, [])
