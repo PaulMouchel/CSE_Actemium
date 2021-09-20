@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom'
+import Img from "react-cool-img";
+import loadingImage from "../images/loading.gif";
 
 const Benefit = (props) => {
 
@@ -24,8 +25,13 @@ const Benefit = (props) => {
       </div>
 
       <div className="md:w-1/2 md:px-4 flex justify-center md:mx-4">
-        <div className="h-80 md:h-96 w-full bg-cover bg-center" style={{backgroundImage: `url(${props.galleryUrl && props.galleryUrl[0]})`}}>
-        </div>
+        { props.galleryUrl && 
+          <Img 
+            placeholder={loadingImage}
+            src={props.galleryUrl[0]} 
+            alt={props.title}
+            className={`h-80 md:h-96 w-full object-cover`}/>
+        }
       </div>
     </div>
   );

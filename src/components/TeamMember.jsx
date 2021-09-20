@@ -3,7 +3,8 @@ import VerticalLine from './VerticalLine.jsx'
 import MemberDescription from './MemberDescription'
 import deleteDocument from '../hooks/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
-
+import Img from "react-cool-img";
+import loadingImage from "../images/loading.gif";
 
 const TeamMember = ({imageUrl, fullName, role, holder, executive, president, last, even, admin, id, docs}) => {
     const handleDelete = () => {
@@ -17,7 +18,12 @@ const TeamMember = ({imageUrl, fullName, role, holder, executive, president, las
                     <MemberDescription even={even} fullName={fullName} role={role} holder={holder} executive={executive} president={president} />
                 </div>
                 <div className="w-40 md:w-56 flex items-center justify-center mx-4">
-                    <div className="h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-4 md:border-8" style={{backgroundImage: `url(${imageUrl})`}}>
+                    <div className="h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-4 md:border-8 relative">
+                        <Img 
+                            placeholder={loadingImage}
+                            src={imageUrl} 
+                            alt={fullName}
+                            className={`absolute h-full w-full object-cover rounded-full`}/>
                         <DeleteButton admin={admin} onClick={handleDelete} info={fullName}/>
                     </div>
                 </div>

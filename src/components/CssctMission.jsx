@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import deleteDocument from '../hooks/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 import { motion, AnimatePresence } from 'framer-motion'
+import Img from "react-cool-img";
+import loadingImage from "../images/loading.gif";
 
 const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
   
@@ -41,7 +43,14 @@ const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave} 
         className="relative flex-auto hover:flex-5 bg-cover bg-center transition-all duration-500 ease-in-out hover:flex-grow" 
-        style={{backgroundImage:`url(${imageUrl})`, flex: size}}>
+        style={{flex: size}}>
+
+        <Img 
+          placeholder={loadingImage}
+          src={imageUrl} 
+          alt={title}
+          className={`absolute h-full w-full object-cover`}/>        
+
         <AnimatePresence>
           { showText && 
             <motion.div className="relative bg-gradient-to-t from-gray-900 h-full text-start flex flex-col justify-between items-start"
