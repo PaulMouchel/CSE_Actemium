@@ -125,11 +125,11 @@ const CreateArticle = ({collection}) => {
             <div className="pt-2">
               {gallery[0] ? 
                 <div className="flex items-center justify-center h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${gallery[0].url})`}}>
-                  <UploadImageForm file={gallery} setFile={setarticleImage}/>
+                  <UploadImageForm file={gallery} setFile={setarticleImage} maxWidth={1728} maxHeight={1728}/>
                 </div> 
               : 
                 <div className="flex items-center justify-center h-72 md:h-96 bg-gray-400">
-                  <UploadImageForm file={gallery} setFile={setarticleImage}/>
+                  <UploadImageForm file={gallery} setFile={setarticleImage} maxWidth={1728} maxHeight={1728}/>
                 </div>}
             </div> 
             <div className="px-4">
@@ -149,7 +149,7 @@ const CreateArticle = ({collection}) => {
                   </h3>
                 </div>
                 <div className="pt-8">
-                  <UploadImageForm file={gallery} setFile={addImageToGallery} multiple={true}/>
+                  <UploadImageForm file={gallery} setFile={addImageToGallery} multiple={true} maxWidth={1728} maxHeight={1728}/>
                 </div> 
                 <ImageGrid galleryUrl={getGalleryURL(gallery)} setSelectedImg={setSelectedImg} imagesDeletable={true} gallery={gallery} setGallery={setGallery}/></>
               }

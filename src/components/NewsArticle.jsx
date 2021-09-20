@@ -3,6 +3,8 @@ import { faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import Img from "react-cool-img";
+import loadingImage from "../images/loading.gif";
 
 const NewsArticle = (article) => {
 
@@ -15,7 +17,13 @@ const NewsArticle = (article) => {
         }}>
         <div className="flex flex-col justify-between h-full">
           <div>
-            {article.galleryUrl && <div className={`h-40 ${article.current && "md:h-80"} bg-cover bg-center`} style={{backgroundImage: `url(${article.galleryUrl[0]})`}}></div>}
+            { article.galleryUrl && 
+              <Img 
+              placeholder={loadingImage}
+              src={article.galleryUrl[0]} 
+              alt={article.title  }
+              className={`h-40 w-full ${article.current && "md:h-80"} object-cover`}/>
+            }
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
                 <div>
@@ -29,11 +37,11 @@ const NewsArticle = (article) => {
             <h3 className={` ${article.current ? "text-2xl relative bottom-3" : "text-lg"} md:relative md:bottom-3 text-blue-800 font-bold`}>
               {article.title}
             </h3>
-            {article.current &&
+            { article.current &&
             <div className="text-justify text-gray-600 mb-2">
               {article.subTitle}
             </div>
-}
+            }
           </div>
           
           <div className={`${article.current ? "flex" : "hidden"} md:flex p-4 pt-0 justify-between`}>

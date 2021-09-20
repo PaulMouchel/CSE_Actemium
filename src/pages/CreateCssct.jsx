@@ -80,11 +80,11 @@ const UploadImage = (title, text) => {
               
               {image ? 
                 <div className="flex items-center justify-center h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${image.url})`}}>
-                  <UploadImageForm file={[image]} setFile={setBenefitImage}/>
+                  <UploadImageForm file={[image]} setFile={setBenefitImage} maxWidth={1000} maxHeight={1000}/>
                 </div>
                 :
                 <div className="flex items-center justify-center h-72 md:h-96 bg-gray-400">
-                  <UploadImageForm file={[image]} setFile={setBenefitImage}/>
+                  <UploadImageForm file={[image]} setFile={setBenefitImage} maxWidth={1000} maxHeight={1000}/>
                 </div>
                 }
             </div> 

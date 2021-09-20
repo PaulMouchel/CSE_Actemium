@@ -84,7 +84,7 @@ const UpdateBackground = ({image, setImage}) => {
                 <div className="w-full p-3 pb-10">
                     <PreviousButton to="/"/>
                 </div>
-                    <UploadImageForm file={image} setFile={setBackground}/>
+                    <UploadImageForm file={image} setFile={setBackground} maxWidth={1920} maxHeight={1920}/>
                     { !loading ?
                         <button 
                             disabled={loading} 
