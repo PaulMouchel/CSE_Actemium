@@ -63,13 +63,13 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
           if ( xDiff > 0 ) {
               /* right swipe */ 
               animation.start(variants.toLeft)
-              navigate(e, 1)
-              // animation.start(variants.center)
+              // navigate(e, 1)
+              setTimeout(function(){navigate(e, 1)},200);
           } else {
               /* left swipe */
               animation.start(variants.toRight)
-              navigate(e, -1)
-              // animation.start(variants.center)
+              // navigate(e, -1)
+              setTimeout(function(){navigate(e, -1)},200);
           }                       
       } 
       else {
