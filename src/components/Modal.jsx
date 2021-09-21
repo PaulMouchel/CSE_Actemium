@@ -1,7 +1,28 @@
 import React, {useEffect} from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
+
+  const variants = {
+    toLeft: {
+      x: ["0%", "-100%", "-100%", "100%", "100%", "0%"],
+      y: ["0%", "0%", "100%", "100%", "0%", "0%"],
+      pointerEvents: "none",
+      transition: {duration: .4}
+    },
+    toRight: {
+      x: ["0%", "100%", "100%", "-100%", "-100%", "0%"],
+      y: ["0%", "0%", "100%", "100%", "0%", "0%"],
+      pointerEvents: "none"
+    },
+    center: {
+      x: 0,
+      y: 0,
+      pointerEvents: "initial"
+    }
+  };
+
+  const animation = useAnimation();
 
   let xDown = null;                                                        
   let yDown = null;
@@ -45,10 +66,14 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
       if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
           if ( xDiff > 0 ) {
               /* right swipe */ 
+              animation.start(variants.toLeft)
               navigate(e, 1)
+              // animation.start(variants.center)
           } else {
               /* left swipe */
+              animation.start(variants.toRight)
               navigate(e, -1)
+              // animation.start(variants.center)
           }                       
       } 
       else {
@@ -99,15 +124,21 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
         <div className="bg-gray-300 w-10 h-2 rounded-full transform -rotate-45 absolute -translate-y-3"/>
         <div className="bg-gray-300 w-10 h-2 rounded-full transform rotate-45 absolute translate-y-3"/>
       </div>
-      <motion.img src={selectedImg} alt="enlarged pic block"  
-        style={{
-          maxWidth: "90%", 
-          maxHeight: "90%", 
-          border: "3px solid white" 
-        }}
-        initial={{ y: "-100vh" }}
-        animate={{ y: 0 }}
-      />
+      <motion.div
+      variants={variants}
+      animate={animation}
+      className="fixed w-screen h-screen flex items-center justify-center"
+      >
+        <motion.img src={selectedImg} alt="enlarged pic block"  
+          style={{
+            maxWidth: "90%", 
+            maxHeight: "90%", 
+            border: "3px solid white" 
+          }}
+          initial={{ y: "-100vh" }}
+          animate={{ y: 0 }}
+        />
+      </motion.div>
       <div className="fixed right-0 w-20 h-20 hidden md:flex items-center justify-center z-50" onClick={e => navigate(e, 1)}> 
         <div className="bg-gray-300 w-10 h-2 rounded-full transform rotate-45 absolute -translate-y-3"/>
         <div className="bg-gray-300 w-10 h-2 rounded-full transform -rotate-45 absolute translate-y-3"/>
