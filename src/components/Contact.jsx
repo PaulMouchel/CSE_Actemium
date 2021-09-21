@@ -50,6 +50,7 @@ const Contact = ({textColor}) => {
   return (
       <div className="pb-10">
         <Title textColor={textColor}>Nous contacter</Title>
+        <p className="text-center pb-4 text-lg">Toute idée est la bienvenue !</p>
         <div>
           <form onSubmit={sendEmail} className="max-w-2xl mx-auto pb-6 flex flex-col items-center">
           { error && 
