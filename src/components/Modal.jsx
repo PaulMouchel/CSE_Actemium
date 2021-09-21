@@ -8,17 +8,13 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
       x: ["0%", "-100%", "-100%", "100%", "100%", "0%"],
       y: ["0%", "0%", "100%", "100%", "0%", "0%"],
       pointerEvents: "none",
-      transition: {duration: .4}
+      transition: {duration: .6, times: [0, 0.45, 0.45, 0.5, 0.55, 1]}
     },
     toRight: {
       x: ["0%", "100%", "100%", "-100%", "-100%", "0%"],
       y: ["0%", "0%", "100%", "100%", "0%", "0%"],
-      pointerEvents: "none"
-    },
-    center: {
-      x: 0,
-      y: 0,
-      pointerEvents: "initial"
+      pointerEvents: "none",
+      transition: {duration: .6, times: [0, 0.45, 0.45, 0.5, 0.55, 1]}
     }
   };
 
