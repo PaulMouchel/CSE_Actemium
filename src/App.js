@@ -13,10 +13,10 @@ function App() {
           </AuthProvider>
         </Router>
       </div>
+      {process.env.REACT_APP_ENV !== "production" &&
+        <div className="fixed bottom-2 left-2 bg-white p-2 font-bold text-red-700 rounded-lg">env : {process.env.REACT_APP_ENV}</div>
+      }
     </>
-
-
-    
   );
 }
 
