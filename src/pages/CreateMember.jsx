@@ -11,7 +11,7 @@ import UploadImageForm from '../components/UploadImageForm.jsx';
 
 import userImage from '../images/user.jpg'
 
-const CreateMember = () => {
+const CreateMember = ({teamLength}) => {
   const [executive, setExecutive] = useState("executive");
   const [holder, setHolder] = useState("holder");
   const [president, setPresident] = useState(false);
@@ -34,7 +34,8 @@ const CreateMember = () => {
     const collectionRef = projectFirestore.collection("Team");
     const createdAt = timestamp();
     const imageUrl = image.downloadURL
-    await collectionRef.add({ imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, createdAt });
+    const order = teamLength
+    await collectionRef.add({ imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, createdAt, order });
     setLoading(false)
     history.push('/')
  }

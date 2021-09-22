@@ -62,7 +62,7 @@ const Main = () => {
                         <CreateCssct collection={"Cssct"}/>
                     </AdminRoute>
                     <AdminRoute path="/members/new" isAdmin={isAdmin}>
-                        <CreateMember/>
+                        <CreateMember teamLength={team.docs.length}/>
                     </AdminRoute>
                     <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
                         <UpdateQuotation docs={quotation.docs}/>

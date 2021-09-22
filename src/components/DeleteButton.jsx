@@ -23,22 +23,23 @@ const DeleteButton = ({onClick, admin, info, alignRight, noAnimation}) => {
 
     return (
         <>
-        <AnimatePresence>
-            {admin && <motion.button className={`transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full w-10 h-10 flex items-center justify-center relative top-2 ${alignRight ? "right-2" : "left-2"}`}
-                
-                onClick={() => setShowDeleteConfirmation(true)}
-                variants={deleteVariant}
-                initial={noAnimation ? "" : "hidden"}
-                animate={noAnimation ? "" : "visible"}
-                exit="exit">
-                <FontAwesomeIcon icon={faTrashAlt} />
-            </motion.button>}
-        </AnimatePresence>
-        <AnimatePresence>
-            { showDeleteConfirmation && (
-                <DeleteConfirmation setShowDeleteConfirmation={setShowDeleteConfirmation} handleDelete={onClick} info={info}/>
-            )}
-        </AnimatePresence>
+            <AnimatePresence>
+                {admin && 
+                    <motion.button 
+                    className={`transform duration-300 ease-in-out bg-red-500 hover:bg-white text-white hover:text-red-500 rounded-full w-10 h-10 flex items-center justify-center relative top-2 focus:outline-none ${alignRight ? "right-2" : "left-2"}`}
+                    onClick={() => setShowDeleteConfirmation(true)}
+                    variants={deleteVariant}
+                    initial={noAnimation ? "" : "hidden"}
+                    animate={noAnimation ? "" : "visible"}
+                    exit="exit">
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                </motion.button>}
+            </AnimatePresence>
+            <AnimatePresence>
+                { showDeleteConfirmation && (
+                    <DeleteConfirmation setShowDeleteConfirmation={setShowDeleteConfirmation} handleDelete={onClick} info={info}/>
+                )}
+            </AnimatePresence>
         </>
     );
 }
