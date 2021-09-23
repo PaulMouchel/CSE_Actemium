@@ -9,6 +9,7 @@ import PreviousButton from '../components/PreviousButton.jsx'
 import DeleteButton from '../components/DeleteButton';
 import { AnimatePresence, motion } from 'framer-motion';
 import { projectFirestore } from '../firebase/config';
+import parse from 'html-react-parser';
 
 const NewsArticleDetail = ({admin, collection, docs}) => {
     let { state } = useLocation();
@@ -43,6 +44,11 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
         let id = data.id;
         deleteDocument({docs, id, collection})
         history.push('/')
+    }
+
+    const replaceURLWithHTMLLinks = (text) => {
+        var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+        return text.replace(exp,"<a className='text-primary font-bold' target='_blank' rel='noreferrer' href='$1'>$1</a>").replace("<script>", "").replace("</script>", ""); 
     }
 
   return (
@@ -86,8 +92,8 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
                     <div className="max-w-4xl m-auto text-justify text-gray-600 mb-5">
                         {data?.subTitle}
                     </div>
-                    <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10" style={{whiteSpace: "pre-line"}}>
-                        {data?.text}
+                    <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10" style={{whiteSpace: "pre-line"}} id="text">
+                        {data && parse(replaceURLWithHTMLLinks(data.text))}
                     </div>
                     {data?.galleryUrl && <>
                     <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">
