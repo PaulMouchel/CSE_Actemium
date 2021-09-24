@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { projectFirestore } from '../firebase/config';
 import parse from 'html-react-parser';
 
-const NewsArticleDetail = ({admin, collection, docs}) => {
+const NewsArticleDetail = ({admin, collection, docs, updateBenefitsOrders}) => {
     let { state } = useLocation();
     const { pathname } = useLocation();
     const [data, setData] = useState(null)
@@ -42,7 +42,10 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
 
     const handleDelete = () => {
         let id = data.id;
+        !updateBenefitsOrders ?
         deleteDocument({docs, id, collection})
+        :
+        deleteDocument({docs, id, collection, next:updateBenefitsOrders, nextParams:id})
         history.push('/')
     }
 

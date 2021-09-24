@@ -22,6 +22,7 @@ import AdminRoute from './AdminRoute.jsx';
 import Background from './Background.jsx'
 import useFirestore from '../hooks/useFirestore'
 import { AnimatePresence } from 'framer-motion'
+import { updateOrders } from '../functions/updateOrders';
 
 init(process.env.REACT_APP_EMAILJS_USER_ID);
 
@@ -35,6 +36,10 @@ const Main = () => {
     const benefits = useFirestore('Benefits');
     const cssct = useFirestore('Cssct');
     const team = useFirestore('Team');
+
+    const updateBenefitsOrders = (exeptionId) => {
+        updateOrders(benefits.docs, "Benefits", exeptionId)
+      }
 
   return (
     <>
@@ -84,7 +89,7 @@ const Main = () => {
                         <NewsArticleDetail admin={isAdmin} docs={news.docs} collection={"News"}/>
                     </PrivateRoute>
                     <PrivateRoute path="/benefits/:id">
-                        <NewsArticleDetail admin={isAdmin} docs={benefits.docs} collection={"Benefits"}/>
+                        <NewsArticleDetail admin={isAdmin} docs={benefits.docs} collection={"Benefits"} updateBenefitsOrders={updateBenefitsOrders}/>
                     </PrivateRoute>
                     <Route component={Error404}/>
                 </Switch>

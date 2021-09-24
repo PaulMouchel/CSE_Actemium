@@ -74,7 +74,6 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
     };
   };
 
-
   return (
     <motion.div
     initial={{opacity:0}}
