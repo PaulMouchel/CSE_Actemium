@@ -48,7 +48,7 @@ const NewsArticleDetail = ({admin, collection, docs}) => {
 
     const replaceURLWithHTMLLinks = (text) => {
         var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
-        return text.replace(exp,"<a className='text-primary font-bold' target='_blank' rel='noreferrer' href='$1'>$1</a>").replace("<script>", "").replace("</script>", ""); 
+        return text.replace(exp,"<a className='text-primary font-bold' target='_blank' rel='noreferrer' href='$1'>$1</a>"); 
     }
 
   return (
