@@ -1,7 +1,7 @@
 import React from 'react';
 import VerticalLine from './VerticalLine.jsx'
 import MemberDescription from './MemberDescription'
-import deleteDocument from '../hooks/deleteDocument';
+import deleteDocument from '../functions/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 import Img from "react-cool-img";
 import loadingImage from "../images/loading.gif";
@@ -11,10 +11,10 @@ import { AnimatePresence } from 'framer-motion';
 import { move } from '../functions/move.js';
 import FadeButton from './FadeButton.jsx';
 
-const TeamMember = ({imageUrl, fullName, role, holder, executive, president, first, last, even, admin, id, order, docs}) => {
+const TeamMember = ({imageUrl, fullName, role, holder, executive, president, first, last, even, admin, id, order, docs, updateTeamOrders}) => {
 
     const handleDelete = () => {
-        deleteDocument({docs, id, collection:'Team'})
+        deleteDocument({docs, id, collection:'Team', next:updateTeamOrders, nextParams:id})
     }
 
     const goDown = () => {

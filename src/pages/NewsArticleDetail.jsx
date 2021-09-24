@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { faClock, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, useHistory, Link } from 'react-router-dom' 
-import deleteDocument from '../hooks/deleteDocument'
+import deleteDocument from '../functions/deleteDocument'
 import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 import PreviousButton from '../components/PreviousButton.jsx'

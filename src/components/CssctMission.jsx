@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import deleteDocument from '../hooks/deleteDocument';
+import deleteDocument from '../functions/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 import { motion, AnimatePresence } from 'framer-motion'
 import Img from "react-cool-img";
