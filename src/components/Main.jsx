@@ -53,7 +53,7 @@ const Main = () => {
                         <NewsArticleEdit collection={"News"}/>
                     </AdminRoute>
                     <AdminRoute path="/benefits/new" isAdmin={isAdmin}>
-                        <CreateArticle collection={"Benefits"}/>
+                        <CreateArticle collection={"Benefits"} length={benefits.docs.length}/>
                     </AdminRoute>
                     <AdminRoute path="/benefits/:id/edit" isAdmin={isAdmin}>
                         <NewsArticleEdit collection={"Benefits"}/>

@@ -2,10 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Img from "react-cool-img";
 import loadingImage from "../images/loading.gif";
+import { AnimatePresence } from 'framer-motion';
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { move } from '../functions/move.js';
+import FadeButton from './FadeButton.jsx';
 
 const Benefit = (props) => {
 
+  const goDown = () => {
+      if (props.last) return
+      move(1, "Benefits", props.order, props.id)
+  }
+
+    const goUp = () => {
+      if(props.first) return
+      move(-1, "Benefits", props.order, props.id)
+  }
+
   return (
+    <div className="relative">
     <div className={`py-4 md:flex justify-between flex-row${!props.even ? "-reverse" : ""} border-gray-500 ${!props.last && "border-b"}`}>
       <div className="md:w-1/2 md:px-20 text-center flex flex-col justify-center pb-4 md:pb-0">
         <p className={`text-${props.textColor} text-2xl font-bold pb-2`}>{props.title}</p>
@@ -33,6 +49,29 @@ const Benefit = (props) => {
             className={`h-80 md:h-96 w-full object-cover`}/>
         }
       </div>
+    </div>
+    <AnimatePresence>
+      {props.admin &&
+        <>
+          <div className="absolute top-0 left-0 w-full h-full flex justify-end">
+              {!props.first &&
+                  <FadeButton
+                  onClick={goUp}
+                  className="bg-primary w-8 h-8 rounded-full absolute top-6 flex items-center justify-center focus:outline-none">
+                      <FontAwesomeIcon icon={faArrowUp} className="text-white text-lg"/>
+                  </FadeButton>
+              }
+              {!props.last &&
+                  <FadeButton 
+                  onClick={goDown}
+                  className="bg-primary w-8 h-8 rounded-full absolute bottom-6 flex items-center justify-center focus:outline-none">
+                      <FontAwesomeIcon icon={faArrowDown} className="text-white text-lg"/>
+                  </FadeButton>
+              }
+            </div>
+          </>
+          }
+      </AnimatePresence>
     </div>
   );
 }

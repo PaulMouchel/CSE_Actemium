@@ -43,7 +43,7 @@ const NewsArticleEdit = ({collection}) => {
     const date = day + "." + month + "." + year
     const galleryUrl = gallery.map(x => x.downloadURL)
 
-    await collectionRef.doc(state.data.id).set({ galleryUrl, title, subTitle, text, date, createdAt, storageId:state.data.storageId });
+    await collectionRef.doc(state.data.id).update({ galleryUrl, title, subTitle, text, date, createdAt, storageId:state.data.storageId });
     history.push('/')
    }
  }

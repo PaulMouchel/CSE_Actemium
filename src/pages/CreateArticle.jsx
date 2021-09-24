@@ -9,7 +9,7 @@ import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
 
-const CreateArticle = ({collection}) => {
+const CreateArticle = ({collection, length}) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [title, setTitle] = useState(""); 
   const [subTitle, setSubTitle] = useState(""); 
@@ -42,8 +42,8 @@ const CreateArticle = ({collection}) => {
     const year = currentTime.getFullYear()
     const date = day + "." + month + "." + year
     const galleryUrl = gallery.map(x => x.downloadURL)
-
-    await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt, storageId });
+    const order = length ? length : 0
+    await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt, storageId, order });
     history.push('/')
    }
  }
