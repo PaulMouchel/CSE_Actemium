@@ -62,7 +62,7 @@ const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
               {!admin && <div/>}
               <div className="absolute box-border px-4 bottom-4 w-full">
                 <p className={`text-gray-50 text-2xl font-bold mt-8 pb-2`}>{title}</p>
-                <p className={`text-gray-50 text-lg`}>{text}</p>
+                <p className={`text-gray-50 text-lg`} style={{whiteSpace: "pre-line"}}>{text}</p>
               </div>
             </motion.div>
           }
