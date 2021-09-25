@@ -49,11 +49,6 @@ const NewsArticleDetail = ({admin, collection, docs, updateBenefitsOrders}) => {
         history.push('/')
     }
 
-    const replaceURLWithHTMLLinks = (text) => {
-        var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
-        return text.replace(exp,"<a className='text-primary font-bold' target='_blank' rel='noreferrer' href='$1'>$1</a>"); 
-    }
-
   return (
     <motion.div 
     initial={{opacity:0}}
@@ -96,7 +91,7 @@ const NewsArticleDetail = ({admin, collection, docs, updateBenefitsOrders}) => {
                         {data?.subTitle}
                     </div>
                     <div className="max-w-4xl m-auto text-justify text-gray-600 mb-10" style={{whiteSpace: "pre-line"}} id="text">
-                        {data && parse(replaceURLWithHTMLLinks(data.text))}
+                        {data && parse(data.text)}
                     </div>
                     {data?.galleryUrl && <>
                     <h3 className="max-w-4xl m-auto relative bottom-3 text-xl text-blue-800 font-bold">

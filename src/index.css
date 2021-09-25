@@ -38,3 +38,8 @@ html {
 {
     transform: rotate(45deg) translate(-7px, -5px) ;
 }
+
+#text a{
+  color: #014185;
+  font-weight: bold;
+}
