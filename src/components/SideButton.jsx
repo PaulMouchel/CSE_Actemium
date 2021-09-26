@@ -27,7 +27,8 @@ const textVariant = {
     },
     exit: {
         opacity:0,
-        x:-50
+        x:-50,
+        transition: {duration: 0.3}
     }
 }
 
@@ -58,11 +59,15 @@ const SideButton = (item) => {
                 </NavHashLink>
             </div>
             <AnimatePresence>
-            { isHovering &&
-            <motion.div className="ml-2 h-8 inline-flex justify-center items-center hide py-1 px-2 text-gray-900 bg-gray-50 bg-opacity-50 font-bold rounded-md"
-                variants={textVariant}>     
-                {item.text}
-            </motion.div>}
+                { isHovering &&
+                    <motion.div className="ml-2 h-8 inline-flex justify-center items-center hide py-1 px-2 text-gray-900 bg-gray-50 bg-opacity-50 font-bold rounded-md"
+                        variants={textVariant}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit">     
+                        {item.text}
+                    </motion.div>
+                }
             </AnimatePresence>
         </motion.li>   
     );

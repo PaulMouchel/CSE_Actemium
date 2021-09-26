@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const buttonsVariant = {
     hidden: {
@@ -26,7 +26,8 @@ const textVariant = {
     },
     exit: {
         opacity:0,
-        x:50
+        x:50,
+        transition: {duration: 0.3}
     }
 }
 
@@ -58,11 +59,17 @@ const ToggleAdminButton = ({admin, setAdmin, icon, text}) => {
                     <FontAwesomeIcon icon={icon} className="box-content  p-1.5 m-0"/>
                 </div>
             </div>
-            { isHovering &&
-            <motion.div className="mr-2 h-10 hidden md:inline-flex justify-center items-center py-1 px-2 text-blue-900 bg-gray-50 font-bold bg-opacity-50 rounded"
-                variants={textVariant}>     
-                {text}
-            </motion.div>}
+            <AnimatePresence>
+                { isHovering &&
+                    <motion.div className="mr-2 h-10 hidden md:inline-flex justify-center items-center py-1 px-2 text-blue-900 bg-gray-50 font-bold bg-opacity-50 rounded"
+                        variants={textVariant}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit">     
+                        {text}
+                    </motion.div>
+                }
+            </AnimatePresence>
         </motion.li>   
     );
 }

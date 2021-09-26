@@ -32,7 +32,7 @@ const Benefit = (props) => {
             pathname:`/benefits/${props.id}`, 
             state: {data: props}
             }}>
-                <button className="bg-secondary rounded-full p-4 py-2 font-bold">
+                <button className="bg-secondary rounded-full p-4 py-2 font-bold focus:outline-none">
                   En savoir plus
                 </button>
               </Link>
