@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PreviousButton from '../components/PreviousButton.jsx'
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import { motion } from "framer-motion";
+import deleteFolderContents from "../functions/deleteFolderContents";
 
 const UpdateBackground = ({image, setImage}) => {
     const [loading, setLoading] = useState(false)
@@ -35,7 +36,6 @@ const UpdateBackground = ({image, setImage}) => {
         const collectionRef = projectFirestore.collection('Background');
         const createdAt = timestamp();
         const imageUrl = selectedImage.downloadURL
-        
         if (docs[0]) {
             await collectionRef.doc(docs[0].id).update({ imageUrl, createdAt })
         } else {
@@ -47,6 +47,7 @@ const UpdateBackground = ({image, setImage}) => {
      }
     
      const UploadImage = () => {
+        deleteFolderContents("Background")
         changeImageField("storageRef", projectStorage.ref().child("Background/" + selectedImage.fileName));
         const uploadTask = selectedImage.storageRef.put(selectedImage.file);
         uploadTask.on(
