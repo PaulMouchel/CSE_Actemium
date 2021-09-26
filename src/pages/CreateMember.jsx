@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from 'react-router-dom' 
@@ -18,6 +18,7 @@ const CreateMember = ({teamLength}) => {
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [storageId, setStorageId] = useState(""); 
   const nameRef = useRef()
   const roleRef = useRef()
   const history = useHistory()
@@ -35,13 +36,13 @@ const CreateMember = ({teamLength}) => {
     const createdAt = timestamp();
     const imageUrl = image.downloadURL
     const order = teamLength
-    await collectionRef.add({ imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, createdAt, order });
+    await collectionRef.add({ imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, createdAt, order, storageId });
     setLoading(false)
     history.push('/')
  }
 
 const UploadImage = (name) => {
-    changeImageField("storageRef", projectStorage.ref().child("Team/" + name + "/" + image.fileName));
+    changeImageField("storageRef", projectStorage.ref().child("Team/" + storageId + "/" + image.fileName));
     const uploadTask = image.storageRef.put(image.file);
     uploadTask.on(
         "state_changed",
@@ -57,6 +58,13 @@ const UploadImage = (name) => {
     );
 }
 
+useEffect(() => {
+  if (loading && storageId) {
+    let name = nameRef.current.value
+    UploadImage(name)
+  }
+}, [loading, storageId])
+
   const setMemberImage = (images) => {
     if (images[0]) {
       setImage(images[0])
@@ -69,8 +77,9 @@ const UploadImage = (name) => {
     let name = nameRef.current.value
     
     if (image && name !== "") {
+      setStorageId(Math.random().toString(36).substr(2, 9))
       setLoading(true)
-      UploadImage(name)
+      // UploadImage(name)
     }
   }
 

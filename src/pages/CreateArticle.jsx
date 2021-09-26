@@ -75,7 +75,7 @@ const CreateArticle = ({collection, length}) => {
             }
         );
       })};
- }},[loading, gallery]);
+ }},[loading, storageId, gallery]);
 
   const setarticleImage = (image) => {
     if (image) {
