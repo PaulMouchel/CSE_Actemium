@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from 'react-router-dom' 
-import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
-import { motion } from 'framer-motion';
-
 import UploadImageForm from '../components/UploadImageForm.jsx';
-
+import { motion } from 'framer-motion';
+import { uploadImage } from '../functions/uploadImage';
+import randomUid from '../functions/randomUid';
+import { uploadToDatabase } from '../functions/uploadToDatabase';
 import userImage from '../images/user.jpg'
 
 const CreateMember = ({teamLength}) => {
@@ -19,51 +17,29 @@ const CreateMember = ({teamLength}) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [storageId, setStorageId] = useState(""); 
+  const [name, setName] = useState("")
   const nameRef = useRef()
   const roleRef = useRef()
   const history = useHistory()
 
-  const changeImageField = (parameter, value) => {
-    const newImage = image;
-    newImage[parameter] = value;
-    setImage(newImage);
- };
-
- const uploadToDatabase = async (name) => {
-    let role = roleRef.current.value
-
-    const collectionRef = projectFirestore.collection("Team");
-    const createdAt = timestamp();
+  const setDataAndUpload = () => {
+    const role = roleRef.current.value
     const imageUrl = image.downloadURL
     const order = teamLength
-    await collectionRef.add({ imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, createdAt, order, storageId });
-    setLoading(false)
-    history.push('/')
- }
+    const data = { imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, order, storageId }
 
-const UploadImage = (name) => {
-    changeImageField("storageRef", projectStorage.ref().child("Team/" + storageId + "/" + image.fileName));
-    const uploadTask = image.storageRef.put(image.file);
-    uploadTask.on(
-        "state_changed",
-        null,
-        function error(err) {
-          setError("Error Image Upload:" + err)
-        },
-        async function complete() {
-          const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-          changeImageField("downloadURL", downloadURL);
-          uploadToDatabase(name)
-        }
-    );
-}
-
-useEffect(() => {
-  if (loading && storageId) {
-    let name = nameRef.current.value
-    UploadImage(name)
+    uploadToDatabase("Team", data)
+    .then(() => {
+      setLoading(false)
+      history.push('/')
+    })
   }
-}, [loading, storageId])
+
+  useEffect(() => {
+    if (loading && storageId && name) {
+      uploadImage(image, setImage, "Team", storageId, setError, setDataAndUpload)
+    }
+  }, [loading, storageId, name])
 
   const setMemberImage = (images) => {
     if (images[0]) {
@@ -74,12 +50,12 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let name = nameRef.current.value
+    let _name = nameRef.current.value
     
-    if (image && name !== "") {
-      setStorageId(Math.random().toString(36).substr(2, 9))
+    if (image && _name !== "") {
+      setName(_name)
+      setStorageId(randomUid)
       setLoading(true)
-      // UploadImage(name)
     }
   }
 
@@ -106,7 +82,6 @@ useEffect(() => {
         <PreviousButton to="/" className="self-start relative top-2 left-2"/>
         <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
           <p className="relative bottom-6 mb-5 text-3xl text-gray-600">Ajouter un membre du CSE</p>
-          {!true && <FontAwesomeIcon icon={faUserCircle} className="rounded-full border-8 text-gray-600 mb-2 text-9xl"/>}
           <div className="w-40 md:w-56 flex justify-center mx-4">
             <div className="relative bottom-6 h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-8" style={image ? {backgroundImage: `url(${image.url})`} : {backgroundImage: `url(${userImage})`}}></div>
           </div>

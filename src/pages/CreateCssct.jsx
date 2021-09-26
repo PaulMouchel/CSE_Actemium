@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
-import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
+
+import { uploadImage } from '../functions/uploadImage';
+import randomUid from '../functions/randomUid';
+import { uploadToDatabase } from '../functions/uploadToDatabase';
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 
@@ -11,41 +14,22 @@ const CreateCssct = ({collection}) => {
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
   const [storageId, setStorageId] = useState(""); 
+  const [title, setTitle] = useState("")
+  const [text, setText] = useState("")
+  const [error, setError] = useState("")
   const titleRef = useRef()
   const textRef = useRef()
   const history = useHistory()
 
-  const changeImageField = (parameter, value) => {
-    const newImage = image;
-    newImage[parameter] = value;
-    setImage(newImage);
- };
+ const setDataAndUpload = () => {
+  const imageUrl = image.downloadURL
+  const data = { imageUrl, title:title, text:text, storageId }
 
- const uploadToDatabase = async (title, text) => {
-    const collectionRef = projectFirestore.collection(collection);
-    const createdAt = timestamp();
-    const imageUrl = image.downloadURL
-    await collectionRef.add({ imageUrl, title:title, text:text, createdAt, storageId });
+  uploadToDatabase(collection, data)
+  .then(() => {
     setLoading(false)
     history.push('/')
- }
-
-const UploadImage = (title, text) => {
-    changeImageField("storageRef", projectStorage.ref().child(collection + "/" + storageId + "/" + image.fileName));
-    const uploadTask = image.storageRef.put(image.file);
-    uploadTask.on(
-        "state_changed",
-        null,
-        function error(err) {
-          console.log("Error Image Upload:", err);
-        },
-        async function complete() {
-          const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-          changeImageField("downloadURL", downloadURL);
-          uploadToDatabase(title, text)
-
-        }
-    );
+  })
 }
 
   const setBenefitImage = (images) => {
@@ -55,23 +39,22 @@ const UploadImage = (title, text) => {
   }
 
   useEffect(() => {
-    if (loading && storageId) {
-      let title = titleRef.current.value
-      let text = textRef.current.value
-      UploadImage(title, text)
+    if (loading && storageId && title && text) {
+      uploadImage(image, setImage, collection, storageId, setError, setDataAndUpload)
     }
-  }, [loading, storageId])
+  }, [loading, storageId, title, text])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let title = titleRef.current.value
-    let text = textRef.current.value
+    let _title = titleRef.current.value
+    let _text = textRef.current.value
 
-    if (image && title !== "" && text !== "") {
-      setStorageId(Math.random().toString(36).substr(2, 9))
+    if (image && _title !== "" && _text !== "") {
+      setTitle(_title)
+      setText(_text)
+      setStorageId(randomUid)
       setLoading(true)
-      // UploadImage(title, text)
     }
   }
 

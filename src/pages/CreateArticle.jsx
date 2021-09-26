@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom' 
-import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
+import { projectStorage } from '../firebase/config';
 
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import ImageGrid from '../components/ImageGrid.jsx';
@@ -8,6 +8,10 @@ import Modal from '../components/Modal.jsx';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
+
+// import { uploadImage } from '../functions/uploadImage';
+import randomUid from '../functions/randomUid';
+import { uploadToDatabase } from '../functions/uploadToDatabase';
 
 const CreateArticle = ({collection, length}) => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -28,11 +32,8 @@ const CreateArticle = ({collection, length}) => {
     setGallery(newArray);
  };
 
- const uploadToDatabase = async () => {
-   if(loading) {
-    const collectionRef = projectFirestore.collection(collection);
-    const createdAt = timestamp();
-    
+ const setDataAndUpload = () => {
+  if(loading) {
     const currentTime = new Date()
     // returns the month (from 0 to 11)
     const month = ('0' + (currentTime.getMonth() + 1)).slice(-2)
@@ -43,16 +44,20 @@ const CreateArticle = ({collection, length}) => {
     const date = day + "." + month + "." + year
     const galleryUrl = gallery.map(x => x.downloadURL)
     const order = length ? length : 0
-    await collectionRef.add({ galleryUrl, title, subTitle, text, date, createdAt, storageId, order });
-    history.push('/')
-   }
- }
+    const data = { galleryUrl, title, subTitle, text, date, storageId, order }
+
+    uploadToDatabase(collection, data)
+    .then(() => {
+      history.push('/')
+    })
+  }
+}
 
  useEffect(() => {
    if (loading && storageId) {
     if(gallery.every(x => (x.status === "FINISH"))) {
       setLoading(false)
-      uploadToDatabase()
+      setDataAndUpload()
       return
     } else {
       gallery.forEach((image, index) => {
@@ -98,15 +103,15 @@ const CreateArticle = ({collection, length}) => {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    let titleValue = titleRef.current.value
-    let subTitleValue = subTitleRef.current.value
-    let textValue = textRef.current.value
+    let _title = titleRef.current.value
+    let _subTitle = subTitleRef.current.value
+    let _text = textRef.current.value
 
-    if (gallery[0] && titleValue !== "") {
-      setTitle(titleValue)
-      setSubTitle(subTitleValue)
-      setText(textValue)
-      setStorageId(Math.random().toString(36).substr(2, 9))
+    if (gallery[0] && _title !== "") {
+      setTitle(_title)
+      setSubTitle(_subTitle)
+      setText(_text)
+      setStorageId(randomUid)
       setLoading(true)
     }
   }
