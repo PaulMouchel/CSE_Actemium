@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton.jsx'
@@ -10,6 +10,7 @@ import UploadImageForm from '../components/UploadImageForm.jsx';
 const CreateCssct = ({collection}) => {
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
+  const [storageId, setStorageId] = useState(""); 
   const titleRef = useRef()
   const textRef = useRef()
   const history = useHistory()
@@ -24,13 +25,13 @@ const CreateCssct = ({collection}) => {
     const collectionRef = projectFirestore.collection(collection);
     const createdAt = timestamp();
     const imageUrl = image.downloadURL
-    await collectionRef.add({ imageUrl, title:title, text:text, createdAt });
+    await collectionRef.add({ imageUrl, title:title, text:text, createdAt, storageId });
     setLoading(false)
     history.push('/')
  }
 
 const UploadImage = (title, text) => {
-    changeImageField("storageRef", projectStorage.ref().child(collection + "/" + title + "/" + image.fileName));
+    changeImageField("storageRef", projectStorage.ref().child(collection + "/" + storageId + "/" + image.fileName));
     const uploadTask = image.storageRef.put(image.file);
     uploadTask.on(
         "state_changed",
@@ -53,6 +54,14 @@ const UploadImage = (title, text) => {
     }
   }
 
+  useEffect(() => {
+    if (loading && storageId) {
+      let title = titleRef.current.value
+      let text = textRef.current.value
+      UploadImage(title, text)
+    }
+  }, [loading, storageId])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -60,8 +69,9 @@ const UploadImage = (title, text) => {
     let text = textRef.current.value
 
     if (image && title !== "" && text !== "") {
+      setStorageId(Math.random().toString(36).substr(2, 9))
       setLoading(true)
-      UploadImage(title, text)
+      // UploadImage(title, text)
     }
   }
 
