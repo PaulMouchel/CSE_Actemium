@@ -1,8 +1,9 @@
-import { changeStateObjectField } from "./changeStateObjectField";
 import { projectStorage } from "../firebase/config";
 
 export const uploadImage = (image, setImage, collection, storageId, setError, next) => {
-    changeStateObjectField(image, setImage, "storageRef", projectStorage.ref().child(collection + "/" + storageId + "/" + image.fileName));
+    let newImage = image
+    newImage["storageRef"] = projectStorage.ref().child(collection + "/" + storageId + "/" + image.fileName)
+    setImage(newImage)
     const uploadTask = image.storageRef.put(image.file);
     uploadTask.on(
         "state_changed",
@@ -13,7 +14,9 @@ export const uploadImage = (image, setImage, collection, storageId, setError, ne
         },
         async function complete() {
             const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-            changeStateObjectField(image, setImage, "downloadURL", downloadURL);
+            let newImage = image
+            newImage["downloadURL"] = downloadURL
+            setImage(newImage)
             next()
         }
     );

@@ -1,15 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom' 
-import { projectStorage } from '../firebase/config';
-
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
-
-// import { uploadImage } from '../functions/uploadImage';
+import { uploadImages } from '../functions/uploadImages';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
 
@@ -21,19 +18,13 @@ const CreateArticle = ({collection, length}) => {
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
   const [storageId, setStorageId] = useState(""); 
+  const [error, setError] = useState(""); 
   const titleRef = useRef()
   const subTitleRef = useRef()
   const textRef = useRef()
   const history = useHistory()
 
-  const changeImageField = (index, parameter, value) => {
-    const newArray = [...gallery];
-    newArray[index][parameter] = value;
-    setGallery(newArray);
- };
-
  const setDataAndUpload = () => {
-  if(loading) {
     const currentTime = new Date()
     // returns the month (from 0 to 11)
     const month = ('0' + (currentTime.getMonth() + 1)).slice(-2)
@@ -48,41 +39,17 @@ const CreateArticle = ({collection, length}) => {
 
     uploadToDatabase(collection, data)
     .then(() => {
+      setLoading(false)
       history.push('/')
     })
-  }
 }
 
  useEffect(() => {
    if (loading && storageId) {
-    if(gallery.every(x => (x.status === "FINISH"))) {
-      setLoading(false)
-      setDataAndUpload()
-      return
-    } else {
-      gallery.forEach((image, index) => {
-        if (image.storageRef === "") {
-          changeImageField(index, "storageRef", projectStorage.ref().child(collection + "/" + storageId + "/" + image.fileName));
-        }
-        if (image.status === "FINISH" || image.status === "UPLOADING") return;
-        changeImageField(index, "status", "UPLOADING");
-        const uploadTask = image.storageRef.put(image.file);
-        uploadTask.on(
-            "state_changed",
-            null,
-            function error(err) {
-              console.log("Error Image Upload:", err);
-            },
-            async function complete() {
-              const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-              changeImageField(index, "downloadURL", downloadURL);
-              changeImageField(index, "status", "FINISH");
-            }
-        );
-      })};
+     uploadImages(gallery, setGallery, collection, storageId, setError, setDataAndUpload)
  }},[loading, storageId, gallery]);
 
-  const setarticleImage = (image) => {
+  const setArticleImage = (image) => {
     if (image) {
       let galleryClone = gallery
       galleryClone[0] = image[0]
@@ -130,11 +97,11 @@ const CreateArticle = ({collection, length}) => {
             <div className="pt-2">
               {gallery[0] ? 
                 <div className="flex items-center justify-center h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${gallery[0].url})`}}>
-                  <UploadImageForm file={gallery} setFile={setarticleImage} maxWidth={1728} maxHeight={1728}/>
+                  <UploadImageForm file={gallery} setFile={setArticleImage} maxWidth={1728} maxHeight={1728}/>
                 </div> 
               : 
                 <div className="flex items-center justify-center h-72 md:h-96 bg-gray-400">
-                  <UploadImageForm file={gallery} setFile={setarticleImage} maxWidth={1728} maxHeight={1728}/>
+                  <UploadImageForm file={gallery} setFile={setArticleImage} maxWidth={1728} maxHeight={1728}/>
                 </div>}
             </div> 
             <div className="px-4">

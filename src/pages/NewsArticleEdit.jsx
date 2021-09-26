@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom' 
-import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
-
+import { projectFirestore, timestamp } from '../firebase/config';
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
+import { uploadImages } from '../functions/uploadImages';
 
 const NewsArticleEdit = ({collection}) => {
   const { state } = useLocation();
@@ -17,19 +17,13 @@ const NewsArticleEdit = ({collection}) => {
   const [text, setText] = useState(""); 
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
   const titleRef = useRef()
   const subTitleRef = useRef()
   const textRef = useRef()
   const history = useHistory()
 
-  const changeImageField = (index, parameter, value) => {
-    const newArray = [...gallery];
-    newArray[index][parameter] = value;
-    setGallery(newArray);
- };
-
  const uploadToDatabase = async () => {
-   if(loading) {
     const collectionRef = projectFirestore.collection(collection);
     const createdAt = timestamp();
     
@@ -44,8 +38,8 @@ const NewsArticleEdit = ({collection}) => {
     const galleryUrl = gallery.map(x => x.downloadURL)
 
     await collectionRef.doc(state.data.id).update({ galleryUrl, title, subTitle, text, date, createdAt, storageId:state.data.storageId });
+    setLoading(false)
     history.push('/')
-   }
  }
 
  useEffect(() => {
@@ -63,31 +57,7 @@ const NewsArticleEdit = ({collection}) => {
 
  useEffect(() => {
    if (loading) {
-    if(gallery.every(x => (x.status === "FINISH"))) {
-      setLoading(false)
-      uploadToDatabase()
-      return
-    } else {
-      gallery.forEach((image, index) => {
-        if (image.storageRef === "") {
-          changeImageField(index, "storageRef", projectStorage.ref().child(collection + "/" + state.data.storageId + "/" + image.fileName));
-        }
-        if (image.status === "FINISH" || image.status === "UPLOADING") return;
-        changeImageField(index, "status", "UPLOADING");
-        const uploadTask = image.storageRef.put(image.file);
-        uploadTask.on(
-            "state_changed",
-            null,
-            function error(err) {
-              console.log("Error Image Upload:", err);
-            },
-            async function complete() {
-              const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-              changeImageField(index, "downloadURL", downloadURL);
-              changeImageField(index, "status", "FINISH");
-            }
-        );
-      })};
+    uploadImages(gallery, setGallery, collection, state.data.storageId, setError, uploadToDatabase)
  }},[loading, gallery]);
 
   const setarticleImage = (image) => {
