@@ -65,7 +65,7 @@ const NewsArticleDetail = ({admin, collection, docs, updateBenefitsOrders}) => {
                     state: {data: data}
                     }}>
                         <button 
-                        className="transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full w-10 h-10 flex items-center justify-center relative top-2 right-2 mr-4">
+                        className="transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full w-10 h-10 flex items-center justify-center relative top-2 right-2 mr-4 focus:outline-none">
                             <FontAwesomeIcon icon={faPen} />
                         </button>
                     </Link>

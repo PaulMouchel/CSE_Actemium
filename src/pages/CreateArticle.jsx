@@ -12,9 +12,12 @@ import { uploadToDatabase } from '../functions/uploadToDatabase';
 
 const CreateArticle = ({collection, length}) => {
   const [selectedImg, setSelectedImg] = useState(null);
-  const [title, setTitle] = useState(""); 
-  const [subTitle, setSubTitle] = useState(""); 
-  const [text, setText] = useState(""); 
+  // const [title, setTitle] = useState(""); 
+  const title = useRef("")
+  // const [subTitle, setSubTitle] = useState(""); 
+  const subTitle = useRef("")
+  // const [text, setText] = useState("");
+  const text = useRef("")
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
   const [storageId, setStorageId] = useState(""); 
@@ -35,7 +38,7 @@ const CreateArticle = ({collection, length}) => {
     const date = day + "." + month + "." + year
     const galleryUrl = gallery.map(x => x.downloadURL)
     const order = length ? length : 0
-    const data = { galleryUrl, title, subTitle, text, date, storageId, order }
+    const data = { galleryUrl, title:title.current, subTitle:subTitle.current, text:text.current, date, storageId, order }
 
     uploadToDatabase(collection, data)
     .then(() => {
@@ -45,9 +48,10 @@ const CreateArticle = ({collection, length}) => {
 }
 
  useEffect(() => {
+   console.log("useEffect")
    if (loading && storageId) {
      uploadImages(gallery, setGallery, collection, storageId, setError, setDataAndUpload)
- }},[loading, storageId, gallery]);
+ }},[loading, storageId, gallery, collection]);
 
   const setArticleImage = (image) => {
     if (image) {
@@ -75,9 +79,12 @@ const CreateArticle = ({collection, length}) => {
     let _text = textRef.current.value
 
     if (gallery[0] && _title !== "") {
-      setTitle(_title)
-      setSubTitle(_subTitle)
-      setText(_text)
+      // setTitle(_title)
+      title.current = _title
+      // setSubTitle(_subTitle)
+      subTitle.current = _subTitle
+      // setText(_text)
+      text.current = _text
       setStorageId(randomUid)
       setLoading(true)
     }

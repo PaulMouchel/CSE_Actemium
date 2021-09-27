@@ -25,11 +25,11 @@ const DeleteConfirmation = ({ setShowDeleteConfirmation, handleDelete, info }) =
         animate={{ y: 0 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <p className="bg-secondary text-center text-lg font-bold py-2">Suppression de {info}</p>
+        <p className="bg-primary text-white text-center text-lg font-bold py-2">Suppression de {info}</p>
         <p className="text-center text-lg font-bold">Êtes-vous sur ?</p>
         <div className="flex justify-end">
-          <button className="bg-red-500 text-lg font-bold py-2 px-4 border border-gray-500" onClick={handleClickValidate}>Confirmer</button>
-          <button className="bg-gray-300 text-lg font-bold py-2 px-4 border border-gray-500 mx-4" onClick={handleClickCancel}>Annuler</button>
+          <button className="bg-red-600 text-white text-md font-bold py-2 px-6 rounded-md focus:outline-none" onClick={handleClickValidate}>Confirmer</button>
+          <button className="bg-gray-300 text-md font-bold py-2 px-6  mx-4 rounded-md focus:outline-none" onClick={handleClickCancel}>Annuler</button>
         </div>
       </motion.div>
     </motion.div>
