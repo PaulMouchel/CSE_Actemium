@@ -1,4 +1,4 @@
-import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus, faUserCog } from "@fortawesome/free-solid-svg-icons";
 
 export const adminMenuData = [
     {
@@ -30,5 +30,10 @@ export const adminMenuData = [
         href: "members/new",
         icon: faUserPlus,
         text: "Nouveau membre"
+    },
+    {
+        href: "users/edit",
+        icon: faUserCog,
+        text: "Admins"
     }
 ]

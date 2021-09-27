@@ -12,6 +12,7 @@ import NewsArticleEdit from '../pages/NewsArticleEdit.jsx'
 import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
 import CreateMember from '../pages/CreateMember.jsx'
+import Admins from '../pages/Admins.jsx';
 import Error404 from '../pages/Error404.jsx';
 import ScrollToTop from './ScrollToTop.jsx';
 import { init } from 'emailjs-com';
@@ -74,6 +75,9 @@ const Main = () => {
                     </AdminRoute>
                     <AdminRoute path="/background/edit" isAdmin={isAdmin}>
                         <UpdateBackground image={background} setImage={setBackground}/>
+                    </AdminRoute>
+                    <AdminRoute path="/users/edit" isAdmin={isAdmin}>
+                        <Admins/>
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
