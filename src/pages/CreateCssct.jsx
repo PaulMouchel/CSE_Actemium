@@ -13,21 +13,24 @@ import UploadImageForm from '../components/UploadImageForm.jsx';
 const CreateCssct = ({collection}) => {
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
-  const [storageId, setStorageId] = useState(""); 
-  const [title, setTitle] = useState("")
-  const [text, setText] = useState("")
   const [error, setError] = useState("")
+
+  const textData = useRef({
+    title: "",
+    text: "",
+    storageId: ""
+  })
+
   const titleRef = useRef()
   const textRef = useRef()
   const history = useHistory()
 
  const setDataAndUpload = () => {
   const imageUrl = image.downloadURL
-  const data = { imageUrl, title:title, text:text, storageId }
+  const data = { imageUrl, ...textData.current }
 
   uploadToDatabase(collection, data)
   .then(() => {
-    setLoading(false)
     history.push('/')
   })
 }
@@ -39,21 +42,23 @@ const CreateCssct = ({collection}) => {
   }
 
   useEffect(() => {
-    if (loading && storageId && title && text) {
-      uploadImage(image, setImage, collection, storageId, setError, setDataAndUpload)
+    if (loading) {
+      uploadImage(image, setImage, collection, textData.current.storageId, setError, setDataAndUpload)
     }
-  }, [loading, storageId, title, text])
+  }, [loading])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let _title = titleRef.current.value
-    let _text = textRef.current.value
+    const _title = titleRef.current.value
+    const _text = textRef.current.value
 
     if (image && _title !== "" && _text !== "") {
-      setTitle(_title)
-      setText(_text)
-      setStorageId(randomUid)
+      textData.current = {
+        title: _title,
+        text: _text,
+        storageId: randomUid()
+      }
       setLoading(true)
     }
   }
@@ -70,7 +75,6 @@ const CreateCssct = ({collection}) => {
           <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer {collection === "Benefits" ? "un nouvel avantage" : "une nouvelle mission CSSCT" }</p>
           <div className="flex flex-col justify-between h-full -mt-10">
             <div className="pt-8">
-              
               {image ? 
                 <div className="flex items-center justify-center h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${image.url})`}}>
                   <UploadImageForm file={[image]} setFile={setBenefitImage} maxWidth={1000} maxHeight={1000}/>

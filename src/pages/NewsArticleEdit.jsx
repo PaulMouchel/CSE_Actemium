@@ -8,16 +8,19 @@ import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
+import formatedDate from '../functions/formatedDate';
 
 const NewsArticleEdit = ({collection}) => {
   const { state } = useLocation();
-  const [selectedImg, setSelectedImg] = useState(null);
-  const [title, setTitle] = useState(""); 
-  const [subTitle, setSubTitle] = useState(""); 
-  const [text, setText] = useState(""); 
+  const [selectedImg, setSelectedImg] = useState(null); 
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const textData = useRef({
+    title: "",
+    subTitle: "",
+    text: "",
+  })
   const titleRef = useRef()
   const subTitleRef = useRef()
   const textRef = useRef()
@@ -26,19 +29,9 @@ const NewsArticleEdit = ({collection}) => {
  const uploadToDatabase = async () => {
     const collectionRef = projectFirestore.collection(collection);
     const createdAt = timestamp();
-    
-    const currentTime = new Date()
-    // returns the month (from 0 to 11)
-    const month = ('0' + (currentTime.getMonth() + 1)).slice(-2)
-    // returns the day of the month (from 1 to 31)
-    const day = ('0' + currentTime.getDate()).slice(-2)
-    // returns the year (four digits)
-    const year = currentTime.getFullYear()
-    const date = day + "." + month + "." + year
+    const date = formatedDate()
     const galleryUrl = gallery.map(x => x.downloadURL)
-
-    await collectionRef.doc(state.data.id).update({ galleryUrl, title, subTitle, text, date, createdAt, storageId:state.data.storageId });
-    setLoading(false)
+    await collectionRef.doc(state.data.id).update({ galleryUrl, ...textData.current, date, createdAt, storageId:state.data.storageId });
     history.push('/')
  }
 
@@ -47,11 +40,11 @@ const NewsArticleEdit = ({collection}) => {
   subTitleRef.current.value = state.data.subTitle
   textRef.current.value = state.data.text
   setGallery(state.data.galleryUrl.map(imageUrl => {
-    const container = {};
-    container["url"] = imageUrl;
-    container["downloadURL"] = imageUrl;
-    container["status"] = "FINISH";
-    return container;
+    return {
+      url: imageUrl,
+      downloadURL: imageUrl,
+      status: "FINISH"
+    }
   }))
  },[])
 
@@ -78,17 +71,17 @@ const NewsArticleEdit = ({collection}) => {
     return gallery.map(image => image.url)
   }
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let titleValue = titleRef.current.value
-    let subTitleValue = subTitleRef.current.value
-    let textValue = textRef.current.value
+    const _title = titleRef.current.value
 
-    if (gallery[0] && titleValue !== "") {
-      setTitle(titleValue)
-      setSubTitle(subTitleValue)
-      setText(textValue)
+    if (gallery[0] && _title !== "") {
+      textData.current = {
+        title: _title,
+        subTitle: subTitleRef.current.value,
+        text: textRef.current.value,
+      }
       setLoading(true)
     }
   }

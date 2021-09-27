@@ -9,49 +9,41 @@ import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
+import formatedDate from '../functions/formatedDate.js';
 
 const CreateArticle = ({collection, length}) => {
   const [selectedImg, setSelectedImg] = useState(null);
-  // const [title, setTitle] = useState(""); 
-  const title = useRef("")
-  // const [subTitle, setSubTitle] = useState(""); 
-  const subTitle = useRef("")
-  // const [text, setText] = useState("");
-  const text = useRef("")
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
-  const [storageId, setStorageId] = useState(""); 
   const [error, setError] = useState(""); 
+
+  const textData = useRef({
+    title: "",
+    subTitle: "",
+    text: "",
+    storageId: ""
+  })
+
   const titleRef = useRef()
   const subTitleRef = useRef()
   const textRef = useRef()
   const history = useHistory()
 
  const setDataAndUpload = () => {
-    const currentTime = new Date()
-    // returns the month (from 0 to 11)
-    const month = ('0' + (currentTime.getMonth() + 1)).slice(-2)
-    // returns the day of the month (from 1 to 31)
-    const day = ('0' + currentTime.getDate()).slice(-2)
-    // returns the year (four digits)
-    const year = currentTime.getFullYear()
-    const date = day + "." + month + "." + year
+    const date = formatedDate()
     const galleryUrl = gallery.map(x => x.downloadURL)
     const order = length ? length : 0
-    const data = { galleryUrl, title:title.current, subTitle:subTitle.current, text:text.current, date, storageId, order }
-
+    const data = { galleryUrl, ...textData.current, date, order }
     uploadToDatabase(collection, data)
     .then(() => {
-      setLoading(false)
       history.push('/')
     })
 }
 
  useEffect(() => {
-   console.log("useEffect")
-   if (loading && storageId) {
-     uploadImages(gallery, setGallery, collection, storageId, setError, setDataAndUpload)
- }},[loading, storageId, gallery, collection]);
+   if (loading) {
+     uploadImages(gallery, setGallery, collection, textData.current.storageId, setError, setDataAndUpload)
+ }},[loading, gallery, collection]);
 
   const setArticleImage = (image) => {
     if (image) {
@@ -71,21 +63,18 @@ const CreateArticle = ({collection, length}) => {
     return gallery.map(image => image.url)
   }
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let _title = titleRef.current.value
-    let _subTitle = subTitleRef.current.value
-    let _text = textRef.current.value
+    const _title = titleRef.current.value
 
     if (gallery[0] && _title !== "") {
-      // setTitle(_title)
-      title.current = _title
-      // setSubTitle(_subTitle)
-      subTitle.current = _subTitle
-      // setText(_text)
-      text.current = _text
-      setStorageId(randomUid)
+      textData.current = {
+        title: _title,
+        subTitle: subTitleRef.current.value,
+        text: textRef.current.value,
+        storageId: randomUid()
+      }
       setLoading(true)
     }
   }

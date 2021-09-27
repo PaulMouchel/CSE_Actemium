@@ -16,18 +16,24 @@ const CreateMember = ({teamLength}) => {
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [storageId, setStorageId] = useState(""); 
-  const [name, setName] = useState("")
+
+  const formData = useRef({
+    fullName: "",
+    role: "",
+    holder: false,
+    executive: false,
+    president: false,
+    storageId: ""
+  })
+
   const nameRef = useRef()
   const roleRef = useRef()
   const history = useHistory()
 
   const setDataAndUpload = () => {
-    const role = roleRef.current.value
     const imageUrl = image.downloadURL
     const order = teamLength
-    const data = { imageUrl, fullName:name, role, holder:(holder==="holder"), executive:(executive==="executive"), president, order, storageId }
-
+    const data = { imageUrl, ...formData.current, order}
     uploadToDatabase("Team", data)
     .then(() => {
       setLoading(false)
@@ -36,10 +42,10 @@ const CreateMember = ({teamLength}) => {
   }
 
   useEffect(() => {
-    if (loading && storageId && name) {
-      uploadImage(image, setImage, "Team", storageId, setError, setDataAndUpload)
+    if (loading) {
+      uploadImage(image, setImage, "Team", formData.current.storageId, setError, setDataAndUpload)
     }
-  }, [loading, storageId, name])
+  }, [loading])
 
   const setMemberImage = (images) => {
     if (images[0]) {
@@ -50,11 +56,17 @@ const CreateMember = ({teamLength}) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let _name = nameRef.current.value
+    const _name = nameRef.current.value
     
     if (image && _name !== "") {
-      setName(_name)
-      setStorageId(randomUid)
+      formData.current = {
+        fullName: _name,
+        role: roleRef.current.value,
+        holder: (holder==="holder"),
+        executive: (executive==="executive"),
+        president: president,
+        storageId: randomUid()
+      }
       setLoading(true)
     }
   }
