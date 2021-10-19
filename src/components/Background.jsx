@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useFirestore from '../hooks/useFirestore';
+import defaultBg from '../images/defaultBg.jpg'
 
 const Background = (props) => {
     
@@ -10,7 +11,6 @@ const Background = (props) => {
         if (props.image) {
             setDisplayedImage(props.image)
         } else if (docs[0]) {
-            //setDisplayedImage(docs[0].imageUrl)
             props.setImage(docs[0].imageUrl)
         } else {
             setDisplayedImage("")
@@ -19,7 +19,7 @@ const Background = (props) => {
 
     return (
         <div className={`w-screen min-h-screen bg-cover bg-center bg-fixed ${props.className}`}
-            style={docs[0] && {backgroundImage: `url(${displayedImage})`}}>
+            style={{backgroundImage: `url(${props.currentUser ? displayedImage : defaultBg})`}}>
                 {props.children}
         </div>
     );

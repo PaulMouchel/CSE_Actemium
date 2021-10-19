@@ -29,7 +29,7 @@ init(process.env.REACT_APP_EMAILJS_USER_ID);
 
 const Main = () => {
     const [background, setBackground] = useState(null)
-    const { isAdmin } = useAuth()
+    const { isAdmin, currentUser } = useAuth()
     const [admin, setAdmin] = useState(false)
     
     const quotation = useFirestore('Quotation');
@@ -44,7 +44,7 @@ const Main = () => {
 
   return (
     <>
-       <Background image={background} setImage={setBackground} >
+       <Background image={background} setImage={setBackground} currentUser={currentUser} >
             <ScrollToTop>
                 <AnimatePresence>
                 <Switch>
