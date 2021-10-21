@@ -59,7 +59,7 @@ const Main = () => {
                         <NewsArticleEdit collection={"News"}/>
                     </AdminRoute>
                     <AdminRoute path="/benefits/new" isAdmin={isAdmin}>
-                        <CreateArticle collection={"Benefits"} length={benefits.docs.length}/>
+                        <CreateArticle collection={"Benefits"} length={benefits?.docs?.length}/>
                     </AdminRoute>
                     <AdminRoute path="/benefits/:id/edit" isAdmin={isAdmin}>
                         <NewsArticleEdit collection={"Benefits"}/>
@@ -68,7 +68,7 @@ const Main = () => {
                         <CreateCssct collection={"Cssct"}/>
                     </AdminRoute>
                     <AdminRoute path="/members/new" isAdmin={isAdmin}>
-                        <CreateMember teamLength={team.docs.length}/>
+                        <CreateMember teamLength={team?.docs?.length}/>
                     </AdminRoute>
                     <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
                         <UpdateQuotation docs={quotation.docs}/>

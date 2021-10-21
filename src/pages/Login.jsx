@@ -26,8 +26,8 @@ const Login = () => {
             history.push('/')
         } catch(e) {
             setError("Connexion échouée " + e)
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     return (
