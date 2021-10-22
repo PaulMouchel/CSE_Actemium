@@ -43,3 +43,9 @@ html {
   color: #014185;
   font-weight: bold;
 }
+
+.loading-bg {
+  animation: 1s linear 0s infinite alternate loading;
+}
+
+@keyframes loading { from { background-color:gray; } to { background-color:lightgrey; }  }

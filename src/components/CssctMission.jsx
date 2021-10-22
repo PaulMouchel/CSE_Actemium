@@ -3,7 +3,6 @@ import deleteDocument from '../functions/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 import { motion, AnimatePresence } from 'framer-motion'
 import Img from "react-cool-img";
-import loadingImage from "../images/loading.gif";
 
 const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
   
@@ -46,10 +45,9 @@ const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
         style={{flex: size}}>
 
         <Img 
-          placeholder={loadingImage}
           src={imageUrl} 
           alt={title}
-          className={`absolute h-full w-full object-cover`}/>        
+          className={`absolute h-full w-full object-cover loading-bg`}/>        
 
         <AnimatePresence>
           { showText && 

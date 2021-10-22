@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Img from "react-cool-img";
-import loadingImage from "../images/loading.gif";
 
 const NewsArticle = (article) => {
 
@@ -19,10 +18,9 @@ const NewsArticle = (article) => {
           <div>
             { article.galleryUrl && 
               <Img 
-              placeholder={loadingImage}
               src={article.galleryUrl[0]} 
               alt={article.title  }
-              className={`h-40 w-full ${article.current && "md:h-80"} object-cover`}/>
+              className={`h-40 w-full ${article.current && "md:h-80"} object-cover loading-bg`}/>
             }
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">

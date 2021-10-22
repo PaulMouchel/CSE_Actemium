@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Img from "react-cool-img";
-import loadingImage from "../images/loading.gif";
 import { AnimatePresence } from 'framer-motion';
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,10 +42,9 @@ const Benefit = (props) => {
         <div className="md:w-1/2 md:px-4 flex justify-center md:mx-4">
           { props.galleryUrl && 
             <Img 
-              placeholder={loadingImage}
               src={props.galleryUrl[0]} 
               alt={props.title}
-              className={`h-80 md:h-96 w-full object-cover`}/>
+              className={`h-80 md:h-96 w-full object-cover loading-bg`}/>
           }
         </div>
       </div>
