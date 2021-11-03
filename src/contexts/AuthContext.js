@@ -48,9 +48,7 @@ export function AuthProvider({ children }) {
             setLoading(false)
         })
         return () => unsuscribe();
-    }, [docs])
-
-    
+    }, [docs])   
 
     const value = {
         currentUser,

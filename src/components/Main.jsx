@@ -37,7 +37,6 @@ const Main = () => {
     const benefits = useFirestore('Benefits');
     const cssct = useFirestore('Cssct');
     const team = useFirestore('Team');
-
     const updateBenefitsOrders = (exeptionId) => {
         updateOrders(benefits.docs, "Benefits", exeptionId)
       }
