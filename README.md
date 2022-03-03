@@ -1,8 +1,7 @@
-# Application web pour le CSE d'Actemium Rennes
+# Application web pour CSE d'entreprise
 
-Ce projet est une application web pour le comité d'entreprise d'Actemium Rennes afin de communiquer avec le personnel.  
-L'application en production se trouve à l'addresse suivante : https://cse-actemium-rennes.web.app/  
-=> Accès restreint aux membres du personnel.
+Ce projet est une application web pour le comité d'une entreprise afin de communiquer avec le personnel.  
+L'application en production a un accès restreint au personnel de l'entreprise
 
 Un version de développement est également consultable à l'adresse suivante https://cse-actemium-rennes-dev.web.app/  
 => Accès en lecture seule avec l'identifiant user@guest.com et le mot de passe 123456.  
@@ -11,11 +10,11 @@ Un version de développement est également consultable à l'adresse suivante ht
 ## Stack
 
 Ce projet a été réalisé avec :
-- React.js
-- Firebase
-- Tailwindcss
-- Framer-motion
-- emailjs
+-  <a  href="https://reactjs.org/"  title="React"><img  src="https://github.com/get-icon/geticon/raw/master/icons/react.svg"  alt="React"  width="21px"  height="21px"> React.js</a>
+-  <a  href="https://firebase.google.com/"  title="Firebase"><img  src="https://github.com/get-icon/geticon/raw/master/icons/firebase.svg"  alt="Firebase"  width="21px"  height="21px"> Firebase</a>
+-  <a  href="https://tailwindcss.com/"  title="Tailwind CSS"><img  src="https://github.com/get-icon/geticon/raw/master/icons/tailwindcss-icon.svg"  alt="Tailwind CSS"  width="21px"  height="21px"> Tailwind CSS</a>
+- <a  href="https://www.framer.com/motion/"  title="Framer-motion">Framer-motion</a>
+- <a  href="https://www.emailjs.com/"  title="emailjs">emailjs</a>
 
 ## Features
 
