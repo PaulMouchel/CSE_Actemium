@@ -1,39 +1,52 @@
-import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus, faUserCog, faFire } from "@fortawesome/free-solid-svg-icons";
 
 export const adminMenuData = [
     {
-        href: "background/edit",
+        href: "/background/edit",
         icon: faImage,
-        text: "Image de fond"
+        text: "Image de fond",
+        external: false
     },
     {
-        href: "quotation/edit",
+        href: "/quotation/edit",
         icon: faQuoteLeft,
-        text: "Phrase du moment"
+        text: "Phrase du moment",
+        external: false
     },
     {
-        href: "news/new",
+        href: "/news/new",
         icon: faPen,
-        text: "Nouvel article"
+        text: "Nouvel article",
+        external: false
     },
     {
-        href: "benefits/new",
+        href: "/benefits/new",
         icon: faThumbsUp,
-        text: "Nouvel avantage"
+        text: "Nouvel avantage",
+        external: false
     },
     {
-        href: "cssct/new",
+        href: "/cssct/new",
         icon: faShieldAlt,
-        text: "Nouvelle mission"
+        text: "Nouvelle mission",
+        external: false
     },
     {
-        href: "members/new",
+        href: "/members/new",
         icon: faUserPlus,
-        text: "Nouveau membre"
+        text: "Nouveau membre",
+        external: false
     },
     {
-        href: "users/edit",
+        href: "/users/edit",
         icon: faUserCog,
-        text: "Admins"
+        text: "Admins",
+        external: false
+    },
+    {
+        href: process.env.REACT_APP_FIREBASE_CONSOLE_URL,
+        icon: faFire,
+        text: "Firebase",
+        external: true
     }
 ]

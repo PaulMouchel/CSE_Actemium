@@ -39,12 +39,12 @@ const Contact = ({textColor}) => {
         .then((result) => {
             console.log(result.text);
             setSuccess("Message envoyé avec succès !")
+            e.target.reset()
         }, (error) => {
             console.log(error.text);
             setError("Echec de l'envoi du message : " + error.text)
         });
       }
-      e.target.reset()
   }
   
   return (
