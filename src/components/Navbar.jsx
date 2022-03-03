@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-
 import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 import { motion } from 'framer-motion'
-import logo from '../images/full_logo2.png'
+import logo from '../images/nav_logo.png'
 import NavButton from './NavButton.jsx'
 import BurgerMenu from './BurgerMenu.jsx'
 import { navbarData } from "../data/navbar";

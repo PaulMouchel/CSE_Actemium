@@ -5,8 +5,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      primary: '#014185',
-      secondary: '#c6d200',
+      primary: process.env.REACT_APP_PRIMARY_COLOR,
+      secondary: process.env.REACT_APP_SECONDARY_COLOR,
       gray: colors.gray,
       blue: colors.blue,
       green: colors.green,
