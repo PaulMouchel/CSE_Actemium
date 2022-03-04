@@ -24,7 +24,7 @@ const BurgerAdminButton = (item) => {
             initial="hidden"
             animate="visible"
             exit="exit">          
-            <div className="z-10 transform group-hover:translate-x-1 group-hover:scale-125 text-gray-50 flex justify-center w-10 h-10 rounded my-2 place-content-center bg-blue-900 transition duration-300 ease-in-out">
+            <div className={`z-10 transform group-hover:translate-x-1 group-hover:scale-125 text-gray-50 flex justify-center w-10 h-10 rounded my-2 place-content-center bg-blue-900 transition duration-300 ease-in-out ${item.external && "bg-yellow-300 text-yellow-900"}`}>
                 <Link className="flex justify-center items-center" to={"/" + item.href}>
                     <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
                 </Link>

@@ -56,7 +56,7 @@ const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
                     {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
                     <motion.div layout
                     transition={{ type:"spring", ease: "easeOut", duration: 0.5 }} 
-                    className={`z-50 rounded-b-lg bg-gray-50 w-full pb-4`}>
+                    className={`z-50 rounded-b-lg bg-gray-50 w-full pb-20`}>
                         <motion.ul className="pt-16 flex flex-col justify-between">
                             {navbarData.map((item, index) =>
                                 <BurgerButton key={index} index={index} {...item}/>
