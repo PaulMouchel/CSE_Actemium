@@ -1,7 +1,6 @@
 import React from 'react';
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { HashLink as Link } from 'react-router-hash-link';
 import { Link } from 'react-router-dom'
 
 const PreviousButton = ({to, hash, state, className}) => {

@@ -12,7 +12,7 @@ import Cssct from '../components/Cssct.jsx'
 import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
-
+import { goToHash } from '../functions/goToHash';
 import { useLocation } from 'react-router-dom' 
 
 const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation, cssct, team}) => {
@@ -38,9 +38,7 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
   useEffect(() => {
     if (state.hash)
     {
-      const el = document.getElementById(state.hash)
-      const position = el.offsetTop
-      window.scrollTo({ top: position, behavior: 'auto' })
+      goToHash(state.hash, 'auto')
     }   
   },[state])
 

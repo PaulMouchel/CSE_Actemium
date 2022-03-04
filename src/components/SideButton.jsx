@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from 'framer-motion';
+import { goToHash } from '../functions/goToHash';
 
 const buttonsVariant = {
     hidden: {
@@ -42,12 +43,6 @@ const SideButton = (item) => {
         setIsHovering(false);
     }
 
-    const goToSection = (id) => {
-        const el = document.getElementById(id)
-        const position = el.offsetTop
-        window.scrollTo({ top: position, behavior: 'smooth' })
-    }
-
     return (
         <motion.li className="group flex flex-row items-center"
             variants={buttonsVariant}
@@ -59,7 +54,7 @@ const SideButton = (item) => {
                 onMouseLeave={handleMouseLeave}>
                 <div
                     className="tiny-nav-link flex justify-center items-center cursor-pointer"
-                    onClick={() => goToSection(item.href)}>
+                    onClick={() => goToHash(item.href)}>
                     <FontAwesomeIcon icon={item.icon} className="box-content p-1.5 m-0"/>
                 </div>
             </div>
