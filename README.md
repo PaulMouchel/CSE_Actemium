@@ -3,10 +3,6 @@
 Ce projet est une application web pour le comité d'une entreprise afin de communiquer avec le personnel.  
 L'application en production a un accès restreint au personnel de l'entreprise
 
-Un version de développement est également consultable à l'adresse suivante https://cse-actemium-rennes-dev.web.app/  
-=> Accès en lecture seule avec l'identifiant user@guest.com et le mot de passe 123456.  
-=> Un accès avec toutes les fonctionnalités adminitrateur peut être donné sur demande.
-
 ## Stack
 
 Ce projet a été réalisé avec :
