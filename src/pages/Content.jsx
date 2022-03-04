@@ -13,6 +13,8 @@ import Team from '../components/Team.jsx'
 import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
 
+import { useLocation } from 'react-router-dom' 
+
 const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation, cssct, team}) => {
 
   const homeRef = useRef(null);
@@ -22,6 +24,7 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
   const teamRef = useRef(null)
   const contactRef = useRef(null)
   const [visibleSection, setVisibleSection] = useState();
+  let { state } = useLocation();
 
   const sectionRefs = [
     { section: "home", ref: homeRef },
@@ -31,6 +34,15 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
     { section: "team", ref: teamRef },
     { section: "contact", ref: contactRef },
   ];  
+
+  useEffect(() => {
+    if (state.hash)
+    {
+      const el = document.getElementById(state.hash)
+      const position = el.offsetTop
+      window.scrollTo({ top: position, behavior: 'auto' })
+    }   
+  },[state])
 
   useEffect(() => {
     if (sectionRefs.map(x => x.section).includes(scrollTo))

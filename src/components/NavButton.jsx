@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavHashLink } from 'react-router-hash-link';
 import { motion } from 'framer-motion';
 
 const underlineVariant = {
@@ -27,17 +26,23 @@ const NavButton = (item) => {
         setIsHovering(false);
     }
 
+    const goToSection = (id) => {
+        const el = document.getElementById(id)
+        const position = el.offsetTop
+        window.scrollTo({ top: position, behavior: 'smooth' })
+    }
+
     return (
         <li className="mr-6 lg:mr-8 xl:mr-16 flex flex-col">    
-            <NavHashLink
-                className="flex flex-col justify-center items-center xl:flex-row"
+            <div
+                className="flex flex-col justify-center items-center xl:flex-row cursor-pointer"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                smooth to={`/#${item.href}`}
+                onClick={() => goToSection(item.href)}
                 >
                 <FontAwesomeIcon icon={item.icon} className="text-gray-600 xl:mr-1"/>
                 <span>{item.text}</span>
-            </NavHashLink> 
+            </div> 
             { isHovering &&
             <motion.div className="h-1 w-full border-b-2 border-secondary "
                 variants={underlineVariant}

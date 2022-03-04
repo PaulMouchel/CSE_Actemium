@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavHashLink } from 'react-router-hash-link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const buttonsVariant = {
@@ -43,6 +42,12 @@ const SideButton = (item) => {
         setIsHovering(false);
     }
 
+    const goToSection = (id) => {
+        const el = document.getElementById(id)
+        const position = el.offsetTop
+        window.scrollTo({ top: position, behavior: 'smooth' })
+    }
+
     return (
         <motion.li className="group flex flex-row items-center"
             variants={buttonsVariant}
@@ -52,11 +57,11 @@ const SideButton = (item) => {
             <div className={`z-10 transform group-hover:-translate-x-1 group-hover:scale-125 hover:text-gray-50 ${!item.focus && "text-gray-600"} flex justify-center w-8 h-8 rounded-full my-2 place-content-center hover:bg-gray-600 ${!item.focus && "bg-gray-50"} transition duration-300 ease-in-out ${item.focus && "text-gray-50 bg-gray-600"}`}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}>
-                <NavHashLink
-                    className="tiny-nav-link flex justify-center items-center"
-                    smooth to={`/#${item.href}`}>
+                <div
+                    className="tiny-nav-link flex justify-center items-center cursor-pointer"
+                    onClick={() => goToSection(item.href)}>
                     <FontAwesomeIcon icon={item.icon} className="box-content p-1.5 m-0"/>
-                </NavHashLink>
+                </div>
             </div>
             <AnimatePresence>
                 { isHovering &&

@@ -1,9 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavHashLink } from 'react-router-hash-link';
 import { motion } from 'framer-motion';
-
-
 
 const BurgerButton = (item) => {
 
@@ -19,20 +16,25 @@ const BurgerButton = (item) => {
         }
     }
 
+    const goToSection = (id) => {
+        const el = document.getElementById(id)
+        const position = el.offsetTop
+        window.scrollTo({ top: position, behavior: 'smooth' })
+    }
+
     return (
         <motion.li
             variants={itemVariant}
             initial="hidden"
             animate="visible">    
-            <NavHashLink
-                className="p-3 pl-6 block justify-center items-center menu-closer"
-                smooth to={`/#${item.href}`}
-                >
+            <div
+            className="p-3 pl-6 block justify-center items-center menu-closer"
+            onClick={() => goToSection(item.href)}>
                 <div className="menu-closer inline-flex items-center justify-center w-10 h-10 border-2 border-gray-600 rounded-full">
                     <FontAwesomeIcon icon={item.icon} className="menu-closer block w-4 h-4 text-gray-600"/>
                 </div>
                 <span className="pl-4 menu-closer">{item.text}</span>
-            </NavHashLink> 
+            </div> 
         </motion.li>
     );
 }

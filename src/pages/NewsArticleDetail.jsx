@@ -19,7 +19,7 @@ const NewsArticleDetail = ({admin, collection, docs, updateBenefitsOrders}) => {
     useEffect(() => {
         if (!state) {
             const splitPath = pathname.split('/').filter(path => path !== "");
-            console.log(splitPath)
+            // console.log(splitPath)
 
             const getData = async () => {
                 const newsRef = projectFirestore.collection(collection).doc(splitPath[1]);
@@ -57,7 +57,7 @@ const NewsArticleDetail = ({admin, collection, docs, updateBenefitsOrders}) => {
     className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-4 lg:pb-5 bg-gray-50">
             <div className="flex justify-between">
-            <PreviousButton to={`/#${collection.toLowerCase()}`} className="relative top-2 left-2"/>
+            <PreviousButton to={`/`} hash={collection.toLowerCase()} className="relative top-2 left-2"/>
             {admin && data &&
                 <div className="flex">
                     <Link to={{
