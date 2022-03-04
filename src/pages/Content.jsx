@@ -36,7 +36,7 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
   ];  
 
   useEffect(() => {
-    if (state.hash)
+    if (state?.hash)
     {
       goToHash(state.hash, 'auto')
     }   
