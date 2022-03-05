@@ -15,7 +15,7 @@ import Footer from '../components/Footer.jsx'
 import { goToHash } from '../functions/goToHash';
 import { useLocation } from 'react-router-dom' 
 
-const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation, cssct, team}) => {
+const Content = ({admin, setAdmin, isAdmin, benefits, news, quotation, cssct, team}) => {
 
   const homeRef = useRef(null);
   const newsRef = useRef(null);
@@ -41,14 +41,6 @@ const Content = ({admin, setAdmin, isAdmin, benefits, news, scrollTo, quotation,
       goToHash(state.hash, 'auto')
     }   
   },[state])
-
-  useEffect(() => {
-    if (sectionRefs.map(x => x.section).includes(scrollTo))
-    {
-      let index = sectionRefs.findIndex(x => x.section === scrollTo);
-      sectionRefs[index].ref.current.scrollIntoView()    
-    }   
-  },[])
 
   useEffect(() => {
     const handleScroll = () => {

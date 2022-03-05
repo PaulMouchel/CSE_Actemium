@@ -82,12 +82,6 @@ const Main = () => {
                     <PrivateRoute exact path="/">
                         <Content {...{admin, setAdmin, isAdmin, quotation, news, benefits, cssct, team}} />
                     </PrivateRoute>
-                    <PrivateRoute exact path="/#news">
-                        <Content {...{admin, setAdmin, isAdmin, quotation, news, benefits, cssct, team}} scrollTo={"news"} />
-                    </PrivateRoute>
-                    <PrivateRoute exact path="/#benefits">
-                        <Content {...{admin, setAdmin, isAdmin, quotation, news, benefits, cssct, team}} scrollTo={"benefits"} />
-                    </PrivateRoute>
                     <PrivateRoute path="/news/:id">
                         <NewsArticleDetail admin={isAdmin} docs={news.docs} collection={"News"}/>
                     </PrivateRoute>
