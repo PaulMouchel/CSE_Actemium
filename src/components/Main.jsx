@@ -30,14 +30,14 @@ const Main = () => {
   return (
     <>
         <DefaultBackground>
-            <ScrollToTop>
-                <AnimatePresence>
-                <Switch>
-                    {/* Public routes */}
-                    <Route path="/login" component={Login}/>
-                    <Route path="/forgot-password" component={ForgotPassword}/>
-                    {/* Admin routes */}
-                    <Background image={background} setImage={setBackground}>
+            <Background image={background} setImage={setBackground}>
+                <ScrollToTop>
+                    <AnimatePresence>
+                    <Switch>
+                        {/* Public routes */}
+                        <Route path="/login" component={Login}/>
+                        <Route path="/forgot-password" component={ForgotPassword}/>
+                        {/* Admin routes */}
                         <AdminRoute path="/news/new" isAdmin={isAdmin}>
                             <CreateArticle collection={"News"}/>
                         </AdminRoute>
@@ -75,11 +75,11 @@ const Main = () => {
                         <PrivateRoute path="/benefits/:id">
                             <NewsArticleDetail admin={isAdmin} collection={"Benefits"}/>
                         </PrivateRoute>
-                    </Background>
-                    <Route component={Error404}/>
-                </Switch>
-                </AnimatePresence>
-            </ScrollToTop>
+                        <Route component={Error404}/>
+                    </Switch>
+                    </AnimatePresence>
+                </ScrollToTop>
+            </Background>
         </DefaultBackground>
   </>
   
