@@ -2,8 +2,11 @@ import React from 'react';
 import Title from './Title'
 import Benefit from './Benefit.jsx'
 import { sortByOrder } from '../functions/sortByOrder';
+import useFirestore from '../hooks/useFirestore'
 
-const Benefits = ({admin, textColor, benefits}) => {
+const Benefits = ({admin, textColor}) => {
+
+  const benefits = useFirestore('Benefits');
 
   return (
       <div className="min-h-screen pb-10">

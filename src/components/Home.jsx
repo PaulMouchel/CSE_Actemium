@@ -1,8 +1,10 @@
 import React from 'react';
 import Quotation from './Quotation.jsx'
+import useFirestore from '../hooks/useFirestore'
 
-const Home = ({quotation}) => {
+const Home = () => {
 
+  const quotation = useFirestore('Quotation');
   const vowels = ['a', 'e', 'i', 'o', 'u', 'y']
   const firstLetter = process.env.REACT_APP_COMPANY_NAME[0].toLowerCase()
   const startWithVowel = vowels.includes(firstLetter)

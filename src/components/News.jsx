@@ -4,8 +4,11 @@ import React from 'react';
 import NewsArticle from './NewsArticle.jsx'
 import OldArticle from './OldArticle.jsx'
 import Title from './Title'
+import useFirestore from '../hooks/useFirestore'
 
-const News = ({admin, textColor, news}) => {
+const News = ({admin, textColor}) => {
+
+  const news = useFirestore('News');
 
   return (
       <div className="min-h-screen">

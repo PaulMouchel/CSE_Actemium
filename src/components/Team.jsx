@@ -3,8 +3,12 @@ import Title from './Title'
 import TeamMember from './TeamMember.jsx'
 import { sortByOrder } from '../functions/sortByOrder';
 import { updateOrders } from '../functions/updateOrders';
+import useFirestore from '../hooks/useFirestore'
 
-const Team = ({textColor, admin, team}) => {
+const Team = ({textColor, admin}) => {
+
+    const team = useFirestore('Team');
+
     const updateTeamOrders = (exeptionId) => {
         updateOrders(team.docs, "Team", exeptionId)
     }

@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { AnimatePresence, motion } from 'framer-motion'
-
 import Home from '../components/Home.jsx'
 import Navbar from '../components/Navbar.jsx';
 import TinySidebar from '../components/TinySidebar.jsx';
@@ -14,14 +13,8 @@ import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
 import { goToHash } from '../functions/goToHash';
 import { useLocation } from 'react-router-dom' 
-import useFirestore from '../hooks/useFirestore'
 
 const Content = ({admin, setAdmin, isAdmin}) => {
-  const quotation = useFirestore('Quotation');
-  const news = useFirestore('News');
-  const benefits = useFirestore('Benefits');
-  const cssct = useFirestore('Cssct');
-  const team = useFirestore('Team');
   
   const homeRef = useRef(null);
   const newsRef = useRef(null);
@@ -32,7 +25,6 @@ const Content = ({admin, setAdmin, isAdmin}) => {
   const [visibleSection, setVisibleSection] = useState();
   let { state } = useLocation();
 
-  console.log("render")
   const sectionRefs = [
     { section: "home", ref: homeRef },
     { section: "news", ref: newsRef },
@@ -90,7 +82,7 @@ const Content = ({admin, setAdmin, isAdmin}) => {
     exit={{opacity:0}}>
         <section id="home" ref={homeRef}>
           <Navbar isAdmin={isAdmin} admin={admin} setAdmin={setAdmin}/>
-          <Home quotation={quotation}/>
+          <Home/>
         </section>
         <TinySidebar visibleSection={visibleSection}/>
         { isAdmin &&
@@ -100,16 +92,16 @@ const Content = ({admin, setAdmin, isAdmin}) => {
           { admin && <AdminSideBar />}
         </AnimatePresence>
         <section id="news" ref={newsRef} className="bg-white">
-          <News admin={admin} textColor="gray-800" news={news}/>
+          <News admin={admin} textColor="gray-800"/>
         </section>
         <section id="benefits" ref={benefitsRef} className="bg-gray-200 px-4 md:px-28 lg:px-48">
-          <Benefits admin={admin} textColor="gray-800" benefits={benefits}/>
+          <Benefits admin={admin} textColor="gray-800"/>
         </section>
         <section id="cssct" ref={cssctRef} className="bg-gray-800 px-4 md:px-28 lg:px-48">
-          <Cssct admin={admin} textColor="gray-50" cssct={cssct}/>
+          <Cssct admin={admin} textColor="gray-50"/>
         </section>
         <section id="team" ref={teamRef} className="bg-gray-50 px-4 md:px-28 lg:px-48">
-          <Team admin={admin} textColor="gray-800" team={team}/>
+          <Team admin={admin} textColor="gray-800"/>
         </section>
         <section id="contact" ref={contactRef} className="bg-gray-200 px-12 md:px-28 lg:px-48">
           <Contact textColor="gray-800"/>

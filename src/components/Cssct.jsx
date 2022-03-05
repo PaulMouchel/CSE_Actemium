@@ -1,9 +1,12 @@
 import React from 'react';
 import Title from './Title'
 import CssctMission from './CssctMission.jsx'
+import useFirestore from '../hooks/useFirestore'
 
-const Cssct = ({admin, textColor, cssct}) => {
+const Cssct = ({admin, textColor}) => {
   
+  const cssct = useFirestore('Cssct');
+
   return (
     <div className="h-screen pb-10">
       <Title textColor={textColor}>CSSCT</Title>

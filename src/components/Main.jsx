@@ -25,7 +25,7 @@ init(process.env.REACT_APP_EMAILJS_USER_ID);
 
 const Main = () => {
     const [background, setBackground] = useState(null)
-    const { isAdmin, currentUser } = useAuth()
+    const { isAdmin } = useAuth()
     const [admin, setAdmin] = useState(false)
 
   return (
