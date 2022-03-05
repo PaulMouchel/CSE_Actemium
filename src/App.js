@@ -1,5 +1,6 @@
 import React from 'react'
 import { AuthProvider } from './contexts/AuthContext';
+import { UserProvider } from './contexts/UserContext';
 import { BrowserRouter as Router } from  "react-router-dom";
 import Main from './components/Main.jsx'
 
@@ -9,7 +10,9 @@ function App() {
       <div className="App">
         <Router>
           <AuthProvider>
-            <Main />
+            <UserProvider>
+              <Main />
+            </UserProvider>
           </AuthProvider>
         </Router>
       </div>

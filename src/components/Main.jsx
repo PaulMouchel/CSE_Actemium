@@ -14,20 +14,17 @@ import Admins from '../pages/Admins.jsx';
 import Error404 from '../pages/Error404.jsx';
 import ScrollToTop from './ScrollToTop.jsx';
 import { init } from 'emailjs-com';
-import { useAuth } from '../contexts/AuthContext'
+import { useUser } from '../contexts/UserContext'
 import PrivateRoute from './PrivateRoute.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import Background from './Background.jsx'
 import { AnimatePresence } from 'framer-motion'
 import DefaultBackground from './DefaultBackground.jsx'
-import { AuthContext } from '../contexts/AuthContext'
 init(process.env.REACT_APP_EMAILJS_USER_ID);
 
 const Main = () => {
     const [background, setBackground] = useState(null)
-    const { isAdmin } = useAuth()
-    console.log("isAdmin :", isAdmin)
-    console.log("AuthContext :", useContext(AuthContext).isAdmin)
+    const { isAdmin } = useUser()
     const [admin, setAdmin] = useState(false)
 
   return (

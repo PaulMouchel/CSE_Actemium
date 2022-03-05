@@ -89,14 +89,14 @@ const UpdateBackground = ({image, setImage}) => {
                     { !loading ?
                         <button 
                             disabled={loading} 
-                            className="focus:outline-none transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full block w-10 h-10 flex items-center justify-center" 
+                            className="focus:outline-none transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full w-10 h-10 flex items-center justify-center" 
                             onClick={handleSubmit}>
                                 <FontAwesomeIcon icon={faCheck} />
                         </button>
                         :
                         <button 
                             disabled={loading} 
-                            className="focus:outline-none transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full block w-10 h-10 flex items-center justify-center">
+                            className="focus:outline-none transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full w-10 h-10 flex items-center justify-center">
                                 <FontAwesomeIcon className="animate-spin" icon={faSpinner}/>
                         </button>
                         
