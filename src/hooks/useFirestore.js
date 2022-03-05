@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 //import { useAuth } from '../contexts/AuthContext';
 
-const useFirestore = (collection) => {
+const useFirestore = (collection, currentUser) => {
   const [docs, setDocs] = useState([]);
   // const auth = useAuth()
 
@@ -26,7 +26,7 @@ const useFirestore = (collection) => {
     // }
     setDocs([])
     
-  }, [collection/*, auth*/]);
+  }, [collection, currentUser/*, auth*/]);
 
   return { docs };
 }

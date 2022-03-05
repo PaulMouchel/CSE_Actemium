@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { projectAuth } from "../firebase/config";
 import useFirestore from '../hooks/useFirestore';
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 
 export function useAuth() {
@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [isAdmin, setIsAdmin] = useState(false)
     const [loading, setLoading] = useState(true)
-    const { docs } = useFirestore('Admins');
+    const { docs } = useFirestore('Admins', currentUser);
 
     // function signup(email, password) {
     //     return projectAuth.createUserWithEmailAndPassword(email, password)
@@ -41,7 +41,6 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const unsuscribe = projectAuth.onAuthStateChanged(user => {
-            console.log("change")
             setCurrentUser(user);
             if (user && docs && docs[0]) {
                 setIsAdmin(docs[0].list.includes(user.email))
@@ -49,7 +48,7 @@ export function AuthProvider({ children }) {
             setLoading(false)
         })
         return () => unsuscribe();
-    }, [docs])   
+    }, [docs])
 
     const value = {
         currentUser,
