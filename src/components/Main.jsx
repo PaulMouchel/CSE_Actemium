@@ -21,7 +21,6 @@ import PrivateRoute from './PrivateRoute.jsx';
 import AdminRoute from './AdminRoute.jsx';
 
 import Background from './Background.jsx'
-import useFirestore from '../hooks/useFirestore'
 import { AnimatePresence } from 'framer-motion'
 import { updateOrders } from '../functions/updateOrders';
 
@@ -34,8 +33,8 @@ const Main = () => {
 
     const [ news, setNews ] = useState()
     const [ benefits, setBenefits ] = useState()
+    const [ team, setTeam ] = useState()
 
-    const team = useFirestore('Team');
     const updateBenefitsOrders = (exeptionId) => {
         updateOrders(benefits.docs, "Benefits", exeptionId)
     }
@@ -79,7 +78,7 @@ const Main = () => {
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
-                        <Content {...{admin, setAdmin, isAdmin, setNews, setBenefits, team}} />
+                        <Content {...{admin, setAdmin, isAdmin, setNews, setBenefits, setTeam}} />
                     </PrivateRoute>
                     <PrivateRoute path="/news/:id">
                         <NewsArticleDetail admin={isAdmin} docs={news?.docs} collection={"News"}/>
