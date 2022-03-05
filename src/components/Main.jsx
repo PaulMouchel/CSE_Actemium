@@ -32,7 +32,8 @@ const Main = () => {
     const { isAdmin, currentUser } = useAuth()
     const [admin, setAdmin] = useState(false)
 
-    const news = useFirestore('News');
+    const [ news, setNews ] = useState()
+
     const benefits = useFirestore('Benefits');
     const cssct = useFirestore('Cssct');
     const team = useFirestore('Team');
@@ -79,10 +80,10 @@ const Main = () => {
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
-                        <Content {...{admin, setAdmin, isAdmin, news, benefits, cssct, team}} />
+                        <Content {...{admin, setAdmin, isAdmin, setNews, benefits, cssct, team}} />
                     </PrivateRoute>
                     <PrivateRoute path="/news/:id">
-                        <NewsArticleDetail admin={isAdmin} docs={news.docs} collection={"News"}/>
+                        <NewsArticleDetail admin={isAdmin} docs={news?.docs} collection={"News"}/>
                     </PrivateRoute>
                     <PrivateRoute path="/benefits/:id">
                         <NewsArticleDetail admin={isAdmin} docs={benefits.docs} collection={"Benefits"} updateBenefitsOrders={updateBenefitsOrders}/>
