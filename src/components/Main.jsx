@@ -31,15 +31,14 @@ const Main = () => {
     const [background, setBackground] = useState(null)
     const { isAdmin, currentUser } = useAuth()
     const [admin, setAdmin] = useState(false)
-    
-    const quotation = useFirestore('Quotation');
+
     const news = useFirestore('News');
     const benefits = useFirestore('Benefits');
     const cssct = useFirestore('Cssct');
     const team = useFirestore('Team');
     const updateBenefitsOrders = (exeptionId) => {
         updateOrders(benefits.docs, "Benefits", exeptionId)
-      }
+    }
 
   return (
     <>
@@ -70,7 +69,7 @@ const Main = () => {
                         <CreateMember teamLength={team?.docs?.length}/>
                     </AdminRoute>
                     <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
-                        <UpdateQuotation docs={quotation.docs}/>
+                        <UpdateQuotation/>
                     </AdminRoute>
                     <AdminRoute path="/background/edit" isAdmin={isAdmin}>
                         <UpdateBackground image={background} setImage={setBackground}/>
@@ -80,7 +79,7 @@ const Main = () => {
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
-                        <Content {...{admin, setAdmin, isAdmin, quotation, news, benefits, cssct, team}} />
+                        <Content {...{admin, setAdmin, isAdmin, news, benefits, cssct, team}} />
                     </PrivateRoute>
                     <PrivateRoute path="/news/:id">
                         <NewsArticleDetail admin={isAdmin} docs={news.docs} collection={"News"}/>

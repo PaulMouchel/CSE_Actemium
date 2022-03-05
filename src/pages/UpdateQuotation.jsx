@@ -6,8 +6,11 @@ import { projectFirestore, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from "framer-motion";
+import useFirestore from '../hooks/useFirestore'
 
-const UpdateQuotation = ({docs}) => {
+const UpdateQuotation = () => {
+    const quotation = useFirestore('Quotation');
+    const { docs } = quotation
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 

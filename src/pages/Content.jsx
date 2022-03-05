@@ -14,9 +14,10 @@ import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
 import { goToHash } from '../functions/goToHash';
 import { useLocation } from 'react-router-dom' 
+import useFirestore from '../hooks/useFirestore'
 
-const Content = ({admin, setAdmin, isAdmin, benefits, news, quotation, cssct, team}) => {
-
+const Content = ({admin, setAdmin, isAdmin, benefits, news, cssct, team}) => {
+  const quotation = useFirestore('Quotation');
   const homeRef = useRef(null);
   const newsRef = useRef(null);
   const benefitsRef = useRef(null);
