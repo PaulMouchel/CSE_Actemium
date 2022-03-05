@@ -8,6 +8,7 @@ const Contact = ({textColor}) => {
   const textRef = useRef()
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
+  const [loading, setLoading] = useState(false)
   const { currentUser } = useAuth()
 
   const resetErrorAndSuccess = () => {
@@ -23,6 +24,7 @@ const Contact = ({textColor}) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setLoading(true)
 
     let emailData = {
       from_name:currentUser.email, 
@@ -43,7 +45,9 @@ const Contact = ({textColor}) => {
         }, (error) => {
             console.log(error.text);
             setError("Echec de l'envoi du message : " + error.text)
-        });
+        }).finally(() => {
+          setLoading(false)
+        }) ;
       }
   }
   
@@ -60,7 +64,7 @@ const Contact = ({textColor}) => {
             <div className="w-full text-center text-gray-50 bg-green-500 py-1 px-2 mb-2 rounded">{success}</div>
           }
             <textarea type="text" name="message" className="resize-none block h-80 w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Ecrivez votre message" ref={textRef} required/>
-            <ActionButton className="mt-2 w-full md:w-80 self-end" type="submit" value="Send">
+            <ActionButton loading={loading} className="mt-2 w-full md:w-80 self-end" type="submit" value="Send">
               Envoyer
             </ActionButton>
           </form>
