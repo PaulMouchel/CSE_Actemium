@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const unsuscribe = projectAuth.onAuthStateChanged(user => {
+            console.log("change")
             setCurrentUser(user);
             if (user && docs && docs[0]) {
                 setIsAdmin(docs[0].list.includes(user.email))

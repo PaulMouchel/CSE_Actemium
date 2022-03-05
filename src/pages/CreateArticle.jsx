@@ -10,12 +10,15 @@ import { uploadImages } from '../functions/uploadImages';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
 import formatedDate from '../functions/formatedDate.js';
+import useFirestore from '../hooks/useFirestore'
 
-const CreateArticle = ({collection, length}) => {
+const CreateArticle = ({collection}) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(""); 
+  const { docs } = useFirestore(collection);
+  const length = docs?.length
 
   const textData = useRef({
     title: "",

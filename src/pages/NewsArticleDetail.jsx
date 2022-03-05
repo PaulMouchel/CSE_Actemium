@@ -10,12 +10,21 @@ import DeleteButton from '../components/DeleteButton';
 import { AnimatePresence, motion } from 'framer-motion';
 import { projectFirestore } from '../firebase/config';
 import parse from 'html-react-parser';
+import useFirestore from '../hooks/useFirestore'
+import { updateOrders } from '../functions/updateOrders';
 
-const NewsArticleDetail = ({admin, collection, docs, updateBenefitsOrders}) => {
+const NewsArticleDetail = ({admin, collection}) => {
+    const { docs } = useFirestore(collection);
     let { state } = useLocation();
     const { pathname } = useLocation();
     const [data, setData] = useState(null)
     
+    const updateBenefitsOrders = (exeptionId) => {
+        if ( collection === "Benefits" ) {
+            updateOrders(docs, collection, exeptionId)
+        }
+    }
+
     useEffect(() => {
         if (!state) {
             const splitPath = pathname.split('/').filter(path => path !== "");

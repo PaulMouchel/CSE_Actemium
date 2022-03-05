@@ -16,7 +16,7 @@ import { goToHash } from '../functions/goToHash';
 import { useLocation } from 'react-router-dom' 
 import useFirestore from '../hooks/useFirestore'
 
-const Content = ({admin, setAdmin, isAdmin, setNews, setBenefits, setTeam}) => {
+const Content = ({admin, setAdmin, isAdmin}) => {
   const quotation = useFirestore('Quotation');
   const news = useFirestore('News');
   const benefits = useFirestore('Benefits');
@@ -32,6 +32,7 @@ const Content = ({admin, setAdmin, isAdmin, setNews, setBenefits, setTeam}) => {
   const [visibleSection, setVisibleSection] = useState();
   let { state } = useLocation();
 
+  console.log("render")
   const sectionRefs = [
     { section: "home", ref: homeRef },
     { section: "news", ref: newsRef },
@@ -40,18 +41,6 @@ const Content = ({admin, setAdmin, isAdmin, setNews, setBenefits, setTeam}) => {
     { section: "team", ref: teamRef },
     { section: "contact", ref: contactRef },
   ];  
-
-  useEffect(() => {
-    setNews(news)  
-  },[news])
-
-  useEffect(() => {
-    setBenefits(benefits)  
-  },[benefits])
-
-  useEffect(() => {
-    setTeam(team)  
-  },[team])
 
   useEffect(() => {
     if (state?.hash)

@@ -8,14 +8,17 @@ import { uploadImage } from '../functions/uploadImage';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
 import userImage from '../images/user.jpg'
+import useFirestore from '../hooks/useFirestore'
 
-const CreateMember = ({teamLength}) => {
+const CreateMember = () => {
   const [executive, setExecutive] = useState("executive");
   const [holder, setHolder] = useState("holder");
   const [president, setPresident] = useState(false);
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const { docs } = useFirestore('Team');
+  const teamLength = docs.length
 
   const formData = useRef({
     fullName: "",

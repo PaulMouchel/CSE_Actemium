@@ -22,7 +22,6 @@ import AdminRoute from './AdminRoute.jsx';
 
 import Background from './Background.jsx'
 import { AnimatePresence } from 'framer-motion'
-import { updateOrders } from '../functions/updateOrders';
 
 init(process.env.REACT_APP_EMAILJS_USER_ID);
 
@@ -30,14 +29,6 @@ const Main = () => {
     const [background, setBackground] = useState(null)
     const { isAdmin, currentUser } = useAuth()
     const [admin, setAdmin] = useState(false)
-
-    const [ news, setNews ] = useState()
-    const [ benefits, setBenefits ] = useState()
-    const [ team, setTeam ] = useState()
-
-    const updateBenefitsOrders = (exeptionId) => {
-        updateOrders(benefits.docs, "Benefits", exeptionId)
-    }
 
   return (
     <>
@@ -56,7 +47,7 @@ const Main = () => {
                         <NewsArticleEdit collection={"News"}/>
                     </AdminRoute>
                     <AdminRoute path="/benefits/new" isAdmin={isAdmin}>
-                        <CreateArticle collection={"Benefits"} length={benefits?.docs?.length}/>
+                        <CreateArticle collection={"Benefits"}/>
                     </AdminRoute>
                     <AdminRoute path="/benefits/:id/edit" isAdmin={isAdmin}>
                         <NewsArticleEdit collection={"Benefits"}/>
@@ -65,7 +56,7 @@ const Main = () => {
                         <CreateCssct collection={"Cssct"}/>
                     </AdminRoute>
                     <AdminRoute path="/members/new" isAdmin={isAdmin}>
-                        <CreateMember teamLength={team?.docs?.length}/>
+                        <CreateMember/>
                     </AdminRoute>
                     <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
                         <UpdateQuotation/>
@@ -78,13 +69,13 @@ const Main = () => {
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
-                        <Content {...{admin, setAdmin, isAdmin, setNews, setBenefits, setTeam}} />
+                        <Content {...{admin, setAdmin, isAdmin}} />
                     </PrivateRoute>
                     <PrivateRoute path="/news/:id">
-                        <NewsArticleDetail admin={isAdmin} docs={news?.docs} collection={"News"}/>
+                        <NewsArticleDetail admin={isAdmin} collection={"News"}/>
                     </PrivateRoute>
                     <PrivateRoute path="/benefits/:id">
-                        <NewsArticleDetail admin={isAdmin} docs={benefits?.docs} collection={"Benefits"} updateBenefitsOrders={updateBenefitsOrders}/>
+                        <NewsArticleDetail admin={isAdmin} collection={"Benefits"}/>
                     </PrivateRoute>
                     <Route component={Error404}/>
                 </Switch>
