@@ -16,9 +16,10 @@ import { goToHash } from '../functions/goToHash';
 import { useLocation } from 'react-router-dom' 
 import useFirestore from '../hooks/useFirestore'
 
-const Content = ({admin, setAdmin, isAdmin, setNews, benefits, cssct, team}) => {
+const Content = ({admin, setAdmin, isAdmin, setNews, setBenefits, cssct, team}) => {
   const quotation = useFirestore('Quotation');
   const news = useFirestore('News');
+  const benefits = useFirestore('Benefits');
 
   const homeRef = useRef(null);
   const newsRef = useRef(null);
@@ -41,6 +42,10 @@ const Content = ({admin, setAdmin, isAdmin, setNews, benefits, cssct, team}) => 
   useEffect(() => {
     setNews(news)  
   },[news])
+
+  useEffect(() => {
+    setBenefits(benefits)  
+  },[benefits])
 
   useEffect(() => {
     if (state?.hash)

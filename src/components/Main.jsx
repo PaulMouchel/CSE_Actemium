@@ -33,8 +33,8 @@ const Main = () => {
     const [admin, setAdmin] = useState(false)
 
     const [ news, setNews ] = useState()
+    const [ benefits, setBenefits ] = useState()
 
-    const benefits = useFirestore('Benefits');
     const cssct = useFirestore('Cssct');
     const team = useFirestore('Team');
     const updateBenefitsOrders = (exeptionId) => {
@@ -80,13 +80,13 @@ const Main = () => {
                     </AdminRoute>
                     {/* Private routes */}
                     <PrivateRoute exact path="/">
-                        <Content {...{admin, setAdmin, isAdmin, setNews, benefits, cssct, team}} />
+                        <Content {...{admin, setAdmin, isAdmin, setNews, setBenefits, cssct, team}} />
                     </PrivateRoute>
                     <PrivateRoute path="/news/:id">
                         <NewsArticleDetail admin={isAdmin} docs={news?.docs} collection={"News"}/>
                     </PrivateRoute>
                     <PrivateRoute path="/benefits/:id">
-                        <NewsArticleDetail admin={isAdmin} docs={benefits.docs} collection={"Benefits"} updateBenefitsOrders={updateBenefitsOrders}/>
+                        <NewsArticleDetail admin={isAdmin} docs={benefits?.docs} collection={"Benefits"} updateBenefitsOrders={updateBenefitsOrders}/>
                     </PrivateRoute>
                     <Route component={Error404}/>
                 </Switch>
@@ -94,9 +94,7 @@ const Main = () => {
             </ScrollToTop>
         </Background>
   </>
-
-
-    
+  
   );
 }
 
