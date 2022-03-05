@@ -18,3 +18,13 @@ L'application n'est accessible qu'aux membres du personnel (via autentification)
 Les membres du CSE peuvent modifier la plupart des éléments de l'application web  
 Les membres de l'entreprise peuvent consulter les informations du site et contacter le CSE via un formulaire de contact
 
+## Production
+
+L'application en production est disponible à l'adresse suivante :
+<a  href="https://cse-entreprise.web.app/"  title="CSE Entreprise">https://cse-entreprise.web.app/</a>
+
+Vous pouvez vous logger en tant que visiteur avec l'accès suivant :
+- Email: visiteur@groupomania.com
+- Mot de passe : visiteur@groupomania.com
+
+Si vous voulez voir les fonctionnalités administrateur, un accès temporaire peut vous être donné sur demande.
