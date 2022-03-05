@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import { Switch, Route } from  "react-router-dom";
-
 import Content from '../pages/Content.jsx'
-
 import Login from '../pages/Login.jsx'
 import ForgotPassword from '../pages/ForgotPassword.jsx'
 import CreateArticle from '../pages/CreateArticle.jsx'
@@ -19,9 +17,9 @@ import { init } from 'emailjs-com';
 import { useAuth } from '../contexts/AuthContext'
 import PrivateRoute from './PrivateRoute.jsx';
 import AdminRoute from './AdminRoute.jsx';
-
 import Background from './Background.jsx'
 import { AnimatePresence } from 'framer-motion'
+import DefaultBackground from './DefaultBackground.jsx'
 
 init(process.env.REACT_APP_EMAILJS_USER_ID);
 
@@ -32,7 +30,7 @@ const Main = () => {
 
   return (
     <>
-       <Background image={background} setImage={setBackground} currentUser={currentUser} >
+        <DefaultBackground>
             <ScrollToTop>
                 <AnimatePresence>
                 <Switch>
@@ -40,48 +38,50 @@ const Main = () => {
                     <Route path="/login" component={Login}/>
                     <Route path="/forgot-password" component={ForgotPassword}/>
                     {/* Admin routes */}
-                    <AdminRoute path="/news/new" isAdmin={isAdmin}>
-                        <CreateArticle collection={"News"}/>
-                    </AdminRoute>
-                    <AdminRoute path="/news/:id/edit" isAdmin={isAdmin}>
-                        <NewsArticleEdit collection={"News"}/>
-                    </AdminRoute>
-                    <AdminRoute path="/benefits/new" isAdmin={isAdmin}>
-                        <CreateArticle collection={"Benefits"}/>
-                    </AdminRoute>
-                    <AdminRoute path="/benefits/:id/edit" isAdmin={isAdmin}>
-                        <NewsArticleEdit collection={"Benefits"}/>
-                    </AdminRoute>
-                    <AdminRoute path="/cssct/new" isAdmin={isAdmin}>
-                        <CreateCssct collection={"Cssct"}/>
-                    </AdminRoute>
-                    <AdminRoute path="/members/new" isAdmin={isAdmin}>
-                        <CreateMember/>
-                    </AdminRoute>
-                    <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
-                        <UpdateQuotation/>
-                    </AdminRoute>
-                    <AdminRoute path="/background/edit" isAdmin={isAdmin}>
-                        <UpdateBackground image={background} setImage={setBackground}/>
-                    </AdminRoute>
-                    <AdminRoute path="/users/edit" isAdmin={isAdmin}>
-                        <Admins/>
-                    </AdminRoute>
-                    {/* Private routes */}
-                    <PrivateRoute exact path="/">
-                        <Content {...{admin, setAdmin, isAdmin}} />
-                    </PrivateRoute>
-                    <PrivateRoute path="/news/:id">
-                        <NewsArticleDetail admin={isAdmin} collection={"News"}/>
-                    </PrivateRoute>
-                    <PrivateRoute path="/benefits/:id">
-                        <NewsArticleDetail admin={isAdmin} collection={"Benefits"}/>
-                    </PrivateRoute>
+                    <Background image={background} setImage={setBackground}>
+                        <AdminRoute path="/news/new" isAdmin={isAdmin}>
+                            <CreateArticle collection={"News"}/>
+                        </AdminRoute>
+                        <AdminRoute path="/news/:id/edit" isAdmin={isAdmin}>
+                            <NewsArticleEdit collection={"News"}/>
+                        </AdminRoute>
+                        <AdminRoute path="/benefits/new" isAdmin={isAdmin}>
+                            <CreateArticle collection={"Benefits"}/>
+                        </AdminRoute>
+                        <AdminRoute path="/benefits/:id/edit" isAdmin={isAdmin}>
+                            <NewsArticleEdit collection={"Benefits"}/>
+                        </AdminRoute>
+                        <AdminRoute path="/cssct/new" isAdmin={isAdmin}>
+                            <CreateCssct collection={"Cssct"}/>
+                        </AdminRoute>
+                        <AdminRoute path="/members/new" isAdmin={isAdmin}>
+                            <CreateMember/>
+                        </AdminRoute>
+                        <AdminRoute path="/quotation/edit" isAdmin={isAdmin}>
+                            <UpdateQuotation/>
+                        </AdminRoute>
+                        <AdminRoute path="/background/edit" isAdmin={isAdmin}>
+                            <UpdateBackground image={background} setImage={setBackground}/>
+                        </AdminRoute>
+                        <AdminRoute path="/users/edit" isAdmin={isAdmin}>
+                            <Admins/>
+                        </AdminRoute>
+                        {/* Private routes */}
+                        <PrivateRoute exact path="/">
+                            <Content {...{admin, setAdmin, isAdmin}} />
+                        </PrivateRoute>
+                        <PrivateRoute path="/news/:id">
+                            <NewsArticleDetail admin={isAdmin} collection={"News"}/>
+                        </PrivateRoute>
+                        <PrivateRoute path="/benefits/:id">
+                            <NewsArticleDetail admin={isAdmin} collection={"Benefits"}/>
+                        </PrivateRoute>
+                    </Background>
                     <Route component={Error404}/>
                 </Switch>
                 </AnimatePresence>
             </ScrollToTop>
-        </Background>
+        </DefaultBackground>
   </>
   
   );
