@@ -27,6 +27,6 @@ yarn-error.log*
 
 public/favicon-production.ico
 
-.firebase
+/.firebase
 .firebaserc
-.github
+/.github
