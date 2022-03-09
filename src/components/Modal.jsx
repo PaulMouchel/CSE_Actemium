@@ -1,36 +1,19 @@
-import React, {useEffect} from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React, {useEffect, useRef} from 'react';
+import { motion } from 'framer-motion';
+import Carousel from './Carousel.jsx'
 
 const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
 
-  const variants = {
-    toLeft: {
-      x: ["0%", "-100%", "-100%", "100%", "100%", "0%"],
-      y: ["0%", "0%", "100%", "100%", "0%", "0%"],
-      pointerEvents: "none",
-      transition: {duration: .6, times: [0, 0.45, 0.45, 0.5, 0.55, 1]}
-    },
-    toRight: {
-      x: ["0%", "100%", "100%", "-100%", "-100%", "0%"],
-      y: ["0%", "0%", "100%", "100%", "0%", "0%"],
-      pointerEvents: "none",
-      transition: {duration: .6, times: [0, 0.45, 0.45, 0.5, 0.55, 1]}
-    }
-  };
-
-  const animation = useAnimation();
-
-  let xDown = null;                                                        
-  let yDown = null;
+  const carouselRef = useRef()
 
   // Navigation avec les flèches du clavier, contrôle de la touche
   const keyCheck = (e) => {
     switch (e.keyCode) {   
         case 37:
-            navigate(e, -1)
+            carouselRef.current.slickPrev()
             break;
         case 39:
-            navigate(e, 1)
+            carouselRef.current.slickNext()
             break;
         case 27:
             setSelectedImg(null)
@@ -40,60 +23,27 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
     }
   }
 
-  // Navigation en swippant sur mobile : pose du doigt
-  const handleTouchStart = (e) => {
-    const firstTouch = e.touches[0];                                      
-    xDown = firstTouch.clientX;                                      
-    yDown = firstTouch.clientY;                                      
-  };                                                
-  
-  // Navigation en swippant sur mobile : déplacement du doigt
-  const handleTouchMove = (e) => {
-      if ( ! xDown || ! yDown ) {
-          return;
-      }
-  
-      const xUp = e.touches[0].clientX;                                    
-      const yUp = e.touches[0].clientY;
-  
-      const xDiff = xDown - xUp;
-      const yDiff = yDown - yUp;
-                                                                           
-      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-          if ( xDiff > 0 ) {
-              /* right swipe */ 
-              animation.start(variants.toLeft)
-              // navigate(e, 1)
-              setTimeout(function(){navigate(e, 1)},200);
-          } else {
-              /* left swipe */
-              animation.start(variants.toRight)
-              // navigate(e, -1)
-              setTimeout(function(){navigate(e, -1)},200);
-          }                       
-      } 
-      else {
-          if ( yDiff > 0 ) {
-              /* down swipe */ 
-          } else { 
-              /* up swipe */
-          }                                                                 
-      }
-      /* reset values */
-      xDown = null;
-      yDown = null;                                             
-  };
+  const nextImage = (e) => {
+    e.stopPropagation()
+    carouselRef.current.slickNext()
+  }
+
+  const previousImage = (e) => {
+    e.stopPropagation()
+    carouselRef.current.slickPrev()
+  }
 
   useEffect(() => {
     document.addEventListener('keydown', keyCheck);
-    document.addEventListener('touchstart', handleTouchStart, false);        
-    document.addEventListener('touchmove', handleTouchMove, false);
     return () => {
       document.removeEventListener('keydown', keyCheck)
-      document.removeEventListener('touchstart', handleTouchStart, false);        
-      document.removeEventListener('touchmove', handleTouchMove, false);
     }
   }, [keyCheck]);
+
+  useEffect(() => {
+    const index = getImageIndex(galleryUrl, selectedImg)
+    carouselRef.current.slickGoTo(index, true)
+  }, [])
 
   const handleClick = (e) => {
       setSelectedImg(null);
@@ -104,38 +54,34 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
       return galleryUrl.findIndex(isTheRightIndex)
   }
 
-  const navigate = (e, offset) => {
-    e.stopPropagation()
-    let initialIndex = getImageIndex(galleryUrl, selectedImg)
-    setSelectedImg(galleryUrl[(initialIndex + galleryUrl.length + offset) % galleryUrl.length])
-  }
-
   return (
     <motion.div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center" onClick={handleClick}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{opacity: 0}}
     >
-      <div className="fixed left-0 w-20 h-20 hidden md:flex items-center justify-center z-50" onClick={e => navigate(e, -1)}> 
+      <div className="fixed left-0 w-20 h-20 hidden md:flex items-center justify-center z-50" onClick={previousImage}> 
         <div className="bg-gray-300 w-10 h-2 rounded-full transform -rotate-45 absolute -translate-y-3"/>
         <div className="bg-gray-300 w-10 h-2 rounded-full transform rotate-45 absolute translate-y-3"/>
       </div>
-      <motion.div
-      variants={variants}
-      animate={animation}
-      className="fixed w-screen h-screen flex items-center justify-center"
-      >
-        <motion.img src={selectedImg} alt="enlarged pic block"  
-          style={{
-            maxWidth: "90%", 
-            maxHeight: "90%", 
-            border: "3px solid white" 
-          }}
-          initial={{ y: "-100vh" }}
-          animate={{ y: 0 }}
-        />
-      </motion.div>
-      <div className="fixed right-0 w-20 h-20 hidden md:flex items-center justify-center z-50" onClick={e => navigate(e, 1)}> 
+      <div className="fixed w-screen h-screen flex items-center justify-center">
+        <Carousel carouselRef={carouselRef}>
+            { galleryUrl.map((imageUrl, index) => 
+                <div key={index} className="h-full w-screen items-center justify-center slide">
+                    <img src={imageUrl} alt="enlarged pic block"
+                    style={{
+                      maxHeight: '90vh',
+                      maxWidth: '90vw',
+                      marginRight: 'auto',
+                      marginLeft: 'auto',
+                      border: "3px solid white" 
+                    }}
+                    />
+                </div>
+            )}
+        </Carousel>
+      </div>
+      <div className="fixed right-0 w-20 h-20 hidden md:flex items-center justify-center z-50" onClick={nextImage}> 
         <div className="bg-gray-300 w-10 h-2 rounded-full transform rotate-45 absolute -translate-y-3"/>
         <div className="bg-gray-300 w-10 h-2 rounded-full transform -rotate-45 absolute translate-y-3"/>
       </div>

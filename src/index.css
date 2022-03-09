@@ -49,3 +49,14 @@ html {
 }
 
 @keyframes loading { from { background-color:gray; } to { background-color:lightgrey; }  }
+
+.slick-track {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.slick-track .slide {
+  display: flex !important;
+  width: 100vw !important;
+}
