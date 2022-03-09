@@ -74,7 +74,7 @@ const BurgerMenu = ({isAdmin, admin, setAdmin}) => {
                         initial={{opacity:0}}
                         animate={{opacity:1}}
                         transition={{delay:0.7}}>
-                            <span>Déconnection</span>
+                            <span>Déconnexion</span>
                         </motion.button>
                         <AnimatePresence>
                         { admin && hamburgerMenuVisible &&
