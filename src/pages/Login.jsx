@@ -1,31 +1,61 @@
 import React, { useRef, useState } from "react"
-
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from 'react-router-dom'
-
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import ActionButton from '../components/ActionButton.jsx'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const { login, currentUser } = useAuth()
-    const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    const sendToastError = (text) => {
+        toast.error(text, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
+    const sendToastSuccess = (text) => {
+        toast.success(text, {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
     async function handleSubmit(e) {
         e.preventDefault()
-    
+        
         try {
-            setError("")
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
+            sendToastSuccess("Connexion réussie")
             history.push('/')
-        } catch(e) {
-            setError("Connexion échouée " + e)
+        } catch(error) {
+            if ( error?.code === "auth/user-not-found") {
+                sendToastError("Connexion échouée : Utilisateur inconnu")
+            } else if ( error?.code === "auth/wrong-password" ) {
+                sendToastError("Connexion échouée : Mot de passe incorrect")
+            } else if ( error?.code === "auth/too-many-requests" ) {
+               sendToastError("Connexion échouée : Compte temporairement bloqué (trop de tentatives échouées)")
+           } else {
+                sendToastError("Connexion échouée :" + error)
+            }
             setLoading(false)
         }
     }
@@ -36,7 +66,6 @@ const Login = () => {
                 <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
                     <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
                     <p className="mb-5 text-3xl  text-gray-600">{currentUser && currentUser.email} Connexion</p>
-                    {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}
                     <input type="email" name="email" className="mb-5 p-3 w-80 focus:border-secondary rounded border-2 outline-none" autoComplete="on" placeholder="Email" ref={emailRef} required/>
                     <input type="password" name="password" className="mb-5 p-3 w-80 focus:border-secondary rounded border-2 outline-none" autoComplete="off" placeholder="Mot de passe" ref={passwordRef} required/>
                     <ActionButton loading={loading} className="w-80" id="login" type="submit">Se connecter</ActionButton>

@@ -3,7 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { UserProvider } from './contexts/UserContext';
 import { BrowserRouter as Router } from  "react-router-dom";
 import Main from './components/Main.jsx'
-
+import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <>
@@ -11,6 +11,17 @@ function App() {
         <Router>
           <AuthProvider>
             <UserProvider>
+              <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              />
               <Main />
             </UserProvider>
           </AuthProvider>
