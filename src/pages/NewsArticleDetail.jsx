@@ -12,6 +12,7 @@ import { projectFirestore } from '../firebase/config';
 import parse from 'html-react-parser';
 import useFirestore from '../hooks/useFirestore'
 import { updateOrders } from '../functions/updateOrders';
+import { sendToastSuccess } from "../functions/sendToast";
 
 const NewsArticleDetail = ({admin, collection}) => {
     const { docs } = useFirestore(collection);
@@ -28,8 +29,6 @@ const NewsArticleDetail = ({admin, collection}) => {
     useEffect(() => {
         if (!state) {
             const splitPath = pathname.split('/').filter(path => path !== "");
-            // console.log(splitPath)
-
             const getData = async () => {
                 const newsRef = projectFirestore.collection(collection).doc(splitPath[1]);
                 const doc = await newsRef.get();
@@ -55,6 +54,7 @@ const NewsArticleDetail = ({admin, collection}) => {
         deleteDocument({docs, id, collection})
         :
         deleteDocument({docs, id, collection, next:updateBenefitsOrders, nextParams:id})
+        sendToastSuccess("Article supprimé avec succès")
         history.push('/')
     }
 

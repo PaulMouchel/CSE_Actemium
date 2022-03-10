@@ -9,6 +9,7 @@ import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
 import formatedDate from '../functions/formatedDate';
+import { sendToastSuccess } from "../functions/sendToast";
 
 const NewsArticleEdit = ({collection}) => {
   const { state } = useLocation();
@@ -32,6 +33,7 @@ const NewsArticleEdit = ({collection}) => {
     const date = formatedDate()
     const galleryUrl = gallery.map(x => x.downloadURL)
     await collectionRef.doc(state.data.id).update({ galleryUrl, ...textData.current, date, createdAt, storageId:state.data.storageId });
+    sendToastSuccess("Article modifié avec succès")
     history.push('/')
  }
 

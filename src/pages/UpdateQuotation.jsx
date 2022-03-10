@@ -1,12 +1,11 @@
-import React, { useRef, useState } from "react"
-
+import { useRef, useState } from "react"
 import { useHistory } from 'react-router-dom'
 import { projectFirestore, timestamp } from '../firebase/config';
-
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from "framer-motion";
 import useFirestore from '../hooks/useFirestore'
+import { sendToastSuccess } from "../functions/sendToast";
 
 const UpdateQuotation = () => {
     const quotation = useFirestore('Quotation');
@@ -25,15 +24,15 @@ const UpdateQuotation = () => {
         } else {
             await collectionRef.add({ text, author, createdAt });
         }
-        setLoading(false)
+        sendToastSuccess("Phrase du moment modifiée")
         history.push('/')
      }
     
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let text = textRef.current.value
-        let author = authorRef.current.value
+        const text = textRef.current.value
+        const author = authorRef.current.value
 
         if (text !== "") {
             setLoading(true)

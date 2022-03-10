@@ -11,6 +11,7 @@ import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
 import formatedDate from '../functions/formatedDate.js';
 import useFirestore from '../hooks/useFirestore'
+import { sendToastSuccess } from "../functions/sendToast";
 
 const CreateArticle = ({collection}) => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -39,6 +40,7 @@ const CreateArticle = ({collection}) => {
     const data = { galleryUrl, ...textData.current, date, order }
     uploadToDatabase(collection, data)
     .then(() => {
+      sendToastSuccess("Article créé avec succès")
       history.push('/')
     })
 }
