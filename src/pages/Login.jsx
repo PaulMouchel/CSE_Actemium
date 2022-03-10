@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from 'react-router-dom'
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ActionButton from '../components/ActionButton.jsx'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
 const Login = () => {
     const emailRef = useRef()
@@ -13,30 +12,6 @@ const Login = () => {
     const { login, currentUser } = useAuth()
     const [loading, setLoading] = useState(false)
     const history = useHistory()
-
-    const sendToastError = (text) => {
-        toast.error(text, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    }
-
-    const sendToastSuccess = (text) => {
-        toast.success(text, {
-            position: "bottom-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    }
 
     async function handleSubmit(e) {
         e.preventDefault()
