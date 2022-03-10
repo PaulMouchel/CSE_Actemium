@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import deleteDocument from '../functions/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 import { motion, AnimatePresence } from 'framer-motion'
 import Img from "react-cool-img";
+import { sendToastSuccess } from "../functions/sendToast";
 
 const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
   
@@ -11,6 +12,7 @@ const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
 
   const handleDelete = () => {
     deleteDocument({docs, id, collection:'Cssct'})
+    sendToastSuccess("Mission de la CSST supprimée")
   }
 
   const handleMouseEnter = () => {

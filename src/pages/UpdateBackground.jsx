@@ -1,16 +1,14 @@
-import React, { useState } from "react"
-
+import { useState } from "react"
 import { useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
-
 import { faSpinner, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import PreviousButton from '../components/PreviousButton.jsx'
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import { motion } from "framer-motion";
 import deleteFolderContents from "../functions/deleteFolderContents";
+import { sendToastSuccess } from "../functions/sendToast";
 
 const UpdateBackground = ({image, setImage}) => {
     const [loading, setLoading] = useState(false)
@@ -41,7 +39,7 @@ const UpdateBackground = ({image, setImage}) => {
         } else {
             await collectionRef.add({ imageUrl, createdAt });
         }
-        setLoading(false)
+        sendToastSuccess("Image de fond modifiée")
         setImage(imageUrl)
         history.push('/')
      }

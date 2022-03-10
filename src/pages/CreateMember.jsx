@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
@@ -9,6 +9,7 @@ import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
 import userImage from '../images/user.jpg'
 import useFirestore from '../hooks/useFirestore'
+import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
 const CreateMember = () => {
   const [executive, setExecutive] = useState("executive");
@@ -39,8 +40,11 @@ const CreateMember = () => {
     const data = { imageUrl, ...formData.current, order}
     uploadToDatabase("Team", data)
     .then(() => {
-      setLoading(false)
+      sendToastSuccess("Membre créé avec succès")
       history.push('/')
+    }).catch((error) => {
+      setLoading(false)
+      sendToastError(`Echec de création de membre : ${error}`)
     })
   }
 

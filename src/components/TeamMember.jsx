@@ -1,4 +1,3 @@
-import React from 'react';
 import VerticalLine from './VerticalLine.jsx'
 import MemberDescription from './MemberDescription'
 import deleteDocument from '../functions/deleteDocument';
@@ -10,11 +9,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence } from 'framer-motion';
 import { move } from '../functions/move.js';
 import FadeButton from './FadeButton.jsx';
+import { sendToastSuccess } from "../functions/sendToast";
 
 const TeamMember = ({imageUrl, fullName, role, holder, executive, president, first, last, even, admin, id, order, docs, updateTeamOrders}) => {
 
     const handleDelete = () => {
         deleteDocument({docs, id, collection:'Team', next:updateTeamOrders, nextParams:id})
+        sendToastSuccess("Membre supprimé")
     }
 
     const goDown = () => {

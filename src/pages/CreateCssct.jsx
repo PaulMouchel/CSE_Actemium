@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
-
 import { uploadImage } from '../functions/uploadImage';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
-
 import UploadImageForm from '../components/UploadImageForm.jsx';
+import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
 const CreateCssct = ({collection}) => {
   const [image, setImage] = useState();
@@ -31,7 +30,11 @@ const CreateCssct = ({collection}) => {
 
   uploadToDatabase(collection, data)
   .then(() => {
+    sendToastSuccess("Mission de la CSSCT créée avec succès")
     history.push('/')
+  }).catch((error) => {
+    setLoading(false)
+    sendToastError(`Echec de création de mission : ${error}`)
   })
 }
 
