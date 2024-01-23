@@ -1,16 +1,16 @@
 import React from 'react';
-import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
+import { FaLock, FaLockOpen } from 'react-icons/fa'
 import BurgerToggleAdminButton from './BurgerToggleAdminButton.jsx'
 
 const BurgerToggleAdmin = (props) => {
     
     const toAdmin = {
-        icon: faLock,
+        Icon: FaLock,
         text: "Mode admin"
     }
 
     const toUser = {
-        icon: faLockOpen,
+        Icon: FaLockOpen,
         text: "Mode normal"
     }
 

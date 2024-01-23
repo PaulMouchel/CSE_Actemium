@@ -1,16 +1,16 @@
 import React from 'react';
-import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
+import { FaLock, FaLockOpen } from "react-icons/fa"
 import ToggleAdminButton from './ToggleAdminButton.jsx'
 
 const ToggleAdmin = ({admin, setAdmin}) => {
     
     const toAdmin = {
-        icon: faLock,
+        icon: FaLock,
         text: "Mode admin"
     }
 
     const toUser = {
-        icon: faLockOpen,
+        icon: FaLockOpen,
         text: "Mode normal"
     }
 

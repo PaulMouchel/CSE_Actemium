@@ -2,8 +2,7 @@ import { useState } from "react"
 import { useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
-import { faSpinner, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaSpinner, FaCheck } from "react-icons/fa"
 import PreviousButton from '../components/PreviousButton.jsx'
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import { motion } from "framer-motion";
@@ -89,13 +88,13 @@ const UpdateBackground = ({image, setImage}) => {
                             disabled={loading} 
                             className="focus:outline-none transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full w-10 h-10 flex items-center justify-center" 
                             onClick={handleSubmit}>
-                                <FontAwesomeIcon icon={faCheck} />
+                                <FaCheck />
                         </button>
                         :
                         <button 
                             disabled={loading} 
                             className="focus:outline-none transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full w-10 h-10 flex items-center justify-center">
-                                <FontAwesomeIcon className="animate-spin" icon={faSpinner}/>
+                                <FaSpinner className="animate-spin" />
                         </button>
                         
                     }

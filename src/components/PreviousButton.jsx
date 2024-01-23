@@ -1,6 +1,5 @@
 import React from 'react';
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaArrowLeft } from "react-icons/fa"
 import { Link } from 'react-router-dom'
 
 const PreviousButton = ({to, hash, state, className}) => {
@@ -13,7 +12,7 @@ const PreviousButton = ({to, hash, state, className}) => {
       
     className={`transform duration-300 ease-in-out bg-secondary hover:bg-white text-white hover:text-secondary rounded-full w-10 h-10 flex items-center justify-center ${className}`}
     >
-        <FontAwesomeIcon icon={faArrowLeft} />
+        <FaArrowLeft />
     </Link>
   );
 }

@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Img from "react-cool-img";
 import { AnimatePresence } from 'framer-motion';
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { move } from '../functions/move.js';
 import FadeButton from './FadeButton.jsx';
 
@@ -56,14 +55,14 @@ const Benefit = (props) => {
                   <FadeButton
                   onClick={goUp}
                   className="bg-primary w-8 h-8 rounded-full absolute top-6 flex items-center justify-center focus:outline-none">
-                      <FontAwesomeIcon icon={faArrowUp} className="text-white text-lg"/>
+                      <FaArrowUp className="text-white text-lg"/>
                   </FadeButton>
               }
               {!props.last &&
                   <FadeButton 
                   onClick={goDown}
                   className="bg-primary w-8 h-8 rounded-full absolute bottom-6 flex items-center justify-center focus:outline-none">
-                      <FontAwesomeIcon icon={faArrowDown} className="text-white text-lg"/>
+                      <FaArrowDown className="text-white text-lg"/>
                   </FadeButton>
               }
             </div>

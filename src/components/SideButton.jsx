@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from 'framer-motion';
 import { goToHash } from '../functions/goToHash';
 
@@ -43,6 +42,8 @@ const SideButton = (item) => {
         setIsHovering(false);
     }
 
+    const Icon = item.icon
+
     return (
         <motion.li className="group flex flex-row items-center"
             variants={buttonsVariant}
@@ -55,7 +56,7 @@ const SideButton = (item) => {
                 <div
                     className="tiny-nav-link flex justify-center items-center cursor-pointer"
                     onClick={() => goToHash(item.href)}>
-                    <FontAwesomeIcon icon={item.icon} className="box-content p-1.5 m-0"/>
+                    <Icon className="box-content p-1.5 m-0"/>
                 </div>
             </div>
             <AnimatePresence>

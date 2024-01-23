@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { faClock, faPen } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaClock, FaPen } from "react-icons/fa"
 import { useLocation, useHistory, Link } from 'react-router-dom' 
 import deleteDocument from '../functions/deleteDocument'
 import ImageGrid from '../components/ImageGrid.jsx'
@@ -75,7 +74,7 @@ const NewsArticleDetail = ({admin, collection}) => {
                     }}>
                         <button 
                         className="transform duration-300 ease-in-out bg-primary hover:bg-white text-white hover:text-primary rounded-full w-10 h-10 flex items-center justify-center relative top-2 right-2 mr-4 focus:outline-none">
-                            <FontAwesomeIcon icon={faPen} />
+                            <FaPen />
                         </button>
                     </Link>
                     <DeleteButton admin={admin} onClick={handleDelete} info={data?.title} alignRight={true} noAnimation={true}/>
@@ -85,14 +84,14 @@ const NewsArticleDetail = ({admin, collection}) => {
             <div className="flex flex-col justify-between h-full -mt-10">
                 <div>
                     {data?.galleryUrl && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${data.galleryUrl[0]})`}}></div>}
-                    <div className="p-4 pb-0">
+                    <div className="py-4 pb-0">
                         <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
-                            <FontAwesomeIcon icon={faClock} />
+                            <FaClock className='inline' />
                             <span className="text-sm ml-1">{data?.date}</span>                   
                         </div>
                     </div>
                 </div>
-                <div className="p-4 pt-0">
+                <div className="py-4 pt-0">
                     <h3 className="max-w-4xl m-auto relative lg:mt-6 bottom-3 text-xl text-blue-800 font-bold">
                         {data?.title}
                     </h3>
