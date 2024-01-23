@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
-import formatedDate from '../functions/formatedDate.js';
+import getFormatedDate from '../functions/getFormatedDate.js';
 import useFirestore from '../hooks/useFirestore'
 import { sendToastSuccess } from "../functions/sendToast";
 
@@ -34,7 +34,7 @@ const CreateArticle = ({collection}) => {
   const history = useHistory()
 
  const setDataAndUpload = () => {
-    const date = formatedDate()
+    const date = getFormatedDate()
     const galleryUrl = gallery.map(x => x.downloadURL)
     const order = length ? length : 0
     const data = { galleryUrl, ...textData.current, date, order }

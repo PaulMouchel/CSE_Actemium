@@ -9,13 +9,13 @@ import FadeButton from './FadeButton.jsx';
 const Benefit = (props) => {
 
   const goDown = () => {
-      if (props.last) return
-      move(1, "Benefits", props.order, props.id)
+    if (props.last) return
+    move(1, "Benefits", props.order, props.id)
   }
 
-    const goUp = () => {
-      if(props.first) return
-      move(-1, "Benefits", props.order, props.id)
+  const goUp = () => {
+    if(props.first) return
+    move(-1, "Benefits", props.order, props.id)
   }
 
   return (
