@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 import { Switch, Route } from  "react-router-dom";
 import Content from '../pages/Content.jsx'
 import Login from '../pages/Login.jsx'
@@ -13,14 +13,12 @@ import CreateMember from '../pages/CreateMember.jsx'
 import Admins from '../pages/Admins.jsx';
 import Error404 from '../pages/Error404.jsx';
 import ScrollToTop from './ScrollToTop.jsx';
-import { init } from 'emailjs-com';
 import { useUser } from '../contexts/UserContext'
 import PrivateRoute from './PrivateRoute.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import Background from './Background.jsx'
 import { AnimatePresence } from 'framer-motion'
 import DefaultBackground from './DefaultBackground.jsx'
-init(process.env.REACT_APP_EMAILJS_USER_ID);
 
 const Main = () => {
     const [background, setBackground] = useState(null)

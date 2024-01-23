@@ -12,7 +12,6 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "compress.js": "^1.2.1",
-    "emailjs-com": "^2.6.4",
     "env-cmd": "^10.1.0",
     "firebase": "^8.6.1",
     "framer-motion": "^4.1.17",
