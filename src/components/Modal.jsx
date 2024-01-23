@@ -8,17 +8,15 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
 
   // Navigation avec les flèches du clavier, contrôle de la touche
   const keyCheck = (e) => {
-    switch (e.keyCode) {   
-        case 37:
+    switch (e.key) {  
+        case "ArrowLeft":
             carouselRef.current.slickPrev()
             break;
-        case 39:
+        case "ArrowRight":
             carouselRef.current.slickNext()
             break;
-        case 27:
+        case "Escape":
             setSelectedImg(null)
-            break;
-        default:
             break;
     }
   }
@@ -34,15 +32,13 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
   }
 
   useEffect(() => {
+    const selectedImageIndex = getImageIndex(galleryUrl, selectedImg)
+    carouselRef.current.slickGoTo(selectedImageIndex, true)
     document.addEventListener('keydown', keyCheck);
+
     return () => {
       document.removeEventListener('keydown', keyCheck)
     }
-  }, [keyCheck]);
-
-  useEffect(() => {
-    const index = getImageIndex(galleryUrl, selectedImg)
-    carouselRef.current.slickGoTo(index, true)
   }, [])
 
   const handleClick = (e) => {
@@ -50,8 +46,7 @@ const Modal = ({ setSelectedImg, selectedImg, galleryUrl }) => {
   }
 
   const getImageIndex = (galleryUrl, selectedImage) => {
-      const isTheRightIndex = (element) => element === selectedImage
-      return galleryUrl.findIndex(isTheRightIndex)
+      return galleryUrl.findIndex((element) => element === selectedImage)
   }
 
   return (

@@ -6,7 +6,7 @@ import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
 import PreviousButton from '../components/PreviousButton.jsx'
 import DeleteButton from '../components/DeleteButton';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { projectFirestore } from '../firebase/config';
 import parse from 'html-react-parser';
 import useFirestore from '../hooks/useFirestore'
@@ -109,11 +109,9 @@ const NewsArticleDetail = ({admin, collection}) => {
                 </div>
                 
             </div>
-            <AnimatePresence>
-                { selectedImg && (
-                    <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} galleryUrl={data.galleryUrl}/>
-                )}
-            </AnimatePresence>
+            { selectedImg && (
+                <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} galleryUrl={data.galleryUrl}/>
+            )}
         </article>  
     </motion.div>   
   );

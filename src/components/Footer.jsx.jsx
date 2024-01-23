@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <section id="footer" className="bg-gray-800 p-6 text-gray-50 text-xs flex justify-center">
       <div className="flex items-center">
-        <span className="mr-4">2021 - Paul Mouchel</span>
+        <span className="mr-4">2024 - Paul Mouchel</span>
         <a href="https://www.linkedin.com/in/paul-mouchel-54875216a/" target="_blank" rel="noreferrer">
           <FaLinkedin className="text-2xl box-content p-1.5 m-0"/>
         </a>
