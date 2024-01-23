@@ -2,6 +2,20 @@
   "name": "cse_actemium",
   "version": "0.2.0",
   "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode development",
+    "build:staging": "vite build --mode staging",
+    "build:production": "vite build --mode production",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
@@ -19,31 +33,6 @@
     "react-slick": "^0.28.1",
     "react-toastify": "^8.2.0",
     "slick-carousel": "^1.8.1"
-  },
-  "scripts": {
-    "build:staging": "env-cmd -f .env.staging craco build",
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
