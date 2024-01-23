@@ -44,7 +44,7 @@ export const adminMenuData = [
         external: false
     },
     {
-        href: process.env.REACT_APP_FIREBASE_CONSOLE_URL,
+        href: import.meta.env.VITE_FIREBASE_CONSOLE_URL,
         icon: faFire,
         text: "Firebase",
         external: true

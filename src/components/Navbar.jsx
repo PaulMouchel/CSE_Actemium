@@ -27,7 +27,7 @@ const Navbar = (props) => {
     <>
       {error && <span className="block text-center text-gray-50 bg-red-500 py-1 px-2">{error}</span>}
       <div className="w-40 lg:w-60 h-40 lg:h-60 bg-opacity-100 absolute top-0 left-0 z-50 hidden md:block">
-        <img src={process.env.REACT_APP_NAV_LOGO_URL} className="bg-opacity-100 float-left" alt="logo"/>
+        <img src={import.meta.env.VITE_NAV_LOGO_URL} className="bg-opacity-100 float-left" alt="logo"/>
       </div>
 
       <div className="hidden md:flex bg-gray-100 shadow-md">

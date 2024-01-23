@@ -1,15 +1,14 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx';
 import { motion } from 'framer-motion';
 import useFirestore from '../hooks/useFirestore.js';
 import DeleteButton from '../components/DeleteButton.jsx';
 import { projectFirestore } from '../firebase/config.js';
-import { useAuth } from '../contexts/AuthContext.js';
+import { useAuth } from '../contexts/AuthContext';
 
 const Admins = () => {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(""); 
     const admins = useFirestore('Admins');
     const { currentUser } = useAuth()
     const newAdminRef = useRef()

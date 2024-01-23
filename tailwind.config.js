@@ -1,12 +1,40 @@
-const colors = require('tailwindcss/colors')
+// const colors = require('tailwindcss/colors')
+import * as colors from 'tailwindcss/colors'
+// module.exports = {
+//   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+//   darkMode: false, // or 'media' or 'class'
+//   theme: {
+//     colors: {
+//       primary: import.meta.env.VITE_PRIMARY_COLOR,
+//       secondary: import.meta.env.VITE_SECONDARY_COLOR,
+//       gray: colors.gray,
+//       blue: colors.blue,
+//       green: colors.green,
+//       white: colors.white,
+//       black: colors.black,
+//       red: colors.red,
+//       yellow: colors.yellow
+//     },
+//   },
+//   variants: {
+//     extend: {
+//       translate: ['group-hover'],
+//       scale: ['group-hover'],
+//     },
+//   },
+//   plugins: [],
+// }
 
-module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     colors: {
-      primary: process.env.REACT_APP_PRIMARY_COLOR,
-      secondary: process.env.REACT_APP_SECONDARY_COLOR,
+      primary: '#F89B4B',
+      secondary: '#81D287',
       gray: colors.gray,
       blue: colors.blue,
       green: colors.green,
@@ -15,12 +43,7 @@ module.exports = {
       red: colors.red,
       yellow: colors.yellow
     },
-  },
-  variants: {
-    extend: {
-      translate: ['group-hover'],
-      scale: ['group-hover'],
-    },
+    extend: {},
   },
   plugins: [],
 }
