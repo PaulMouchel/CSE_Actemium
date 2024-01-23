@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html {
   overflow-x: hidden; /* Hide horizontal scrollbar */
   font-family: 'Source Sans Pro', sans-serif;
