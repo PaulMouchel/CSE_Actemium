@@ -1,4 +1,4 @@
-import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus, faUserCog, faFire, faAt } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus, faUserCog, faFire } from "@fortawesome/free-solid-svg-icons";
 
 export const adminMenuData = [
     {
@@ -48,12 +48,5 @@ export const adminMenuData = [
         icon: faFire,
         text: "Firebase",
         external: true
-    },
-    {
-        href: "https://dashboard.emailjs.com/admin",
-        icon: faAt,
-        text: "Emailjs",
-        external: true
-        
     }
 ]
