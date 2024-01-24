@@ -1,13 +1,13 @@
-import VerticalLine from './VerticalLine.jsx'
+import VerticalLine from './VerticalLine'
 import MemberDescription from './MemberDescription'
 import deleteDocument from '../functions/deleteDocument';
-import DeleteButton from './DeleteButton.jsx'
+import DeleteButton from './DeleteButton'
 import Img from "react-cool-img";
 import loadingImage from "../images/loading.gif";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import { move } from '../functions/move.js';
-import FadeButton from './FadeButton.jsx';
+import FadeButton from './FadeButton';
 import { sendToastSuccess } from "../functions/sendToast";
 
 const TeamMember = ({imageUrl, fullName, role, holder, executive, president, first, last, even, admin, id, order, docs, updateTeamOrders}) => {

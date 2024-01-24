@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
 import PreviousButton from '../components/PreviousButton'
-import ActionButton from '../components/ActionButton.jsx'
-import UploadImageForm from '../components/UploadImageForm.jsx';
+import ActionButton from '../components/ActionButton'
+import UploadImageForm from '../components/UploadImageForm';
 import { motion } from 'framer-motion';
 import { uploadImage } from '../functions/uploadImage';
 import randomUid from '../functions/randomUid';

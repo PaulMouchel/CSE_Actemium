@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import deleteDocument from '../functions/deleteDocument';
-import DeleteButton from './DeleteButton.jsx'
+import DeleteButton from './DeleteButton'
 import { motion, AnimatePresence } from 'framer-motion'
 import Img from "react-cool-img";
 import { sendToastSuccess } from "../functions/sendToast";

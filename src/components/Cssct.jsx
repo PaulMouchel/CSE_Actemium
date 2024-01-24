@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from './Title'
-import CssctMission from './CssctMission.jsx'
+import CssctMission from './CssctMission'
 import useFirestore from '../hooks/useFirestore'
 
 const Cssct = ({admin, textColor}) => {

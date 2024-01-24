@@ -1,5 +1,5 @@
 import React from 'react';
-import SideButton from './SideButton.jsx'
+import SideButton from './SideButton'
 import { navbarData } from '../data/navbar';
 
 const TinySidebar = ({visibleSection}) => {

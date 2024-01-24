@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaLock, FaLockOpen } from 'react-icons/fa'
-import BurgerToggleAdminButton from './BurgerToggleAdminButton.jsx'
+import BurgerToggleAdminButton from './BurgerToggleAdminButton'
 
 const BurgerToggleAdmin = (props) => {
     

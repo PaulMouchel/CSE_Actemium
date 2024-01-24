@@ -6,7 +6,9 @@ export type FirebaseDocument = Record<string, any> & {
   id: string
 }
 
-const useFirestore = (collection: "Admins" | "Background" | "Benefits" | "Cssct" | "News" | "Quotation" | "Team") => {
+export type FireStoreCollection = "Admins" | "Background" | "Benefits" | "Cssct" | "News" | "Quotation" | "Team"
+
+const useFirestore = (collection: FireStoreCollection) => {
   const [docs, setDocs] = useState<FirebaseDocument[]>([]);
   const auth = useAuth()
 

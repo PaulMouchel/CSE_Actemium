@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { useHistory } from 'react-router-dom'
 import { projectFirestore, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton'
-import ActionButton from '../components/ActionButton.jsx'
+import ActionButton from '../components/ActionButton'
 import { motion } from "framer-motion";
 import useFirestore from '../hooks/useFirestore'
 import { sendToastSuccess } from "../functions/sendToast";

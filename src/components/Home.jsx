@@ -1,5 +1,5 @@
 import React from 'react';
-import Quotation from './Quotation.jsx'
+import Quotation from './Quotation'
 import useFirestore from '../hooks/useFirestore'
 
 const Home = () => {

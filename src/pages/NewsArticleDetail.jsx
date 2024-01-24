@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { FaClock, FaPen } from "react-icons/fa"
 import { useLocation, useHistory, Link } from 'react-router-dom' 
 import deleteDocument from '../functions/deleteDocument'
-import ImageGrid from '../components/ImageGrid.jsx'
-import Modal from '../components/Modal.jsx'
+import ImageGrid from '../components/ImageGrid'
+import Modal from '../components/Modal'
 import PreviousButton from '../components/PreviousButton'
 import DeleteButton from '../components/DeleteButton';
 import { motion } from 'framer-motion';

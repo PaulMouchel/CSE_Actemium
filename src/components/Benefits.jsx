@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from './Title'
-import Benefit from './Benefit.jsx'
+import Benefit from './Benefit'
 import { sortByOrder } from '../functions/sortByOrder';
 import useFirestore from '../hooks/useFirestore'
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaLock, FaLockOpen } from "react-icons/fa"
-import ToggleAdminButton from './ToggleAdminButton.jsx'
+import ToggleAdminButton from './ToggleAdminButton'
 
 const ToggleAdmin = ({admin, setAdmin}) => {
     

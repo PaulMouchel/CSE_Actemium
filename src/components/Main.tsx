@@ -1,29 +1,29 @@
 import { useState } from 'react'
 import { Switch, Route } from  "react-router-dom";
-import Content from '../pages/Content.jsx'
-import Login from '../pages/Login.jsx'
-import ForgotPassword from '../pages/ForgotPassword.jsx'
-import CreateArticle from '../pages/CreateArticle.jsx'
-import CreateCssct from '../pages/CreateCssct.jsx'
-import NewsArticleDetail from '../pages/NewsArticleDetail.jsx'
-import NewsArticleEdit from '../pages/NewsArticleEdit.jsx'
-import UpdateQuotation from '../pages/UpdateQuotation.jsx'
-import UpdateBackground from '../pages/UpdateBackground.jsx'
-import CreateMember from '../pages/CreateMember.jsx'
+import Content from '../pages/Content.js'
+import Login from '../pages/Login'
+import ForgotPassword from '../pages/ForgotPassword'
+import CreateArticle from '../pages/CreateArticle'
+import CreateCssct from '../pages/CreateCssct'
+import NewsArticleDetail from '../pages/NewsArticleDetail'
+import NewsArticleEdit from '../pages/NewsArticleEdit'
+import UpdateQuotation from '../pages/UpdateQuotation'
+import UpdateBackground from '../pages/UpdateBackground'
+import CreateMember from '../pages/CreateMember'
 import Admins from '../pages/Admins.js';
-import Error404 from '../pages/Error404.jsx';
-import ScrollToTop from './ScrollToTop.jsx';
+import Error404 from '../pages/Error404';
+import ScrollToTop from './ScrollToTop';
 import { useUser } from '../contexts/UserContext.js'
-import PrivateRoute from './PrivateRoute.jsx';
-import AdminRoute from './AdminRoute.jsx';
-import Background from './Background.jsx'
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
+import Background from './Background'
 import { AnimatePresence } from 'framer-motion'
-import DefaultBackground from './DefaultBackground.jsx'
+import DefaultBackground from './DefaultBackground'
 
 const Main = () => {
-    const [background, setBackground] = useState<string | null>(null)
+    const [ background, setBackground ] = useState<string | null>(null)
     const { isAdmin } = useUser()
-    const [admin, setAdmin] = useState(false)
+    const [ admin, setAdmin ] = useState(false)
 
   return (
     <>

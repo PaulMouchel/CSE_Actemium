@@ -1,10 +1,24 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { FaTimes } from "react-icons/fa"
 
-const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGallery }) => {
+type Props = {
+    galleryUrl: string[], 
+    setSelectedImg: Dispatch<SetStateAction<string | null>>, 
+    imagesDeletable: boolean, 
+    gallery: {
+        url: string;
+        downloadURL: string;
+    }[], 
+    setGallery: Dispatch<SetStateAction<{
+        url: string;
+        downloadURL: string;
+    }[]>>
+}
 
-    const handleDelete = (e, index) => {
+const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGallery }: Props) => {
+
+    const handleDelete = (e: MouseEvent, index: number) => {
         e.stopPropagation()
         let newGallery = gallery
         newGallery.splice(index,1)
@@ -14,7 +28,7 @@ const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGa
     return (
         <div className="max-w-screen-lg m-auto">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 ">
-                {galleryUrl && galleryUrl.map((doc, index) => (
+                { galleryUrl && galleryUrl.map((doc, index) => (
                     <motion.div 
                         className="relative overflow-hidden opacity-80 bg-cover bg-center" 
                         style={{

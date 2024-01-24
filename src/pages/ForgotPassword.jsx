@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { useAuth } from "../contexts/AuthContext"
 import { Link } from 'react-router-dom'
 import { FaUserCircle } from "react-icons/fa"
-import ActionButton from '../components/ActionButton.jsx'
+import ActionButton from '../components/ActionButton'
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
 const ForgotPassword = () => {

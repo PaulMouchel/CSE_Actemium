@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 import { motion } from 'framer-motion'
-import NavButton from './NavButton.jsx'
-import BurgerMenu from './BurgerMenu.jsx'
+import NavButton from './NavButton'
+import BurgerMenu from './BurgerMenu'
 import { navbarData } from "../data/navbar";
 
 const Navbar = (props) => {

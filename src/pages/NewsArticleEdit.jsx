@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom' 
 import { projectFirestore, timestamp } from '../firebase/config';
-import UploadImageForm from '../components/UploadImageForm.jsx';
-import ImageGrid from '../components/ImageGrid.jsx';
-import Modal from '../components/Modal.jsx';
+import UploadImageForm from '../components/UploadImageForm';
+import ImageGrid from '../components/ImageGrid';
+import Modal from '../components/Modal';
 import PreviousButton from '../components/PreviousButton'
-import ActionButton from '../components/ActionButton.jsx'
+import ActionButton from '../components/ActionButton'
 import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
 import getFormatedDate from '../functions/getFormatedDate';

@@ -1,8 +1,8 @@
 import React from 'react';
 
 //Components
-import NewsArticle from './NewsArticle.jsx'
-import OldArticle from './OldArticle.jsx'
+import NewsArticle from './NewsArticle'
+import OldArticle from './OldArticle'
 import Title from './Title'
 import useFirestore from '../hooks/useFirestore'
 

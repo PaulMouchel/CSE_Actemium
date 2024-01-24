@@ -4,7 +4,7 @@ import Img from "react-cool-img";
 import { AnimatePresence } from 'framer-motion';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { move } from '../functions/move.js';
-import FadeButton from './FadeButton.jsx';
+import FadeButton from './FadeButton';
 
 const Benefit = (props) => {
 

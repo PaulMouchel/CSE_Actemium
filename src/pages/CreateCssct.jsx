@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
 import PreviousButton from '../components/PreviousButton'
-import ActionButton from '../components/ActionButton.jsx'
+import ActionButton from '../components/ActionButton'
 import { motion } from 'framer-motion';
 import { uploadImage } from '../functions/uploadImage';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
-import UploadImageForm from '../components/UploadImageForm.jsx';
+import UploadImageForm from '../components/UploadImageForm';
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
 const CreateCssct = ({collection}) => {

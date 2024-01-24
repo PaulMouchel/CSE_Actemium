@@ -4,9 +4,9 @@ import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import BurgerButton from './BurgerButton.jsx'
-import BurgerAdmin from './BurgerAdmin.jsx'
-import BurgerToggleAdmin from './BurgerToggleAdmin.jsx'
+import BurgerButton from './BurgerButton'
+import BurgerAdmin from './BurgerAdmin'
+import BurgerToggleAdmin from './BurgerToggleAdmin'
 import { navbarData } from "../data/navbar";
 
 const BurgerMenu = ({isAdmin, admin, setAdmin}) => {

@@ -1,5 +1,5 @@
 import Title from './Title'
-import ActionButton from './ActionButton.jsx'
+import ActionButton from './ActionButton'
 import { FaEnvelope } from "react-icons/fa"
 
 const Contact = ({textColor}) => {

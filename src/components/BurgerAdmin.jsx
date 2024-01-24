@@ -1,5 +1,5 @@
 import React from 'react';
-import BurgerAdminButton from './BurgerAdminButton.jsx'
+import BurgerAdminButton from './BurgerAdminButton'
 import { adminMenuData } from '../data/adminMenu'
 
 const BurgerAdmin = () => {

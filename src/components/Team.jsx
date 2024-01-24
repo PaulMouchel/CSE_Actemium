@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from './Title'
-import TeamMember from './TeamMember.jsx'
+import TeamMember from './TeamMember'
 import { sortByOrder } from '../functions/sortByOrder';
 import { updateOrders } from '../functions/updateOrders';
 import useFirestore from '../hooks/useFirestore'
