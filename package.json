@@ -12,7 +12,9 @@
     "preview": "vite preview",
     "fb:logout": "firebase logout",
     "fb:login": "firebase login",
-    "use:staging": "firebase use staging"
+    "use:staging": "firebase use staging",
+    "use:production": "firebase use default",
+    "deploy": "firebase deploy"
   },
   "eslintConfig": {
     "extends": [
