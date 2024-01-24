@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 import { useAuth } from '../contexts/AuthContext';
 
-const useFirestore = (collection) => {
-  const [docs, setDocs] = useState([]);
+export type FirebaseDocument = Record<string, any> & {
+  id: string
+}
+
+const useFirestore = (collection: "Admins" | "Background" | "Benefits" | "Cssct" | "News" | "Quotation" | "Team") => {
+  const [docs, setDocs] = useState<FirebaseDocument[]>([]);
   const auth = useAuth()
 
   useEffect(() => {
@@ -12,7 +16,7 @@ const useFirestore = (collection) => {
         const unsub = projectFirestore.collection(collection)
           .orderBy('createdAt', 'desc')
           .onSnapshot(snap => {
-            let documents = [];
+            let documents: FirebaseDocument[] = [];
             snap.forEach(doc => {
               documents.push({...doc.data(), id: doc.id});
             });

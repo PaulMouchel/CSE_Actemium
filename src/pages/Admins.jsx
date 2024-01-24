@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx';
 import { motion } from 'framer-motion';
-import useFirestore from '../hooks/useFirestore.js';
+import useFirestore from '../hooks/useFirestore';
 import DeleteButton from '../components/DeleteButton.jsx';
-import { projectFirestore } from '../firebase/config.js';
+import { projectFirestore } from '../firebase/config';
 import { useAuth } from '../contexts/AuthContext';
 
 const Admins = () => {

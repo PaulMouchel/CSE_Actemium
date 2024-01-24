@@ -8,7 +8,7 @@ import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
-import getFormatedDate from '../functions/getFormatedDate.js';
+import getFormatedDate from '../functions/getFormatedDate';
 import { sendToastSuccess } from "../functions/sendToast";
 
 const NewsArticleEdit = ({collection}) => {

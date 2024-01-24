@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminButton from './AdminButton.jsx'
-import { adminMenuData } from '../data/adminMenu.js';
+import { adminMenuData } from '../data/adminMenu';
 
 const AdminSidebar = () => {
     return (

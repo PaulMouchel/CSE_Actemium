@@ -1,6 +1,6 @@
 import { projectStorage } from '../firebase/config';
 
-const deleteFolderContents = (path) => {
+const deleteFolderContents = (path: string) => {
     const ref = projectStorage.ref(path);
     ref.listAll()
         .then(dir => {
@@ -16,7 +16,7 @@ const deleteFolderContents = (path) => {
         });
 }
 
-const deleteFile = (pathToFile, fileName) => {
+const deleteFile = (pathToFile: string, fileName: string) => {
     const ref = projectStorage.ref(pathToFile);
     const childRef = ref.child(fileName);
     childRef.delete()

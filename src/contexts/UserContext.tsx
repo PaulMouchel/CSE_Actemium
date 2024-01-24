@@ -1,16 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useContext, useEffect, useState } from 'react';
 import useFirestore from '../hooks/useFirestore';
+import firebase from 'firebase';
 
 import { useAuth } from './AuthContext';
 
-export const UserContext = React.createContext();
+export const UserContext = React.createContext<{
+    currentUser: firebase.User | null
+    isAdmin: boolean
+}>({
+    currentUser: null,
+    isAdmin: false
+});
 
 
 export function useUser() {
     return useContext(UserContext)
 }
 
-export function UserProvider({ children }) {
+export function UserProvider({ children }: PropsWithChildren) {
     const { currentUser } = useAuth()
     const [isAdmin, setIsAdmin] = useState(false)
     const [loading, setLoading] = useState(true)

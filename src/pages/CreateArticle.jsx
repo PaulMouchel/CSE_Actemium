@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
 import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
-import getFormatedDate from '../functions/getFormatedDate.js';
+import getFormatedDate from '../functions/getFormatedDate';
 import useFirestore from '../hooks/useFirestore'
 import { sendToastSuccess } from "../functions/sendToast";
 
