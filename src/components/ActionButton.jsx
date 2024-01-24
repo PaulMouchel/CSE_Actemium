@@ -22,7 +22,7 @@ const ActionButton = (props) => {
         <button disabled={props.loading} className={`bg-primary text-white font-bold p-2 rounded ${props.className}`}
             type={props.type}
             id={props.id}>
-                <FaSpinner className="animate-spin" />
+                <FaSpinner className="animate-spin inline" />
         </button>
     }
     </>
