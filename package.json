@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build --mode development",
-    "build:development": "vite build --mode development",
-    "build:staging": "vite build --mode staging",
-    "build:production": "vite build --mode production",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "build": "tsc && vite build --mode development",
+    "build:development": "tsc && vite build --mode development",
+    "build:staging": "tsc && vite build --mode staging",
+    "build:production": "tsc && vite build --mode production",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "fb:logout": "firebase logout",
     "fb:login": "firebase login",
@@ -31,11 +31,14 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.17",
     "env-cmd": "^10.1.0",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
     "vite": "^5.0.12"
   }
 }
