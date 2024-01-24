@@ -16,12 +16,6 @@
     "use:production": "firebase use default",
     "deploy": "firebase deploy"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "dependencies": {
     "compress.js": "^1.2.2",
     "firebase": "^8.6.1",
