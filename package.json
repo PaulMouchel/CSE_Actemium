@@ -9,7 +9,10 @@
     "build:staging": "vite build --mode staging",
     "build:production": "vite build --mode production",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fb:logout": "firebase logout",
+    "fb:login": "firebase login",
+    "use:staging": "firebase use staging"
   },
   "eslintConfig": {
     "extends": [
