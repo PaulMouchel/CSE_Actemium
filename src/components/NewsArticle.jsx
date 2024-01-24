@@ -1,6 +1,5 @@
 import React from 'react';
-import { faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaClock, FaArrowRight } from "react-icons/fa"
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Img from "react-cool-img";
@@ -25,7 +24,7 @@ const NewsArticle = (article) => {
             <div className="p-4 pb-0">
               <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
                 <div>
-                  <FontAwesomeIcon icon={faClock} />
+                  <FaClock className='inline' />
                   <span className="ml-1 text-xs">{article.date}</span>
                 </div>
               </div>
@@ -48,7 +47,7 @@ const NewsArticle = (article) => {
               </div>
               <div>
                 <button className="text-primary transform duration-300 ease-in-out group-hover:translate-x-1">
-                  <FontAwesomeIcon icon={faArrowRight} />
+                  <FaArrowRight />
                 </button>
               </div>
             </div>

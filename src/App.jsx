@@ -29,8 +29,8 @@ function App() {
           </AuthProvider>
         </Router>
       </div>
-      {process.env.REACT_APP_ENV === "development" &&
-        <div className="fixed bottom-2 left-2 bg-white p-2 font-bold text-red-700 rounded-lg">env : {process.env.REACT_APP_ENV}</div>
+      {import.meta.env.VITE_ENV === "development" &&
+        <div className="fixed bottom-2 left-2 bg-white p-2 font-bold text-red-700 rounded-lg">env : {import.meta.env.VITE_ENV}</div>
       }
     </>
   );

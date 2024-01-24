@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion'
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaSpinner } from 'react-icons/fa'
 
 const ActionButton = (props) => {
   
@@ -23,7 +22,7 @@ const ActionButton = (props) => {
         <button disabled={props.loading} className={`bg-primary text-white font-bold p-2 rounded ${props.className}`}
             type={props.type}
             id={props.id}>
-                <FontAwesomeIcon className="animate-spin" icon={faSpinner}/>
+                <FaSpinner className="animate-spin inline" />
         </button>
     }
     </>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaTrashAlt } from "react-icons/fa"
 import { motion, AnimatePresence } from 'framer-motion'
 import DeleteConfirmation from './DeleteConfirmation';
 
@@ -32,7 +31,7 @@ const DeleteButton = ({onClick, admin, info, alignRight, noAnimation}) => {
                     initial={noAnimation ? "" : "hidden"}
                     animate={noAnimation ? "" : "visible"}
                     exit="exit">
-                    <FontAwesomeIcon icon={faTrashAlt} />
+                    <FaTrashAlt />
                 </motion.button>}
             </AnimatePresence>
             <AnimatePresence>

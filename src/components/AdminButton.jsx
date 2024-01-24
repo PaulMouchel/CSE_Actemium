@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom' 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -43,6 +42,8 @@ const AdminButton = (item) => {
         setIsHovering(false);
     }
 
+    const Icon = item.icon
+
     return (
         <motion.li className="group flex flex-row-reverse items-center"
             variants={buttonsVariant}
@@ -54,11 +55,11 @@ const AdminButton = (item) => {
                 onMouseLeave={handleMouseLeave}>
                     { !item.external ?
                 <Link className="flex justify-center items-center" to={item.href}>
-                    <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
+                    <Icon className="box-content  p-1.5 m-0"/>
                 </Link>
                 :
                 <a className="flex justify-center items-center" href={item.href} target='_blank'>
-                    <FontAwesomeIcon icon={item.icon} className="box-content  p-1.5 m-0"/>
+                    <Icon className="box-content  p-1.5 m-0"/>
                 </a> 
                 }
             </div>

@@ -4,8 +4,7 @@ import deleteDocument from '../functions/deleteDocument';
 import DeleteButton from './DeleteButton.jsx'
 import Img from "react-cool-img";
 import loadingImage from "../images/loading.gif";
-import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import { move } from '../functions/move.js';
 import FadeButton from './FadeButton.jsx';
@@ -31,7 +30,7 @@ const TeamMember = ({imageUrl, fullName, role, holder, executive, president, fir
     return (
         <>
             <div className={`w-full flex flex-row${!even && "-reverse"} justify-center md:max-h-56`}>
-                <div className={`md:w-1/4 flex justify-${even ? "end" : "start"}`}>
+                <div className={`md:w-1/4 flex justify-${even ? "end" : "start"} flex-grow md:flex-grow-0`}>
                     <MemberDescription even={even} fullName={fullName} role={role} holder={holder} executive={executive} president={president} />
                 </div>
                 <div className="w-40 md:w-56 flex items-center justify-center mx-4">
@@ -50,14 +49,14 @@ const TeamMember = ({imageUrl, fullName, role, holder, executive, president, fir
                                             <FadeButton
                                             onClick={goUp}
                                             className="bg-primary w-8 h-8 rounded-full absolute -top-6 flex items-center justify-center focus:outline-none">
-                                                <FontAwesomeIcon icon={faArrowUp} className="text-white text-lg"/>
+                                                <FaArrowUp className="text-white text-lg"/>
                                             </FadeButton>
                                         }
                                         {!last &&
                                             <FadeButton
                                             onClick={goDown}
                                             className="bg-primary w-8 h-8 rounded-full absolute -bottom-6 flex items-center justify-center focus:outline-none">
-                                                <FontAwesomeIcon icon={faArrowDown} className="text-white text-lg"/>
+                                                <FaArrowDown className="text-white text-lg"/>
                                             </FadeButton>
                                         }
                                     </div>

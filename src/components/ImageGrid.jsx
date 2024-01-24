@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaTimes } from "react-icons/fa"
 
 const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGallery }) => {
 
@@ -33,7 +32,7 @@ const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGa
                         { imagesDeletable &&
                             <div className="h-6 w-6 absolute flex items-center justify-center top-2 right-2 bg-red-500 rounded-full"
                             onClick={e => {handleDelete(e, index)}}>
-                                <FontAwesomeIcon icon={faTimes} className="text-white text-md"/>
+                                <FaTimes className="text-white text-md"/>
                             </div>
                         }
                     </motion.div>

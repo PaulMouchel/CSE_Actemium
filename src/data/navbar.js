@@ -1,34 +1,34 @@
-import { faHome, faNewspaper, faThumbsUp, faUserShield, faUsers, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FaHome, FaNewspaper, FaThumbsUp, FaUserShield, FaUsers, FaEnvelope } from "react-icons/fa"
 
 export const navbarData = [
     {
       href: "home",
-      icon: faHome,
+      icon: FaHome,
       text: "Accueil"
     },
     {
         href: "news",
-        icon: faNewspaper,
+        icon: FaNewspaper,
         text: "Actualités"
     },
     {
         href: "benefits",
-        icon: faThumbsUp,
+        icon: FaThumbsUp,
         text: "Avantages"
     },
     {
         href: "cssct",
-        icon: faUserShield,
+        icon: FaUserShield,
         text: "CSSCT"
     },
     {
         href: "team",
-        icon: faUsers,
+        icon: FaUsers,
         text: "L'équipe"
     },
     {
         href: "contact",
-        icon: faEnvelope,
+        icon: FaEnvelope,
         text: "Contact"
     }
 ]

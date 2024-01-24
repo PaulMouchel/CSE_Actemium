@@ -1,6 +1,5 @@
 import React from 'react';
-import { faQuoteLeft, faQuoteRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaQuoteLeft, FaQuoteRight, FaSpinner } from "react-icons/fa"
 import { motion } from 'framer-motion'
 
 const Quotation = ({quotation}) => {
@@ -12,7 +11,7 @@ const Quotation = ({quotation}) => {
 
             <div className="text-gray-50 p-4 md:p-6 lg:p-10 italic flex justify-between rounded-lg text-2xl text-justify">
                 <div className="flex items-start">
-                    <FontAwesomeIcon icon={faQuoteLeft}/>
+                    <FaQuoteLeft />
                 </div>
                 
                 <div className="overflow-hidden">
@@ -24,14 +23,14 @@ const Quotation = ({quotation}) => {
                     :
                     <> 
                         <blockquote className="pb-2 px-4 md-px-6 lg:px-10 text-center">
-                            <FontAwesomeIcon className="animate-spin" icon={faSpinner}/>
+                            <FaSpinner className="animate-spin" />
                         </blockquote> 
                     </>
                 }
                 </div>
                 
                 <div className="flex items-end">
-                    <FontAwesomeIcon icon={faQuoteRight}/>
+                    <FaQuoteRight />
                 </div>
             </div>
         </motion.div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
 import { motion } from 'framer-motion';
 
 const itemVariant = {
@@ -14,7 +13,7 @@ const itemVariant = {
     }
 }
 
-const BurgerToggleAdminButton = ({admin, setAdmin, icon, text}) => {
+const BurgerToggleAdminButton = ({admin, setAdmin, Icon, text}) => {
 
     const toggleAdmin = () => {
         setAdmin(!admin)
@@ -30,7 +29,7 @@ const BurgerToggleAdminButton = ({admin, setAdmin, icon, text}) => {
                 onClick={toggleAdmin}
                 >
                 <div className="inline-flex items-center justify-center w-10 h-10 bg-blue-900 rounded-md">
-                    <FontAwesomeIcon icon={icon} className="block w-4 h-4 text-gray-50"/>
+                    <Icon className="block w-4 h-4 text-gray-50"/>
                 </div>
                 <span className="pl-4">{text}</span>
             </div> 

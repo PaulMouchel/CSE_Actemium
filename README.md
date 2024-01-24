@@ -10,7 +10,7 @@ Ce projet a été réalisé avec :
 -  <a  href="https://firebase.google.com/"  title="Firebase"><img  src="https://github.com/get-icon/geticon/raw/master/icons/firebase.svg"  alt="Firebase"  width="21px"  height="21px"> Firebase</a>
 -  <a  href="https://tailwindcss.com/"  title="Tailwind CSS"><img  src="https://github.com/get-icon/geticon/raw/master/icons/tailwindcss-icon.svg"  alt="Tailwind CSS"  width="21px"  height="21px"> Tailwind CSS</a>
 - <a  href="https://www.framer.com/motion/"  title="Framer-motion">Framer-motion</a>
-- <a  href="https://www.emailjs.com/"  title="emailjs">emailjs</a>
+- <a  href="https://vitejs.dev/"  title="vite">vite</a>
 
 ## Features
 

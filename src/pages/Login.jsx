@@ -1,8 +1,7 @@
 import { useRef, useState } from "react"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from 'react-router-dom'
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaUserCircle } from "react-icons/fa"
 import ActionButton from '../components/ActionButton.jsx'
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
@@ -39,7 +38,7 @@ const Login = () => {
         <div className="w-screen h-screen flex justify-center items-center">
             <div className="bg-white rounded flex justify-center items-center flex-col shadow-md">
                 <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
-                    <FontAwesomeIcon icon={faUserCircle} className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
+                    <FaUserCircle className="w-20 h-20 text-gray-600 mb-2 text-5xl"/>
                     <p className="mb-5 text-3xl  text-gray-600">{currentUser && currentUser.email} Connexion</p>
                     <input type="email" name="email" className="mb-5 p-3 w-80 focus:border-secondary rounded border-2 outline-none" autoComplete="on" placeholder="Email" ref={emailRef} required/>
                     <input type="password" name="password" className="mb-5 p-3 w-80 focus:border-secondary rounded border-2 outline-none" autoComplete="off" placeholder="Mot de passe" ref={passwordRef} required/>

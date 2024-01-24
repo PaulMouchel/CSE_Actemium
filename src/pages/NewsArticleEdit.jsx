@@ -8,7 +8,7 @@ import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
-import formatedDate from '../functions/formatedDate';
+import getFormatedDate from '../functions/getFormatedDate.js';
 import { sendToastSuccess } from "../functions/sendToast";
 
 const NewsArticleEdit = ({collection}) => {
@@ -30,7 +30,7 @@ const NewsArticleEdit = ({collection}) => {
  const uploadToDatabase = async () => {
     const collectionRef = projectFirestore.collection(collection);
     const createdAt = timestamp();
-    const date = formatedDate()
+    const date = getFormatedDate()
     const galleryUrl = gallery.map(x => x.downloadURL)
     await collectionRef.doc(state.data.id).update({ galleryUrl, ...textData.current, date, createdAt, storageId:state.data.storageId });
     sendToastSuccess("Article modifié avec succès")

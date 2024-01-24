@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion';
 import { goToHash } from '../functions/goToHash';
 
@@ -27,6 +26,8 @@ const NavButton = (item) => {
         setIsHovering(false);
     }
 
+    const Icon = item.icon
+
     return (
         <li className="mr-6 lg:mr-8 xl:mr-16 flex flex-col">    
             <div
@@ -35,7 +36,7 @@ const NavButton = (item) => {
                 onMouseLeave={handleMouseLeave}
                 onClick={() => goToHash(item.href)}
                 >
-                <FontAwesomeIcon icon={item.icon} className="text-gray-600 xl:mr-1"/>
+                <Icon className="text-gray-600 xl:mr-1"/>
                 <span>{item.text}</span>
             </div> 
             { isHovering &&

@@ -1,51 +1,51 @@
-import { faImage, faQuoteLeft, faPen, faThumbsUp, faShieldAlt, faUserPlus, faUserCog, faFire } from "@fortawesome/free-solid-svg-icons";
+import { FaImage, FaQuoteLeft, FaPen, FaThumbsUp, FaShieldAlt, FaUserPlus, FaUserCog, FaFire } from "react-icons/fa"
 
 export const adminMenuData = [
     {
         href: "/background/edit",
-        icon: faImage,
+        icon: FaImage,
         text: "Image de fond",
         external: false
     },
     {
         href: "/quotation/edit",
-        icon: faQuoteLeft,
+        icon: FaQuoteLeft,
         text: "Phrase du moment",
         external: false
     },
     {
         href: "/news/new",
-        icon: faPen,
+        icon: FaPen,
         text: "Nouvel article",
         external: false
     },
     {
         href: "/benefits/new",
-        icon: faThumbsUp,
+        icon: FaThumbsUp,
         text: "Nouvel avantage",
         external: false
     },
     {
         href: "/cssct/new",
-        icon: faShieldAlt,
+        icon: FaShieldAlt,
         text: "Nouvelle mission",
         external: false
     },
     {
         href: "/members/new",
-        icon: faUserPlus,
+        icon: FaUserPlus,
         text: "Nouveau membre",
         external: false
     },
     {
         href: "/users/edit",
-        icon: faUserCog,
+        icon: FaUserCog,
         text: "Admins",
         external: false
     },
     {
-        href: process.env.REACT_APP_FIREBASE_CONSOLE_URL,
-        icon: faFire,
+        href: import.meta.env.VITE_FIREBASE_CONSOLE_URL,
+        icon: FaFire,
         text: "Firebase",
         external: true
     }

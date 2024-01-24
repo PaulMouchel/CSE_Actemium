@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
 import { motion, AnimatePresence } from 'framer-motion';
 
 const buttonsVariant = {
@@ -46,6 +45,8 @@ const ToggleAdminButton = ({admin, setAdmin, icon, text}) => {
         setAdmin(!admin)
     }
 
+    const Icon = icon
+
     return (
         <motion.li className="group flex flex-row-reverse items-center"
             variants={buttonsVariant}
@@ -56,7 +57,7 @@ const ToggleAdminButton = ({admin, setAdmin, icon, text}) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}>
                 <div className="flex justify-center items-center" onClick={toggleAdmin}>
-                    <FontAwesomeIcon icon={icon} className="box-content  p-1.5 m-0"/>
+                    <Icon className="box-content  p-1.5 m-0"/>
                 </div>
             </div>
             <AnimatePresence>

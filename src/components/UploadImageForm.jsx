@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaPlus } from "react-icons/fa"
 import Compress from 'compress.js';
 
 const UploadImageForm = ({file, setFile, multiple, maxWidth, maxHeight}) => {
@@ -66,7 +65,7 @@ const UploadImageForm = ({file, setFile, multiple, maxWidth, maxHeight}) => {
     <div className="mb-10 text-center">
       <label className="transform duration-300 ease-in-out block w-10 h-10 m-auto bg-gray-700 hover:bg-white rounded-full text-white hover:text-gray-700">
         <input className="w-0 h-0" type="file" accept="image/png, image/jpeg" multiple={multiple} onChange={handleChange} />
-        <FontAwesomeIcon className="w-full h-full" icon={faPlus} />
+        <FaPlus className="w-6 h-full inline" />
       </label>
       <div className="output">
         { error && <div className="text-red-500 bg-white p-2">{ error }</div>}
