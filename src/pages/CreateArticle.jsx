@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import ImageGrid from '../components/ImageGrid.jsx';
 import Modal from '../components/Modal.jsx';
-import PreviousButton from '../components/PreviousButton.jsx'
+import PreviousButton from '../components/PreviousButton'
 import ActionButton from '../components/ActionButton.jsx'
 import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';

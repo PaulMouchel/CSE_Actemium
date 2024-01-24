@@ -4,7 +4,7 @@ import { useLocation, useHistory, Link } from 'react-router-dom'
 import deleteDocument from '../functions/deleteDocument'
 import ImageGrid from '../components/ImageGrid.jsx'
 import Modal from '../components/Modal.jsx'
-import PreviousButton from '../components/PreviousButton.jsx'
+import PreviousButton from '../components/PreviousButton'
 import DeleteButton from '../components/DeleteButton';
 import { motion } from 'framer-motion';
 import { projectFirestore } from '../firebase/config';

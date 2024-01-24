@@ -1,39 +1,38 @@
-import React, { useRef, useState } from 'react';
+import { FormEvent, useRef } from 'react';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx';
 import { motion } from 'framer-motion';
-import useFirestore from '../hooks/useFirestore';
+import useFirestore from '../hooks/useFirestore.js';
 import DeleteButton from '../components/DeleteButton.jsx';
-import { projectFirestore } from '../firebase/config';
-import { useAuth } from '../contexts/AuthContext';
+import { projectFirestore } from '../firebase/config.js';
+import { useAuth } from '../contexts/AuthContext.js';
 
 const Admins = () => {
-    const [loading, setLoading] = useState(false)
     const admins = useFirestore('Admins');
     const { currentUser } = useAuth()
-    const newAdminRef = useRef()
+    const newAdminRef = useRef<HTMLInputElement>(null)
 
-    const handleDelete = async (email) => {
+    const handleDelete = async (email: string) => {
         const collectionRef = projectFirestore.collection("Admins");
-        let adminList = admins.docs[0].list
-        adminList = adminList.filter(function(value, index, arr){ 
+        let adminList: string[] = admins.docs[0].list
+        adminList = adminList.filter((value) => { 
             return value !== email;
         });
         await collectionRef.doc(admins.docs[0].id).update({ list: adminList });
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        if (newAdminRef.current.value) {
-        const collectionRef = projectFirestore.collection("Admins");
-        let adminList = admins.docs[0].list
-        if (adminList.includes(newAdminRef.current.value)) {
-            console.log("Déjà Administrateur !")
-            return
-        }
-        adminList.push(newAdminRef.current.value)
-        await collectionRef.doc(admins.docs[0].id).update({ list: adminList });
-        newAdminRef.current.value = ""
+        if (newAdminRef.current?.value) {
+            const collectionRef = projectFirestore.collection("Admins");
+            let adminList = admins.docs[0].list
+            if (adminList.includes(newAdminRef.current.value)) {
+                console.log("Déjà Administrateur !")
+                return
+            }
+            adminList.push(newAdminRef.current.value)
+            await collectionRef.doc(admins.docs[0].id).update({ list: adminList });
+            newAdminRef.current.value = ""
         }
     }
 
@@ -53,11 +52,11 @@ const Admins = () => {
                             Administrateurs
                         </h3>
                         <ul>
-                            {admins && admins.docs && admins.docs[0] && admins.docs[0].list.map((admin, index) => 
-                                <li className="py-2 border-b flex justify-left" key={index}>
+                            {admins && admins.docs && admins.docs[0] && admins.docs[0].list.map((admin: string) => 
+                                <li className="py-2 border-b flex justify-left" key={admin}>
                                     <span className="pr-8 h-14 flex items-center">{admin}</span>
                                     <span>
-                                        { currentUser.email !== admin &&
+                                        { currentUser && currentUser.email !== admin &&
                                             <DeleteButton admin={true} onClick={() => {handleDelete(admin)}} info={admin} alignRight={true} noAnimation={true}/>
                                         }
                                     </span>
@@ -71,7 +70,7 @@ const Admins = () => {
                             <p className="w-full relative my-3 text-xl text-blue-800 font-bold">
                                 <input type="text" name="title" className="block w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="email" ref={newAdminRef} required/>
                             </p>
-                            <ActionButton loading={loading} className="w-full md:w-80" type="submit" onClick={handleSubmit}>Mettre à jour</ActionButton>
+                            <ActionButton className="w-full md:w-80" type="submit" onClick={handleSubmit}>Mettre à jour</ActionButton>
                         </form>
                     </div> 
                 </div>

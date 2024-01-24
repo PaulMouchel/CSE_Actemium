@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 import { FaSpinner, FaCheck } from "react-icons/fa"
-import PreviousButton from '../components/PreviousButton.jsx'
+import PreviousButton from '../components/PreviousButton'
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import { motion } from "framer-motion";
 import deleteFolderContents from "../functions/deleteFolderContents";

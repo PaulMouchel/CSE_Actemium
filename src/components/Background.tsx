@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, PropsWithChildren, CSSProperties, Dispatch, SetStateAction } from 'react';
 import useFirestore from '../hooks/useFirestore';
 
-const Background = ({ image, setImage, className, children }) => {
+type Props = {
+    image: string | null,
+    setImage: Dispatch<SetStateAction<string | null>>,
+    className?: CSSProperties
+}
+
+const Background = ({ image, setImage, className, children }: PropsWithChildren<Props>) => {
     
     const { docs } = useFirestore('Background');
     const [displayedImage, setDisplayedImage] = useState("")
@@ -17,7 +23,7 @@ const Background = ({ image, setImage, className, children }) => {
         },[image, docs]);
 
     return (
-        <div className={`w-screen min-h-screen bg-cover bg-center bg-fixed ${className}`}
+        <div className={`w-screen min-h-screen bg-cover bg-center bg-fixed ${className ?? ''}`}
             style={docs && docs[0] && {backgroundImage: `url(${displayedImage})`}}>
                 {children}
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
-import PreviousButton from '../components/PreviousButton.jsx'
+import PreviousButton from '../components/PreviousButton'
 import ActionButton from '../components/ActionButton.jsx'
 import UploadImageForm from '../components/UploadImageForm.jsx';
 import { motion } from 'framer-motion';

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import { useState } from 'react'
 import { Switch, Route } from  "react-router-dom";
 import Content from '../pages/Content.jsx'
 import Login from '../pages/Login.jsx'
@@ -10,10 +10,10 @@ import NewsArticleEdit from '../pages/NewsArticleEdit.jsx'
 import UpdateQuotation from '../pages/UpdateQuotation.jsx'
 import UpdateBackground from '../pages/UpdateBackground.jsx'
 import CreateMember from '../pages/CreateMember.jsx'
-import Admins from '../pages/Admins.jsx';
+import Admins from '../pages/Admins.js';
 import Error404 from '../pages/Error404.jsx';
 import ScrollToTop from './ScrollToTop.jsx';
-import { useUser } from '../contexts/UserContext'
+import { useUser } from '../contexts/UserContext.js'
 import PrivateRoute from './PrivateRoute.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import Background from './Background.jsx'
@@ -21,7 +21,7 @@ import { AnimatePresence } from 'framer-motion'
 import DefaultBackground from './DefaultBackground.jsx'
 
 const Main = () => {
-    const [background, setBackground] = useState(null)
+    const [background, setBackground] = useState<string | null>(null)
     const { isAdmin } = useUser()
     const [admin, setAdmin] = useState(false)
 
