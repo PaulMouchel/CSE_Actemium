@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from 'react-router-dom'
 import { FaUserCircle } from "react-icons/fa"
@@ -6,21 +6,22 @@ import ActionButton from '../components/ActionButton'
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
 const Login = () => {
-    const emailRef = useRef()
-    const passwordRef = useRef()
+    const emailRef = useRef<HTMLInputElement>(null)
+    const passwordRef = useRef<HTMLInputElement>(null)
     const { login, currentUser } = useAuth()
-    const [loading, setLoading] = useState(false)
+    const [ loading, setLoading ] = useState(false)
     const history = useHistory()
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: FormEvent) {
         e.preventDefault()
-        
+        if (!emailRef.current || !passwordRef.current) return
+
         try {
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
             sendToastSuccess("Connexion réussie")
             history.push('/')
-        } catch(error) {
+        } catch(error: any) {
             if ( error?.code === "auth/user-not-found") {
                 sendToastError("Connexion échouée : Utilisateur inconnu")
             } else if ( error?.code === "auth/wrong-password" ) {

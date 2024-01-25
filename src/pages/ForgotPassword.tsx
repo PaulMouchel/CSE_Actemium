@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 import { useAuth } from "../contexts/AuthContext"
 import { Link } from 'react-router-dom'
 import { FaUserCircle } from "react-icons/fa"
@@ -6,13 +6,13 @@ import ActionButton from '../components/ActionButton'
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
 const ForgotPassword = () => {
-    const emailRef = useRef()
+    const emailRef = useRef<HTMLInputElement>(null)
     const { resetPassword } = useAuth()
     const [loading, setLoading] = useState(false)
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: FormEvent) {
         e.preventDefault()
-    
+        if (!emailRef.current) return
         try {
             setLoading(true)
             await resetPassword(emailRef.current.value)
