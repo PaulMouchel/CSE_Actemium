@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useContext, useEffect, useState } from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
 
 import { useAuth } from './AuthContext';
 import { useAdmins } from '../hooks/useAdmins';

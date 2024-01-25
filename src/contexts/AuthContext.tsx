@@ -1,6 +1,6 @@
 import { PropsWithChildren, useContext, useEffect, useState, createContext } from 'react';
 import { projectAuth } from "../firebase/config";
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
 
 export const AuthContext = createContext<{
     currentUser: firebase.User | null
