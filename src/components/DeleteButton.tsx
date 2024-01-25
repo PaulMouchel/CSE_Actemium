@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaTrashAlt } from "react-icons/fa"
 import { motion, AnimatePresence } from 'framer-motion'
 import DeleteConfirmation from './DeleteConfirmation';
@@ -17,7 +17,15 @@ const deleteVariant = {
     }
 }
 
-const DeleteButton = ({onClick, admin, info, alignRight, noAnimation}) => {
+type Props = {
+    onClick: () => void
+    admin: boolean
+    info: string
+    alignRight?: boolean
+    noAnimation?: boolean
+}
+
+const DeleteButton = ({onClick, admin, info, alignRight, noAnimation}: Props) => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
 
     return (

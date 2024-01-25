@@ -1,19 +1,47 @@
-import VerticalLine from './VerticalLine'
-import MemberDescription from './MemberDescription'
-import deleteDocument from '../functions/deleteDocument';
-import DeleteButton from './DeleteButton'
+import VerticalLine from './VerticalLine.jsx'
+import MemberDescription from './MemberDescription.jsx'
+import deleteDocument from '../functions/deleteDocument.js';
+import DeleteButton from './DeleteButton.jsx'
 import Img from "react-cool-img";
 import loadingImage from "../images/loading.gif";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import { move } from '../functions/move.js';
-import FadeButton from './FadeButton';
-import { sendToastSuccess } from "../functions/sendToast";
+import FadeButton from './FadeButton.jsx';
+import { sendToastSuccess } from "../functions/sendToast.js";
+import { type TeamMember } from '../types/TeamMember.type.js';
 
-const TeamMember = ({imageUrl, fullName, role, holder, executive, president, first, last, even, admin, id, order, docs, updateTeamOrders}) => {
+type Props = TeamMember & {
+    first: boolean
+    last: boolean
+    even: boolean
+    admin: boolean
+    id: string
+    docs: (TeamMember & {
+        id: string;
+    })[]
+    updateTeamOrders: (exeptionId: string) => void 
+}
+
+const TeamMember = ({
+    imageUrl, 
+    fullName, 
+    role, 
+    holder, 
+    executive, 
+    president, 
+    first, 
+    last, 
+    even, 
+    admin, 
+    id, 
+    order, 
+    docs, 
+    updateTeamOrders
+}: Props) => {
 
     const handleDelete = () => {
-        deleteDocument({docs, id, collection:'Team', next:updateTeamOrders, nextParams:id})
+        deleteDocument({docs, id, collection:'Team', next: updateTeamOrders, nextParams:id})
         sendToastSuccess("Membre supprimé")
     }
 
