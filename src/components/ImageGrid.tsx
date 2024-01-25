@@ -17,7 +17,7 @@ type Props = {
 }
 
 const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGallery }: Props) => {
-console.log({ galleryUrl})
+
     const handleDelete = (e: MouseEvent, index: number) => {
         e.stopPropagation()
         let newGallery = gallery
