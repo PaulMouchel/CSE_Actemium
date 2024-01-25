@@ -1,8 +1,13 @@
-import React from 'react';
 import { FaLock, FaLockOpen } from 'react-icons/fa'
 import BurgerToggleAdminButton from './BurgerToggleAdminButton'
+import { Dispatch, SetStateAction } from 'react'
 
-const BurgerToggleAdmin = (props) => {
+type Props = {
+    admin: boolean
+    setAdmin: Dispatch<SetStateAction<boolean>>
+}
+
+const BurgerToggleAdmin = (props: Props) => {
     
     const toAdmin = {
         Icon: FaLock,

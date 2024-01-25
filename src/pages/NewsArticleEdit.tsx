@@ -23,7 +23,7 @@ const NewsArticleEdit = ({collection}: Props) => {
     const [selectedImg, setSelectedImg] = useState<any>(null); 
     const [gallery, setGallery] = useState<any[]>([]);
     const [loading, setLoading] = useState(false)
-    const [, setError] = useState(false)
+    const [, setError] = useState('')
     const textData = useRef({
         title: "",
         subTitle: "",
@@ -60,8 +60,8 @@ const NewsArticleEdit = ({collection}: Props) => {
     },[])
 
     useEffect(() => {
-        if (loading) {
-            uploadImages(gallery, setGallery, collection, state?.data.storageId, setError, uploadToDatabase)
+        if (loading && state) {
+            uploadImages(gallery, setGallery, collection, state.data.storageId, setError, uploadToDatabase)
     }},[loading, gallery]);
 
     const setarticleImage = (image: any[]) => {

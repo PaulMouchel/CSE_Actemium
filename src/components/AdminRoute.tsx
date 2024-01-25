@@ -1,8 +1,12 @@
-import React from 'react'
+import { PropsWithChildren } from 'react'
 import { Route, Redirect } from  "react-router-dom";
 import PrivateRoute from './PrivateRoute';
 
-const AdminRoute = ({ children, isAdmin, ...rest }) => {
+type Props = {
+    isAdmin: boolean
+} & Record<string, any>
+
+const AdminRoute = ({ children, isAdmin, ...rest }: PropsWithChildren<Props>) => {
 
     return (
         <PrivateRoute>

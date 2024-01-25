@@ -1,8 +1,14 @@
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { PropsWithChildren } from 'react'
 
-const Carousel = ({ children, arrows = false, carouselRef }) => {
+type Props = {
+    arrows?: boolean
+    carouselRef: any
+}
+
+const Carousel = ({ children, arrows = false, carouselRef }: PropsWithChildren<Props>) => {
 
     const settings = {
         arrows: arrows,

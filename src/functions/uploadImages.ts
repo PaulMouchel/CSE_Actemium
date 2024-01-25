@@ -1,7 +1,16 @@
 
+import { Dispatch, SetStateAction } from "react";
 import { projectStorage } from "../firebase/config";
+import { FireStoreCollection } from "../hooks/useFirestore";
 
-export const uploadImages = (gallery, setGallery, collection, storageId, setError, next) => {
+export const uploadImages = (
+    gallery: any[], 
+    setGallery: Dispatch<SetStateAction<any[]>>, 
+    collection: FireStoreCollection, 
+    storageId: string, 
+    setError: Dispatch<SetStateAction<string>>, 
+    next: () => void
+) => {
     if (gallery.every(image => (image.status === "FINISH"))) {
         next()
         return
@@ -20,9 +29,9 @@ export const uploadImages = (gallery, setGallery, collection, storageId, setErro
             uploadTask.on(
                 "state_changed",
                 null,
-                function error(err) {
+                function error(err: any) {
                     console.log("Erreur de chargement de l'image:", err);
-                    setError("Erreur de chargement de l'image:", err);
+                    setError("Erreur de chargement de l'image:");
                 },
                 async function complete() {
                     const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
