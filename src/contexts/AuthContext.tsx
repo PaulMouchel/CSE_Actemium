@@ -1,5 +1,5 @@
 import { PropsWithChildren, useContext, useEffect, useState, createContext } from 'react';
-import { projectAuth } from "../firebase/config";
+import { auth } from "../firebase/config";
 import { signInWithEmailAndPassword, sendPasswordResetEmail, signOut, UserInfo } from 'firebase/auth'
 
 export const AuthContext = createContext<{
@@ -23,19 +23,19 @@ export function AuthProvider({ children }: PropsWithChildren) {
     const [loading, setLoading] = useState(true)
 
     function login(email: string, password: string) {
-        return signInWithEmailAndPassword(projectAuth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     function logout() {
-        return signOut(projectAuth)
+        return signOut(auth)
     }
 
     function resetPassword(email: string) {
-        return sendPasswordResetEmail(projectAuth, email)
+        return sendPasswordResetEmail(auth, email)
     }
 
     useEffect(() => {
-        const unsuscribe = projectAuth.onAuthStateChanged(user => {
+        const unsuscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
             setLoading(false)
         })
