@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, FormEvent } from 'react';
 import { useLocation, useHistory } from 'react-router-dom' 
-import { projectFirestore, timestamp } from '../firebase/config';
+import { firestore, timestamp } from '../firebase/config';
 import UploadImageForm from '../components/UploadImageForm';
 import ImageGrid from '../components/ImageGrid';
 import Modal from '../components/Modal';
@@ -12,6 +12,7 @@ import getFormatedDate from '../functions/getFormatedDate';
 import { sendToastSuccess } from "../functions/sendToast";
 import { FireStoreCollection } from '../hooks/useFirestore';
 import { News } from '../types/News.type';
+import { doc, updateDoc } from 'firebase/firestore';
 
 type Props = {
   collection: FireStoreCollection
@@ -35,11 +36,12 @@ const NewsArticleEdit = ({collection}: Props) => {
     const history = useHistory()
 
     const uploadToDatabase = async () => {
-        const collectionRef = projectFirestore.collection(collection);
+        if (!state?.data.id) return
         const createdAt = timestamp();
         const date = getFormatedDate()
         const galleryUrl = gallery.map(x => x.downloadURL)
-        await collectionRef.doc(state?.data.id).update({ galleryUrl, ...textData.current, date, createdAt, storageId: state?.data.storageId });
+        const docRef = doc(firestore, collection, state?.data.id)
+        await updateDoc(docRef, { galleryUrl, ...textData.current, date, createdAt, storageId: state?.data.storageId })
         sendToastSuccess("Article modifié avec succès")
         history.push('/')
     }

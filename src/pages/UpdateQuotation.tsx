@@ -1,11 +1,12 @@
 import { FormEvent, useRef, useState } from "react"
 import { useHistory } from 'react-router-dom'
-import { projectFirestore, timestamp } from '../firebase/config';
+import { firestore, timestamp } from '../firebase/config';
 import PreviousButton from '../components/PreviousButton'
 import ActionButton from '../components/ActionButton'
 import { motion } from "framer-motion";
 import { sendToastSuccess } from "../functions/sendToast";
 import { useQuotation } from "../hooks/useQuotation";
+import { addDoc, doc, collection as firestoreCollection, updateDoc } from 'firebase/firestore';
 
 const UpdateQuotation = () => {
     const quotation = useQuotation()
@@ -17,12 +18,13 @@ const UpdateQuotation = () => {
     const authorRef = useRef<HTMLInputElement>(null)
 
     const uploadToDatabase = async (author: string, text: string) => {
-        const collectionRef = projectFirestore.collection('Quotation');
+        const collectionRef = firestoreCollection(firestore, 'Quotation')
         const createdAt = timestamp();
         if (quotation) {
-            await collectionRef.doc(quotation.id).update({ text, author, createdAt })
+            const docRef = doc(firestore, 'Quotation', quotation.id)
+            await updateDoc(docRef, { text, author, createdAt })
         } else {
-            await collectionRef.add({ text, author, createdAt });
+            await addDoc(collectionRef, { text, author, createdAt })
         }
         sendToastSuccess("Phrase du moment modifiée")
         history.push('/')

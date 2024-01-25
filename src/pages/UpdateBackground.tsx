@@ -1,6 +1,6 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 import { useHistory } from 'react-router-dom'
-import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
+import { firestore, projectStorage, timestamp } from '../firebase/config';
 import { FaSpinner, FaCheck } from "react-icons/fa"
 import PreviousButton from '../components/PreviousButton'
 import UploadImageForm from '../components/UploadImageForm';
@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import deleteFolderContents from "../functions/deleteFolderContents";
 import { sendToastSuccess } from "../functions/sendToast";
 import { useBackground } from "../hooks/useBackground";
+import { addDoc, doc, collection as firestoreCollection, updateDoc } from 'firebase/firestore';
 
 type Props = {
     setImage: Dispatch<SetStateAction<any>>
@@ -34,13 +35,14 @@ const UpdateBackground = ({setImage}: Props) => {
 
     const uploadToDatabase = async () => {
         
-        const collectionRef = projectFirestore.collection('Background');
+        const collectionRef = firestoreCollection(firestore, 'Background')
         const createdAt = timestamp();
         const imageUrl = selectedImage.downloadURL
         if (background) {
-            await collectionRef.doc(background.id).update({ imageUrl, createdAt })
+            const docRef = doc(firestore, 'Background', background.id)
+            await updateDoc(docRef, { imageUrl, createdAt })
         } else {
-            await collectionRef.add({ imageUrl, createdAt });
+            await addDoc(collectionRef, { imageUrl, createdAt })
         }
         sendToastSuccess("Image de fond modifiée")
         setImage(imageUrl)

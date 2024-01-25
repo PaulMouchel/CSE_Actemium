@@ -7,7 +7,7 @@ import Modal from '../components/Modal'
 import PreviousButton from '../components/PreviousButton'
 import DeleteButton from '../components/DeleteButton';
 import { motion } from 'framer-motion';
-import { projectFirestore } from '../firebase/config';
+import { firestore } from '../firebase/config';
 import parse from 'html-react-parser';
 import { FireStoreCollection } from '../hooks/useFirestore'
 import { updateOrders } from '../functions/updateOrders';
@@ -15,6 +15,7 @@ import { sendToastSuccess } from "../functions/sendToast";
 import { useNewsOrBenefits } from '../hooks/useNewsOrBenefits';
 import { News } from '../types/News.type';
 import { Benefit } from '../types/Benefit.type';
+import { doc, getDoc } from 'firebase/firestore';
 
 type Props = {
     admin: boolean
@@ -35,15 +36,16 @@ const NewsArticleDetail = ({admin, collection}: Props) => {
 
     useEffect(() => {
         if (!state) {
-            const splitPath = pathname.split('/').filter(path => path !== "");
+            const splitPath = pathname.split('/').filter(path => path !== "")
+            const documentId = splitPath[1]
             const getData = async () => {
-                const newsRef = projectFirestore.collection(collection).doc(splitPath[1]);
-                const doc = await newsRef.get();
-                if (!doc.exists) {
+                const documentRef = doc(firestore, collection, documentId)
+                const docSnap = await getDoc(documentRef)
+                if (!docSnap.exists()) {
                     console.log('No such document!');
                 } else {
-                    console.log('Document data:', doc.data());
-                    setData({ ...doc.data() as News | Benefit, id: splitPath[1] })
+                    console.log('Document data:', docSnap.data());
+                    setData({ ...docSnap.data() as News | Benefit, id: documentId })
                 }
             }
             getData()

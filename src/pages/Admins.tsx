@@ -3,9 +3,10 @@ import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx';
 import { motion } from 'framer-motion';
 import DeleteButton from '../components/DeleteButton.jsx';
-import { projectFirestore } from '../firebase/config.js';
+import { firestore } from '../firebase/config.js';
 import { useAuth } from '../contexts/AuthContext.js';
 import { useAdmins } from '../hooks/useAdmins.js';
+import { doc, updateDoc } from 'firebase/firestore';
 
 const Admins = () => {
     const admins = useAdmins();
@@ -13,25 +14,25 @@ const Admins = () => {
     const newAdminRef = useRef<HTMLInputElement>(null)
 
     const handleDelete = async (email: string) => {
-        const collectionRef = projectFirestore.collection("Admins");
         let adminList: string[] = admins[0].list
         adminList = adminList.filter((value) => { 
             return value !== email;
         });
-        await collectionRef.doc(admins[0].id).update({ list: adminList });
+        const docRef = doc(firestore, 'Admins', admins[0].id)
+        await updateDoc(docRef, { list: adminList })
     }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (newAdminRef.current?.value) {
-            const collectionRef = projectFirestore.collection("Admins");
             let adminList = admins[0].list
             if (adminList.includes(newAdminRef.current.value)) {
                 console.log("Déjà Administrateur !")
                 return
             }
             adminList.push(newAdminRef.current.value)
-            await collectionRef.doc(admins[0].id).update({ list: adminList });
+            const docRef = doc(firestore, 'Admins', admins[0].id)
+            await updateDoc(docRef, { list: adminList })
             newAdminRef.current.value = ""
         }
     }

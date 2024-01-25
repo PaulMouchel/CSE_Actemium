@@ -1,8 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
-import 'firebase/compat/firestore';
 // import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
+import { getFirestore, serverTimestamp } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -18,8 +18,8 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 // const firebaseApp = initializeApp(firebaseConfig);
 
 const projectStorage = firebase.storage();
-const projectFirestore = firebase.firestore();
 const auth = getAuth(firebaseApp)
-const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+const firestore = getFirestore(firebaseApp)
+const timestamp = serverTimestamp;
 
-export { projectStorage, projectFirestore, auth, timestamp };
+export { projectStorage, firestore, auth, timestamp };
