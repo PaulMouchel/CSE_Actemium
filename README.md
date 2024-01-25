@@ -7,10 +7,11 @@ L'application en production a un accès restreint au personnel de l'entreprise
 
 Ce projet a été réalisé avec :
 -  <a  href="https://reactjs.org/"  title="React"><img  src="https://github.com/get-icon/geticon/raw/master/icons/react.svg"  alt="React"  width="21px"  height="21px"> React.js</a>
+-  <a  href="https://www.typescriptlang.org/"  title="Typescript"><img  src="https://github.com/get-icon/geticon/raw/master/icons/typescript-icon.svg" alt="Typescript"  width="21px"  height="21px"> Typescript</a>
 -  <a  href="https://firebase.google.com/"  title="Firebase"><img  src="https://github.com/get-icon/geticon/raw/master/icons/firebase.svg"  alt="Firebase"  width="21px"  height="21px"> Firebase</a>
 -  <a  href="https://tailwindcss.com/"  title="Tailwind CSS"><img  src="https://github.com/get-icon/geticon/raw/master/icons/tailwindcss-icon.svg"  alt="Tailwind CSS"  width="21px"  height="21px"> Tailwind CSS</a>
 - <a  href="https://www.framer.com/motion/"  title="Framer-motion">Framer-motion</a>
-- <a  href="https://vitejs.dev/"  title="vite">vite</a>
+- <a  href="https://vitejs.dev/"  title="vite">Vite</a>
 
 ## Features
 
