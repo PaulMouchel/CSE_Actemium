@@ -5,4 +5,5 @@ export type Benefit = {
     subTitle: string
     text: string
     title: string
+    date: undefined
 }

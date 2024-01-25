@@ -1,8 +1,8 @@
-import React from 'react';
+import { PropsWithChildren } from 'react';
 import { motion } from 'framer-motion';
 import { fadeVariant } from "../animations/fadeVariant"
 
-const FadeButton = ({children, ...rest}) => {
+const FadeButton = ({children, ...rest}: PropsWithChildren<Record<string, any>>) => {
     return (
         <motion.button 
         variants={fadeVariant}

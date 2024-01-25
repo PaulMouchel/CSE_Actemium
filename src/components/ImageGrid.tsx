@@ -5,12 +5,12 @@ import { FaTimes } from "react-icons/fa"
 type Props = {
     galleryUrl: string[], 
     setSelectedImg: Dispatch<SetStateAction<string | null>>, 
-    imagesDeletable: boolean, 
-    gallery: {
+    imagesDeletable?: boolean, 
+    gallery?: {
         url: string;
         downloadURL: string;
     }[], 
-    setGallery: Dispatch<SetStateAction<{
+    setGallery?: Dispatch<SetStateAction<{
         url: string;
         downloadURL: string;
     }[]>>
@@ -20,9 +20,10 @@ const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGa
 
     const handleDelete = (e: MouseEvent, index: number) => {
         e.stopPropagation()
-        let newGallery = gallery
+        if (!gallery) return
+        let newGallery = [...gallery]
         newGallery.splice(index,1)
-        setGallery([...newGallery])
+        setGallery && setGallery(newGallery)
     }
     
     return (

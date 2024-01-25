@@ -1,6 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom' 
 import { motion } from 'framer-motion';
+import { IconType } from 'react-icons';
 
 const buttonsVariant = {
     hidden: {
@@ -15,7 +15,13 @@ const buttonsVariant = {
     }
 }
 
-const BurgerAdminButton = (item) => {
+type Props = {
+    icon: IconType
+    href: string
+    external: boolean
+}
+
+const BurgerAdminButton = (item: Props) => {
 
     const Icon = item.icon
 

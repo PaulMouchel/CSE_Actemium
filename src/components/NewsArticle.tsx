@@ -1,10 +1,15 @@
-import React from 'react';
 import { FaClock, FaArrowRight } from "react-icons/fa"
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Img from "react-cool-img";
+import { News } from "../types/News.type";
 
-const NewsArticle = (article) => {
+type Props = News & {
+  id: string
+  current: boolean
+}
+
+const NewsArticle = (article: Props) => {
 
   return (
     <motion.article className={`flex-none w-4/5 md:w-full h-full m-auto bg-gray-200 hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}

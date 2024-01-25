@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom' 
 import { motion, AnimatePresence } from 'framer-motion';
+import { IconType } from 'react-icons';
 
 const buttonsVariant = {
     hidden: {
@@ -31,7 +32,14 @@ const textVariant = {
     }
 }
 
-const AdminButton = (item) => {
+type Props = {
+    icon: IconType
+    external: boolean
+    href: string
+    text: string
+}
+
+const AdminButton = (item: Props) => {
     const [isHovering, setIsHovering] = useState(false)
 
     const handleMouseEnter = () => {

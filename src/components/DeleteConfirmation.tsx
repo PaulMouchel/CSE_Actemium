@@ -1,14 +1,20 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { Dispatch, SetStateAction } from 'react';
 
-const DeleteConfirmation = ({ setShowDeleteConfirmation, handleDelete, info }) => {
+type Props = {
+  setShowDeleteConfirmation: Dispatch<SetStateAction<boolean>>
+  handleDelete: () => void
+  info: string
+}
 
-  const handleClickValidate = (e) => {
+const DeleteConfirmation = ({ setShowDeleteConfirmation, handleDelete, info }: Props) => {
+
+  const handleClickValidate = () => {
     setShowDeleteConfirmation(false);
     handleDelete()
   }
 
-  const handleClickCancel = (e) => {
+  const handleClickCancel = () => {
     setShowDeleteConfirmation(false);
   }
 

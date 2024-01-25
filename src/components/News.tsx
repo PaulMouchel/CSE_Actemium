@@ -4,11 +4,10 @@ import Title from './Title'
 import { useNews } from '../hooks/useNews'
 
 type Props = {
-    admin: boolean
     textColor: string
 }
 
-const News = ({ admin, textColor }: Props) => {
+const News = ({ textColor }: Props) => {
 
     const news = useNews()
 
@@ -21,7 +20,7 @@ const News = ({ admin, textColor }: Props) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 md:w-3/5 xl:w-1/2 ">
                     { news?.slice(0, 6).map((article, index) =>
                         <div className={`h-full ${(index === 0) && "md:col-span-2 md:row-span-2"}`} key={index}>
-                            <NewsArticle {...article} admin={admin} current={index === 0}/>
+                            <NewsArticle {...article} current={index === 0}/>
                         </div>
                     )}
                 </div>
@@ -30,7 +29,7 @@ const News = ({ admin, textColor }: Props) => {
                     <div className="overflow-auto max-h-screen">
                         { news && news.length > 6 && news.slice(6, news.length).map((article, index) =>
                             <div className="" key={index}>
-                                <OldArticle {...article} admin={admin}/>
+                                <OldArticle {...article} />
                             </div>
                         )}
                     </div>

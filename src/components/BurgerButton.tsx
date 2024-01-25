@@ -1,8 +1,15 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { goToHash } from '../functions/goToHash';
+import { IconType } from 'react-icons';
 
-const BurgerButton = (item) => {
+type Props = {
+    index: number
+    icon: IconType
+    href: string
+    text: string
+}
+
+const BurgerButton = (item: Props) => {
 
     const itemVariant = {
         hidden: {

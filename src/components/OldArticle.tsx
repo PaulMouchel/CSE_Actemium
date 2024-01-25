@@ -1,8 +1,12 @@
-import React from 'react';
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { News } from '../types/News.type';
 
-const OldArticle = (article) => {
+type Props = News & {
+  id: string
+}
+
+const OldArticle = (article: Props) => {
 
   return (
     <motion.article className={`border-b w-full border-gray-400 m-auto mt-2 bg-gray-200 hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}

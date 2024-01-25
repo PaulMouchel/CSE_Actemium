@@ -99,7 +99,7 @@ const Content = ({ admin, setAdmin, isAdmin }: Props) => {
                 { admin && <AdminSideBar />}
             </AnimatePresence>
             <section id="news" ref={newsRef} className="bg-white">
-                <News admin={admin} textColor="gray-800"/>
+                <News textColor="gray-800"/>
             </section>
             <section id="benefits" ref={benefitsRef} className="bg-gray-200 px-4 md:px-28 lg:px-48">
                 <Benefits admin={admin} textColor="gray-800"/>

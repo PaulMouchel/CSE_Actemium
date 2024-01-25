@@ -1,5 +1,6 @@
-import React from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { motion } from 'framer-motion';
+import { IconType } from 'react-icons';
 
 const itemVariant = {
     hidden: {
@@ -13,7 +14,14 @@ const itemVariant = {
     }
 }
 
-const BurgerToggleAdminButton = ({admin, setAdmin, Icon, text}) => {
+type Props = {
+    admin: boolean
+    setAdmin: Dispatch<SetStateAction<boolean>>
+    Icon: IconType
+    text: string
+}
+
+const BurgerToggleAdminButton = ({admin, setAdmin, Icon, text}: Props) => {
 
     const toggleAdmin = () => {
         setAdmin(!admin)
@@ -33,15 +41,7 @@ const BurgerToggleAdminButton = ({admin, setAdmin, Icon, text}) => {
                 </div>
                 <span className="pl-4">{text}</span>
             </div> 
-        </motion.li>
-
-         
-        //     <div className=" bg-blue-900">
-        //         <div className="flex justify-center items-center" onClick={toggleAdmin}>
-        //             <FontAwesomeIcon icon={icon} className="box-content  p-1.5 m-0"/>
-        //         </div>
-        //     </div>
-        // </motion.li>   
+        </motion.li> 
     );
 }
 

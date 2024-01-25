@@ -1,4 +1,3 @@
-import React from 'react';
 import BurgerAdminButton from './BurgerAdminButton'
 import { adminMenuData } from '../data/adminMenu'
 

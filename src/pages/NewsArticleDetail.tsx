@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaClock, FaPen } from "react-icons/fa"
 import { useLocation, useHistory, Link } from 'react-router-dom' 
 import deleteDocument from '../functions/deleteDocument'
@@ -9,17 +9,25 @@ import DeleteButton from '../components/DeleteButton';
 import { motion } from 'framer-motion';
 import { projectFirestore } from '../firebase/config';
 import parse from 'html-react-parser';
-import useFirestore from '../hooks/useFirestore'
+import { FireStoreCollection } from '../hooks/useFirestore'
 import { updateOrders } from '../functions/updateOrders';
 import { sendToastSuccess } from "../functions/sendToast";
+import { useNewsOrBenefits } from '../hooks/useNewsOrBenefits';
+import { News } from '../types/News.type';
+import { Benefit } from '../types/Benefit.type';
 
-const NewsArticleDetail = ({admin, collection}) => {
-    const { docs } = useFirestore(collection);
-    let { state } = useLocation();
+type Props = {
+    admin: boolean
+    collection: Exclude<FireStoreCollection, "Admins" | "Background" | "Cssct" | "Quotation" | "Team">
+}
+
+const NewsArticleDetail = ({admin, collection}: Props) => {
+    const docs = useNewsOrBenefits(collection);
+    let { state } = useLocation<{ data: (News | Benefit) & { id: string }} | null>();
     const { pathname } = useLocation();
-    const [data, setData] = useState(null)
+    const [ data, setData ] = useState<(News | Benefit) & { id: string } | null>(null)
     
-    const updateBenefitsOrders = (exeptionId) => {
+    const updateBenefitsOrders = (exeptionId: string) => {
         if ( collection === "Benefits" ) {
             updateOrders(docs, collection, exeptionId)
         }
@@ -35,7 +43,7 @@ const NewsArticleDetail = ({admin, collection}) => {
                     console.log('No such document!');
                 } else {
                     console.log('Document data:', doc.data());
-                    setData({...doc.data(), id:splitPath[1]}, admin)
+                    setData({ ...doc.data() as News | Benefit, id: splitPath[1] })
                 }
             }
             getData()
@@ -44,15 +52,15 @@ const NewsArticleDetail = ({admin, collection}) => {
         }
     }, [])
 
-    const [selectedImg, setSelectedImg] = useState(null);
+    const [selectedImg, setSelectedImg] = useState<any>(null);
     const history = useHistory()
 
     const handleDelete = () => {
+        if (!data) return
         let id = data.id;
         !updateBenefitsOrders ?
-        deleteDocument({docs, id, collection})
-        :
-        deleteDocument({docs, id, collection, next:updateBenefitsOrders, nextParams:id})
+            deleteDocument({docs, id, collection}) :
+            deleteDocument({docs, id, collection, next: updateBenefitsOrders, nextParams:id})
         sendToastSuccess("Article supprimé avec succès")
         history.push('/')
     }
@@ -77,7 +85,7 @@ const NewsArticleDetail = ({admin, collection}) => {
                             <FaPen />
                         </button>
                     </Link>
-                    <DeleteButton admin={admin} onClick={handleDelete} info={data?.title} alignRight={true} noAnimation={true}/>
+                    <DeleteButton admin={admin} onClick={handleDelete} info={data?.title} alignRight noAnimation/>
                 </div>
             }
             </div>
@@ -109,7 +117,7 @@ const NewsArticleDetail = ({admin, collection}) => {
                 </div>
                 
             </div>
-            { selectedImg && (
+            { selectedImg && data && (
                 <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} galleryUrl={data.galleryUrl}/>
             )}
         </article>  

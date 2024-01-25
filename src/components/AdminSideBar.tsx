@@ -1,4 +1,3 @@
-import React from 'react';
 import AdminButton from './AdminButton'
 import { adminMenuData } from '../data/adminMenu';
 

@@ -2,7 +2,11 @@ import Title from './Title'
 import ActionButton from './ActionButton'
 import { FaEnvelope } from "react-icons/fa"
 
-const Contact = ({textColor}) => {
+type Props = {
+    textColor: string
+}
+
+const Contact = ({textColor}: Props) => {
   
     return (
         <div className="pb-10">
