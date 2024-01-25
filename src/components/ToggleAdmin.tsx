@@ -1,8 +1,13 @@
-import React from 'react';
 import { FaLock, FaLockOpen } from "react-icons/fa"
 import ToggleAdminButton from './ToggleAdminButton'
+import { Dispatch, SetStateAction } from "react"
 
-const ToggleAdmin = ({admin, setAdmin}) => {
+type Props = {
+    admin: boolean
+    setAdmin: Dispatch<SetStateAction<boolean>>
+}
+
+const ToggleAdmin = ({admin, setAdmin}: Props) => {
     
     const toAdmin = {
         icon: FaLock,
@@ -17,11 +22,11 @@ const ToggleAdmin = ({admin, setAdmin}) => {
     return (
         <nav className="z-50 fixed right-5 bottom-0 invisible md:visible">
             <ul className="mx-5 py-3 mb-5 flex flex-col justify-end">
-                {!admin ?
-                    <ToggleAdminButton admin={admin} setAdmin={setAdmin} {...toAdmin} />
-                :
-                    <ToggleAdminButton admin={admin} setAdmin={setAdmin} {...toUser} />
-                }
+                <ToggleAdminButton 
+                    admin={admin} 
+                    setAdmin={setAdmin} 
+                    { ...(admin ? {...toUser} : {...toAdmin}) }
+                />
             </ul>
         </nav>
     );
