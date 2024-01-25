@@ -1,6 +1,10 @@
-import React from 'react';
+import { PropsWithChildren } from "react";
 
-const Title = (props) => {
+type Props = {
+    textColor?: string
+}
+
+const Title = (props: PropsWithChildren<Props>) => {
     
     return (
         <div className={`border-b-2 border-secondary mx-16 md:mx-48 flex justify-center pt-16 pb-8 mb-8 text-4xl font-bold tracking-wider ${props.textColor && `text-${props.textColor}`}`}>

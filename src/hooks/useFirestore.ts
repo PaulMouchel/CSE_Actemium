@@ -8,33 +8,33 @@ export type FirebaseDocument = Record<string, any> & {
 
 export type FireStoreCollection = "Admins" | "Background" | "Benefits" | "Cssct" | "News" | "Quotation" | "Team"
 
-const useFirestore = (collection: FireStoreCollection) => {
-  const [docs, setDocs] = useState<FirebaseDocument[]>([]);
-  const auth = useAuth()
+const useFirestore = <T extends Record<string, any>>(collection: FireStoreCollection) => {
+    const [docs, setDocs] = useState<(T & { id: string })[]>([]);
+    const auth = useAuth()
 
-  useEffect(() => {
-    if (auth) {
-      if (auth.currentUser) {
-        const unsub = projectFirestore.collection(collection)
-          .orderBy('createdAt', 'desc')
-          .onSnapshot(snap => {
-            let documents: FirebaseDocument[] = [];
-            snap.forEach(doc => {
-              documents.push({...doc.data(), id: doc.id});
-            });
-            setDocs(documents);
-          });
+    useEffect(() => {
+        if (auth) {
+            if (auth.currentUser) {
+                const unsub = projectFirestore.collection(collection)
+                    .orderBy('createdAt', 'desc')
+                    .onSnapshot(snap => {
+                        let documents: (T & { id: string })[] = [];
+                        snap.forEach(doc => {
+                            documents.push({...doc.data() as T, id: doc.id});
+                        });
+                        setDocs(documents);
+                    });
 
-        return () => unsub();
-        // this is a cleanup function that react will run when
-        // a component using the hook unmounts
-      }
-    }
-    setDocs([])
-    
-  }, [collection, auth]);
+                return () => unsub();
+                // this is a cleanup function that react will run when
+                // a component using the hook unmounts
+            }
+        }
+        setDocs([])
+      
+    }, [collection, auth]);
 
-  return { docs };
+    return { docs };
 }
 
 export default useFirestore;

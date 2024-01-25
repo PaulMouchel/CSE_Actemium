@@ -1,5 +1,5 @@
 import { useState, useEffect, PropsWithChildren, CSSProperties, Dispatch, SetStateAction } from 'react';
-import useFirestore from '../hooks/useFirestore';
+import { useBackground } from '../hooks/useBackground';
 
 type Props = {
     image: string | null,
@@ -9,22 +9,22 @@ type Props = {
 
 const Background = ({ image, setImage, className, children }: PropsWithChildren<Props>) => {
     
-    const { docs } = useFirestore('Background');
+    const background = useBackground();
     const [displayedImage, setDisplayedImage] = useState("")
 
     useEffect(() => {
         if (image) {
             setDisplayedImage(image)
-        } else if (docs[0]) {
-            setImage(docs[0].imageUrl)
+        } else if (background) {
+            setImage(background.imageUrl)
         } else {
             setDisplayedImage("")
         }
-        },[image, docs]);
+        },[image, background]);
 
     return (
         <div className={`w-screen min-h-screen bg-cover bg-center bg-fixed ${className ?? ''}`}
-            style={docs && docs[0] && {backgroundImage: `url("${displayedImage}")`}}>
+            style={background && {backgroundImage: `url("${displayedImage}")`}}>
                 {children}
         </div>
     );

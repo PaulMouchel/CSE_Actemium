@@ -2,36 +2,36 @@ import { FormEvent, useRef } from 'react';
 import PreviousButton from '../components/PreviousButton.jsx'
 import ActionButton from '../components/ActionButton.jsx';
 import { motion } from 'framer-motion';
-import useFirestore from '../hooks/useFirestore.js';
 import DeleteButton from '../components/DeleteButton.jsx';
 import { projectFirestore } from '../firebase/config.js';
 import { useAuth } from '../contexts/AuthContext.js';
+import { useAdmins } from '../hooks/useAdmins.js';
 
 const Admins = () => {
-    const admins = useFirestore('Admins');
+    const admins = useAdmins();
     const { currentUser } = useAuth()
     const newAdminRef = useRef<HTMLInputElement>(null)
 
     const handleDelete = async (email: string) => {
         const collectionRef = projectFirestore.collection("Admins");
-        let adminList: string[] = admins.docs[0].list
+        let adminList: string[] = admins[0].list
         adminList = adminList.filter((value) => { 
             return value !== email;
         });
-        await collectionRef.doc(admins.docs[0].id).update({ list: adminList });
+        await collectionRef.doc(admins[0].id).update({ list: adminList });
     }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (newAdminRef.current?.value) {
             const collectionRef = projectFirestore.collection("Admins");
-            let adminList = admins.docs[0].list
+            let adminList = admins[0].list
             if (adminList.includes(newAdminRef.current.value)) {
                 console.log("Déjà Administrateur !")
                 return
             }
             adminList.push(newAdminRef.current.value)
-            await collectionRef.doc(admins.docs[0].id).update({ list: adminList });
+            await collectionRef.doc(admins[0].id).update({ list: adminList });
             newAdminRef.current.value = ""
         }
     }
@@ -52,7 +52,7 @@ const Admins = () => {
                             Administrateurs
                         </h3>
                         <ul>
-                            {admins && admins.docs && admins.docs[0] && admins.docs[0].list.map((admin: string) => 
+                            {admins?.at(0)?.list.map((admin: string) => 
                                 <li className="py-2 border-b flex justify-left" key={admin}>
                                     <span className="pr-8 h-14 flex items-center">{admin}</span>
                                     <span>
