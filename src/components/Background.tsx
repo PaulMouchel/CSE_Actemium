@@ -24,7 +24,7 @@ const Background = ({ image, setImage, className, children }: PropsWithChildren<
 
     return (
         <div className={`w-screen min-h-screen bg-cover bg-center bg-fixed ${className ?? ''}`}
-            style={docs && docs[0] && {backgroundImage: `url(${displayedImage})`}}>
+            style={docs && docs[0] && {backgroundImage: `url("${displayedImage}")`}}>
                 {children}
         </div>
     );

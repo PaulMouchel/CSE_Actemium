@@ -101,7 +101,7 @@ const NewsArticleEdit = ({collection}) => {
           <div className="flex flex-col justify-between h-full -mt-10">
             <div className="pt-2">
               {gallery[0] ? 
-                <div className="flex items-center justify-center h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${gallery[0].url})`}}>
+                <div className="flex items-center justify-center h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url("${gallery[0].url}")`}}>
                   <UploadImageForm file={gallery} setFile={setarticleImage} maxWidth={1728} maxHeight={1728}/>
                 </div> 
               : 

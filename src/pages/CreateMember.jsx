@@ -102,7 +102,7 @@ const CreateMember = () => {
         <form className="p-10 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
           <p className="relative bottom-6 mb-5 text-3xl text-gray-600">Ajouter un membre du CSE</p>
           <div className="w-40 md:w-56 flex justify-center mx-4">
-            <div className="relative bottom-6 h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-8" style={image ? {backgroundImage: `url(${image.url})`} : {backgroundImage: `url(${userImage})`}}></div>
+            <div className="relative bottom-6 h-40 md:h-56 w-40 md:w-56 bg-cover bg-center rounded-full border-8" style={image ? {backgroundImage: `url("${image.url}")`} : {backgroundImage: `url("${userImage}")`}}></div>
           </div>
           <UploadImageForm file={image} setFile={setMemberImage} maxWidth={400}/>
           {error && <span className="text-gray-50 bg-red-500 py-1 px-2 mb-2 -mt-2 rounded">{error}</span>}

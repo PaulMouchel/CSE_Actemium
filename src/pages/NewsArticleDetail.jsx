@@ -83,7 +83,7 @@ const NewsArticleDetail = ({admin, collection}) => {
             </div>
             <div className="flex flex-col justify-between h-full -mt-10">
                 <div>
-                    {data?.galleryUrl && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url(${data.galleryUrl[0]})`}}></div>}
+                    {data?.galleryUrl && <div className="h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url("${data.galleryUrl[0]}")`}}></div>}
                     <div className="py-4 pb-0">
                         <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
                             <FaClock className='inline' />
