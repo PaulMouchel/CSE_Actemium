@@ -17,7 +17,7 @@ type Props = {
 }
 
 const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGallery }: Props) => {
-
+console.log({ galleryUrl})
     const handleDelete = (e: MouseEvent, index: number) => {
         e.stopPropagation()
         let newGallery = gallery
@@ -33,7 +33,7 @@ const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGa
                         className="relative overflow-hidden opacity-80 bg-cover bg-center" 
                         style={{
                             padding: "50% 0", 
-                            backgroundImage: `url(${doc})`
+                            backgroundImage: `url("${doc}")`
                         }} 
                         key={index} 
                         layout
