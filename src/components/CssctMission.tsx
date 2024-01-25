@@ -4,8 +4,15 @@ import DeleteButton from './DeleteButton'
 import { motion, AnimatePresence } from 'framer-motion'
 import Img from "react-cool-img";
 import { sendToastSuccess } from "../functions/sendToast";
+import { Cssct } from '../types/Cssct.type';
 
-const CssctMission = ({title, text, imageUrl, admin, id, docs}) => {
+type Props = Cssct & {
+    admin: boolean
+    id: string
+    docs: Cssct[]
+}
+
+const CssctMission = ({title, text, imageUrl, admin, id, docs}: Props) => {
   
   const [size, setSize] = useState(1)
   const [showText, setShowText] = useState(false)

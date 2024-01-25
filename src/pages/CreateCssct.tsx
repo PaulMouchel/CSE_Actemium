@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom' 
 import PreviousButton from '../components/PreviousButton'
 import ActionButton from '../components/ActionButton'
@@ -9,10 +9,14 @@ import { uploadToDatabase } from '../functions/uploadToDatabase';
 import UploadImageForm from '../components/UploadImageForm';
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 
-const CreateCssct = ({collection}) => {
-  const [image, setImage] = useState();
+type Props = {
+    collection: "Cssct"
+}
+
+const CreateCssct = ({collection}: Props) => {
+  const [image, setImage] = useState<any>();
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [, setError] = useState("")
 
   const textData = useRef({
     title: "",
@@ -20,8 +24,8 @@ const CreateCssct = ({collection}) => {
     storageId: ""
   })
 
-  const titleRef = useRef()
-  const textRef = useRef()
+  const titleRef = useRef<HTMLInputElement>(null)
+  const textRef = useRef<HTMLTextAreaElement>(null)
   const history = useHistory()
 
  const setDataAndUpload = () => {
@@ -38,7 +42,7 @@ const CreateCssct = ({collection}) => {
   })
 }
 
-  const setBenefitImage = (images) => {
+  const setBenefitImage = (images: any[]) => {
     if (images[0]) {
       setImage(images[0])
     }
@@ -50,13 +54,13 @@ const CreateCssct = ({collection}) => {
     }
   }, [loading])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    const _title = titleRef.current.value
-    const _text = textRef.current.value
+    const _title = titleRef.current?.value
+    const _text = textRef.current?.value
 
-    if (image && _title !== "" && _text !== "") {
+    if (image && _title && _text) {
       textData.current = {
         title: _title,
         text: _text,
@@ -75,16 +79,16 @@ const CreateCssct = ({collection}) => {
       className="w-full md:py-2" >
         <article className="group max-w-6xl m-auto lg:border-2 lg:my-6 pb-5 bg-gray-50">
           <PreviousButton to="/" className="relative top-2 left-2"/>
-          <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer {collection === "Benefits" ? "un nouvel avantage" : "une nouvelle mission CSSCT" }</p>
+          <p className="mx-20 relative -top-7 mb-4 text-center text-xl sm:text-3xl text-gray-600">Créer une nouvelle mission CSSCT</p>
           <div className="flex flex-col justify-between h-full -mt-10">
             <div className="pt-8">
               {image ? 
                 <div className="flex items-center justify-center h-72 md:h-96 bg-cover bg-center" style={{backgroundImage: `url("${image.url}")`}}>
-                  <UploadImageForm file={[image]} setFile={setBenefitImage} maxWidth={1000} maxHeight={1000}/>
+                  <UploadImageForm setFile={setBenefitImage} maxWidth={1000} maxHeight={1000}/>
                 </div>
                 :
                 <div className="flex items-center justify-center h-72 md:h-96 bg-gray-400">
-                  <UploadImageForm file={[image]} setFile={setBenefitImage} maxWidth={1000} maxHeight={1000}/>
+                  <UploadImageForm setFile={setBenefitImage} maxWidth={1000} maxHeight={1000}/>
                 </div>
                 }
             </div> 
@@ -93,7 +97,7 @@ const CreateCssct = ({collection}) => {
                 <input type="text" name="title" className="block w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Titre" ref={titleRef} required/>
               </h3>
               <div className="w-full h-60 text-gray-600">
-                <textarea type="text" name="text" className="resize-none block h-full w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
+                <textarea name="text" className="resize-none block h-full w-full border-2 focus:border-secondary p-2 outline-none" autoComplete="off" placeholder="Texte" ref={textRef} required/>
               </div>
             </div>
           </div>

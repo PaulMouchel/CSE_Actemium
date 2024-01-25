@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { goToHash } from '../functions/goToHash';
+import { IconType } from 'react-icons';
 
 const buttonsVariant = {
     hidden: {
@@ -31,7 +32,14 @@ const textVariant = {
     }
 }
 
-const SideButton = (item) => {
+type Props = {
+    icon: IconType
+    text: string
+    href: string
+    focus: boolean
+}
+
+const SideButton = (item: Props) => {
     const [isHovering, setIsHovering] = useState(false)
 
     const handleMouseEnter = () => {

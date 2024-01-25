@@ -1,6 +1,5 @@
-import { useState } from "react"
+import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 import { useHistory } from 'react-router-dom'
-import useFirestore from '../hooks/useFirestore';
 import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
 import { FaSpinner, FaCheck } from "react-icons/fa"
 import PreviousButton from '../components/PreviousButton'
@@ -8,21 +7,26 @@ import UploadImageForm from '../components/UploadImageForm';
 import { motion } from "framer-motion";
 import deleteFolderContents from "../functions/deleteFolderContents";
 import { sendToastSuccess } from "../functions/sendToast";
+import { useBackground } from "../hooks/useBackground";
 
-const UpdateBackground = ({image, setImage}) => {
+type Props = {
+    setImage: Dispatch<SetStateAction<any>>
+}
+
+const UpdateBackground = ({setImage}: Props) => {
     const [loading, setLoading] = useState(false)
-    const [selectedImage, setSelectedImage] = useState()
+    const [selectedImage, setSelectedImage] = useState<any>()
     const history = useHistory()
 
-    const { docs } = useFirestore('Background');
+    const background = useBackground()
 
-    const setBackground = (images) => {
+    const setBackground = (images: any[]) => {
         if (images[0]) {
             setSelectedImage(images[0])
         }
     }
 
-    const changeImageField = (parameter, value) => {
+    const changeImageField = (parameter: string, value: any) => {
         const newImage = selectedImage;
         newImage[parameter] = value;
         setSelectedImage(newImage);
@@ -33,8 +37,8 @@ const UpdateBackground = ({image, setImage}) => {
         const collectionRef = projectFirestore.collection('Background');
         const createdAt = timestamp();
         const imageUrl = selectedImage.downloadURL
-        if (docs[0]) {
-            await collectionRef.doc(docs[0].id).update({ imageUrl, createdAt })
+        if (background) {
+            await collectionRef.doc(background.id).update({ imageUrl, createdAt })
         } else {
             await collectionRef.add({ imageUrl, createdAt });
         }
@@ -50,7 +54,7 @@ const UpdateBackground = ({image, setImage}) => {
         uploadTask.on(
             "state_changed",
             null,
-            function error(err) {
+            function error(err: any) {
               console.log("Error Image Upload:", err);
             },
             async function complete() {
@@ -62,7 +66,7 @@ const UpdateBackground = ({image, setImage}) => {
         );
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
 
         if (selectedImage) {
@@ -82,7 +86,7 @@ const UpdateBackground = ({image, setImage}) => {
                 <div className="w-full p-3 pb-10">
                     <PreviousButton to="/"/>
                 </div>
-                    <UploadImageForm file={image} setFile={setBackground} maxWidth={1920} maxHeight={1920}/>
+                    <UploadImageForm setFile={setBackground} maxWidth={1920} maxHeight={1920}/>
                     { !loading ?
                         <button 
                             disabled={loading} 

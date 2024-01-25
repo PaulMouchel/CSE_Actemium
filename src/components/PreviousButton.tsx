@@ -5,7 +5,7 @@ type Props = {
     to: string
     hash?: string
     state?: Record<string, any>
-    className: string
+    className?: string
 }
 
 const PreviousButton = ({ to, hash, state, className }:Props) => {

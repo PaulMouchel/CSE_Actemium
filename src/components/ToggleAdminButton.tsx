@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { IconType } from 'react-icons';
 
 const buttonsVariant = {
     hidden: {
@@ -30,7 +31,14 @@ const textVariant = {
     }
 }
 
-const ToggleAdminButton = ({admin, setAdmin, icon, text}) => {
+type Props = {
+    admin: boolean
+    setAdmin: Dispatch<SetStateAction<boolean>>
+    icon: IconType
+    text: string
+}
+
+const ToggleAdminButton = ({admin, setAdmin, icon, text}: Props) => {
     const [isHovering, setIsHovering] = useState(false)
 
     const handleMouseEnter = () => {

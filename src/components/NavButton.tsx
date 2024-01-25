@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { goToHash } from '../functions/goToHash';
+import { IconType } from 'react-icons';
 
 const underlineVariant = {
     hidden: {
@@ -15,7 +16,13 @@ const underlineVariant = {
     }
 }
 
-const NavButton = (item) => {
+type Props = {
+    icon: IconType
+    text: string
+    href: string
+}
+
+const NavButton = (item: Props) => {
     const [isHovering, setIsHovering] = useState(false)
 
     const handleMouseEnter = () => {

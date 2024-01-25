@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 import { motion } from 'framer-motion'
@@ -6,7 +6,13 @@ import NavButton from './NavButton'
 import BurgerMenu from './BurgerMenu'
 import { navbarData } from "../data/navbar";
 
-const Navbar = (props) => {
+type Props = {
+  isAdmin: boolean
+  admin: boolean
+  setAdmin: Dispatch<SetStateAction<boolean>>
+}
+
+const Navbar = (props: Props) => {
 
   const [error, setError] = useState("")
     const { logout } = useAuth()
@@ -38,7 +44,10 @@ const Navbar = (props) => {
             )}   
           </div>
           <div>
-            <motion.button variant="link" onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 bg-secondary text-white font-bold p-2 rounded mr-4" id="logout" type="submit"
+            <motion.button 
+            //@ts-ignore
+            variant="link" 
+            onClick={handleLogout} className="w-0 md:w-40 xl:w-48 flex-1 bg-secondary text-white font-bold p-2 rounded mr-4" id="logout" type="submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
               <span>Déconnexion</span>

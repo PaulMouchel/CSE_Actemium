@@ -58,7 +58,7 @@ const Main = () => {
                             <UpdateQuotation/>
                         </AdminRoute>
                         <AdminRoute path="/background/edit" isAdmin={isAdmin}>
-                            <UpdateBackground image={background} setImage={setBackground}/>
+                            <UpdateBackground setImage={setBackground}/>
                         </AdminRoute>
                         <AdminRoute path="/users/edit" isAdmin={isAdmin}>
                             <Admins/>

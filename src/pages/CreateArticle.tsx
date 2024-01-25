@@ -14,7 +14,7 @@ import useFirestore, { FireStoreCollection } from '../hooks/useFirestore.js'
 import { sendToastSuccess } from "../functions/sendToast.js";
 
 type Props = {
-    collection: FireStoreCollection
+    collection: Exclude<FireStoreCollection, "Background" | "Admins" | "Quotation" | "Team" | "Cssct">
 }
 
 const CreateArticle = ({ collection }: Props) => {
