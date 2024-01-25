@@ -1,9 +1,9 @@
 import { PropsWithChildren, useContext, useEffect, useState, createContext } from 'react';
 import { projectAuth } from "../firebase/config";
-import firebase from 'firebase/compat/app'
+import { signInWithEmailAndPassword, sendPasswordResetEmail, signOut, UserInfo } from 'firebase/auth'
 
 export const AuthContext = createContext<{
-    currentUser: firebase.User | null
+    currentUser: UserInfo | null
     login: (email: string, password: string) => void,
     logout: () => void,
     resetPassword: (email: string) => void,
@@ -19,19 +19,19 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
-    const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
+    const [currentUser, setCurrentUser] = useState<UserInfo | null>(null)
     const [loading, setLoading] = useState(true)
 
     function login(email: string, password: string) {
-        return projectAuth.signInWithEmailAndPassword(email, password)
+        return signInWithEmailAndPassword(projectAuth, email, password)
     }
 
     function logout() {
-        return projectAuth.signOut()
+        return signOut(projectAuth)
     }
 
     function resetPassword(email: string) {
-        return projectAuth.sendPasswordResetEmail(email)
+        return sendPasswordResetEmail(projectAuth, email)
     }
 
     useEffect(() => {

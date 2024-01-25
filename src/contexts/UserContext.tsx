@@ -1,11 +1,10 @@
 import React, { PropsWithChildren, useContext, useEffect, useState } from 'react';
-import firebase from 'firebase/compat/app';
-
+import { UserInfo } from 'firebase/auth'
 import { useAuth } from './AuthContext';
 import { useAdmins } from '../hooks/useAdmins';
 
 export const UserContext = React.createContext<{
-    currentUser: firebase.User | null
+    currentUser: UserInfo | null
     isAdmin: boolean
 }>({
     currentUser: null,

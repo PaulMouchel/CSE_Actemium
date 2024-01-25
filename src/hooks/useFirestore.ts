@@ -13,8 +13,7 @@ const useFirestore = <T extends Record<string, any>>(collection: FireStoreCollec
     const auth = useAuth()
 
     useEffect(() => {
-        if (auth) {
-            if (auth.currentUser) {
+        if (auth?.currentUser) {
                 const unsub = projectFirestore.collection(collection)
                     .orderBy('createdAt', 'desc')
                     .onSnapshot(snap => {
@@ -28,7 +27,6 @@ const useFirestore = <T extends Record<string, any>>(collection: FireStoreCollec
                 return () => unsub();
                 // this is a cleanup function that react will run when
                 // a component using the hook unmounts
-            }
         }
         setDocs([])
       
