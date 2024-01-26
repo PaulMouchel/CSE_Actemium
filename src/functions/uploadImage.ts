@@ -13,7 +13,6 @@ export const uploadImage = (
     next: () => void
 ) => {
     image.storageRef = ref(storage, `${collection}/${storageId}/${image.fileName}`)
-    setImage(image)
     const uploadTask = uploadBytesResumable(image.storageRef, image.file);
     uploadTask.on(
         "state_changed",
@@ -24,9 +23,8 @@ export const uploadImage = (
         },
         async function complete() {
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-            let newImage = image
-            newImage.downloadURL = downloadURL
-            setImage(newImage)
+            image.downloadURL = downloadURL
+            setImage({...image})
             next()
         }
     );
