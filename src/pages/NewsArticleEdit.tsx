@@ -13,6 +13,7 @@ import { sendToastSuccess } from "../functions/sendToast";
 import { FireStoreCollection } from '../hooks/useFirestore';
 import { News } from '../types/News.type';
 import { doc, updateDoc } from 'firebase/firestore';
+import { FileType } from '../types/File.type';
 
 type Props = {
   collection: FireStoreCollection
@@ -66,15 +67,15 @@ const NewsArticleEdit = ({collection}: Props) => {
             uploadImages(gallery, setGallery, collection, state.data.storageId, setError, uploadToDatabase)
     }},[loading, gallery]);
 
-    const setarticleImage = (image: any[]) => {
-        if (image) {
+    const setarticleImage = (images: FileType[] | null) => {
+        if (images) {
             const galleryClone = [...gallery]
-            galleryClone[0] = image[0]
+            galleryClone[0] = images[0]
             setGallery(galleryClone)
         }
     }
 
-    const addImageToGallery = (images: any[]) => {
+    const addImageToGallery = (images: FileType[] | null) => {
         if (images) {
             setGallery((prevState) => [...prevState, ...images])
         }

@@ -10,6 +10,7 @@ import { uploadToDatabase } from '../functions/uploadToDatabase';
 import userImage from '../images/user.jpg'
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
 import { useTeam } from '../hooks/useTeam';
+import { FileType } from '../types/File.type';
 
 const CreateMember = () => {
     const [executive, setExecutive] = useState("executive");
@@ -54,8 +55,8 @@ const CreateMember = () => {
         }
     }, [loading])
 
-    const setMemberImage = (images: any[]) => {
-        if (images[0]) {
+    const setMemberImage = (images: FileType[] | null) => {
+        if (images?.at(0)) {
             setImage(images[0])
         }
     }
