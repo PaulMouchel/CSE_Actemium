@@ -8,6 +8,7 @@ import randomUid from '../functions/randomUid';
 import { uploadToDatabase } from '../functions/uploadToDatabase';
 import UploadImageForm from '../components/UploadImageForm';
 import { sendToastError, sendToastSuccess } from "../functions/sendToast";
+import { FileType } from '../types/File.type';
 
 type Props = {
     collection: "Cssct"
@@ -42,8 +43,8 @@ const CreateCssct = ({collection}: Props) => {
   })
 }
 
-  const setBenefitImage = (images: any[]) => {
-    if (images[0]) {
+  const setBenefitImage = (images: FileType[] | null) => {
+    if (images?.at(0)) {
       setImage(images[0])
     }
   }

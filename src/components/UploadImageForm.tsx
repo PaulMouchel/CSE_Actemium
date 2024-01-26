@@ -1,9 +1,10 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { FaPlus } from "react-icons/fa"
 import Compress from 'compress.js';
+import { FileType } from '../types/File.type';
 
 type Props = {
-    setFile: Dispatch<SetStateAction<any>>, 
+    setFile: (images: FileType[] | null) => void 
     multiple?: boolean, 
     maxWidth?: number 
     maxHeight?: number
@@ -50,10 +51,10 @@ const UploadImageForm = ({ setFile, multiple, maxWidth, maxHeight }: Props) => {
                     })
                     const newFiles = Array.from(filesArray).map((file) => {
                         return {
-                            file: file,
+                            file,
                             fileName: file.name,
-                            status: "CREATED",
-                            storageRef: "",//projectStorage.ref().child(file.name),
+                            status: "CREATED" as const,
+                            storageRef: null,
                             url: URL.createObjectURL(file),
                             downloadURL: "",
                             description: "",

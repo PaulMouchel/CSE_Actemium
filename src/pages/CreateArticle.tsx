@@ -12,6 +12,7 @@ import { uploadToDatabase } from '../functions/uploadToDatabase.js';
 import getFormatedDate from '../functions/getFormatedDate.js';
 import useFirestore, { FireStoreCollection } from '../hooks/useFirestore.js'
 import { sendToastSuccess } from "../functions/sendToast.js";
+import { FileType } from '../types/File.type.js';
 
 type Props = {
     collection: Exclude<FireStoreCollection, "Background" | "Admins" | "Quotation" | "Team" | "Cssct">
@@ -20,7 +21,7 @@ type Props = {
 const CreateArticle = ({ collection }: Props) => {
 
     const [ selectedImg, setSelectedImg ] = useState<string | null>(null);
-    const [ gallery, setGallery ] = useState<{ url: string, downloadURL: string }[]>([]);
+    const [ gallery, setGallery ] = useState<FileType[]>([]);
     const [ loading, setLoading ] = useState(false)
     const [ , setError ] = useState(""); 
     const { docs } = useFirestore(collection);

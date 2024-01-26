@@ -1,5 +1,6 @@
 import deleteFolderContents from './deleteFolderContents';
-import { projectFirestore } from '../firebase/config';
+import { firestore } from '../firebase/config';
+import { deleteDoc, doc } from 'firebase/firestore'
 import { FireStoreCollection } from '../hooks/useFirestore';
 
 type Props = {
@@ -13,8 +14,8 @@ type Props = {
 const deleteDocument = ({ docs, id, collection, next, nextParams }: Props) => {
     const currentDoc = docs.find(doc => doc.id === id)
     deleteFolderContents(collection + "/" + currentDoc.storageId)
-    const collectionRef = projectFirestore.collection(collection);      
-    collectionRef.doc(id).delete().then(next && next(nextParams));
+    deleteDoc(doc(firestore, collection, id))
+        .then(next && next(nextParams));
 }
 
 export default deleteDocument;

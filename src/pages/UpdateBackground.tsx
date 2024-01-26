@@ -1,6 +1,6 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 import { useHistory } from 'react-router-dom'
-import { projectFirestore, projectStorage, timestamp } from '../firebase/config';
+import { firestore, storage, timestamp } from '../firebase/config';
 import { FaSpinner, FaCheck } from "react-icons/fa"
 import PreviousButton from '../components/PreviousButton'
 import UploadImageForm from '../components/UploadImageForm';
@@ -8,6 +8,9 @@ import { motion } from "framer-motion";
 import deleteFolderContents from "../functions/deleteFolderContents";
 import { sendToastSuccess } from "../functions/sendToast";
 import { useBackground } from "../hooks/useBackground";
+import { addDoc, doc, collection as firestoreCollection, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { FileType } from "../types/File.type";
 
 type Props = {
     setImage: Dispatch<SetStateAction<any>>
@@ -15,32 +18,34 @@ type Props = {
 
 const UpdateBackground = ({setImage}: Props) => {
     const [loading, setLoading] = useState(false)
-    const [selectedImage, setSelectedImage] = useState<any>()
+    const [selectedImage, setSelectedImage] = useState<FileType>()
     const history = useHistory()
 
     const background = useBackground()
 
-    const setBackground = (images: any[]) => {
-        if (images[0]) {
+    const setBackground = (images: FileType[] | null) => {
+        if (images?.at(0)) {
             setSelectedImage(images[0])
         }
     }
 
-    const changeImageField = (parameter: string, value: any) => {
+    const changeImageField = (parameter: keyof FileType, value: any) => {
+        if (!selectedImage) return
         const newImage = selectedImage;
         newImage[parameter] = value;
         setSelectedImage(newImage);
      };
 
     const uploadToDatabase = async () => {
-        
-        const collectionRef = projectFirestore.collection('Background');
+        if(!selectedImage) return
+        const collectionRef = firestoreCollection(firestore, 'Background')
         const createdAt = timestamp();
         const imageUrl = selectedImage.downloadURL
         if (background) {
-            await collectionRef.doc(background.id).update({ imageUrl, createdAt })
+            const docRef = doc(firestore, 'Background', background.id)
+            await updateDoc(docRef, { imageUrl, createdAt })
         } else {
-            await collectionRef.add({ imageUrl, createdAt });
+            await addDoc(collectionRef, { imageUrl, createdAt })
         }
         sendToastSuccess("Image de fond modifiée")
         setImage(imageUrl)
@@ -48,19 +53,21 @@ const UpdateBackground = ({setImage}: Props) => {
      }
     
      const UploadImage = () => {
+        if(!selectedImage) return
         deleteFolderContents("Background")
-        changeImageField("storageRef", projectStorage.ref().child("Background/" + selectedImage.fileName));
-        const uploadTask = selectedImage.storageRef.put(selectedImage.file);
+        const storageRef = ref(storage, "Background/" + selectedImage.fileName)
+        changeImageField("storageRef", storageRef)
+        const uploadTask = uploadBytesResumable(storageRef, selectedImage.file);
         uploadTask.on(
             "state_changed",
             null,
             function error(err: any) {
-              console.log("Error Image Upload:", err);
+                console.log("Error Image Upload:", err);
             },
             async function complete() {
-              const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-              changeImageField("downloadURL", downloadURL);
-              uploadToDatabase()
+                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+                changeImageField("downloadURL", downloadURL);
+                uploadToDatabase()
     
             }
         );

@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, FormEvent } from 'react';
 import { useLocation, useHistory } from 'react-router-dom' 
-import { projectFirestore, timestamp } from '../firebase/config';
+import { firestore, timestamp } from '../firebase/config';
 import UploadImageForm from '../components/UploadImageForm';
 import ImageGrid from '../components/ImageGrid';
 import Modal from '../components/Modal';
@@ -12,6 +12,8 @@ import getFormatedDate from '../functions/getFormatedDate';
 import { sendToastSuccess } from "../functions/sendToast";
 import { FireStoreCollection } from '../hooks/useFirestore';
 import { News } from '../types/News.type';
+import { doc, updateDoc } from 'firebase/firestore';
+import { FileType } from '../types/File.type';
 
 type Props = {
   collection: FireStoreCollection
@@ -35,11 +37,12 @@ const NewsArticleEdit = ({collection}: Props) => {
     const history = useHistory()
 
     const uploadToDatabase = async () => {
-        const collectionRef = projectFirestore.collection(collection);
+        if (!state?.data.id) return
         const createdAt = timestamp();
         const date = getFormatedDate()
         const galleryUrl = gallery.map(x => x.downloadURL)
-        await collectionRef.doc(state?.data.id).update({ galleryUrl, ...textData.current, date, createdAt, storageId: state?.data.storageId });
+        const docRef = doc(firestore, collection, state?.data.id)
+        await updateDoc(docRef, { galleryUrl, ...textData.current, date, createdAt, storageId: state?.data.storageId })
         sendToastSuccess("Article modifié avec succès")
         history.push('/')
     }
@@ -64,15 +67,15 @@ const NewsArticleEdit = ({collection}: Props) => {
             uploadImages(gallery, setGallery, collection, state.data.storageId, setError, uploadToDatabase)
     }},[loading, gallery]);
 
-    const setarticleImage = (image: any[]) => {
-        if (image) {
+    const setarticleImage = (images: FileType[] | null) => {
+        if (images) {
             const galleryClone = [...gallery]
-            galleryClone[0] = image[0]
+            galleryClone[0] = images[0]
             setGallery(galleryClone)
         }
     }
 
-    const addImageToGallery = (images: any[]) => {
+    const addImageToGallery = (images: FileType[] | null) => {
         if (images) {
             setGallery((prevState) => [...prevState, ...images])
         }
