@@ -1,19 +1,14 @@
 import { motion } from 'framer-motion';
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import { FaTimes } from "react-icons/fa"
+import { FileType } from '../types/File.type';
 
 type Props = {
     galleryUrl: string[], 
     setSelectedImg: Dispatch<SetStateAction<string | null>>, 
     imagesDeletable?: boolean, 
-    gallery?: {
-        url: string;
-        downloadURL: string;
-    }[], 
-    setGallery?: Dispatch<SetStateAction<{
-        url: string;
-        downloadURL: string;
-    }[]>>
+    gallery?: FileType[], 
+    setGallery?: Dispatch<SetStateAction<FileType[]>>
 }
 
 const ImageGrid = ({ galleryUrl, setSelectedImg, imagesDeletable, gallery, setGallery }: Props) => {

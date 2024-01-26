@@ -3,10 +3,11 @@ import { Dispatch, SetStateAction } from "react";
 import { storage } from "../firebase/config";
 import { FireStoreCollection } from "../hooks/useFirestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { FileType } from "../types/File.type";
 
 export const uploadImages = (
-    gallery: any[], 
-    setGallery: Dispatch<SetStateAction<any[]>>, 
+    gallery: FileType[], 
+    setGallery: Dispatch<SetStateAction<FileType[]>>, 
     collection: FireStoreCollection, 
     storageId: string, 
     setError: Dispatch<SetStateAction<string>>, 
@@ -16,16 +17,14 @@ export const uploadImages = (
         next()
         return
     } else {
-        gallery.forEach((image, index) => {
-            if (image.storageRef === "") {
-                let newGallery = [...gallery]
-                newGallery[index]["storageRef"] = ref(storage, `${collection}/${storageId}/${image.fileName}`)
-                setGallery(newGallery)
-            }
+        gallery.forEach((image) => {
+
+            image.storageRef = image.storageRef ?? ref(storage, `${collection}/${storageId}/${image.fileName}`)
+
             if (image.status === "FINISH" || image.status === "UPLOADING") return;
-            let newGallery = [...gallery]
-            newGallery[index]["status"] = "UPLOADING"
-            setGallery(newGallery)
+
+            image.status = "UPLOADING"
+
             const uploadTask = uploadBytesResumable(image.storageRef, image.file);
             uploadTask.on(
                 "state_changed",
@@ -36,10 +35,9 @@ export const uploadImages = (
                 },
                 async function complete() {
                     const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-                    let newGallery = [...gallery]
-                    newGallery[index]["downloadURL"] = downloadURL
-                    newGallery[index]["status"] = "FINISH"
-                    setGallery(newGallery)
+                    image.downloadURL = downloadURL
+                    image.status = "FINISH"
+                    setGallery([...gallery])
                 }
             );
         })

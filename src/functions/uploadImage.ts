@@ -2,18 +2,18 @@ import { Dispatch, SetStateAction } from "react";
 import { storage } from "../firebase/config";
 import { FireStoreCollection } from "../hooks/useFirestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { FileType } from "../types/File.type";
 
 export const uploadImage = (
-    image: any, 
-    setImage: Dispatch<SetStateAction<any>>, 
+    image: FileType, 
+    setImage: Dispatch<SetStateAction<FileType>>, 
     collection: FireStoreCollection, 
     storageId: string, 
     setError: Dispatch<SetStateAction<string>>, 
     next: () => void
 ) => {
-    let newImage = image
-    newImage["storageRef"] = ref(storage, `${collection}/${storageId}/${image.fileName}`)
-    setImage(newImage)
+    image.storageRef = ref(storage, `${collection}/${storageId}/${image.fileName}`)
+    setImage(image)
     const uploadTask = uploadBytesResumable(image.storageRef, image.file);
     uploadTask.on(
         "state_changed",
@@ -23,10 +23,9 @@ export const uploadImage = (
             setError("Erreur de chargement de l'image:" + err)
         },
         async function complete() {
-            // const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
             let newImage = image
-            newImage["downloadURL"] = downloadURL
+            newImage.downloadURL = downloadURL
             setImage(newImage)
             next()
         }

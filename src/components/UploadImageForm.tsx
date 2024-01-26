@@ -51,10 +51,10 @@ const UploadImageForm = ({ setFile, multiple, maxWidth, maxHeight }: Props) => {
                     })
                     const newFiles = Array.from(filesArray).map((file) => {
                         return {
-                            file: file,
+                            file,
                             fileName: file.name,
-                            status: "CREATED",
-                            storageRef: "",//projectStorage.ref().child(file.name),
+                            status: "CREATED" as const,
+                            storageRef: null,
                             url: URL.createObjectURL(file),
                             downloadURL: "",
                             description: "",
