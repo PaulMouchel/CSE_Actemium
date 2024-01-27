@@ -1,4 +1,6 @@
+import { Timestamp } from "@firebase/firestore"
+
 export type Admins = {
-    createdAt: Date
+    createdAt: Timestamp
     list: string[]
 }

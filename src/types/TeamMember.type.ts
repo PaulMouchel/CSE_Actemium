@@ -1,5 +1,7 @@
+import { Timestamp } from "@firebase/firestore"
+
 export type TeamMember = {
-    createdAt: Date
+    createdAt: Timestamp
     executive: boolean
     fullName: string
     holder: boolean

@@ -28,6 +28,11 @@ const NewsArticleDetail = ({admin, collection}: Props) => {
     const { pathname } = useLocation();
     const [ data, setData ] = useState<(News | Benefit) & { id: string } | null>(null)
     
+
+    const date = data ? new Intl.DateTimeFormat('fr-FR', {
+        dateStyle: 'short',
+    }).format(data.createdAt.seconds * 1000) : ''
+
     const updateBenefitsOrders = (exeptionId: string) => {
         if ( collection === "Benefits" ) {
             updateOrders(docs, collection, exeptionId)
@@ -97,7 +102,7 @@ const NewsArticleDetail = ({admin, collection}: Props) => {
                     <div className="py-4 pb-0">
                         <div className="relative bottom-9 left-3 bg-secondary p-2 text-gray-50 rounded-full px-3 inline-block">
                             <FaClock className='inline' />
-                            <span className="text-sm ml-1">{data?.date}</span>                   
+                            <span className="text-sm ml-1">{date}</span>                   
                         </div>
                     </div>
                 </div>

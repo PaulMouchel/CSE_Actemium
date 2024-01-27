@@ -8,6 +8,10 @@ type Props = News & {
 
 const OldArticle = (article: Props) => {
 
+  const date = new Intl.DateTimeFormat('fr-FR', {
+      dateStyle: 'short',
+  }).format(article.createdAt.seconds * 1000)
+
   return (
     <motion.article className={`border-b w-full border-gray-400 m-auto mt-2 bg-gray-200 hover:shadow-md group transform duration-300 ease-in-out hover:-translate-y-1`}
     >
@@ -17,7 +21,7 @@ const OldArticle = (article: Props) => {
         }}>
         <div className="flex flex-row">
           <div className="px-2 py-4 text-gray-800 flex items-center">
-              <span className="text-xs">{article.date}</span>           
+              <span className="text-xs">{date}</span>           
           </div>
           <div className="p-2 flex justify-start items-center">
             <h3 className={`text-xs text-blue-800 font-bold`}>

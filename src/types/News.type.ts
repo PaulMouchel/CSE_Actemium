@@ -1,3 +1,5 @@
+import { Timestamp } from "@firebase/firestore"
+
 export type News = {
     galleryUrl: string[]
     order: number
@@ -5,6 +7,5 @@ export type News = {
     subTitle: string
     text: string
     title: string
-    createdAt: Date
-    date: string
+    createdAt: Timestamp
 }

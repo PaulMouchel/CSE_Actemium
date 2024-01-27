@@ -1,4 +1,6 @@
+import { Timestamp } from "@firebase/firestore"
+
 export type Background = {
-    createdAt: Date
+    createdAt: Timestamp
     imageUrl: string
 }

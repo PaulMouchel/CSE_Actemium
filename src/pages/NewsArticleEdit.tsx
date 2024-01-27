@@ -8,7 +8,6 @@ import PreviousButton from '../components/PreviousButton'
 import ActionButton from '../components/ActionButton'
 import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages';
-import getFormatedDate from '../functions/getFormatedDate';
 import { sendToastSuccess } from "../functions/sendToast";
 import { FireStoreCollection } from '../hooks/useFirestore';
 import { News } from '../types/News.type';
@@ -39,10 +38,9 @@ const NewsArticleEdit = ({collection}: Props) => {
     const uploadToDatabase = async () => {
         if (!state?.data.id) return
         const createdAt = timestamp();
-        const date = getFormatedDate()
         const galleryUrl = gallery.map(x => x.downloadURL)
         const docRef = doc(firestore, collection, state?.data.id)
-        await updateDoc(docRef, { galleryUrl, ...textData.current, date, createdAt, storageId: state?.data.storageId })
+        await updateDoc(docRef, { galleryUrl, ...textData.current, createdAt, storageId: state?.data.storageId })
         sendToastSuccess("Article modifié avec succès")
         history.push('/')
     }

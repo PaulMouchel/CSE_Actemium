@@ -1,3 +1,5 @@
+import { Timestamp } from "@firebase/firestore"
+
 export type Benefit = {
     galleryUrl: string[]
     order: number
@@ -5,5 +7,5 @@ export type Benefit = {
     subTitle: string
     text: string
     title: string
-    date: undefined
+    createdAt: Timestamp
 }

@@ -1,5 +1,7 @@
+import { Timestamp } from "@firebase/firestore"
+
 export type Cssct = {
-    createdAt: Date
+    createdAt: Timestamp
     imageUrl: string
     storageId: string
     text: string

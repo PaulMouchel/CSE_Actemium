@@ -9,7 +9,6 @@ import { motion } from 'framer-motion';
 import { uploadImages } from '../functions/uploadImages.js';
 import randomUid from '../functions/randomUid.js';
 import { uploadToDatabase } from '../functions/uploadToDatabase.js';
-import getFormatedDate from '../functions/getFormatedDate.js';
 import useFirestore, { FireStoreCollection } from '../hooks/useFirestore.js'
 import { sendToastSuccess } from "../functions/sendToast.js";
 import { FileType } from '../types/File.type.js';
@@ -40,10 +39,9 @@ const CreateArticle = ({ collection }: Props) => {
     const history = useHistory()
 
     const setDataAndUpload = () => {
-        const date = getFormatedDate()
         const galleryUrl = gallery.map(x => x.downloadURL)
         const order = length ? length : 0
-        const data = { galleryUrl, ...textData.current, date, order }
+        const data = { galleryUrl, ...textData.current, order }
         uploadToDatabase(collection, data)
             .then(() => {
                 sendToastSuccess("Article créé avec succès")
