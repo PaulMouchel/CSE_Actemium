@@ -16,30 +16,31 @@ export const uploadImages = (
     if (gallery.every(image => (image.status === "FINISH"))) {
         callback()
         return
-    } else {
-        gallery.forEach((image) => {
+    } 
+    
+    gallery.forEach((image) => {
 
-            image.storageRef = image.storageRef ?? ref(storage, `${collection}/${storageId}/${image.fileName}`)
+        image.storageRef = image.storageRef ?? ref(storage, `${collection}/${storageId}/${image.fileName}`)
 
-            if (image.status === "FINISH" || image.status === "UPLOADING") return;
+        if (image.status === "FINISH" || image.status === "UPLOADING") return;
 
-            image.status = "UPLOADING"
+        image.status = "UPLOADING"
 
-            const uploadTask = uploadBytesResumable(image.storageRef, image.file);
-            uploadTask.on(
-                "state_changed",
-                null,
-                (error: StorageError) => {
-                    console.log("Erreur de chargement de l'image:", error);
-                    setError("Erreur de chargement de l'image: " + error.message);
-                },
-                async () => {
-                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-                    image.downloadURL = downloadURL
-                    image.status = "FINISH"
-                    setGallery([...gallery])
-                }
-            );
-        })
-    };
+        const uploadTask = uploadBytesResumable(image.storageRef, image.file);
+        uploadTask.on(
+            "state_changed",
+            null,
+            (error: StorageError) => {
+                console.log("Erreur de chargement de l'image:", error);
+                setError("Erreur de chargement de l'image: " + error.message);
+            },
+            async () => {
+                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+                image.downloadURL = downloadURL
+                image.status = "FINISH"
+                setGallery([...gallery])
+            }
+        );
+    })
+    
 }
