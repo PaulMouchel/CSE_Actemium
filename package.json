@@ -13,9 +13,12 @@
     "preview": "vite preview",
     "fb:logout": "firebase logout",
     "fb:login": "firebase login",
-    "use:staging": "firebase use staging",
-    "use:production": "firebase use default",
-    "deploy": "firebase deploy"
+    "fb:use:staging": "cross-env DEPLOY_ENV=staging env-cmd -f .env.staging node firebase-use.cjs",
+    "fb:use:production": "cross-env DEPLOY_ENV=production env-cmd -f .env.production node firebase-use.cjs",
+    "fb:deploy:staging": "cross-env env-cmd -f .env.staging node firebase-deploy.cjs",
+    "fb:deploy:production": "cross-env env-cmd -f .env.production node firebase-deploy.cjs",
+    "deploy:staging": "npm run build:staging && npm run fb:use:staging && npm run fb:deploy:staging",
+    "deploy:production": "npm run build:production && npm run fb:use:production && npm run fb:deploy:production"
   },
   "dependencies": {
     "compress.js": "^1.2.2",
@@ -39,6 +42,7 @@
     "@types/react-slick": "^0.23.13",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.17",
+    "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
