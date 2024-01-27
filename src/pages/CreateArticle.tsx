@@ -57,15 +57,15 @@ const CreateArticle = ({ collection }: Props) => {
         }
     },[loading, gallery, collection]);
 
-    const setArticleImage = (image: any) => {
-        if (image) {
+    const setArticleImage = (images: FileType[] | null) => {
+        if (images) {
             let galleryClone = gallery
-            galleryClone[0] = image[0]
+            galleryClone[0] = images[0]
             setGallery([...galleryClone])
         }
     }
 
-    const addImageToGallery = (images: any) => {
+    const addImageToGallery = (images: FileType[] | null) => {
         if (images) {
             setGallery((prevState) => [...prevState, ...images])
         }
