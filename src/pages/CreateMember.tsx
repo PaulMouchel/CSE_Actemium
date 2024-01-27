@@ -16,7 +16,7 @@ const CreateMember = () => {
     const [executive, setExecutive] = useState("executive");
     const [holder, setHolder] = useState("holder");
     const [president, setPresident] = useState(false);
-    const [image, setImage] = useState<any>();
+    const [image, setImage] = useState<FileType>();
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const docs = useTeam();
@@ -50,7 +50,7 @@ const CreateMember = () => {
     }
 
     useEffect(() => {
-        if (loading) {
+        if (loading && image) {
             uploadImage(image, setImage, "Team", formData.current.storageId, setError, setDataAndUpload)
         }
     }, [loading])

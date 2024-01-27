@@ -6,7 +6,7 @@ import { FileType } from "../types/File.type";
 
 export const uploadImage = (
     image: FileType, 
-    setImage: Dispatch<SetStateAction<FileType>>, 
+    setImage: Dispatch<SetStateAction<FileType | undefined>>, 
     collection: FireStoreCollection, 
     storageId: string, 
     setError: Dispatch<SetStateAction<string>>, 
